@@ -271,7 +271,8 @@ static void picoTest_enterTestCase(const char *testName) {}
 /**
  * Define the test case enter hook.
  * 
- * The default hook does nothing. Redefine this macro to use a custom hook.
+ * The default hook does nothing. Redefine this macro to use a custom hook,
+ * which must follow the @ref PicoTestCaseEnterProc signature.
  * 
  * @see PicoTestCaseEnterProc
  * @see PICOTEST_CASE_LEAVE
@@ -301,7 +302,8 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
 /**
  * Define the test case enter hook.
  * 
- * The default hook does nothing. Redefine this macro to use a custom hook.
+ * The default hook does nothing. Redefine this macro to use a custom hook,
+ * which must follow the @ref PicoTestCaseLeaveProc signature.
  * 
  * @see PicoTestCaseLeaveProc
  * @see PICOTEST_CASE_ENTER
@@ -663,12 +665,12 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
         for (; test->name; test++) { \
             const int index=(int) (test - _suiteName##_tests); \
             int sfail=0; \
-            PICOTEST_SUITE_BEFORE_SUBTEST(_PICOTEST_STRINGIZE(_suiteName), nb, index, \
-                test->name, fail); \
+            PICOTEST_SUITE_BEFORE_SUBTEST(_PICOTEST_STRINGIZE(_suiteName), nb, \
+                fail, index, test->name); \
             sfail = test->test(NULL); \
             fail += sfail; \
-            PICOTEST_SUITE_AFTER_SUBTEST(_PICOTEST_STRINGIZE(_suiteName), nb, index, \
-                test->name, fail, sfail); \
+            PICOTEST_SUITE_AFTER_SUBTEST(_PICOTEST_STRINGIZE(_suiteName), nb, \
+                fail, index, test->name, sfail); \
         } \
         PICOTEST_SUITE_LEAVE(_PICOTEST_STRINGIZE(_suiteName), nb, fail); \
         return fail; \
@@ -736,7 +738,8 @@ static void picoTest_enterTestSuite(const char *suiteName, int nb) {}
 /**
  * Define the test suite enter hook.
  * 
- * The default hook does nothing. Redefine this macro to use a custom hook.
+ * The default hook does nothing. Redefine this macro to use a custom hook,
+ * which must follow the @ref PicoTestSuiteEnterProc signature.
  * 
  * @see PicoTestSuiteEnterProc
  * @see PICOTEST_SUITE_LEAVE
@@ -768,7 +771,8 @@ static void picoTest_leaveTestSuite(const char *suiteName, int nb, int fail) {}
  * 
  * Called after running all subtests.
  * 
- * The default hook does nothing. Redefine this macro to use a custom hook.
+ * The default hook does nothing. Redefine this macro to use a custom hook,
+ * which must follow the @ref PicoTestSuiteLeaveProc signature.
  * 
  * @see PicoTestSuiteLeaveProc
  * @see PICOTEST_SUITE_ENTER
@@ -782,15 +786,15 @@ static void picoTest_leaveTestSuite(const char *suiteName, int nb, int fail) {}
  * 
  * @param suiteName     Test suite name.
  * @param nb            Number of subtests.
- * @param index         Index of subtest.
- * @param testName      Name of subtest.
  * @param fail          Failed test suite subtests so far  (including its 
  *                      subtests' subtests if any).
+ * @param index         Index of subtest.
+ * @param testName      Name of subtest.
  * 
  * @see PICOTEST_SUITE_BEFORE_SUBTEST
  */
 typedef void (PicoTestSuiteBeforeSubtestProc)(const char *suiteName, int nb, 
-    int index, const char *testName, int fail);
+    int fail, int index, const char *testName);
 
 /** \internal
  * Default test suite before subtest hook. Does nothing.
@@ -798,13 +802,14 @@ typedef void (PicoTestSuiteBeforeSubtestProc)(const char *suiteName, int nb,
  * @see PicoTestSuiteBeforeSubtestProc
  * @see PICOTEST_SUITE_BEFORE_SUBTEST
  */
-static void picoTest_beforeSubtest(const char *suiteName, int nb, int index, 
-    const char *testName, int fail) {}
+static void picoTest_beforeSubtest(const char *suiteName, int nb, int fail, 
+    int index, const char *testName) {}
 
 /**
  * Define the test suite before subset hook.
  * 
- * The default hook does nothing. Redefine this macro to use a custom hook.
+ * The default hook does nothing. Redefine this macro to use a custom hook,
+ * which must follow the @ref PicoTestSuiteBeforeSubtestProc signature.
  * 
  * @see PicoTestSuiteBeforeSubtestProc
  * @see PICOTEST_SUITE_AFTER_SUBTEST
@@ -818,17 +823,17 @@ static void picoTest_beforeSubtest(const char *suiteName, int nb, int index,
  * 
  * @param suiteName     Test suite name.
  * @param nb            Number of subtests.
- * @param index         Index of subtest.
- * @param testName      Name of subtest.
  * @param fail          Failed test suite subtests so far (including its 
  *                      subtests' subtests if any).
+ * @param index         Index of subtest.
+ * @param testName      Name of subtest.
  * @param sfail         The subtest's failed tests (including its subtests if
  *                      any).
  * 
  * @see PICOTEST_SUITE_AFTER_SUBTEST
  */
 typedef void (PicoTestSuiteAfterSubtestProc)(const char *suiteName, int nb, 
-    int index, const char *testName, int fail, int sfail);
+    int fail, int index, const char *testName, int sfail);
 
 /** \internal
  * Default test suite after subtest hook. Does nothing.
@@ -836,13 +841,14 @@ typedef void (PicoTestSuiteAfterSubtestProc)(const char *suiteName, int nb,
  * @see PicoTestSuiteAfterSubtestProc
  * @see PICOTEST_SUITE_AFTER_SUBTEST
  */
-static void picoTest_afterSubtest(const char *suiteName, int nb, int index, 
-    const char *testName, int fail, int sfail) {}
+static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
+    int index, const char *testName, int sfail) {}
 
 /**
  * Define the test suite after subset hook.
  * 
- * The default hook does nothing. Redefine this macro to use a custom hook.
+ * The default hook does nothing. Redefine this macro to use a custom hook,
+ * which must follow the @ref PicoTestSuiteAfterSubtestProc signature.
  * 
  * @see PicoTestSuiteAfterSubtestProc
  * @see PICOTEST_SUITE_BEFORE_SUBTEST
