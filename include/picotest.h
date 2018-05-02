@@ -14,6 +14,7 @@
 #define _PICOTEST
 
 #include <setjmp.h>
+#include <stdarg.h>
 
 #if defined(_MSC_VER)
 /** \internal
@@ -71,6 +72,9 @@ typedef int (PicoTestProc) (const char * name);
  *              for test suites).
  * 
  * @see PICOTEST_TRAVERSE
+ * 
+ * @par Examples
+ *      @snippet traverse.c     PicoTestTraverseProc example
  */
 typedef void (PicoTestTraverseProc)(const char *name, int nb);
 
@@ -78,9 +82,13 @@ typedef void (PicoTestTraverseProc)(const char *name, int nb);
  * Traverse a test hierarchy.
  * 
  * @param _testName     Name of the traversed test.
- * @param _proc         Test traversal proc.
+ * @param _proc         Test traversal proc. Must follow the @ref
+ *                      PicoTestTraverseProc signature. 
  * 
  * @see PicoTestTraverseProc
+ * 
+ * @par Examples
+ *      @example_file{traverse.c}
  */
 #define PICOTEST_TRAVERSE(_testName, _proc) \
     _testName##_traverse(_proc)
@@ -108,6 +116,9 @@ typedef void (PicoTestTraverseProc)(const char *name, int nb);
  * @note **msg** and **args** are suitable arguments to **vprintf()**.
  * 
  * @see PICOTEST_FAILURE_LOGGER
+ * 
+ * @par Examples
+ *      @snippet logger.c     PicoTestFailureLoggerProc example
  */
 typedef void (PicoTestFailureLoggerProc)(const char *file, int line, 
     const char *type, const char *test, const char *msg, va_list args);
@@ -122,14 +133,15 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
     const char *test, const char *msg, va_list args) {}
 
 /**
- * Define the test failure log handler.
- * 
- * Called when a test failed.
+ * Define the test failure log handler. Called when a test fails.
  * 
  * The default handler does nothing. Redefine this macro to use a custom
  * handler.
  * 
  * @see PicoTestFailureLoggerProc
+ * 
+ * @par Examples
+ *      @snippet logger.c     PICOTEST_FAILURE_LOGGER redefinition
  */
 #define PICOTEST_FAILURE_LOGGER picoTest_logFailure
 
@@ -173,7 +185,7 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
         _PICOTEST_CONCATENATE(_PICOTEST_CASE_,_PICOTEST_ARGCOUNT(__VA_ARGS__))(__VA_ARGS__)
 #endif /* defined(_PICOTEST_PARENS) */
 
-#ifndef DOXYGEN
+/*! \cond IGNORE */
 #define _PICOTEST_CASE_DECLARE(_testName) \
     int _testName##_testCaseRunner(void); \
     void _testName##_traverse(PicoTestTraverseProc *proc) { \
@@ -236,7 +248,7 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
         return fail; \
     } \
     static void _testName##_testCase(struct _fixtureName##_Context * _context)
-#endif /* DOXYGEN */
+/*! @endcond */
 
 /*! \} End of Test Case Definitions */
 
@@ -340,14 +352,14 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
 #define PICOTEST_ASSERT(x, /* msg, */ ...) \
     _PICOTEST_ASSERT(x, #x, __VA_ARGS__)
 
-#ifndef DOXYGEN
+/*! \cond IGNORE */
 #define _PICOTEST_ASSERT(x, ...) \
     {if (!(x)) { \
         picoTest_assertFailed(PICOTEST_FAILURE_LOGGER, __FILE__, __LINE__, \
             "ASSERT", _PICOTEST_ARGCOUNT(__VA_ARGS__), __VA_ARGS__); \
         PICOTEST_ABORT(); \
     } }
-#endif /* DOXYGEN */
+/*! @endcond */
 
 /**
  * Soft assertion. Logs an error if the given value is false, but let the test
@@ -370,13 +382,13 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
 #define PICOTEST_VERIFY(x, /* msg, */ ...) \
     _PICOTEST_VERIFY(x, #x, __VA_ARGS__)
 
-#ifndef DOXYGEN
+/*! \cond IGNORE */
 #define _PICOTEST_VERIFY(x, ...) \
     {if (!(x)) { \
         picoTest_assertFailed(PICOTEST_FAILURE_LOGGER, __FILE__, __LINE__, \
             "VERIFY", _PICOTEST_ARGCOUNT(__VA_ARGS__), __VA_ARGS__); \
     } }
-#endif /* DOXYGEN */
+/*! @endcond */
 
 /** \internal
  * Tag used by **setjmp()** and **longjmp()** to jump out of failed tests.
@@ -513,13 +525,13 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
         _PICOTEST_CONCATENATE(_PICOTEST_FIXTURE_SETUP_,_PICOTEST_ARGCOUNT(__VA_ARGS__))(__VA_ARGS__)
 #endif /* defined(_PICOTEST_PARENS) */
 
-#ifndef DOXYGEN
+/*! \cond IGNORE */
 #define _PICOTEST_FIXTURE_SETUP_1(_fixtureName) \
     static void _fixtureName##_setup(void * _fixtureName##_DUMMY)
 
 #define _PICOTEST_FIXTURE_SETUP_2(_fixtureName, _context) \
     static void _fixtureName##_setup(struct _fixtureName##_Context * _context)
-#endif /* DOXYGEN */
+/*! @endcond */
 
 /**
  * Test fixture context cleanup.
@@ -600,7 +612,7 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
         _PICOTEST_CONCATENATE(_PICOTEST_FIXTURE_TEARDOWN_,_PICOTEST_ARGCOUNT(__VA_ARGS__))(__VA_ARGS__)
 #endif /* defined(_PICOTEST_PARENS) */
 
-#ifndef DOXYGEN
+/*! \cond IGNORE */
 #define _PICOTEST_FIXTURE_TEARDOWN_1(_fixtureName) \
     static void _fixtureName##_teardown(int PICOTEST_FAIL, \
         void * _fixtureName##_DUMMY)
@@ -608,7 +620,7 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
 #define _PICOTEST_FIXTURE_TEARDOWN_2(_fixtureName, _context) \
     static void _fixtureName##_teardown(int PICOTEST_FAIL, \
         struct _fixtureName##_Context * _context)
-#endif /* DOXYGEN */
+/*! @endcond */
 
 /*! \} End of Test Fixture Definitions */
 
@@ -688,7 +700,7 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
         return fail; \
     }
 
-#ifndef DOXYGEN
+/*! \cond IGNORE */
 #define _PICOTEST_SUITE_DECLARE_TEST_CASE(_testName) \
     {_PICOTEST_STRINGIZE(_testName), _testName, _testName##_traverse},
 #define _PICOTEST_SUITE_DECLARE_TEST(_testName) \
@@ -701,7 +713,7 @@ typedef struct PicoTestDescr {
     int (*test)(const char *);                      /*!< Test function. */
     void (*traverse)(PicoTestTraverseProc *proc);   /*!< Test traversal. */
 } PicoTestDescr;
-#endif /* DOXYGEN */
+/*! @endcond */
 
 /*! \} End of Test Suite Definitions */
 
@@ -886,12 +898,12 @@ static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
 #define _PICOTEST_CONCATENATE(arg1, arg2) \
     _PICOTEST_CONCATENATE1(arg1, arg2)
 
-#ifndef DOXYGEN
+/*! \cond IGNORE */
 #define _PICOTEST_CONCATENATE1(arg1, arg2) \
     _PICOTEST_CONCATENATE2(arg1, arg2)
 #define _PICOTEST_CONCATENATE2(arg1, arg2) \
     arg1##arg2
-#endif /* DOXYGEN */
+/*! @endcond */
 
 /*! \} End of Basic Utilities */
 
@@ -939,7 +951,7 @@ static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
         )
 #endif /* defined(_PICOTEST_PARENS) */
 
-#ifndef DOXYGEN
+/*! \cond IGNORE */
 #define _PICOTEST_LASTARG( \
     _1, _2, _3, _4, _5, _6, _7, _8, _9,_10, \
     _11,_12,_13,_14,_15,_16,_17,_18,_19,_20, \
@@ -949,7 +961,7 @@ static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
     _51,_52,_53,_54,_55,_56,_57,_58,_59,_60, \
     _61,_62,_63, \
     N,...) N
-#endif /* DOXYGEN */
+/*! @endcond */
 
 /** \internal
  * Iterate over the args passed to it.
@@ -967,7 +979,7 @@ static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
 #   define _PICOTEST_FOR_EACH(what, ...) _PICOTEST_CONCATENATE(_PICOTEST_FOR_EACH_,_PICOTEST_ARGCOUNT(__VA_ARGS__))(what,__VA_ARGS__)
 #endif /* defined(_PICOTEST_PARENS) */
 
-#ifndef DOXYGEN
+/*! \cond IGNORE */
 #if defined(_PICOTEST_PARENS)
 #   define _PICOTEST_FOR_EACH_1(what, x) what(x)
 #   define _PICOTEST_FOR_EACH_2(what, x, ...) what(x) _PICOTEST_FOR_EACH_1 _PICOTEST_PARENS(what,__VA_ARGS__)
@@ -1097,7 +1109,7 @@ static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
 #   define _PICOTEST_FOR_EACH_62(what, x, ...) what(x) _PICOTEST_FOR_EACH_61(what,__VA_ARGS__)
 #   define _PICOTEST_FOR_EACH_63(what, x, ...) what(x) _PICOTEST_FOR_EACH_62(what,__VA_ARGS__)
 #endif /* defined(_PICOTEST_PARENS) */
-#endif /* DOXYGEN */
+/*! @endcond */
 
 /*! \} End of Variadic Macro Utilities */
 
