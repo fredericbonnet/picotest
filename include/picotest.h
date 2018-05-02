@@ -15,6 +15,7 @@
 
 #include <setjmp.h>
 #include <stdarg.h>
+#include <string.h>
 
 #if defined(_MSC_VER)
 /** \internal
@@ -39,16 +40,47 @@
 /**
  * Signature of test functions.
  * 
- * Both test suites and test cases follow this signature.
+ * Both @ref test_suites and @ref test_cases follow this signature.
  * 
- * @param name  Name of test to execute, or **NULL**. Useful with test suites.
+ * @param cond  Test matching condition, or **NULL**.
  * 
  * @return Number of failed tests.
  * 
  * @see PICOTEST_SUITE
  * @see PICOTEST_CASE
+ * @see PicoTestMatchProc
  */
-typedef int (PicoTestProc) (const char * name);
+typedef int (PicoTestProc) (const char * cond);
+
+/**
+ * Signature of test matching functions.
+ * 
+ * A test called with a non- **NULL** condition must match this condition to be
+ * run. The test matching function is set using the @ref PICOTEST_MATCH macro.
+ * 
+ * @param testName  Name of test to match.
+ * @param cond      Test matching condition.
+ * 
+ * @return Nonzero if test matches the condition.
+ * 
+ * @see PICOTEST_SUITE
+ * @see PICOTEST_CASE
+ * @see PICOTEST_MATCH
+ */
+typedef int (PicoTestMatchProc) (const char *testName, const char * cond);
+
+/**
+ * Define the test matching function.
+ * 
+ * Called before calling a test with a non- **NULL** condition. 
+ * 
+ * The default handler does a simple string equality test between its 
+ * **testName** and  **cond** arguments. Redefine this macro to use a custom
+ * matching function, which must follow the @ref PicoTestMatchProc signature.
+ * 
+ * @see PicoTestMatchProc
+ */
+#define PICOTEST_MATCH(_testName, _cond) (strcmp((_testName), (_cond)) == 0)
 
 /*! \} End of Test Functions */
 
@@ -136,7 +168,7 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
  * Define the test failure log handler. Called when a test fails.
  * 
  * The default handler does nothing. Redefine this macro to use a custom
- * handler.
+ * handler, which must follow the @ref PicoTestFailureLoggerProc signature.
  * 
  * @see PicoTestFailureLoggerProc
  * 
@@ -191,9 +223,9 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
     void _testName##_traverse(PicoTestTraverseProc *proc) { \
         proc(_PICOTEST_STRINGIZE(_testName), 0); \
     } \
-    int _testName(const char *name) { \
+    int _testName(const char *cond) { \
         int fail=0; \
-        if (!name || strcmp(name, _PICOTEST_STRINGIZE(_testName)) == 0) { \
+        if (!cond || PICOTEST_MATCH(_PICOTEST_STRINGIZE(_testName), cond)) { \
             fail += _testName##_testCaseRunner(); \
         } \
         return fail; \
@@ -687,14 +719,14 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
         PICOTEST_SUITE_LEAVE(_PICOTEST_STRINGIZE(_suiteName), nb, fail); \
         return fail; \
     } \
-    int _suiteName(const char *name) { \
+    int _suiteName(const char *cond) { \
         int fail=0; \
-        if (!name || strcmp(name, _PICOTEST_STRINGIZE(_suiteName)) == 0) { \
+        if (!cond || PICOTEST_MATCH(_PICOTEST_STRINGIZE(_suiteName), cond)) { \
             fail += _suiteName##_testCaseRunner(); \
         } else { \
             PicoTestDescr * test=_suiteName##_tests; \
             for (; test->name; test++) { \
-                fail += test->test(name); \
+                fail += test->test(cond); \
             } \
         } \
         return fail; \
@@ -710,8 +742,8 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
 /** Test descriptor for test suites */
 typedef struct PicoTestDescr {
     const char * name;                              /*!< Test name. */
-    int (*test)(const char *);                      /*!< Test function. */
-    void (*traverse)(PicoTestTraverseProc *proc);   /*!< Test traversal. */
+    PicoTestProc *test;                             /*!< Test function. */
+    void (*traverse)(PicoTestTraverseProc *);       /*!< Test traversal. */
 } PicoTestDescr;
 /*! @endcond */
 
