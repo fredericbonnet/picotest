@@ -10,14 +10,12 @@
 #include <stdio.h>
 #include <picotest.h>
 
-/*! [PICOTEST_FAILURE_LOGGER redefinition]. */
+/*! [PicoTestFailureLoggerProc example] */
 /* Custom test failure logger declaration. */
 PicoTestFailureLoggerProc logFailure;
 #undef PICOTEST_FAILURE_LOGGER
 #define PICOTEST_FAILURE_LOGGER logFailure
-/*! [PICOTEST_FAILURE_LOGGER redefinition]. */
 
-/*! [PicoTestFailureLoggerProc example] */
 /* Custom test failure logger definition. */
 void logFailure(const char *file, int line, const char *type, const char *test, const char *msg, va_list args) {
     /* Error type. */
@@ -39,6 +37,21 @@ void logFailure(const char *file, int line, const char *type, const char *test, 
 }
 /*! [PicoTestFailureLoggerProc example] */
 
+/* Hooks */
+PicoTestCaseEnterProc logEnter;
+PicoTestCaseLeaveProc logLeave;
+#undef PICOTEST_CASE_ENTER
+#undef PICOTEST_CASE_LEAVE
+#define PICOTEST_CASE_ENTER logEnter
+#define PICOTEST_CASE_LEAVE logLeave
+
+void logEnter(const char *name) {
+    printf("begin %s\n", name);
+}
+void logLeave(const char *name, int fail) {
+    if (!fail) printf("end %s\n", name);
+}
+
 /* Main test suite */
 PICOTEST_SUITE(mainSuite, 
     testCase1, testCase2, testCase3
@@ -49,26 +62,20 @@ PICOTEST_SUITE(mainSuite,
 
 /* Test cases */
 PICOTEST_CASE(testCase1) {
-    printf("begin testCase1\n");
     PICOTEST_VERIFY(FAILS, "assertion 1"); /* Log error and continue */
     PICOTEST_ASSERT(FAILS, "assertion 2"); /* Log error and abort */
     /* Unreached */
     PICOTEST_ASSERT(PASSES, "assertion 3");
-    printf("end testCase1\n");
 }
 PICOTEST_CASE(testCase2) {
-    printf("begin testCase2\n");
     PICOTEST_ASSERT(PASSES, "assertion 1");
     PICOTEST_VERIFY(FAILS, "assertion 2"); /* Log error and continue */
-    printf("end testCase2\n");
 }
 PICOTEST_CASE(testCase3) {
-    printf("begin testCase3\n");
     PICOTEST_ASSERT(PASSES, "assertion 1");
     PICOTEST_ABORT();
     /* Unreached */
     PICOTEST_VERIFY(FAILS, "assertion 2");
-    printf("end testCase3\n");
 }
 
 void main() {

@@ -21,3 +21,13 @@ target_sources(logger
     PRIVATE
         logger.c
 )
+
+add_executable(matcher)
+target_include_directories(matcher 
+    PRIVATE
+        ../include
+)
+target_sources(matcher 
+    PRIVATE
+        matcher.c
+)

@@ -42,13 +42,14 @@
  * 
  * Both @ref test_suites and @ref test_cases follow this signature.
  * 
- * @param cond  Test matching condition, or **NULL**.
+ * @param cond  Test matching condition, or **NULL**. Passed to the active
+ *              test matching function before running the test.
  * 
  * @return Number of failed tests.
  * 
  * @see PICOTEST_SUITE
  * @see PICOTEST_CASE
- * @see PicoTestMatchProc
+ * @see PICOTEST_MATCH 
  */
 typedef int (PicoTestProc) (const char * cond);
 
@@ -58,6 +59,7 @@ typedef int (PicoTestProc) (const char * cond);
  * A test called with a non- **NULL** condition must match this condition to be
  * run. The test matching function is set using the @ref PICOTEST_MATCH macro.
  * 
+ * @param test      Test function to match.
  * @param testName  Name of test to match.
  * @param cond      Test matching condition.
  * 
@@ -66,8 +68,12 @@ typedef int (PicoTestProc) (const char * cond);
  * @see PICOTEST_SUITE
  * @see PICOTEST_CASE
  * @see PICOTEST_MATCH
+ * 
+ * @par Examples
+ *      @snippet matcher.c     PicoTestMatchProc example
  */
-typedef int (PicoTestMatchProc) (const char *testName, const char * cond);
+typedef int (PicoTestMatchProc) (PicoTestProc *test, const char *testName, 
+    const char * cond);
 
 /**
  * Define the test matching function.
@@ -78,16 +84,21 @@ typedef int (PicoTestMatchProc) (const char *testName, const char * cond);
  * **testName** and  **cond** arguments. Redefine this macro to use a custom
  * matching function, which must follow the @ref PicoTestMatchProc signature.
  * 
+ * @note Custom functions only apply to the tests defined after the macro 
+ * redefinition. As macros can be redefined several times, this means that 
+ * different functions may apply for the same source.
+ * 
  * @see PicoTestMatchProc
+ * 
+ * @par Examples
+ *      @example_file{matcher.c}
  */
-#define PICOTEST_MATCH(_testName, _cond) (strcmp((_testName), (_cond)) == 0)
+#define PICOTEST_MATCH(_test, _testName, _cond) (strcmp((_testName), (_cond)) == 0)
 
 /*! \} End of Test Functions */
 
 
-/*!
- * \name Test Traversal
- * 
+/*!*
  * Test hierarchy traversal.
  * 
  * Tests can form hierarchies of test suites and test cases. PicoTest provides
@@ -170,10 +181,14 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
  * The default handler does nothing. Redefine this macro to use a custom
  * handler, which must follow the @ref PicoTestFailureLoggerProc signature.
  * 
+ * @note Custom functions only apply to the tests defined after the macro 
+ * redefinition. As macros can be redefined several times, this means that 
+ * different functions may apply for the same source.
+ * 
  * @see PicoTestFailureLoggerProc
  * 
  * @par Examples
- *      @snippet logger.c     PICOTEST_FAILURE_LOGGER redefinition
+ *      @example_file{logger.c}
  */
 #define PICOTEST_FAILURE_LOGGER picoTest_logFailure
 
@@ -225,7 +240,7 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
     } \
     int _testName(const char *cond) { \
         int fail=0; \
-        if (!cond || PICOTEST_MATCH(_PICOTEST_STRINGIZE(_testName), cond)) { \
+        if (!cond || PICOTEST_MATCH(_testName, _PICOTEST_STRINGIZE(_testName), cond)) { \
             fail += _testName##_testCaseRunner(); \
         } \
         return fail; \
@@ -318,6 +333,10 @@ static void picoTest_enterTestCase(const char *testName) {}
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestCaseEnterProc signature.
  * 
+ * @note Custom functions only apply to the tests defined after the macro 
+ * redefinition. As macros can be redefined several times, this means that 
+ * different functions may apply for the same source.
+ * 
  * @see PicoTestCaseEnterProc
  * @see PICOTEST_CASE_LEAVE
  */
@@ -348,6 +367,10 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
  * 
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestCaseLeaveProc signature.
+ * 
+ * @note Custom functions only apply to the tests defined after the macro 
+ * redefinition. As macros can be redefined several times, this means that 
+ * different functions may apply for the same source.
  * 
  * @see PicoTestCaseLeaveProc
  * @see PICOTEST_CASE_ENTER
@@ -721,7 +744,7 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
     } \
     int _suiteName(const char *cond) { \
         int fail=0; \
-        if (!cond || PICOTEST_MATCH(_PICOTEST_STRINGIZE(_suiteName), cond)) { \
+        if (!cond || PICOTEST_MATCH(_suiteName, _PICOTEST_STRINGIZE(_suiteName), cond)) { \
             fail += _suiteName##_testCaseRunner(); \
         } else { \
             PicoTestDescr * test=_suiteName##_tests; \
@@ -785,6 +808,10 @@ static void picoTest_enterTestSuite(const char *suiteName, int nb) {}
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestSuiteEnterProc signature.
  * 
+ * @note Custom functions only apply to the tests defined after the macro 
+ * redefinition. As macros can be redefined several times, this means that 
+ * different functions may apply for the same source.
+ * 
  * @see PicoTestSuiteEnterProc
  * @see PICOTEST_SUITE_LEAVE
  */
@@ -817,6 +844,10 @@ static void picoTest_leaveTestSuite(const char *suiteName, int nb, int fail) {}
  * 
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestSuiteLeaveProc signature.
+ * 
+ * @note Custom functions only apply to the tests defined after the macro 
+ * redefinition. As macros can be redefined several times, this means that 
+ * different functions may apply for the same source.
  * 
  * @see PicoTestSuiteLeaveProc
  * @see PICOTEST_SUITE_ENTER
@@ -854,6 +885,10 @@ static void picoTest_beforeSubtest(const char *suiteName, int nb, int fail,
  * 
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestSuiteBeforeSubtestProc signature.
+ * 
+ * @note Custom functions only apply to the tests defined after the macro 
+ * redefinition. As macros can be redefined several times, this means that 
+ * different functions may apply for the same source.
  * 
  * @see PicoTestSuiteBeforeSubtestProc
  * @see PICOTEST_SUITE_AFTER_SUBTEST
@@ -893,6 +928,10 @@ static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
  * 
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestSuiteAfterSubtestProc signature.
+ * 
+ * @note Custom functions only apply to the tests defined after the macro 
+ * redefinition. As macros can be redefined several times, this means that 
+ * different functions may apply for the same source.
  * 
  * @see PicoTestSuiteAfterSubtestProc
  * @see PICOTEST_SUITE_BEFORE_SUBTEST
