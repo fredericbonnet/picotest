@@ -15,7 +15,7 @@ PicoTestFilterProc matchSubstring;
 #undef PICOTEST_FILTER
 #define PICOTEST_FILTER matchSubstring
 
-/* Custom test matching function. */
+/* Custom test filter function. */
 PicoTestFilterResult matchSubstring(PicoTestProc *test, const char *testName, const char *cond) {
     /* Match tests containing **cond** substring. */
     return (strstr(testName, cond) == NULL 

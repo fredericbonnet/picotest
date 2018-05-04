@@ -31,3 +31,13 @@ target_sources(filter
     PRIVATE
         filter.c
 )
+
+add_executable(tags)
+target_include_directories(tags 
+    PRIVATE
+        ../include
+)
+target_sources(tags
+    PRIVATE
+        tags.c
+)

@@ -126,6 +126,7 @@ typedef PicoTestFilterResult (PicoTestFilterProc) (PicoTestProc *test,
  * 
  * @par Examples
  *      @example_file{filter.c}
+ *      @example_file{tags.c}
  */
 #define PICOTEST_FILTER(_test, _testName, _cond) \
     (strcmp((_testName), (_cond)) == 0 ? PICOTEST_FILTER_PASS : PICOTEST_FILTER_SKIP_PROPAGATE)
