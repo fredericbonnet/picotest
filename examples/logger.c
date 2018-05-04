@@ -73,7 +73,7 @@ PICOTEST_CASE(testCase2) {
 }
 PICOTEST_CASE(testCase3) {
     PICOTEST_ASSERT(PASSES, "assertion 1");
-    PICOTEST_ABORT();
+    PICOTEST_ABORT(); /* Stop silently. */
     /* Unreached */
     PICOTEST_VERIFY(FAILS, "assertion 2");
 }

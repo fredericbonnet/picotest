@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.11)
 project(picotest_examples LANGUAGES C)
 
 add_executable(traverse)
-target_include_directories(traverse 
+target_include_directories(traverse
     PRIVATE
         ../include
 )
@@ -13,7 +13,7 @@ target_sources(traverse
 )
 
 add_executable(logger)
-target_include_directories(logger 
+target_include_directories(logger
     PRIVATE
         ../include
 )
@@ -22,12 +22,12 @@ target_sources(logger
         logger.c
 )
 
-add_executable(matcher)
-target_include_directories(matcher 
+add_executable(filter)
+target_include_directories(filter 
     PRIVATE
         ../include
 )
-target_sources(matcher 
+target_sources(filter
     PRIVATE
-        matcher.c
+        filter.c
 )

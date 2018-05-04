@@ -42,64 +42,99 @@
  * 
  * Both @ref test_suites and @ref test_cases follow this signature.
  * 
- * @param cond  Test matching condition, or **NULL**. Passed to the active
- *              test matching function before running the test.
+ * @param cond  Test filtering condition, or **NULL**. In the former case, 
+ *              passed to the active test filter before running the test.
  * 
  * @return Number of failed tests.
  * 
  * @see PICOTEST_SUITE
  * @see PICOTEST_CASE
- * @see PICOTEST_MATCH 
+ * @see PICOTEST_FILTER
  */
 typedef int (PicoTestProc) (const char * cond);
 
+/*! \} End of Test Functions */
+
+
+/*!
+ * \name Test Filters
+ * 
+ * PicoTest provides a way for client code to select tests to be run using 
+ * custom filter functions.
+ * \{
+ */
+
 /**
- * Signature of test matching functions.
+ * Result of test filter functions.
+ * 
+ * @see PicoTestFilterProc
+ */ 
+typedef enum PicoTestFilterResult {
+    /** Test does not match the condition, skip this test and all its 
+     *  subtests. */
+    PICOTEST_FILTER_SKIP = 0,
+
+    /** Test matches the condition, run this test and all its subtests. */
+    PICOTEST_FILTER_PASS = 1,
+
+    /** Test does not match the condition, skip this test but filter its 
+     *  subtests. */
+    PICOTEST_FILTER_SKIP_PROPAGATE = 2,
+
+    /** Test matches the condition, run this test but filter its subtests. */
+    PICOTEST_FILTER_PASS_PROPAGATE = 3,
+} PicoTestFilterResult;
+
+/**
+ * Signature of test filter functions.
  * 
  * A test called with a non- **NULL** condition must match this condition to be
- * run. The test matching function is set using the @ref PICOTEST_MATCH macro.
+ * run. The test filter is set using the @ref PICOTEST_FILTER macro.
  * 
- * @param test      Test function to match.
- * @param testName  Name of test to match.
- * @param cond      Test matching condition.
+ * @param test      Test function to filter.
+ * @param testName  Name of test to filter.
+ * @param cond      Test filtering condition.
  * 
- * @return Nonzero if test matches the condition.
+ * @return a @ref PicoTestFilterResult value
  * 
  * @see PICOTEST_SUITE
  * @see PICOTEST_CASE
- * @see PICOTEST_MATCH
+ * @see PICOTEST_FILTER
+ * @see PicoTestFilterResult
  * 
  * @par Examples
- *      @snippet matcher.c     PicoTestMatchProc example
+ *      @snippet filter.c   PicoTestFilterProc example
  */
-typedef int (PicoTestMatchProc) (PicoTestProc *test, const char *testName, 
-    const char * cond);
+typedef PicoTestFilterResult (PicoTestFilterProc) (PicoTestProc *test, 
+    const char *testName, const char * cond);
 
 /**
- * Define the test matching function.
+ * Define the test filter function.
  * 
  * Called before calling a test with a non- **NULL** condition. 
  * 
- * The default handler does a simple string equality test between its 
- * **testName** and  **cond** arguments. Redefine this macro to use a custom
- * matching function, which must follow the @ref PicoTestMatchProc signature.
+ * The default filter does a simple string equality test between its 
+ * **testName** and  **cond** arguments, and propagates to subtests if it 
+ * doesn't match. Redefine this macro to use a custom filter function, which
+ * must follow the @ref PicoTestFilterProc signature.
  * 
  * @note Custom functions only apply to the tests defined after the macro 
  * redefinition. As macros can be redefined several times, this means that 
  * different functions may apply for the same source.
  * 
- * @see PicoTestMatchProc
+ * @see PicoTestFilterProc
  * 
  * @par Examples
- *      @example_file{matcher.c}
+ *      @example_file{filter.c}
  */
-#define PICOTEST_MATCH(_test, _testName, _cond) (strcmp((_testName), (_cond)) == 0)
+#define PICOTEST_FILTER(_test, _testName, _cond) \
+    (strcmp((_testName), (_cond)) == 0 ? PICOTEST_FILTER_PASS : PICOTEST_FILTER_SKIP_PROPAGATE)
 
-/*! \} End of Test Functions */
+/*! \} End of Test Filters */
 
 
-/*!*
- * Test hierarchy traversal.
+/*!
+ * \name Test hierarchy traversal
  * 
  * Tests can form hierarchies of test suites and test cases. PicoTest provides
  * a way to traverse such hierarchies with a simple visitor pattern. This can
@@ -137,6 +172,7 @@ typedef void (PicoTestTraverseProc)(const char *name, int nb);
     _testName##_traverse(_proc)
 
 /*! \} End of Test Traversal */
+
 
 /*!
  * \name Logging
@@ -240,8 +276,14 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
     } \
     int _testName(const char *cond) { \
         int fail=0; \
-        if (!cond || PICOTEST_MATCH(_testName, _PICOTEST_STRINGIZE(_testName), cond)) { \
+        PicoTestFilterResult filterResult = (cond == NULL) \
+            ? PICOTEST_FILTER_PASS \
+            : PICOTEST_FILTER(_testName, _PICOTEST_STRINGIZE(_testName), cond); \
+        switch (filterResult) { \
+        case PICOTEST_FILTER_PASS: \
+        case PICOTEST_FILTER_PASS_PROPAGATE: \
             fail += _testName##_testCaseRunner(); \
+            break; \
         } \
         return fail; \
     }
@@ -724,7 +766,7 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
             test->traverse(proc); \
         } \
     } \
-    int _suiteName##_testCaseRunner() { \
+    int _suiteName##_testCaseRunner(const char *cond) { \
         const int nb=sizeof(_suiteName##_tests)/sizeof(*_suiteName##_tests)-1; \
         PicoTestDescr * test=_suiteName##_tests; \
         int fail=0; \
@@ -734,7 +776,7 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
             int sfail=0; \
             PICOTEST_SUITE_BEFORE_SUBTEST(_PICOTEST_STRINGIZE(_suiteName), nb, \
                 fail, index, test->name); \
-            sfail = test->test(NULL); \
+            sfail = test->test(cond); \
             fail += sfail; \
             PICOTEST_SUITE_AFTER_SUBTEST(_PICOTEST_STRINGIZE(_suiteName), nb, \
                 fail, index, test->name, sfail); \
@@ -744,13 +786,24 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
     } \
     int _suiteName(const char *cond) { \
         int fail=0; \
-        if (!cond || PICOTEST_MATCH(_suiteName, _PICOTEST_STRINGIZE(_suiteName), cond)) { \
-            fail += _suiteName##_testCaseRunner(); \
-        } else { \
-            PicoTestDescr * test=_suiteName##_tests; \
-            for (; test->name; test++) { \
-                fail += test->test(cond); \
+        PicoTestFilterResult filterResult = (cond == NULL) \
+            ? PICOTEST_FILTER_PASS \
+            : PICOTEST_FILTER(_suiteName, _PICOTEST_STRINGIZE(_suiteName), cond); \
+        switch (filterResult) { \
+        case PICOTEST_FILTER_PASS: \
+            cond = NULL; \
+        case PICOTEST_FILTER_PASS_PROPAGATE: \
+            fail += _suiteName##_testCaseRunner(cond); \
+            break; \
+        case PICOTEST_FILTER_SKIP: \
+            break; \
+        case PICOTEST_FILTER_SKIP_PROPAGATE: { \
+                PicoTestDescr * test=_suiteName##_tests; \
+                for (; test->name; test++) { \
+                    fail += test->test(cond); \
+                } \
             } \
+            break; \
         } \
         return fail; \
     }

@@ -1,27 +1,28 @@
 /**
- * @file matcher.c
+ * @file filter.c
  * 
- * Example of PicoTest test matching functions, allows custom filtering of test
- * functions.
+ * Example of PicoTest test filter, allows custom filtering of test functions.
  *
- * @include logger.c
+ * @include filter.c
  * @cond IGNORE 
  */
 #include <stdio.h>
 #include <picotest.h>
 
-/*! [PicoTestMatchProc example] */
-/* Custom test matching function declaration. */
-PicoTestMatchProc matchSubstring;
-#undef PICOTEST_MATCH
-#define PICOTEST_MATCH matchSubstring
+/*! [PicoTestFilterProc example] */
+/* Custom test filter declaration. */
+PicoTestFilterProc matchSubstring;
+#undef PICOTEST_FILTER
+#define PICOTEST_FILTER matchSubstring
 
 /* Custom test matching function. */
-int matchSubstring(PicoTestProc *test, const char *testName, const char *cond) {
+PicoTestFilterResult matchSubstring(PicoTestProc *test, const char *testName, const char *cond) {
     /* Match tests containing **cond** substring. */
-    return !!strstr(testName, cond);
+    return (strstr(testName, cond) == NULL 
+        ? PICOTEST_FILTER_SKIP_PROPAGATE 
+        : PICOTEST_FILTER_PASS_PROPAGATE);
 }
-/*! [PicoTestMatchProc example] */
+/*! [PicoTestFilterProc example] */
 
 /* Hooks */
 PicoTestCaseEnterProc logCase;
