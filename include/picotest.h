@@ -292,54 +292,56 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
         return fail; \
     }
 
+#define _PICOTEST_CASE_RUNNER_BEGIN(_testName) \
+    int _testName##_testCaseRunner() { \
+        int fail; \
+        jmp_buf failureEnv; \
+        jmp_buf *oldEnv = picoTest_failureEnv; \
+        picoTest_failureEnv = &failureEnv; \
+        PICOTEST_CASE_ENTER(_PICOTEST_STRINGIZE(_testName)); \
+        fail = setjmp(failureEnv);
+
+#define _PICOTEST_CASE_RUNNER_END(_testName) \
+        PICOTEST_CASE_LEAVE(_PICOTEST_STRINGIZE(_testName), fail); \
+        picoTest_failureEnv = oldEnv; \
+        return fail; \
+    }
+
 #define _PICOTEST_CASE_1(_testName) \
     _PICOTEST_CASE_DECLARE(_testName) \
     static void _testName##_testCase(void); \
-    int _testName##_testCaseRunner() { \
-        int fail; \
-        PICOTEST_CASE_ENTER(_PICOTEST_STRINGIZE(_testName)); \
-        fail = setjmp(picoTest_failureEnv); \
+    _PICOTEST_CASE_RUNNER_BEGIN(_testName) \
         if (!fail) { \
             _testName##_testCase(); \
         } \
-        PICOTEST_CASE_LEAVE(_PICOTEST_STRINGIZE(_testName), fail); \
-        return fail; \
-    } \
+    _PICOTEST_CASE_RUNNER_END(_testName) \
     static void _testName##_testCase(void)
 
 #define _PICOTEST_CASE_2(_testName, _fixtureName) \
     _PICOTEST_CASE_DECLARE(_testName) \
     static void _testName##_testCase(void); \
-    int _testName##_testCaseRunner() { \
-        int fail; \
-        PICOTEST_CASE_ENTER(_PICOTEST_STRINGIZE(_testName)); \
-        fail = setjmp(picoTest_failureEnv); \
+    _PICOTEST_CASE_RUNNER_BEGIN(_testName) \
         if (!fail) { \
             _fixtureName##_setup(NULL); \
             _testName##_testCase(); \
         } \
         _fixtureName##_teardown(fail, NULL); \
-        PICOTEST_CASE_LEAVE(_PICOTEST_STRINGIZE(_testName), fail); \
-        return fail; \
-    } \
+    _PICOTEST_CASE_RUNNER_END(_testName) \
     static void _testName##_testCase()
 
 #define _PICOTEST_CASE_3(_testName, _fixtureName, _context) \
     _PICOTEST_CASE_DECLARE(_testName) \
     static void _testName##_testCase(struct _fixtureName##_Context *); \
-    int _testName##_testCaseRunner() { \
-        struct _fixtureName##_Context context; \
-        int fail; \
-        PICOTEST_CASE_ENTER(_PICOTEST_STRINGIZE(_testName)); \
-        fail = setjmp(picoTest_failureEnv); \
-        if (!fail) { \
-            _fixtureName##_setup(&context); \
-            _testName##_testCase(&context); \
+    _PICOTEST_CASE_RUNNER_BEGIN(_testName) \
+        { \
+            struct _fixtureName##_Context context; \
+            if (!fail) { \
+                _fixtureName##_setup(&context); \
+                _testName##_testCase(&context); \
+            } \
+            _fixtureName##_teardown(fail, &context); \
         } \
-        _fixtureName##_teardown(fail, &context); \
-        PICOTEST_CASE_LEAVE(_PICOTEST_STRINGIZE(_testName), fail); \
-        return fail; \
-    } \
+    _PICOTEST_CASE_RUNNER_END(_testName) \
     static void _testName##_testCase(struct _fixtureName##_Context * _context)
 /*! @endcond */
 
@@ -497,7 +499,7 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
  * @see PICOTEST_ABORT
  * @see PICOTEST_CASE
  */
-static jmp_buf picoTest_failureEnv;
+static jmp_buf *picoTest_failureEnv = NULL;
 
 /**
  * Abort a test case.
@@ -507,7 +509,7 @@ static jmp_buf picoTest_failureEnv;
  * @see PICOTEST_CASE
  */
 #define PICOTEST_ABORT() \
-    longjmp(picoTest_failureEnv, 1)
+    longjmp(*picoTest_failureEnv, 1)
 
 /** \internal
  * 
