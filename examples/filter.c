@@ -40,21 +40,7 @@ void logSuite(const char *name, int nb) {
 }
 
 /* Main test suite */
-PICOTEST_SUITE(mainSuite, 
-    testCase1, testCase2, subSuite, testCase3
-)
-
-/* Sub-suite */
-PICOTEST_SUITE(subSuite, 
-    testCase4, testCase5
-)
-
-/* Test cases */
-PICOTEST_CASE(testCase1) { /* ... */ }
-PICOTEST_CASE(testCase2) { /* ... */ }
-PICOTEST_CASE(testCase3) { /* ... */ }
-PICOTEST_CASE(testCase4) { /* ... */ }
-PICOTEST_CASE(testCase5) { /* ... */ }
+#include "mainSuite.inc"
 
 void main() {
     /*

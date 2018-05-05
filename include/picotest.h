@@ -260,6 +260,9 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
  * 
  * @see PicoTestProc
  * @see PICOTEST_FIXTURE_CONTEXT
+ * 
+ * @par Examples
+ *      @snippet mainSuite.inc  PICOTEST_CASE examples
  */ 
 #if defined(_PICOTEST_PARENS)
 #   define PICOTEST_CASE(...) \

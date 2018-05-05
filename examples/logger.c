@@ -53,30 +53,7 @@ void logLeave(const char *name, int fail) {
 }
 
 /* Main test suite */
-PICOTEST_SUITE(mainSuite, 
-    testCase1, testCase2, testCase3
-)
-
-#define FAILS 0
-#define PASSES 1
-
-/* Test cases */
-PICOTEST_CASE(testCase1) {
-    PICOTEST_VERIFY(FAILS, "assertion 1"); /* Log error and continue */
-    PICOTEST_ASSERT(FAILS, "assertion 2"); /* Log error and abort */
-    /* Unreached */
-    PICOTEST_ASSERT(PASSES, "assertion 3");
-}
-PICOTEST_CASE(testCase2) {
-    PICOTEST_ASSERT(PASSES, "assertion 1");
-    PICOTEST_VERIFY(FAILS, "assertion 2"); /* Log error and continue */
-}
-PICOTEST_CASE(testCase3) {
-    PICOTEST_ASSERT(PASSES, "assertion 1");
-    PICOTEST_ABORT(); /* Stop silently. */
-    /* Unreached */
-    PICOTEST_VERIFY(FAILS, "assertion 2");
-}
+#include "mainSuite.inc"
 
 void main() {
     mainSuite(NULL);

@@ -15,6 +15,7 @@ WARN_IF_DOC_ERROR      = NO
 INPUT                  = README.md \
                          ./include/picotest.h \
                          ./examples
+EXTENSION_MAPPING      = inc=C
 
 USE_MDFILE_AS_MAINPAGE = README.md
 INPUT_ENCODING         = UTF-8
