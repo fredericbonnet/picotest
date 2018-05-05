@@ -25,18 +25,36 @@ PicoTestFilterResult matchSubstring(PicoTestProc *test, const char *testName, co
 /*! [PicoTestFilterProc example] */
 
 /* Hooks */
-PicoTestCaseEnterProc logCase;
-PicoTestSuiteEnterProc logSuite;
+PicoTestCaseEnterProc logCaseEnter;
+PicoTestCaseLeaveProc logCaseLeave;
+PicoTestSuiteEnterProc logSuiteEnter;
+PicoTestSuiteLeaveProc logSuiteLeave;
 #undef PICOTEST_CASE_ENTER
-#define PICOTEST_CASE_ENTER logCase
+#undef PICOTEST_CASE_LEAVE
 #undef PICOTEST_SUITE_ENTER
-#define PICOTEST_SUITE_ENTER logSuite
+#undef PICOTEST_SUITE_LEAVE
+#define PICOTEST_CASE_ENTER logCaseEnter
+#define PICOTEST_CASE_LEAVE logCaseLeave
+#define PICOTEST_SUITE_ENTER logSuiteEnter
+#define PICOTEST_SUITE_LEAVE logSuiteLeave
 
-void logCase(const char *name) {
+int level = 0;
+void indent(int level) {
+    while (level--) printf("  ");
+}
+void logCaseEnter(const char *name) {
+    indent(level++);
     printf("running test case %s\n", name);
 }
-void logSuite(const char *name, int nb) {
+void logCaseLeave(const char *name, int fail) {
+    level--;
+}
+void logSuiteEnter(const char *name, int nb) {
+    indent(level++);
     printf("running test suite %s\n", name);
+}
+void logSuiteLeave(const char *name, int nb, int fail) {
+    level--;
 }
 
 /* Main test suite */
@@ -47,12 +65,12 @@ void main() {
      * Run all tests in order:
      * 
      * running test suite mainSuite
-     * running test case testCase1
-     * running test case testCase2
-     * running test suite subSuite
-     * running test case testCase4
-     * running test case testCase5
-     * running test case testCase3
+     *   running test case testCase1
+     *   running test case testCase2
+     *   running test suite subSuite
+     *     running test case testCase4
+     *     running test case testCase5
+     *   running test case testCase3
      */
     printf("Run all tests:\n");
     mainSuite(NULL);
