@@ -245,7 +245,7 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
 /**
  * Test case declaration.
  * 
- * This macro defines a PicoTestProc of the given name that can be called 
+ * This macro defines a @ref PicoTestProc of the given name that can be called 
  * directly.
  * 
  * @param _testName     Name of the test case.
@@ -319,10 +319,10 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
     static void _testName##_testCase(void); \
     _PICOTEST_CASE_RUNNER_BEGIN(_testName) \
         if (!fail) { \
-            _fixtureName##_setup(NULL); \
+            _PICOTEST_FIXTURE_CALL_SETUP(_fixtureName, _testName, NULL); \
             _testName##_testCase(); \
         } \
-        _fixtureName##_teardown(fail, NULL); \
+        _PICOTEST_FIXTURE_CALL_TEARDOWN(_fixtureName, _testName, NULL, fail); \
     _PICOTEST_CASE_RUNNER_END(_testName) \
     static void _testName##_testCase()
 
@@ -333,14 +333,14 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
         { \
             struct _fixtureName##_Context context; \
             if (!fail) { \
-                _fixtureName##_setup(&context); \
+                _PICOTEST_FIXTURE_CALL_SETUP(_fixtureName, _testName, &context); \
                 _testName##_testCase(&context); \
             } \
-            _fixtureName##_teardown(fail, &context); \
+            _PICOTEST_FIXTURE_CALL_TEARDOWN(_fixtureName, _testName, &context, fail); \
         } \
     _PICOTEST_CASE_RUNNER_END(_testName) \
     static void _testName##_testCase(struct _fixtureName##_Context * _context)
-/*! @endcond */
+/*! \endcond */
 
 /*! \} End of Test Case Definitions */
 
@@ -408,7 +408,7 @@ typedef void (PicoTestCaseLeaveProc)(const char *testName, int fail);
 static void picoTest_leaveTestCase(const char *testName, int fail) {}
 
 /**
- * Define the test case enter hook.
+ * Define the test case leave hook.
  * 
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestCaseLeaveProc signature.
@@ -459,7 +459,7 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
             "ASSERT", _PICOTEST_ARGCOUNT(__VA_ARGS__), __VA_ARGS__); \
         PICOTEST_ABORT(); \
     } }
-/*! @endcond */
+/*! \endcond */
 
 /**
  * Soft assertion. Logs an error if the given value is false, but let the test
@@ -488,7 +488,7 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
         picoTest_assertFailed(PICOTEST_FAILURE_LOGGER, __FILE__, __LINE__, \
             "VERIFY", _PICOTEST_ARGCOUNT(__VA_ARGS__), __VA_ARGS__); \
     } }
-/*! @endcond */
+/*! \endcond */
 
 /** \internal
  * Tag used by **setjmp()** and **longjmp()** to jump out of failed tests.
@@ -560,6 +560,9 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
 /**
  * Test fixture context declaration.
  * 
+ * @param _fixtureName      Name of the fixture.
+ * 
+ * @par Usage
  * The block following the macro call defines a struct used to hold a test 
  * fixture context. For example:
  * 
@@ -571,8 +574,6 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
  *      };
  * @endcode
  * 
- * @param _fixtureName      Name of the fixture.
- * 
  * @see PICOTEST_FIXTURE_SETUP
  * @see PICOTEST_FIXTURE_TEARDOWN
  */
@@ -582,7 +583,13 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
 /**
  * Test fixture context initialization.
  * 
+ * @param _fixtureName  Name of the fixture.
+ * @param _context      (optional) Fixture context structure defined using
+ *                      PICOTEST_FIXTURE_CONTEXT(_fixtureName).
+ * 
+ * @par Usage
  * The code block following the macro call initializes the test fixture context.
+ * The code block is called before each test of the fixture.
  * For example:
  * 
  * @code
@@ -608,12 +615,6 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
  *      }
  * @endcode
  * 
- * The code block is called before each test of the fixture.
- * 
- * @param _fixtureName  Name of the fixture.
- * @param _context      (optional) Fixture context structure defined using
- *                      PICOTEST_FIXTURE_CONTEXT(_fixtureName).
- * 
  * @see PICOTEST_FIXTURE_CONTEXT
  * @see PICOTEST_FIXTURE_TEARDOWN
  */
@@ -631,11 +632,21 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
 
 #define _PICOTEST_FIXTURE_SETUP_2(_fixtureName, _context) \
     static void _fixtureName##_setup(struct _fixtureName##_Context * _context)
-/*! @endcond */
+
+#define _PICOTEST_FIXTURE_CALL_SETUP(_fixtureName, _testName, context) \
+    PICOTEST_FIXTURE_BEFORE_SETUP(_PICOTEST_STRINGIZE(_fixtureName), _PICOTEST_STRINGIZE(_testName)); \
+    _fixtureName##_setup(context); \
+    PICOTEST_FIXTURE_AFTER_SETUP(_PICOTEST_STRINGIZE(_fixtureName), _PICOTEST_STRINGIZE(_testName));
+/*! \endcond */
 
 /**
  * Test fixture context cleanup.
  * 
+ * @param _fixtureName  Name of the fixture.
+ * @param _context      (optional) Fixture context structure defined using
+ *                      PICOTEST_FIXTURE_CONTEXT(_fixtureName).
+ * 
+ * @par Usage
  * The code block following the macro call cleans up the test fixture context.
  * For example:
  * 
@@ -697,10 +708,6 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
  *      }
  * @endcode
  * 
- * @param _fixtureName  Name of the fixture.
- * @param _context      (optional) Fixture context structure defined using
- *                      PICOTEST_FIXTURE_CONTEXT(_fixtureName).
- * 
  * @see PICOTEST_FIXTURE_CONTEXT
  * @see PICOTEST_FIXTURE_SETUP
  */
@@ -720,9 +727,175 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
 #define _PICOTEST_FIXTURE_TEARDOWN_2(_fixtureName, _context) \
     static void _fixtureName##_teardown(int PICOTEST_FAIL, \
         struct _fixtureName##_Context * _context)
-/*! @endcond */
+
+#define _PICOTEST_FIXTURE_CALL_TEARDOWN(_fixtureName, _testName, context, fail) \
+    PICOTEST_FIXTURE_BEFORE_TEARDOWN(_PICOTEST_STRINGIZE(_fixtureName), _PICOTEST_STRINGIZE(_testName), fail); \
+    _fixtureName##_teardown(fail, context); \
+    PICOTEST_FIXTURE_AFTER_TEARDOWN(_PICOTEST_STRINGIZE(_fixtureName), _PICOTEST_STRINGIZE(_testName), fail); \
+/*! \endcond */
 
 /*! \} End of Test Fixture Definitions */
+
+
+/*!
+ * \name Test Fixture Hooks
+ * 
+ * PicoTest provides a way for client code to intercept test fixture events. 
+ * This can be used for e.g. logging purpose or reporting.
+ * \{
+ */
+
+/**
+ * Function signature of test fixture before setup hooks.
+ * 
+ * Called before running the test fixture setup.
+ * 
+ * @param fixtureName   Test fixture name.
+ * @param testName      Test case name.
+ * 
+ * @see PICOTEST_FIXTURE_BEFORE_SETUP
+ */
+typedef void (PicoTestFixtureBeforeSetupProc)(const char *fixtureName,
+    const char *testName);
+
+/** \internal
+ * Default test fixture before setup hook. Does nothing.
+ * 
+ * @see PicoTestFixtureBeforeSetupProc
+ * @see PICOTEST_FIXTURE_BEFORE_SETUP
+ */
+static void picoTest_beforeSetup(const char *fixtureName,
+    const char *testName) {}
+
+/**
+ * Define the test fixture before setup hook.
+ * 
+ * The default hook does nothing. Redefine this macro to use a custom hook,
+ * which must follow the @ref PicoTestFixtureBeforeSetupProc signature.
+ * 
+ * @note Custom functions only apply to the tests defined after the macro 
+ * redefinition. As macros can be redefined several times, this means that 
+ * different functions may apply for the same source.
+ * 
+ * @see PicoTestFixtureBeforeSetupProc
+ * @see PICOTEST_FIXTURE_AFTER_SETUP
+ */
+#define PICOTEST_FIXTURE_BEFORE_SETUP picoTest_beforeSetup
+
+/**
+ * Function signature of test fixture after setup hooks.
+ * 
+ * Called after running the test fixture setup.
+ * 
+ * @param fixtureName   Test fixture name.
+ * @param testName      Test case name.
+ * 
+ * @see PICOTEST_FIXTURE_AFTER_SETUP
+ */
+typedef void (PicoTestFixtureAfterSetupProc)(const char *fixtureName,
+    const char *testName);
+
+/** \internal
+ * Default test fixture after setup hook. Does nothing.
+ * 
+ * @see PicoTestFixtureAfterSetupProc
+ * @see PICOTEST_FIXTURE_AFTER_SETUP
+ */
+static void picoTest_afterSetup(const char *fixtureName,
+    const char *testName) {}
+
+/**
+ * Define the test fixture after setup hook.
+ * 
+ * The default hook does nothing. Redefine this macro to use a custom hook,
+ * which must follow the @ref PicoTestFixtureAfterSetupProc signature.
+ * 
+ * @note Custom functions only apply to the tests defined after the macro 
+ * redefinition. As macros can be redefined several times, this means that 
+ * different functions may apply for the same source.
+ * 
+ * @see PicoTestFixtureAfterSetupProc
+ * @see PICOTEST_FIXTURE_BEFORE_SETUP
+ */
+#define PICOTEST_FIXTURE_AFTER_SETUP picoTest_afterSetup
+
+/**
+ * Function signature of test fixture before teardown hooks.
+ * 
+ * Called before running the test fixture teardown.
+ * 
+ * @param fixtureName   Test fixture name.
+ * @param testName      Test case name.
+ * @param fail          Failed tests (including its subtests if any).
+ * 
+ * @see PICOTEST_FIXTURE_BEFORE_TEARDOWN
+ */
+typedef void (PicoTestFixtureBeforeTeardownProc)(const char *fixtureName,
+    const char *testName, int fail);
+
+/** \internal
+ * Default test fixture before teardown hook. Does nothing.
+ * 
+ * @see PicoTestFixtureBeforeTeardownProc
+ * @see PICOTEST_FIXTURE_BEFORE_TEARDOWN
+ */
+static void picoTest_beforeTeardown(const char *fixtureName,
+    const char *testName, int fail) {}
+
+/**
+ * Define the test fixture before teardown hook.
+ * 
+ * The default hook does nothing. Redefine this macro to use a custom hook,
+ * which must follow the @ref PicoTestFixtureBeforeTeardownProc signature.
+ * 
+ * @note Custom functions only apply to the tests defined after the macro 
+ * redefinition. As macros can be redefined several times, this means that 
+ * different functions may apply for the same source.
+ * 
+ * @see PicoTestFixtureBeforeTeardownProc
+ * @see PICOTEST_FIXTURE_AFTER_TEARDOWN
+ */
+#define PICOTEST_FIXTURE_BEFORE_TEARDOWN picoTest_beforeTeardown
+
+/**
+ * Function signature of test fixture after teardown hooks.
+ * 
+ * Called after running the test fixture teardown.
+ * 
+ * @param fixtureName   Test fixture name.
+ * @param testName      Test case name.
+ * @param fail          Failed tests (including its subtests if any).
+ * 
+ * @see PICOTEST_FIXTURE_AFTER_TEARDOWN
+ */
+typedef void (PicoTestFixtureAfterTeardownProc)(const char *fixtureName,
+    const char *testName, int fail);
+
+/** \internal
+ * Default test fixture after teardown hook. Does nothing.
+ * 
+ * @see PicoTestFixtureAfterTeardownProc
+ * @see PICOTEST_FIXTURE_AFTER_TEARDOWN
+ */
+static void picoTest_afterTeardown(const char *fixtureName,
+    const char *testName, int fail) {}
+
+/**
+ * Define the test fixture after teardown hook.
+ * 
+ * The default hook does nothing. Redefine this macro to use a custom hook,
+ * which must follow the @ref PicoTestFixtureAfterTeardownProc signature.
+ * 
+ * @note Custom functions only apply to the tests defined after the macro 
+ * redefinition. As macros can be redefined several times, this means that 
+ * different functions may apply for the same source.
+ * 
+ * @see PicoTestFixtureAfterTeardownProc
+ * @see PICOTEST_FIXTURE_BEFORE_TEARDOWN
+ */
+#define PICOTEST_FIXTURE_AFTER_TEARDOWN picoTest_afterTeardown
+
+/*! \} End of Test Case Hooks */
 
 /*! \} End of Test Fixtures */
 
@@ -755,6 +928,9 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
  * 
  * @see PicoTestProc
  * @see PICOTEST_CASE
+ * 
+ * @par Usage
+ *      @snippet mainSuite.inc  PICOTEST_SUITE examples
  */ 
 #define PICOTEST_SUITE(_suiteName, ...) \
     _PICOTEST_FOR_EACH(_PICOTEST_SUITE_DECLARE_TEST,__VA_ARGS__) \
@@ -824,7 +1000,9 @@ typedef struct PicoTestDescr {
     PicoTestProc *test;                             /*!< Test function. */
     void (*traverse)(PicoTestTraverseProc *);       /*!< Test traversal. */
 } PicoTestDescr;
-/*! @endcond */
+/*! \endcond */
+
+/** @example_file{mainSuite.inc} */
 
 /*! \} End of Test Suite Definitions */
 
@@ -1030,7 +1208,7 @@ static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
     _PICOTEST_CONCATENATE2(arg1, arg2)
 #define _PICOTEST_CONCATENATE2(arg1, arg2) \
     arg1##arg2
-/*! @endcond */
+/*! \endcond */
 
 /*! \} End of Basic Utilities */
 
@@ -1088,7 +1266,7 @@ static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
     _51,_52,_53,_54,_55,_56,_57,_58,_59,_60, \
     _61,_62,_63, \
     N,...) N
-/*! @endcond */
+/*! \endcond */
 
 /** \internal
  * Iterate over the args passed to it.
@@ -1236,7 +1414,7 @@ static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
 #   define _PICOTEST_FOR_EACH_62(what, x, ...) what(x) _PICOTEST_FOR_EACH_61(what,__VA_ARGS__)
 #   define _PICOTEST_FOR_EACH_63(what, x, ...) what(x) _PICOTEST_FOR_EACH_62(what,__VA_ARGS__)
 #endif /* defined(_PICOTEST_PARENS) */
-/*! @endcond */
+/*! \endcond */
 
 /*! \} End of Variadic Macro Utilities */
 
