@@ -102,7 +102,7 @@ typedef enum PicoTestFilterResult {
  * @see PICOTEST_FILTER
  * @see PicoTestFilterResult
  * 
- * @par Examples
+ * @par Usage
  *      @snippet filter.c   PicoTestFilterProc example
  */
 typedef PicoTestFilterResult (PicoTestFilterProc) (PicoTestProc *test, 
@@ -123,13 +123,12 @@ typedef PicoTestFilterResult (PicoTestFilterProc) (PicoTestProc *test,
  * different functions may apply for the same source.
  * 
  * @see PicoTestFilterProc
- * 
- * @par Examples
- *      @example_file{filter.c}
- *      @example_file{tags.c}
  */
 #define PICOTEST_FILTER(_test, _testName, _cond) \
     (strcmp((_testName), (_cond)) == 0 ? PICOTEST_FILTER_PASS : PICOTEST_FILTER_SKIP_PROPAGATE)
+
+/** @example_file{filter.c} */
+/** @example_file{tags.c} */
 
 /*! \} End of Test Filters */
 
@@ -152,7 +151,7 @@ typedef PicoTestFilterResult (PicoTestFilterProc) (PicoTestProc *test,
  * 
  * @see PICOTEST_TRAVERSE
  * 
- * @par Examples
+ * @par Usage
  *      @snippet traverse.c     PicoTestTraverseProc example
  */
 typedef void (PicoTestTraverseProc)(const char *name, int nb);
@@ -165,12 +164,11 @@ typedef void (PicoTestTraverseProc)(const char *name, int nb);
  *                      PicoTestTraverseProc signature. 
  * 
  * @see PicoTestTraverseProc
- * 
- * @par Examples
- *      @example_file{traverse.c}
  */
 #define PICOTEST_TRAVERSE(_testName, _proc) \
     _testName##_traverse(_proc)
+
+/** @example_file{traverse.c} */
 
 /*! \} End of Test Traversal */
 
@@ -197,7 +195,7 @@ typedef void (PicoTestTraverseProc)(const char *name, int nb);
  * 
  * @see PICOTEST_FAILURE_LOGGER
  * 
- * @par Examples
+ * @par Usage
  *      @snippet logger.c     PicoTestFailureLoggerProc example
  */
 typedef void (PicoTestFailureLoggerProc)(const char *file, int line, 
@@ -223,11 +221,10 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
  * different functions may apply for the same source.
  * 
  * @see PicoTestFailureLoggerProc
- * 
- * @par Examples
- *      @example_file{logger.c}
  */
 #define PICOTEST_FAILURE_LOGGER picoTest_logFailure
+
+/** @example_file{logger.c} */
 
 /*! \} End of Logging; */
 
@@ -261,7 +258,7 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
  * @see PicoTestProc
  * @see PICOTEST_FIXTURE_CONTEXT
  * 
- * @par Examples
+ * @par Usage
  *      @snippet mainSuite.inc  PICOTEST_CASE examples
  */ 
 #if defined(_PICOTEST_PARENS)

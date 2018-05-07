@@ -36,8 +36,7 @@ SKIP_FUNCTION_MACROS   = NO
 IGNORE_PREFIX          = PICOTEST_ \
                          PicoTest
 
-# Overcome a bug/feature with @example that puts links in the wrong place
-ALIASES                += example_file{1}="@ref \1 @copybrief \1 \n"
+ALIASES                += example_file{1}="@example \1 @copybrief \1"
 
 # This tag implements a quasi-intelligent brief description abbreviator that is
 # used to form the text in various listings. Each string in this list, if found
