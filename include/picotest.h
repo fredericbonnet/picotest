@@ -71,7 +71,7 @@
  * \name Version
  * PicoTest follows the Semantic Versioning Specification (SemVer) 2.0.0:
  * 
- * https://semver.org/
+ * https://semver.org/spec/v2.0.0.html
  * \{
  */
 
