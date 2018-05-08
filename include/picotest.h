@@ -3,11 +3,46 @@
  *
  * This file defines a minimalist unit testing framework for C programs.
  * 
- * It relies on **setjmp()** / **longjmp()** for error handling during tests. 
- * While these functions are discouraged for production code, their usage is OK
- * in a test environment: in our case, **longjmp()** is only called upon failed 
- * assertions, a situation where the actual process state is no longer reliable
- * anyway.
+ * The assertion mechanism relies on `setjmp()` / `longjmp()`. While these
+ * functions are discouraged for production code, their usage is acceptable in
+ * the context of unit testing: in our case, `longjmp()` is only called when an
+ * assertion fails, a situation where the actual process state is no longer
+ * reliable anyway. Moreover, they constitute the only standard exception
+ * handling mechanism for plain C code.
+ * 
+ * @par License
+ * 
+ * PicoTest is released under the terms of the The 3-Clause BSD License:
+ * 
+ * https://opensource.org/licenses/BSD-3-Clause
+ * 
+ * Copyright (c) 2018 Frederic Bonnet
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ *
+ * 3. Neither the name of the copyright holder nor the names of its contributors
+ *    may be used to endorse or promote products derived from this software
+ *    without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef _PICOTEST
@@ -31,6 +66,22 @@
  * \defgroup public_interface Public interface
  * \{
  */
+
+/*!
+ * \name Version
+ * PicoTest follows the Semantic Versioning Specification (SemVer) 2.0.0:
+ * 
+ * https://semver.org/
+ * \{
+ */
+
+#define PICOTEST_VERSION "1.0.0"
+#define PICOTEST_VERSION_MAJOR 1
+#define PICOTEST_VERSION_MINOR 0
+#define PICOTEST_VERSION_PATCH 0
+
+/*! \} End of Version */
+
 
 /*!
  * \name Test Functions
@@ -503,7 +554,7 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
  * @see PICOTEST_VERIFY
  */
 #define PICOTEST_ASSERT(x, /* msg, */ ...) \
-    _PICOTEST_ASSERT(x, #x, __VA_ARGS__)
+    _PICOTEST_ASSERT(x, #x, ## __VA_ARGS__)
 
 /*! \cond IGNORE */
 #define _PICOTEST_ASSERT(x, ...) \
@@ -536,7 +587,7 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
  * @see PICOTEST_ASSERT
  */
 #define PICOTEST_VERIFY(x, /* msg, */ ...) \
-    _PICOTEST_VERIFY(x, #x, __VA_ARGS__)
+    _PICOTEST_VERIFY(x, #x, ## __VA_ARGS__)
 
 /*! \cond IGNORE */
 #define _PICOTEST_VERIFY(x, ...) \
