@@ -10,13 +10,13 @@
 #include <stdio.h>
 #include <picotest.h>
 
-/*! [PicoTestFailureLoggerProc example] */
-/* Custom test failure logger declaration. */
+/*! [PICOTEST_FAILURE_LOGGER example] */
+/* Test failure logger declaration. */
 PicoTestFailureLoggerProc logFailure;
 #undef PICOTEST_FAILURE_LOGGER
 #define PICOTEST_FAILURE_LOGGER logFailure
 
-/* Custom test failure logger definition. */
+/* Test failure logger function. */
 void logFailure(const char *file, int line, const char *type, const char *test, const char *msg, va_list args) {
     /* Error type. */
     printf("[%s] ", type);
@@ -35,7 +35,7 @@ void logFailure(const char *file, int line, const char *type, const char *test, 
 
     printf("\n");
 }
-/*! [PicoTestFailureLoggerProc example] */
+/*! [PICOTEST_FAILURE_LOGGER example] */
 
 /* Hooks */
 PicoTestCaseEnterProc logEnter;

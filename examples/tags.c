@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <picotest.h>
 
-/* Custom test filter declaration. */
+/* Custom test filter function declaration. */
 PicoTestFilterProc matchTag;
 #undef PICOTEST_FILTER
 #define PICOTEST_FILTER matchTag
@@ -23,8 +23,8 @@ typedef struct TestTags {
 TestTags taggedTests[];
 
 /*
- * Custom test filter function. **cond** is a tag name, optionally prefixed
- * by '!' for negation.
+ * Test filter function. **cond** is a tag name, optionally prefixed by '!' for
+ * negation.
  * 
  * Positive tagging, e.g. "tagname":
  * - Test suites tagged "tagname" will run with all their subtests

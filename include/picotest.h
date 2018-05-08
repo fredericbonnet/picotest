@@ -102,7 +102,7 @@ typedef enum PicoTestFilterResult {
  * @return a @ref PicoTestFilterResult value
  * 
  * @par Usage
- *      @snippet filter.c   PicoTestFilterProc example
+ *      @snippet filter.c   PICOTEST_FILTER example
  * 
  * @par Examples
  *      @example_file{filter.c}
@@ -131,7 +131,7 @@ typedef PicoTestFilterResult (PicoTestFilterProc) (PicoTestProc *test,
  * different functions may apply for the same source.
  * 
  * @par Usage
- *      @snippet filter.c   PicoTestFilterProc example
+ *      @snippet filter.c   PICOTEST_FILTER example
  * 
  * @par Examples
  *      @example_file{filter.c}
@@ -210,7 +210,7 @@ typedef void (PicoTestTraverseProc)(const char *name, int nb);
  * @note **msg** and **args** are suitable arguments to **vprintf()**.
  * 
  * @par Usage
- *      @snippet logger.c     PicoTestFailureLoggerProc example
+ *      @snippet logger.c   PICOTEST_FAILURE_LOGGER example
  * 
  * @par Examples
  *      @example_file{logger.c}
@@ -238,6 +238,9 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
  * @note Custom functions only apply to the tests defined after the macro 
  * redefinition. As macros can be redefined several times, this means that 
  * different functions may apply for the same source.
+ * 
+ * @par Usage
+ *      @snippet logger.c   PICOTEST_FAILURE_LOGGER example
  *
  * @par Examples
  *      @example_file{logger.c}
@@ -383,6 +386,12 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
  * 
  * @param testName      Test case name.
  * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_CASE_ENTER example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
+ * 
  * @see PICOTEST_CASE_ENTER
  */
 typedef void (PicoTestCaseEnterProc)(const char *testName);
@@ -405,6 +414,12 @@ static void picoTest_enterTestCase(const char *testName) {}
  * redefinition. As macros can be redefined several times, this means that 
  * different functions may apply for the same source.
  * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_CASE_ENTER example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
+ * 
  * @see PicoTestCaseEnterProc
  * @see PICOTEST_CASE_LEAVE
  */
@@ -417,6 +432,12 @@ static void picoTest_enterTestCase(const char *testName) {}
  * 
  * @param testName      Test case name.
  * @param fail          Failed tests (including its subtests if any).
+ * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_CASE_LEAVE example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
  * 
  * @see PICOTEST_CASE_LEAVE
  */
@@ -439,6 +460,12 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
  * @note Custom functions only apply to the tests defined after the macro 
  * redefinition. As macros can be redefined several times, this means that 
  * different functions may apply for the same source.
+ * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_CASE_LEAVE example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
  * 
  * @see PicoTestCaseLeaveProc
  * @see PICOTEST_CASE_ENTER
@@ -595,7 +622,7 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
  * @param _fixtureName      Name of the fixture.
  * 
  * @par Usage
- *      @snippet mainSuite.inc PICOTEST_FIXTURE_CONTEXT example
+ *      @snippet mainSuite.inc  PICOTEST_FIXTURE_CONTEXT example
  * 
  * @par Examples
  *      @example_file{mainSuite.inc}
@@ -603,6 +630,7 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
  * 
  * @see PICOTEST_FIXTURE_SETUP
  * @see PICOTEST_FIXTURE_TEARDOWN
+ * @see PICOTEST_CASE
  */
 #define PICOTEST_FIXTURE_CONTEXT(_fixtureName) \
     struct _fixtureName##_Context
@@ -616,16 +644,16 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
  * 
  * @par Usage
  * A simple fixture with no context:
- *      @snippet mainSuite.inc Simple fixture
+ *      @snippet mainSuite.inc  Simple fixture
  * 
  * A more complex example with a context structure:  
- *      @snippet mainSuite.inc Fixture with context
+ *      @snippet mainSuite.inc  Fixture with context
  * 
  * Fixtures may define an optional context that test cases don't need, in this
  * case the context passed to the setup and teardown functions is **NULL**:
- *      @snippet mainSuite.inc Fixture with optional context
+ *      @snippet mainSuite.inc  Fixture with optional context
  * Here is an example of such a test case:
- *      @snippet mainSuite.inc PICOTEST_CASE with fixture and optional context
+ *      @snippet mainSuite.inc  PICOTEST_CASE with fixture and optional context
  * 
  * @par Examples
  *      @example_file{mainSuite.inc}
@@ -633,6 +661,7 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
  * 
  * @see PICOTEST_FIXTURE_CONTEXT
  * @see PICOTEST_FIXTURE_TEARDOWN
+ * @see PICOTEST_CASE
  */
 #if defined(_PICOTEST_PARENS)
 #   define PICOTEST_FIXTURE_SETUP(...) \
@@ -664,16 +693,16 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
  * 
  * @par Usage
  * A simple fixture with no context:
- *      @snippet mainSuite.inc Simple fixture
+ *      @snippet mainSuite.inc  Simple fixture
  * 
  * A more complex example with a context structure:  
- *      @snippet mainSuite.inc Fixture with context
+ *      @snippet mainSuite.inc  Fixture with context
  * 
  * Fixtures may define an optional context that test cases don't need, in this
  * case the context passed to the setup and teardown functions is **NULL**:
- *      @snippet mainSuite.inc Fixture with optional context
+ *      @snippet mainSuite.inc  Fixture with optional context
  * Here is an example of such a test case:
- *      @snippet mainSuite.inc PICOTEST_CASE with fixture and optional context
+ *      @snippet mainSuite.inc  PICOTEST_CASE with fixture and optional context
  * 
  * @par Examples
  *      @example_file{mainSuite.inc}
@@ -681,6 +710,7 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
  * 
  * @see PICOTEST_FIXTURE_CONTEXT
  * @see PICOTEST_FIXTURE_SETUP
+ * @see PICOTEST_CASE
  */
 #if defined(_PICOTEST_PARENS)
 #   define PICOTEST_FIXTURE_TEARDOWN(...) \
@@ -724,6 +754,12 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
  * @param fixtureName   Test fixture name.
  * @param testName      Test case name.
  * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_FIXTURE_BEFORE_SETUP example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
+ * 
  * @see PICOTEST_FIXTURE_BEFORE_SETUP
  */
 typedef void (PicoTestFixtureBeforeSetupProc)(const char *fixtureName,
@@ -748,6 +784,12 @@ static void picoTest_beforeSetup(const char *fixtureName,
  * redefinition. As macros can be redefined several times, this means that 
  * different functions may apply for the same source.
  * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_FIXTURE_BEFORE_SETUP example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
+ * 
  * @see PicoTestFixtureBeforeSetupProc
  * @see PICOTEST_FIXTURE_AFTER_SETUP
  */
@@ -760,6 +802,12 @@ static void picoTest_beforeSetup(const char *fixtureName,
  * 
  * @param fixtureName   Test fixture name.
  * @param testName      Test case name.
+ * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_FIXTURE_AFTER_SETUP example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
  * 
  * @see PICOTEST_FIXTURE_AFTER_SETUP
  */
@@ -785,6 +833,12 @@ static void picoTest_afterSetup(const char *fixtureName,
  * redefinition. As macros can be redefined several times, this means that 
  * different functions may apply for the same source.
  * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_FIXTURE_AFTER_SETUP example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
+ * 
  * @see PicoTestFixtureAfterSetupProc
  * @see PICOTEST_FIXTURE_BEFORE_SETUP
  */
@@ -798,6 +852,12 @@ static void picoTest_afterSetup(const char *fixtureName,
  * @param fixtureName   Test fixture name.
  * @param testName      Test case name.
  * @param fail          Failed tests (including its subtests if any).
+ * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_FIXTURE_BEFORE_TEARDOWN example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
  * 
  * @see PICOTEST_FIXTURE_BEFORE_TEARDOWN
  */
@@ -823,6 +883,12 @@ static void picoTest_beforeTeardown(const char *fixtureName,
  * redefinition. As macros can be redefined several times, this means that 
  * different functions may apply for the same source.
  * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_FIXTURE_BEFORE_TEARDOWN example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
+ * 
  * @see PicoTestFixtureBeforeTeardownProc
  * @see PICOTEST_FIXTURE_AFTER_TEARDOWN
  */
@@ -836,6 +902,12 @@ static void picoTest_beforeTeardown(const char *fixtureName,
  * @param fixtureName   Test fixture name.
  * @param testName      Test case name.
  * @param fail          Failed tests (including its subtests if any).
+ * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_FIXTURE_AFTER_TEARDOWN example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
  * 
  * @see PICOTEST_FIXTURE_AFTER_TEARDOWN
  */
@@ -860,6 +932,12 @@ static void picoTest_afterTeardown(const char *fixtureName,
  * @note Custom functions only apply to the tests defined after the macro 
  * redefinition. As macros can be redefined several times, this means that 
  * different functions may apply for the same source.
+ * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_FIXTURE_AFTER_TEARDOWN example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
  * 
  * @see PicoTestFixtureAfterTeardownProc
  * @see PICOTEST_FIXTURE_BEFORE_TEARDOWN
@@ -996,6 +1074,12 @@ typedef struct PicoTestDescr {
  * @param suiteName     Test suite name.
  * @param nb            Number of subtests.
  * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_SUITE_ENTER example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
+ * 
  * @see PICOTEST_SUITE_ENTER
  */
 typedef void (PicoTestSuiteEnterProc)(const char *suiteName, int nb);
@@ -1018,6 +1102,12 @@ static void picoTest_enterTestSuite(const char *suiteName, int nb) {}
  * redefinition. As macros can be redefined several times, this means that 
  * different functions may apply for the same source.
  * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_SUITE_ENTER example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
+ * 
  * @see PicoTestSuiteEnterProc
  * @see PICOTEST_SUITE_LEAVE
  */
@@ -1030,6 +1120,12 @@ static void picoTest_enterTestSuite(const char *suiteName, int nb) {}
  * @param nb            Number of subtests.
  * @param fail          Number of failed subtests (including the subtests' 
  *                      subtests if any).
+ * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_SUITE_LEAVE example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
  * 
  * @see PICOTEST_SUITE_LEAVE
  */
@@ -1055,6 +1151,12 @@ static void picoTest_leaveTestSuite(const char *suiteName, int nb, int fail) {}
  * redefinition. As macros can be redefined several times, this means that 
  * different functions may apply for the same source.
  * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_SUITE_LEAVE example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
+ * 
  * @see PicoTestSuiteLeaveProc
  * @see PICOTEST_SUITE_ENTER
  */
@@ -1071,6 +1173,12 @@ static void picoTest_leaveTestSuite(const char *suiteName, int nb, int fail) {}
  *                      subtests' subtests if any).
  * @param index         Index of subtest.
  * @param testName      Name of subtest.
+ * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_SUITE_BEFORE_SUBTEST example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
  * 
  * @see PICOTEST_SUITE_BEFORE_SUBTEST
  */
@@ -1096,6 +1204,12 @@ static void picoTest_beforeSubtest(const char *suiteName, int nb, int fail,
  * redefinition. As macros can be redefined several times, this means that 
  * different functions may apply for the same source.
  * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_SUITE_BEFORE_SUBTEST example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
+ * 
  * @see PicoTestSuiteBeforeSubtestProc
  * @see PICOTEST_SUITE_AFTER_SUBTEST
  */
@@ -1114,6 +1228,12 @@ static void picoTest_beforeSubtest(const char *suiteName, int nb, int fail,
  * @param testName      Name of subtest.
  * @param sfail         The subtest's failed tests (including its subtests if
  *                      any).
+ * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_SUITE_AFTER_SUBTEST example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
  * 
  * @see PICOTEST_SUITE_AFTER_SUBTEST
  */
@@ -1138,6 +1258,12 @@ static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
  * @note Custom functions only apply to the tests defined after the macro 
  * redefinition. As macros can be redefined several times, this means that 
  * different functions may apply for the same source.
+ * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_SUITE_AFTER_SUBTEST example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
  * 
  * @see PicoTestSuiteAfterSubtestProc
  * @see PICOTEST_SUITE_BEFORE_SUBTEST

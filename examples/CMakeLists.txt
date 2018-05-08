@@ -51,3 +51,13 @@ target_sources(fixtures
     PRIVATE
         fixtures.c
 )
+
+add_executable(hooks)
+target_include_directories(hooks 
+    PRIVATE
+        ../include
+)
+target_sources(hooks
+    PRIVATE
+        hooks.c
+)

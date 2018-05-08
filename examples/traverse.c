@@ -10,16 +10,16 @@
 #include <picotest.h>
 
 /*! [PicoTestTraverseProc example] */
-/* Forward declaration. */
+/* Test traversal function declaration. */
 PicoTestTraverseProc printTestCase;
 PicoTestTraverseProc printTestName;
 
-/* Traversal proc, will print test cases only. */
+/* Traversal function, will print test cases only. */
 void printTestCase(const char *name, int nb) {
     if (nb == 0) printf("%s\n", name);
 }
 
-/* Traversal proc, will print all tests. */
+/* Traversal function, will print all tests. */
 void printTestName(const char *name, int nb) {
     printf("%s\n", name);
 }

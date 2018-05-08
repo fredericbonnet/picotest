@@ -9,20 +9,20 @@
 #include <stdio.h>
 #include <picotest.h>
 
-/*! [PicoTestFilterProc example] */
+/*! [PICOTEST_FILTER example] */
 /* Custom test filter declaration. */
 PicoTestFilterProc matchSubstring;
 #undef PICOTEST_FILTER
 #define PICOTEST_FILTER matchSubstring
 
-/* Custom test filter function. */
+/* Test filter function. */
 PicoTestFilterResult matchSubstring(PicoTestProc *test, const char *testName, const char *cond) {
     /* Match tests containing **cond** substring. */
     return (strstr(testName, cond) == NULL 
         ? PICOTEST_FILTER_SKIP_PROPAGATE 
         : PICOTEST_FILTER_PASS_PROPAGATE);
 }
-/*! [PicoTestFilterProc example] */
+/*! [PICOTEST_FILTER example] */
 
 /* Hooks */
 PicoTestCaseEnterProc logCaseEnter;
