@@ -54,11 +54,11 @@ void logEnter(const char *name) {
     printf("begin %s\n", name);
 }
 void logLeave(const char *name, int fail) {
+    level--;
     if (!fail) {
         indent(level);
         printf("end %s\n", name);
     }
-    level--;
 }
 
 /* Main test suite */

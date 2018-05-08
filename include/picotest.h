@@ -595,9 +595,10 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
  * @param _fixtureName      Name of the fixture.
  * 
  * @par Usage
- *      @snippet fixtures.c PICOTEST_FIXTURE_CONTEXT example
+ *      @snippet mainSuite.inc PICOTEST_FIXTURE_CONTEXT example
  * 
  * @par Examples
+ *      @example_file{mainSuite.inc}
  *      @example_file{fixtures.c}
  * 
  * @see PICOTEST_FIXTURE_SETUP
@@ -615,18 +616,19 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
  * 
  * @par Usage
  * A simple fixture with no context:
- *      @snippet fixtures.c Simple fixture
+ *      @snippet mainSuite.inc Simple fixture
  * 
  * A more complex example with a context structure:  
- *      @snippet fixtures.c Fixture with context
+ *      @snippet mainSuite.inc Fixture with context
  * 
  * Fixtures may define an optional context that test cases don't need, in this
  * case the context passed to the setup and teardown functions is **NULL**:
- *      @snippet fixtures.c Fixture with optional context
+ *      @snippet mainSuite.inc Fixture with optional context
  * Here is an example of such a test case:
- *      @snippet fixtures.c PICOTEST_CASE with fixture and optional context
+ *      @snippet mainSuite.inc PICOTEST_CASE with fixture and optional context
  * 
  * @par Examples
+ *      @example_file{mainSuite.inc}
  *      @example_file{fixtures.c}
  * 
  * @see PICOTEST_FIXTURE_CONTEXT
@@ -662,18 +664,19 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
  * 
  * @par Usage
  * A simple fixture with no context:
- *      @snippet fixtures.c Simple fixture
+ *      @snippet mainSuite.inc Simple fixture
  * 
  * A more complex example with a context structure:  
- *      @snippet fixtures.c Fixture with context
+ *      @snippet mainSuite.inc Fixture with context
  * 
  * Fixtures may define an optional context that test cases don't need, in this
  * case the context passed to the setup and teardown functions is **NULL**:
- *      @snippet fixtures.c Fixture with optional context
+ *      @snippet mainSuite.inc Fixture with optional context
  * Here is an example of such a test case:
- *      @snippet fixtures.c PICOTEST_CASE with fixture and optional context
+ *      @snippet mainSuite.inc PICOTEST_CASE with fixture and optional context
  * 
  * @par Examples
+ *      @example_file{mainSuite.inc}
  *      @example_file{fixtures.c}
  * 
  * @see PICOTEST_FIXTURE_CONTEXT
