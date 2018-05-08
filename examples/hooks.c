@@ -1,5 +1,5 @@
 /**
- * @file filter.c
+ * @file hooks.c
  * 
  * Example of PicoTest hooks, prints all events to stdout.
  *
