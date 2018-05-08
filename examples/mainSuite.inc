@@ -1,7 +1,8 @@
 /**
  * @file mainSuite.inc
  * 
- * Example of a simple PicoTest suite. 
+ * Example of a simple PicoTest suite. Included by other examples to demonstrate
+ * how the same suite can be integrated in a variety of situations.
  *
  * @include mainSuite.inc
  * @cond IGNORE 
@@ -26,26 +27,26 @@ PICOTEST_SUITE(subSuite,
 
 /* Test cases */
 PICOTEST_CASE(testCase1) {
-    PICOTEST_VERIFY(FAILS, "assertion 1"); /* Log error and continue */
-    PICOTEST_ASSERT(FAILS, "assertion 2"); /* Log error and abort */
+    PICOTEST_VERIFY(FAILS, "assertion 1");  /* Logs error and continue */
+    PICOTEST_ASSERT(FAILS, "assertion 2");  /* Logs error and abort */
     /* Unreached */
     PICOTEST_ASSERT(PASSES, "assertion 3");
 }
 PICOTEST_CASE(testCase2) {
-    PICOTEST_ASSERT(PASSES, "assertion 1");
-    PICOTEST_VERIFY(FAILS, "assertion 2"); /* Log error and continue */
+    PICOTEST_ASSERT(PASSES, "assertion 1"); /* Passes */
+    PICOTEST_VERIFY(FAILS, "assertion 2");  /* Logs error and continue */
 }
 PICOTEST_CASE(testCase3) {
-    PICOTEST_ASSERT(PASSES, "assertion 1");
-    PICOTEST_VERIFY(FAILS, "assertion 2");
+    PICOTEST_ASSERT(PASSES, "assertion 1"); /* Passes */
+    PICOTEST_VERIFY(FAILS, "assertion 2");  /* Passes */
 }
 PICOTEST_CASE(testCase4) {
-    PICOTEST_VERIFY(FAILS, "assertion 1"); /* Log error and continue */
-    PICOTEST_ASSERT(FAILS, "assertion 2");
+    PICOTEST_VERIFY(FAILS, "assertion 1");  /* Logs error and continue */
+    PICOTEST_ASSERT(FAILS, "assertion 2");  /* Logs error and abort */
 }
 PICOTEST_CASE(testCase5) {
-    PICOTEST_ASSERT(PASSES, "assertion 1");
-    PICOTEST_ABORT(); /* Stop silently. */
+    PICOTEST_ASSERT(PASSES, "assertion 1"); /* Passes */
+    PICOTEST_ABORT();                       /* Stops silently. */
     /* Unreached */
     PICOTEST_VERIFY(FAILS, "assertion 2");
 }

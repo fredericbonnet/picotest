@@ -67,6 +67,10 @@ typedef int (PicoTestProc) (const char * cond);
 /**
  * Result of test filter functions.
  * 
+ * @par Examples
+ *      @example_file{filter.c}
+ *      @example_file{tags.c}
+ * 
  * @see PicoTestFilterProc
  */ 
 typedef enum PicoTestFilterResult {
@@ -97,13 +101,17 @@ typedef enum PicoTestFilterResult {
  * 
  * @return a @ref PicoTestFilterResult value
  * 
+ * @par Usage
+ *      @snippet filter.c   PicoTestFilterProc example
+ * 
+ * @par Examples
+ *      @example_file{filter.c}
+ *      @example_file{tags.c}
+ * 
  * @see PICOTEST_SUITE
  * @see PICOTEST_CASE
  * @see PICOTEST_FILTER
  * @see PicoTestFilterResult
- * 
- * @par Usage
- *      @snippet filter.c   PicoTestFilterProc example
  */
 typedef PicoTestFilterResult (PicoTestFilterProc) (PicoTestProc *test, 
     const char *testName, const char * cond);
@@ -122,13 +130,17 @@ typedef PicoTestFilterResult (PicoTestFilterProc) (PicoTestProc *test,
  * redefinition. As macros can be redefined several times, this means that 
  * different functions may apply for the same source.
  * 
+ * @par Usage
+ *      @snippet filter.c   PicoTestFilterProc example
+ * 
+ * @par Examples
+ *      @example_file{filter.c}
+ *      @example_file{tags.c}
+ * 
  * @see PicoTestFilterProc
  */
 #define PICOTEST_FILTER(_test, _testName, _cond) \
     (strcmp((_testName), (_cond)) == 0 ? PICOTEST_FILTER_PASS : PICOTEST_FILTER_SKIP_PROPAGATE)
-
-/** @example_file{filter.c} */
-/** @example_file{tags.c} */
 
 /*! \} End of Test Filters */
 
@@ -149,10 +161,13 @@ typedef PicoTestFilterResult (PicoTestFilterProc) (PicoTestProc *test,
  * @param nb    Number of subtests (zero for simple test cases, at least one
  *              for test suites).
  * 
- * @see PICOTEST_TRAVERSE
- * 
  * @par Usage
  *      @snippet traverse.c     PicoTestTraverseProc example
+ * 
+ * @par Examples
+ *      @example_file{traverse.c}
+ * 
+ * @see PICOTEST_TRAVERSE
  */
 typedef void (PicoTestTraverseProc)(const char *name, int nb);
 
@@ -163,12 +178,13 @@ typedef void (PicoTestTraverseProc)(const char *name, int nb);
  * @param _proc         Test traversal proc. Must follow the @ref
  *                      PicoTestTraverseProc signature. 
  * 
+ * @par Examples
+ *      @example_file{traverse.c}
+ * 
  * @see PicoTestTraverseProc
  */
 #define PICOTEST_TRAVERSE(_testName, _proc) \
     _testName##_traverse(_proc)
-
-/** @example_file{traverse.c} */
 
 /*! \} End of Test Traversal */
 
@@ -193,10 +209,13 @@ typedef void (PicoTestTraverseProc)(const char *name, int nb);
  * 
  * @note **msg** and **args** are suitable arguments to **vprintf()**.
  * 
- * @see PICOTEST_FAILURE_LOGGER
- * 
  * @par Usage
  *      @snippet logger.c     PicoTestFailureLoggerProc example
+ * 
+ * @par Examples
+ *      @example_file{logger.c}
+ * 
+ * @see PICOTEST_FAILURE_LOGGER
  */
 typedef void (PicoTestFailureLoggerProc)(const char *file, int line, 
     const char *type, const char *test, const char *msg, va_list args);
@@ -219,12 +238,13 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
  * @note Custom functions only apply to the tests defined after the macro 
  * redefinition. As macros can be redefined several times, this means that 
  * different functions may apply for the same source.
+ *
+ * @par Examples
+ *      @example_file{logger.c}
  * 
  * @see PicoTestFailureLoggerProc
  */
 #define PICOTEST_FAILURE_LOGGER picoTest_logFailure
-
-/** @example_file{logger.c} */
 
 /*! \} End of Logging; */
 
@@ -255,11 +275,14 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
  * 
  * @return Number of failed tests.
  * 
- * @see PicoTestProc
- * @see PICOTEST_FIXTURE_CONTEXT
- * 
  * @par Usage
  *      @snippet mainSuite.inc  PICOTEST_CASE examples
+ * 
+ * @par Examples
+ *      @example_file{mainSuite.inc}
+ * 
+ * @see PicoTestProc
+ * @see PICOTEST_FIXTURE_CONTEXT
  */ 
 #if defined(_PICOTEST_PARENS)
 #   define PICOTEST_CASE(...) \
@@ -445,6 +468,9 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
  * @note **msg** and following arguments arguments are suitable arguments to 
  * **printf()**.
  * 
+ * @par Examples
+ *      @example_file{mainSuite.inc}
+ * 
  * @see PICOTEST_FAILURE_LOGGER
  * @see PICOTEST_ABORT
  * @see PICOTEST_VERIFY
@@ -475,6 +501,9 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
  * 
  * @note **msg** and following arguments arguments are suitable arguments to 
  * **printf()**.
+ * 
+ * @par Examples
+ *      @example_file{mainSuite.inc}
  * 
  * @see PICOTEST_FAILURE_LOGGER
  * @see PICOTEST_ASSERT
@@ -560,19 +589,16 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
 /**
  * Test fixture context declaration.
  * 
+ * Fixtures can optionally define a context structure that is passed to its
+ * setup and teardown functions.
+ * 
  * @param _fixtureName      Name of the fixture.
  * 
  * @par Usage
- * The block following the macro call defines a struct used to hold a test 
- * fixture context. For example:
+ *      @snippet fixtures.c PICOTEST_FIXTURE_CONTEXT example
  * 
- * @code
- *      PICOTEST_FIXTURE_CONTEXT(fixture) {
- *          int var1;
- *          const char *var2;
- *          void *var3;
- *      };
- * @endcode
+ * @par Examples
+ *      @example_file{fixtures.c}
  * 
  * @see PICOTEST_FIXTURE_SETUP
  * @see PICOTEST_FIXTURE_TEARDOWN
@@ -581,39 +607,27 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
     struct _fixtureName##_Context
 
 /**
- * Test fixture context initialization.
+ * Test fixture initialization.
  * 
  * @param _fixtureName  Name of the fixture.
  * @param _context      (optional) Fixture context structure defined using
  *                      PICOTEST_FIXTURE_CONTEXT(_fixtureName).
  * 
  * @par Usage
- * The code block following the macro call initializes the test fixture context.
- * The code block is called before each test of the fixture.
- * For example:
+ * A simple fixture with no context:
+ *      @snippet fixtures.c Simple fixture
  * 
- * @code
- *      PICOTEST_FIXTURE_SETUP(fixture) {
- *          // Seed the random number generator.
- *          srand(1234);
- *      }
- * @endcode
+ * A more complex example with a context structure:  
+ *      @snippet fixtures.c Fixture with context
  * 
- * The test fixture can optionally define a context structure:
- *  
- * @code
- *      PICOTEST_FIXTURE_CONTEXT(fixture) {
- *          int var1;
- *          const char *var2;
- *          void *var3;
- *      };
- *      PICOTEST_FIXTURE_SETUP(fixture, context) {
- *          // Initialize context.
- *          context->var1 = 1;
- *          context->var2 = "test";
- *          context->var3 = (void *) malloc(1);
- *      }
- * @endcode
+ * Fixtures may define an optional context that test cases don't need, in this
+ * case the context passed to the setup and teardown functions is **NULL**:
+ *      @snippet fixtures.c Fixture with optional context
+ * Here is an example of such a test case:
+ *      @snippet fixtures.c PICOTEST_CASE with fixture and optional context
+ * 
+ * @par Examples
+ *      @example_file{fixtures.c}
  * 
  * @see PICOTEST_FIXTURE_CONTEXT
  * @see PICOTEST_FIXTURE_TEARDOWN
@@ -640,73 +654,27 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
 /*! \endcond */
 
 /**
- * Test fixture context cleanup.
+ * Test fixture cleanup.
  * 
  * @param _fixtureName  Name of the fixture.
  * @param _context      (optional) Fixture context structure defined using
  *                      PICOTEST_FIXTURE_CONTEXT(_fixtureName).
  * 
  * @par Usage
- * The code block following the macro call cleans up the test fixture context.
- * For example:
+ * A simple fixture with no context:
+ *      @snippet fixtures.c Simple fixture
  * 
- * @code
- *      PICOTEST_FIXTURE_SETUP(fixture) {
- *          // Seed the random number generator.
- *          srand(1234);
- *      }
- *      PICOTEST_FIXTURE_TEARDOWN(fixture) {
- *          // Reset the random number generator to a non-deterministic value.
- *          srand(time(NULL));
- *      }
- * @endcode
+ * A more complex example with a context structure:  
+ *      @snippet fixtures.c Fixture with context
  * 
- * The test fixture can optionally define a context structure:
- *  
- * @code
- *      PICOTEST_FIXTURE_CONTEXT(fixture) {
- *          int var1;
- *          const char *var2;
- *          void *var3;
- *      };
- *      PICOTEST_FIXTURE_SETUP(fixture, context) {
- *          // Initialize context.
- *          context->var1 = 1;
- *          context->var2 = "test";
- *          context->var3 = (void *) malloc(1);
- *      }
- *      PICOTEST_FIXTURE_TEARDOWN(fixture, context) {
- *          free(context->var3);
- *      }
- * @endcode
+ * Fixtures may define an optional context that test cases don't need, in this
+ * case the context passed to the setup and teardown functions is **NULL**:
+ *      @snippet fixtures.c Fixture with optional context
+ * Here is an example of such a test case:
+ *      @snippet fixtures.c PICOTEST_CASE with fixture and optional context
  * 
- * The code block is called after each test of the fixture, even if the test 
- * failed. The special variable **PICOTEST_FAIL** can be used to test for such 
- * cases:
- * - for simple test cases it returns 1 in case of failure,
- * - for test suites it returns the number of failed subtests.
- * For example: 
- * 
- * @code
- *      PICOTEST_FIXTURE_CONTEXT(fixture) {
- *          void *buffer;
- *          int size;
- *      }
- *      PICOTEST_FIXTURE_SETUP(fixture, context) {
- *          context->buffer = NULL;
- *          context->size = 1024;
- *      }
- *      PICOTEST_CASE(testInitBuffer, fixture, context) {
- *          context->buffer = malloc(context->size);
- *          PICOTEST_ASSERT(context->buffer);
- *          memset(context->buffer, 0, context->size);
- *      }
- *      PICOTEST_FIXTURE_TEARDOWN(fixture, context) {
- *          if (!PICOTEST_FAIL) {
- *              free(context->buffer);
- *          }
- *      }
- * @endcode
+ * @par Examples
+ *      @example_file{fixtures.c}
  * 
  * @see PICOTEST_FIXTURE_CONTEXT
  * @see PICOTEST_FIXTURE_SETUP
@@ -895,7 +863,7 @@ static void picoTest_afterTeardown(const char *fixtureName,
  */
 #define PICOTEST_FIXTURE_AFTER_TEARDOWN picoTest_afterTeardown
 
-/*! \} End of Test Case Hooks */
+/*! \} End of Test Fixture Hooks */
 
 /*! \} End of Test Fixtures */
 
@@ -931,6 +899,9 @@ static void picoTest_afterTeardown(const char *fixtureName,
  * 
  * @par Usage
  *      @snippet mainSuite.inc  PICOTEST_SUITE examples
+ *
+ * @par Examples
+ *      @example_file{mainSuite.inc}
  */ 
 #define PICOTEST_SUITE(_suiteName, ...) \
     _PICOTEST_FOR_EACH(_PICOTEST_SUITE_DECLARE_TEST,__VA_ARGS__) \
@@ -1001,8 +972,6 @@ typedef struct PicoTestDescr {
     void (*traverse)(PicoTestTraverseProc *);       /*!< Test traversal. */
 } PicoTestDescr;
 /*! \endcond */
-
-/** @example_file{mainSuite.inc} */
 
 /*! \} End of Test Suite Definitions */
 

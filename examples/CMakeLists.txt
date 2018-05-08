@@ -41,3 +41,13 @@ target_sources(tags
     PRIVATE
         tags.c
 )
+
+add_executable(fixtures)
+target_include_directories(fixtures 
+    PRIVATE
+        ../include
+)
+target_sources(fixtures
+    PRIVATE
+        fixtures.c
+)
