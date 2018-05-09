@@ -9,7 +9,7 @@ PROJECT_LOGO           =
 
 GENERATE_HTML          = YES
 GENERATE_LATEX         = NO
-OUTPUT_DIRECTORY       = doc
+OUTPUT_DIRECTORY       = docs
 WARN_IF_DOC_ERROR      = NO
 
 INPUT                  = README.md \

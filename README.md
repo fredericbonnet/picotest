@@ -30,12 +30,16 @@ Simply include the file in your source file, then start writing your tests!
 
 ## Documentation
 
-The HTML documentation is generated from its source using the great Doxygen
-tool:
+The complete HTML documentation is available here:
+
+https://fredericbonnet.github.io/picotest/html/index.html
+
+The PicoTest documentation was generated from its source code using the great
+Doxygen tool:
 
 http://www.stack.nl/~dimitri/doxygen/
 
-You can rebuild the documentation from scratch using the provided `Doxygen`
+You can rebuild the documentation from scratch using the provided `Doxyfile`
 file.
 
 
