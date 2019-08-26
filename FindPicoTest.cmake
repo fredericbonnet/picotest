@@ -1,4 +1,5 @@
 set(_IMPORT_PREFIX "${CMAKE_CURRENT_LIST_DIR}")
+set(PicoTest_FOUND TRUE)
 
 add_library(PicoTest INTERFACE)
 set_target_properties(PicoTest PROPERTIES
