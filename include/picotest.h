@@ -599,7 +599,7 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
     } }
 /*! \endcond */
 
-/*
+/**
  * Generic failure.
  * 
  * PICOTEST_FAILURE_LOGGER() is called with the provided **type**, **test** and

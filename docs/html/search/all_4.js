@@ -7,6 +7,7 @@ var searchData=
   ['picotest_5fcase',['PICOTEST_CASE',['../group__test__cases.html#gadca8898d29eb42dde764ed83a5d9faf5',1,'picotest.h']]],
   ['picotest_5fcase_5fenter',['PICOTEST_CASE_ENTER',['../group__test__cases.html#gad1f702ab6600b04f66731d35bf38fc67',1,'picotest.h']]],
   ['picotest_5fcase_5fleave',['PICOTEST_CASE_LEAVE',['../group__test__cases.html#ga4fd71dfed1ce3733b0d670c86b8d523a',1,'picotest.h']]],
+  ['picotest_5ffailure',['PICOTEST_FAILURE',['../group__test__cases.html#ga89a35f18021df570967bb707a8537f3b',1,'picotest.h']]],
   ['picotest_5ffailure_5flogger',['PICOTEST_FAILURE_LOGGER',['../group__public__interface.html#gae4b2f943bef59bd05fb7a328a6c39d48',1,'picotest.h']]],
   ['picotest_5ffilter',['PICOTEST_FILTER',['../group__public__interface.html#ga47f93260349371f63f95900166cf7858',1,'picotest.h']]],
   ['picotest_5ffilter_5fpass',['PICOTEST_FILTER_PASS',['../group__public__interface.html#ggaf5acf1a68605f6c8b758bae0224e03fca35508816a12c32e7ce536786e5ffc8d9',1,'picotest.h']]],
