@@ -368,16 +368,20 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
 
 #define _PICOTEST_CASE_RUNNER_BEGIN(_testName) \
     int _testName##_testCaseRunner() { \
-        int fail; \
+        int abort; \
         jmp_buf failureEnv; \
         jmp_buf *oldEnv = picoTest_failureEnv; \
+        int fail, oldFail = picoTest_fail; \
         picoTest_failureEnv = &failureEnv; \
+        picoTest_fail = 0; \
         PICOTEST_CASE_ENTER(_PICOTEST_STRINGIZE(_testName)); \
-        fail = setjmp(failureEnv);
+        abort = setjmp(failureEnv);
 
 #define _PICOTEST_CASE_RUNNER_END(_testName) \
+        fail = picoTest_fail; \
         PICOTEST_CASE_LEAVE(_PICOTEST_STRINGIZE(_testName), fail); \
         picoTest_failureEnv = oldEnv; \
+        picoTest_fail = oldFail; \
         return fail; \
     }
 
@@ -385,7 +389,7 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
     _PICOTEST_CASE_DECLARE(_testName) \
     static void _testName##_testCase(void); \
     _PICOTEST_CASE_RUNNER_BEGIN(_testName) \
-        if (!fail) { \
+        if (!abort) { \
             _testName##_testCase(); \
         } \
     _PICOTEST_CASE_RUNNER_END(_testName) \
@@ -395,11 +399,11 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
     _PICOTEST_CASE_DECLARE(_testName) \
     static void _testName##_testCase(void); \
     _PICOTEST_CASE_RUNNER_BEGIN(_testName) \
-        if (!fail) { \
+        if (!abort) { \
             _PICOTEST_FIXTURE_CALL_SETUP(_fixtureName, _testName, NULL); \
             _testName##_testCase(); \
         } \
-        _PICOTEST_FIXTURE_CALL_TEARDOWN(_fixtureName, _testName, NULL, fail); \
+        _PICOTEST_FIXTURE_CALL_TEARDOWN(_fixtureName, _testName, NULL, picoTest_fail); \
     _PICOTEST_CASE_RUNNER_END(_testName) \
     static void _testName##_testCase()
 
@@ -409,11 +413,11 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
     _PICOTEST_CASE_RUNNER_BEGIN(_testName) \
         { \
             struct _fixtureName##_Context context; \
-            if (!fail) { \
+            if (!abort) { \
                 _PICOTEST_FIXTURE_CALL_SETUP(_fixtureName, _testName, &context); \
                 _testName##_testCase(&context); \
             } \
-            _PICOTEST_FIXTURE_CALL_TEARDOWN(_fixtureName, _testName, &context, fail); \
+            _PICOTEST_FIXTURE_CALL_TEARDOWN(_fixtureName, _testName, &context, picoTest_fail); \
         } \
     _PICOTEST_CASE_RUNNER_END(_testName) \
     static void _testName##_testCase(struct _fixtureName##_Context * _context)
@@ -613,9 +617,17 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
 
 /*! \cond IGNORE */
 #define _PICOTEST_FAILURE(type, ...) \
+    picoTest_fail++; \
     picoTest_assertFailed(PICOTEST_FAILURE_LOGGER, __FILE__, __LINE__, \
         type, _PICOTEST_ARGCOUNT(__VA_ARGS__), __VA_ARGS__); \
 /*! \endcond */
+
+/** \internal
+ * Internal failure counter.
+ * 
+ * @see PICOTEST_FAILURE
+ */
+static int picoTest_fail = 0;
 
 /** \internal
  * Tag used by **setjmp()** and **longjmp()** to jump out of failed tests.
