@@ -173,7 +173,7 @@ typedef PicoTestFilterResult (PicoTestFilterProc) (PicoTestProc *test,
  * Called before calling a test with a non- **NULL** condition. 
  * 
  * The default filter does a simple string equality test between its 
- * **testName** and  **cond** arguments, and propagates to subtests if it 
+ * **testName** and **cond** arguments, and propagates to subtests if it 
  * doesn't match. Redefine this macro to use a custom filter function, which
  * must follow the @ref PicoTestFilterProc signature.
  * 
@@ -559,8 +559,7 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
 /*! \cond IGNORE */
 #define _PICOTEST_ASSERT(x, ...) \
     {if (!(x)) { \
-        picoTest_assertFailed(PICOTEST_FAILURE_LOGGER, __FILE__, __LINE__, \
-            "ASSERT", _PICOTEST_ARGCOUNT(__VA_ARGS__), __VA_ARGS__); \
+        PICOTEST_FAILURE("ASSERT", ## __VA_ARGS__); \
         PICOTEST_ABORT(); \
     } }
 /*! \endcond */
@@ -569,7 +568,7 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
  * Soft assertion. Logs an error if the given value is false, but let the test
  * continue.
  * 
- * PICOTEST_FAILURE_LOGGER() is called with the  **type** argument set to 
+ * PICOTEST_FAILURE_LOGGER() is called with the **type** argument set to 
  * ``"VERIFY"``.
  * 
  * @param x     Value to test. Evaluated once, so it can be an expression with 
@@ -592,9 +591,30 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
 /*! \cond IGNORE */
 #define _PICOTEST_VERIFY(x, ...) \
     {if (!(x)) { \
-        picoTest_assertFailed(PICOTEST_FAILURE_LOGGER, __FILE__, __LINE__, \
-            "VERIFY", _PICOTEST_ARGCOUNT(__VA_ARGS__), __VA_ARGS__); \
+        PICOTEST_FAILURE("VERIFY", ## __VA_ARGS__); \
     } }
+/*! \endcond */
+
+/*
+ * Generic failure.
+ * 
+ * PICOTEST_FAILURE_LOGGER() is called with the provided **type**, **test** and
+ * **msg** arguments.
+ * 
+ * This can be used to implement custom testing logic.
+ *
+ * @param type  Type of test that failed (e.g. "ASSERT").
+ * @param test  Failed test.
+ * @param msg   (optional) Message format string.
+ * @param ...   (optional) Message string arguments.
+ */
+#define PICOTEST_FAILURE(type, test, /* msg, */ ...) \
+    _PICOTEST_FAILURE(type, test, ## __VA_ARGS__)
+
+/*! \cond IGNORE */
+#define _PICOTEST_FAILURE(type, ...) \
+    picoTest_assertFailed(PICOTEST_FAILURE_LOGGER, __FILE__, __LINE__, \
+        type, _PICOTEST_ARGCOUNT(__VA_ARGS__), __VA_ARGS__); \
 /*! \endcond */
 
 /** \internal
@@ -622,7 +642,7 @@ static jmp_buf *picoTest_failureEnv = NULL;
  * @param proc  Test failure log handler.
  * @param file  File name where the test was defined.
  * @param line  Location of test in file.
- * @param type  Type of test that failed (e.g. "ASSERTION").
+ * @param type  Type of test that failed (e.g. "ASSERT").
  * @param count Number of arguments after **test**.
  * @param test  Tested expression.
  * @param ...   Optional message format string and parameters.
