@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2019-17-11
+
 ### Added
 
 - Add PICOTEST_FAILURE
@@ -21,5 +23,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First release.
 
-[unreleased]: https://github.com/fredericbonnet/picotest/compare/v1.0.0...HEAD
+[unreleased]: https://github.com/fredericbonnet/picotest/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/fredericbonnet/picotest/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/fredericbonnet/picotest/releases/tag/v1.0.0
