@@ -168,6 +168,38 @@ void leaveTestCase(const char *testName, int fail) {
 /*! [PICOTEST_CASE_LEAVE example] */
 
 
+/*
+ * Assertion hooks.
+ */
+
+/*! [PICOTEST_ASSERT_BEFORE example] */
+/* Hook declarations. */
+PicoTestAssertBeforeProc beforeAssert;
+#undef PICOTEST_ASSERT_BEFORE
+#define PICOTEST_ASSERT_BEFORE beforeAssert
+
+/* Hook function. */
+void beforeAssert(const char *type, const char *test) {
+    indent(level++);
+    printf("before assertion %s(%s)...\n", type, test);
+}
+/*! [PICOTEST_ASSERT_BEFORE example] */
+
+
+/*! [PICOTEST_ASSERT_AFTER example] */
+/* Hook declarations. */
+PicoTestAssertAfterProc afterAssert;
+#undef PICOTEST_ASSERT_AFTER
+#define PICOTEST_ASSERT_AFTER afterAssert
+
+/* Hook function. */
+void afterAssert(const char *type, const char *test, int fail) {
+    indent(--level);
+    printf("after assertion %s(%s) => %s\n", type, test, fail ? "fails" : "passes");
+}
+/*! [PICOTEST_ASSERT_AFTER example] */
+
+
 /* Main test suite */
 #include "mainSuite.inc"
 

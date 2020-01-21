@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['hooks_2ec',['hooks.c',['../hooks_8c.html',1,'']]]
+  ['filter_2ec',['filter.c',['../filter_8c.html',1,'']]],
+  ['fixtures_2ec',['fixtures.c',['../fixtures_8c.html',1,'']]]
 ];

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="dir_d28a4824dc47e487b107a5db32ef43c4" kind="dir">
+    <compoundname>examples</compoundname>
+    <innerfile refid="filter_8c">filter.c</innerfile>
+    <innerfile refid="fixtures_8c">fixtures.c</innerfile>
+    <innerfile refid="hooks_8c">hooks.c</innerfile>
+    <innerfile refid="logger_8c">logger.c</innerfile>
+    <innerfile refid="main_suite_8inc">mainSuite.inc</innerfile>
+    <innerfile refid="tags_8c">tags.c</innerfile>
+    <innerfile refid="traverse_8c">traverse.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="examples/"/>
+  </compounddef>
+</doxygen>

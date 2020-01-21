@@ -75,9 +75,9 @@
  * \{
  */
 
-#define PICOTEST_VERSION "1.0.0"
+#define PICOTEST_VERSION "1.2.0"
 #define PICOTEST_VERSION_MAJOR 1
-#define PICOTEST_VERSION_MINOR 0
+#define PICOTEST_VERSION_MINOR 2
 #define PICOTEST_VERSION_PATCH 0
 
 /*! \} End of Version */
@@ -300,7 +300,7 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
  */
 #define PICOTEST_FAILURE_LOGGER picoTest_logFailure
 
-/*! \} End of Logging; */
+/*! \} End of Logging */
 
 
 /*!
@@ -529,9 +529,18 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
 
 /*! \} End of Test Case Hooks */
 
+/*! \} End of Test Cases */
+
 
 /*!
- * \name Assertions
+ * \defgroup assertions Assertions
+ * 
+ * Assertions are the basic building blocks of test cases.
+ * \{
+ */
+
+/*!
+ * \name Assertion Definitions 
  * \{
  */
 
@@ -562,7 +571,10 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
 
 /*! \cond IGNORE */
 #define _PICOTEST_ASSERT(x, ...) \
-    {if (!(x)) { \
+    PICOTEST_ASSERT_BEFORE("ASSERT", #x); \
+    {int _PICOTEST_FAIL = !(x); \
+    PICOTEST_ASSERT_AFTER("ASSERT", #x, _PICOTEST_FAIL); \
+    if (_PICOTEST_FAIL) { \
         PICOTEST_FAILURE("ASSERT", ## __VA_ARGS__); \
         PICOTEST_ABORT(); \
     } }
@@ -594,7 +606,10 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
 
 /*! \cond IGNORE */
 #define _PICOTEST_VERIFY(x, ...) \
-    {if (!(x)) { \
+    PICOTEST_ASSERT_BEFORE("VERIFY", #x); \
+    {int _PICOTEST_FAIL = !(x); \
+    PICOTEST_ASSERT_AFTER("VERIFY", #x, _PICOTEST_FAIL); \
+    if (_PICOTEST_FAIL) { \
         PICOTEST_FAILURE("VERIFY", ## __VA_ARGS__); \
     } }
 /*! \endcond */
@@ -677,9 +692,119 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
     }
 }
 
-/*! \} End of Assertions */
+/*! \} End of Assertion Definitions */
 
-/*! \} End of Test Cases */
+
+/*!
+ * \name Assertion Hooks
+ * 
+ * PicoTest provides a way for client code to intercept assertions events. This
+ * can be used for e.g. logging purpose or reporting.
+ * \{
+ */
+
+/**
+ * Function signature of assert before hooks.
+ * 
+ * Called before running an assertion.
+ * 
+ * @param type  Type of test (e.g. "ASSERT").
+ * @param test  Test.
+ * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_ASSERT_BEFORE example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
+ * 
+ * @see PICOTEST_ASSERT_BEFORE
+ */
+typedef void (PicoTestAssertBeforeProc)(const char *type, const char *test);
+
+/** \internal
+ * Default assert before hook. Does nothing.
+ * 
+ * @see PicoTestAssertBeforeProc
+ * @see PICOTEST_ASSERT_BEFORE
+ */
+static void picoTest_beforeAssert(const char *type, const char *test) {}
+
+/**
+ * Define the assert before hook.
+ * 
+ * The default hook does nothing. Redefine this macro to use a custom hook,
+ * which must follow the @ref PicoTestAssertBeforeProc signature.
+ * 
+ * @note Custom functions only apply to the tests defined after the macro 
+ * redefinition. As macros can be redefined several times, this means that 
+ * different functions may apply for the same source.
+ * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_ASSERT_BEFORE example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
+ * 
+ * @see PicoTestAssertBeforeProc
+ * @see PICOTEST_ASSERT_AFTER
+ */
+#define PICOTEST_ASSERT_BEFORE picoTest_beforeAssert
+
+/**
+ * Function signature of assert after hooks.
+ * 
+ * Called after running an assertion.
+ * 
+ * @param type  Type of test (e.g. "ASSERT").
+ * @param test  Test.
+ * @param fail  Test result: zero for success, non-zero for failure.
+ * @param msg   (optional) Message format string.
+ * @param ...   (optional) Message string arguments.
+ * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_ASSERT_AFTER example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
+ * 
+ * @see PICOTEST_ASSERT_AFTER
+ */
+typedef void (PicoTestAssertAfterProc)(const char *type, const char *test, 
+    int fail);
+
+/** \internal
+ * Default assert after hook. Does nothing.
+ * 
+ * @see PicoTestAssertAfterProc
+ * @see PICOTEST_ASSERT_AFTER
+ */
+static void picoTest_afterAssert(const char *type, const char *test, 
+    int fail) {}
+
+/**
+ * Define the assert after hook.
+ * 
+ * The default hook does nothing. Redefine this macro to use a custom hook,
+ * which must follow the @ref PicoTestAssertAfterProc signature.
+ * 
+ * @note Custom functions only apply to the tests defined after the macro 
+ * redefinition. As macros can be redefined several times, this means that 
+ * different functions may apply for the same source.
+ * 
+ * @par Usage
+ *      @snippet hooks.c    PICOTEST_ASSERT_AFTER example
+ * 
+ * @par Examples
+ *      @example_file{hooks.c}
+ * 
+ * @see PicoTestAssertAfterProc
+ * @see PICOTEST_ASSERT_BEFORE
+ */
+#define PICOTEST_ASSERT_AFTER picoTest_afterAssert
+
+/*! \} End of Assertion Hooks */
+
+/*! \} End of Assertions */
 
 
 /*!

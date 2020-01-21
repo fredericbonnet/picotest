@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="indexpage" kind="page">
+    <compoundname>index</compoundname>
+    <title>PicoTest: A minimalist unit testing framework for C programs</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>PicoTest is a single-file unit testing framework for C programs that follows the xUnit principles:</para>
+<para><ulink url="https://en.wikipedia.org/wiki/XUnit">https://en.wikipedia.org/wiki/XUnit</ulink></para>
+<para><heading level="2">License</heading>
+</para>
+<para>PicoTest is released under the terms of the The 3-Clause BSD License:</para>
+<para><ulink url="https://opensource.org/licenses/BSD-3-Clause">https://opensource.org/licenses/BSD-3-Clause</ulink></para>
+<para><heading level="2">Installation</heading>
+</para>
+<para>PicoTest is a single-file package, everything is defined in the header file <computeroutput><ref refid="picotest_8h" kindref="compound">picotest.h</ref></computeroutput>. So you can either install this file in a standard location, or copy it within your project source tree.</para>
+<para><heading level="2">Usage</heading>
+</para>
+<para>Simply include the file in your source file, then start writing your tests!</para>
+<para><programlisting filename=".c"><codeline><highlight class="preprocessor">#include<sp/>&lt;<ref refid="picotest_8h" kindref="compound">picotest.h</ref>&gt;</highlight></codeline>
+</programlisting></para>
+<para><heading level="2">Documentation</heading>
+</para>
+<para>The complete HTML documentation is available here:</para>
+<para><ulink url="https://fredericbonnet.github.io/picotest/html/index.html">https://fredericbonnet.github.io/picotest/html/index.html</ulink></para>
+<para>The PicoTest documentation was generated from its source code using the great Doxygen tool:</para>
+<para><ulink url="http://www.stack.nl/~dimitri/doxygen/">http://www.stack.nl/~dimitri/doxygen/</ulink></para>
+<para>You can rebuild the documentation from scratch using the provided <computeroutput>Doxyfile</computeroutput> file.</para>
+<para><heading level="2">Examples</heading>
+</para>
+<para>The <computeroutput>examples</computeroutput> subdirectory contains several example source files that demonstrate the various features of PicoTest. These examples are also integrated in the documentation.</para>
+<para>Building the examples requires the CMake build tool along with your favorite toolchain:</para>
+<para><ulink url="https://cmake.org/">https://cmake.org/</ulink></para>
+<para><heading level="2">Integration with CMake</heading>
+</para>
+<para>PicoTest provides a CMake module definition for easier integration with other CMake projects. In particular, it comes with an auto-discovery script for CTest that makes use of the test traversal features of PicoTest.</para>
+<para>The file <computeroutput>FindPicoTest.cmake</computeroutput> is the module definition. Add this file to your <computeroutput>CMAKE_MODULE_PATH</computeroutput>, and add the following line to your CMake project:</para>
+<para><programlisting filename=".cmake"><codeline><highlight class="normal">find_package(PicoTest)</highlight></codeline>
+</programlisting></para>
+<para>You can then add the <computeroutput>PicoTest</computeroutput> dependency to your targets, e.g.:</para>
+<para><programlisting filename=".cmake"><codeline><highlight class="normal">add_executable(my_test_runner)</highlight></codeline>
+<codeline><highlight class="normal">target_link_libraries(my_test_runner</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>PRIVATE<sp/>PicoTest</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+</programlisting></para>
+<para>If you also use CTest for test automation with <computeroutput>enable_testing()</computeroutput>, you can also call the provided <computeroutput>picotest_discover_tests</computeroutput> macro to integrate PicoTest test cases in your build process automatically. For example, assuming that the <computeroutput>my_test_runner</computeroutput> executable:</para>
+<para><itemizedlist>
+<listitem><para>when passed the <computeroutput>-l</computeroutput> option, will list all its test cases using the <computeroutput>PICOTEST_TRAVERSE</computeroutput> feature.</para>
+</listitem><listitem><para>when passed <computeroutput>&lt;test_name&gt;</computeroutput>, will execute the matching test case.</para>
+</listitem></itemizedlist>
+</para>
+<para>Then the following lines will:<orderedlist>
+<listitem><para>execute <computeroutput>my_test_runner -l</computeroutput> as a post-build command to <computeroutput>my_test_runner</computeroutput>,</para>
+</listitem><listitem><para>add each discovered test case using <computeroutput>add_test(&lt;test_name&gt;)</computeroutput>,</para>
+</listitem><listitem><para>when invoking the <computeroutput>test</computeroutput> rule, execute each test unitarily with <computeroutput>my_test_runner &lt;test_name&gt;</computeroutput>.</para>
+</listitem></orderedlist>
+</para>
+<para><programlisting filename=".cmake"><codeline><highlight class="normal">enable_testing()</highlight></codeline>
+<codeline><highlight class="normal">picotest_discover_tests(my_test_runner</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TEST_LIST_OPTION<sp/>&quot;-l&quot;</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+</programlisting></para>
+<para><heading level="2">Development</heading>
+</para>
+<para>PicoTest was developed on Windows 10 and Linux Ubuntu 16.04 using the following tools:</para>
+<para><itemizedlist>
+<listitem><para>IDE: Visual Studio Code</para>
+</listitem><listitem><para>Build tool: CMake 3.11.0</para>
+</listitem><listitem><para>Windows toolchain: Microsoft Visual C++ Build Tools 14</para>
+</listitem><listitem><para>Linux toolchain: GCC 5.4.0</para>
+</listitem></itemizedlist>
+</para>
+<para>It should work with any reasonably modern C compiler that supports variadic macros.</para>
+<para>The assertion mechanism relies on <computeroutput>setjmp()</computeroutput> / <computeroutput>longjmp()</computeroutput>. While these functions are discouraged for production code, their usage is acceptable in the context of unit testing: in our case, <computeroutput>longjmp()</computeroutput> is only called when an assertion fails, a situation where the actual process state is no longer reliable anyway. Moreover, they constitute the only standard exception handling mechanism for plain C code. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

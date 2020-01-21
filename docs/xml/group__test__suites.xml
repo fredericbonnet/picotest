@@ -1,0 +1,593 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="group__test__suites" kind="group">
+    <compoundname>test_suites</compoundname>
+    <title>Test Suites</title>
+      <sectiondef kind="user-defined">
+      <header>Test Suite Definitions</header>
+      <memberdef kind="define" id="group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f" prot="public" static="no">
+        <name>PICOTEST_SUITE</name>
+        <param><defname>_suiteName</defname></param>
+        <param><defname>...</defname></param>
+        <briefdescription>
+<para>Test suite declaration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A test suite is a test function that is made of one or several subtests.</para>
+<para>This macro defines a <ref refid="group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a" kindref="member">PicoTestProc</ref> of the given name that can be called directly.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_suiteName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the test suite. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>...</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Names of the subtests in the suite.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Number of failed tests.</para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a" kindref="member">PicoTestProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kindref="member">PICOTEST_CASE</ref></para>
+</simplesect>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="mainSuite.inc"><codeline><highlight class="comment">/*<sp/>Main<sp/>test<sp/>suite<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f" kindref="member">PICOTEST_SUITE</ref>(mainSuite,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>testCase1,<sp/>testCase2,<sp/>subSuite,<sp/>testCase3</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Sub-suite<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f" kindref="member">PICOTEST_SUITE</ref>(subSuite,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>testCase4,<sp/>testCase5</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="main_suite_8inc" kindref="compound">mainSuite.inc</ref> Example of a simple PicoTest suite. <linebreak/>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1195" column="9" bodyfile="include/picotest.h" bodystart="1195" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Test Suite Hooks</header>
+      <description><para>PicoTest provides a way for client code to intercept test execution events on test suites and their subtests. This can be used for e.g. logging purpose or reporting. </para>
+</description>
+      <memberdef kind="typedef" id="group__test__suites_1ga881ee23cced7bc4df9427409dcb55254" prot="public" static="no">
+        <type>void()</type>
+        <definition>typedef void() PicoTestSuiteEnterProc(const char *suiteName, int nb)</definition>
+        <argsstring>(const char *suiteName, int nb)</argsstring>
+        <name>PicoTestSuiteEnterProc</name>
+        <briefdescription>
+<para>Function signature of test suite enter hooks. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Called before running the first subtest.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>suiteName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test suite name. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of subtests.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__suites_1ga881ee23cced7bc4df9427409dcb55254" kindref="member">PicoTestSuiteEnterProc</ref><sp/>enterTestSuite;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_SUITE_ENTER</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_SUITE_ENTER<sp/>enterTestSuite</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>enterTestSuite(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*suiteName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;running<sp/>test<sp/>suite<sp/>%s<sp/>(%d<sp/>subtests)...\n&quot;</highlight><highlight class="normal">,<sp/>suiteName,<sp/>nb);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1gae569b3a4f05ebefc297411072e505fd3" kindref="member">PICOTEST_SUITE_ENTER</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1293" column="1" bodyfile="include/picotest.h" bodystart="1293" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__test__suites_1gabc6f39019f0cde9f04812785aceaab09" prot="public" static="no">
+        <type>void()</type>
+        <definition>typedef void() PicoTestSuiteLeaveProc(const char *suiteName, int nb, int fail)</definition>
+        <argsstring>(const char *suiteName, int nb, int fail)</argsstring>
+        <name>PicoTestSuiteLeaveProc</name>
+        <briefdescription>
+<para>Function signature of test suite leave hooks. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>suiteName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test suite name. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of subtests. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fail</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of failed subtests (including the subtests&apos; subtests if any).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__suites_1gabc6f39019f0cde9f04812785aceaab09" kindref="member">PicoTestSuiteLeaveProc</ref><sp/>leaveTestSuite;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_SUITE_LEAVE</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_SUITE_LEAVE<sp/>leaveTestSuite</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>leaveTestSuite(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*suiteName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;test<sp/>suite<sp/>%s<sp/>done<sp/>(%d<sp/>failures)\n&quot;</highlight><highlight class="normal">,<sp/>suiteName,<sp/>fail);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c" kindref="member">PICOTEST_SUITE_LEAVE</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1340" column="1" bodyfile="include/picotest.h" bodystart="1340" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__test__suites_1gade4d2a7d8a611ca76c675607529a3edb" prot="public" static="no">
+        <type>void()</type>
+        <definition>typedef void() PicoTestSuiteBeforeSubtestProc(const char *suiteName, int nb, int fail, int index, const char *testName)</definition>
+        <argsstring>(const char *suiteName, int nb, int fail, int index, const char *testName)</argsstring>
+        <name>PicoTestSuiteBeforeSubtestProc</name>
+        <briefdescription>
+<para>Function signature of test suite before subtest hooks. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Called before running each subtest.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>suiteName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test suite name. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of subtests. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fail</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Failed test suite subtests so far (including its subtests&apos; subtests if any). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of subtest. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>testName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of subtest.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__suites_1gade4d2a7d8a611ca76c675607529a3edb" kindref="member">PicoTestSuiteBeforeSubtestProc</ref><sp/>beforeSubtest;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_SUITE_BEFORE_SUBTEST</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_SUITE_BEFORE_SUBTEST<sp/>beforeSubtest</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>beforeSubtest(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*suiteName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;subtest<sp/>%s<sp/>(%d<sp/>out<sp/>of<sp/>%d)...\n&quot;</highlight><highlight class="normal">,<sp/>testName,<sp/>index+1,<sp/>nb);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464" kindref="member">PICOTEST_SUITE_BEFORE_SUBTEST</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1393" column="1" bodyfile="include/picotest.h" bodystart="1393" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__test__suites_1ga80efec0204108859c9ececa3921f6f76" prot="public" static="no">
+        <type>void()</type>
+        <definition>typedef void() PicoTestSuiteAfterSubtestProc(const char *suiteName, int nb, int fail, int index, const char *testName, int sfail)</definition>
+        <argsstring>(const char *suiteName, int nb, int fail, int index, const char *testName, int sfail)</argsstring>
+        <name>PicoTestSuiteAfterSubtestProc</name>
+        <briefdescription>
+<para>Function signature of test suite after subtest hooks. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Called before running each subtest.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>suiteName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test suite name. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of subtests. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fail</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Failed test suite subtests so far (including its subtests&apos; subtests if any). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of subtest. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>testName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of subtest. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sfail</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The subtest&apos;s failed tests (including its subtests if any).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__suites_1ga80efec0204108859c9ececa3921f6f76" kindref="member">PicoTestSuiteAfterSubtestProc</ref><sp/>afterSubtest;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_SUITE_AFTER_SUBTEST</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_SUITE_AFTER_SUBTEST<sp/>afterSubtest</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>afterSubtest(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*suiteName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sfail)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;=&gt;<sp/>subtest<sp/>%s<sp/>done<sp/>(%d<sp/>failed)...\n&quot;</highlight><highlight class="normal">,<sp/>testName,<sp/>sfail);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24" kindref="member">PICOTEST_SUITE_AFTER_SUBTEST</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1448" column="1" bodyfile="include/picotest.h" bodystart="1448" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__test__suites_1ga5bc4119292d7cb86b645b0c4e0b51b8d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void picoTest_enterTestSuite</definition>
+        <argsstring>(const char *suiteName, int nb)</argsstring>
+        <name>picoTest_enterTestSuite</name>
+        <param>
+          <type>const char *</type>
+          <declname>suiteName</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1301" column="1" bodyfile="include/picotest.h" bodystart="1301" bodyend="1301"/>
+      </memberdef>
+      <memberdef kind="function" id="group__test__suites_1ga8a2f437d7d0a53f802e77d158567221a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void picoTest_leaveTestSuite</definition>
+        <argsstring>(const char *suiteName, int nb, int fail)</argsstring>
+        <name>picoTest_leaveTestSuite</name>
+        <param>
+          <type>const char *</type>
+          <declname>suiteName</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fail</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1348" column="1" bodyfile="include/picotest.h" bodystart="1348" bodyend="1348"/>
+      </memberdef>
+      <memberdef kind="function" id="group__test__suites_1gab093971a14a1391e27696ef425173c23" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void picoTest_beforeSubtest</definition>
+        <argsstring>(const char *suiteName, int nb, int fail, int index, const char *testName)</argsstring>
+        <name>picoTest_beforeSubtest</name>
+        <param>
+          <type>const char *</type>
+          <declname>suiteName</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fail</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>testName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1402" column="1" bodyfile="include/picotest.h" bodystart="1402" bodyend="1403"/>
+      </memberdef>
+      <memberdef kind="function" id="group__test__suites_1ga08d7616c2c00cd11b4709d4baee64f5d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void picoTest_afterSubtest</definition>
+        <argsstring>(const char *suiteName, int nb, int fail, int index, const char *testName, int sfail)</argsstring>
+        <name>picoTest_afterSubtest</name>
+        <param>
+          <type>const char *</type>
+          <declname>suiteName</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fail</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>testName</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sfail</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1457" column="1" bodyfile="include/picotest.h" bodystart="1457" bodyend="1458"/>
+      </memberdef>
+      <memberdef kind="define" id="group__test__suites_1gae569b3a4f05ebefc297411072e505fd3" prot="public" static="no">
+        <name>PICOTEST_SUITE_ENTER</name>
+        <briefdescription>
+<para>Define the test suite enter hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The default hook does nothing. Redefine this macro to use a custom hook, which must follow the <ref refid="group__test__suites_1ga881ee23cced7bc4df9427409dcb55254" kindref="member">PicoTestSuiteEnterProc</ref> signature.</para>
+<para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
+</simplesect>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__suites_1ga881ee23cced7bc4df9427409dcb55254" kindref="member">PicoTestSuiteEnterProc</ref><sp/>enterTestSuite;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_SUITE_ENTER</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_SUITE_ENTER<sp/>enterTestSuite</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>enterTestSuite(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*suiteName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;running<sp/>test<sp/>suite<sp/>%s<sp/>(%d<sp/>subtests)...\n&quot;</highlight><highlight class="normal">,<sp/>suiteName,<sp/>nb);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1ga881ee23cced7bc4df9427409dcb55254" kindref="member">PicoTestSuiteEnterProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c" kindref="member">PICOTEST_SUITE_LEAVE</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1322" column="9" bodyfile="include/picotest.h" bodystart="1322" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c" prot="public" static="no">
+        <name>PICOTEST_SUITE_LEAVE</name>
+        <briefdescription>
+<para>Define the test suite leave hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Called after running all subtests.</para>
+<para>The default hook does nothing. Redefine this macro to use a custom hook, which must follow the <ref refid="group__test__suites_1gabc6f39019f0cde9f04812785aceaab09" kindref="member">PicoTestSuiteLeaveProc</ref> signature.</para>
+<para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
+</simplesect>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__suites_1gabc6f39019f0cde9f04812785aceaab09" kindref="member">PicoTestSuiteLeaveProc</ref><sp/>leaveTestSuite;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_SUITE_LEAVE</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_SUITE_LEAVE<sp/>leaveTestSuite</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>leaveTestSuite(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*suiteName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;test<sp/>suite<sp/>%s<sp/>done<sp/>(%d<sp/>failures)\n&quot;</highlight><highlight class="normal">,<sp/>suiteName,<sp/>fail);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1gabc6f39019f0cde9f04812785aceaab09" kindref="member">PicoTestSuiteLeaveProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1gae569b3a4f05ebefc297411072e505fd3" kindref="member">PICOTEST_SUITE_ENTER</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1371" column="9" bodyfile="include/picotest.h" bodystart="1371" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464" prot="public" static="no">
+        <name>PICOTEST_SUITE_BEFORE_SUBTEST</name>
+        <briefdescription>
+<para>Define the test suite before subset hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The default hook does nothing. Redefine this macro to use a custom hook, which must follow the <ref refid="group__test__suites_1gade4d2a7d8a611ca76c675607529a3edb" kindref="member">PicoTestSuiteBeforeSubtestProc</ref> signature.</para>
+<para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
+</simplesect>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__suites_1gade4d2a7d8a611ca76c675607529a3edb" kindref="member">PicoTestSuiteBeforeSubtestProc</ref><sp/>beforeSubtest;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_SUITE_BEFORE_SUBTEST</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_SUITE_BEFORE_SUBTEST<sp/>beforeSubtest</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>beforeSubtest(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*suiteName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;subtest<sp/>%s<sp/>(%d<sp/>out<sp/>of<sp/>%d)...\n&quot;</highlight><highlight class="normal">,<sp/>testName,<sp/>index+1,<sp/>nb);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1gade4d2a7d8a611ca76c675607529a3edb" kindref="member">PicoTestSuiteBeforeSubtestProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24" kindref="member">PICOTEST_SUITE_AFTER_SUBTEST</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1424" column="9" bodyfile="include/picotest.h" bodystart="1424" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24" prot="public" static="no">
+        <name>PICOTEST_SUITE_AFTER_SUBTEST</name>
+        <briefdescription>
+<para>Define the test suite after subset hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The default hook does nothing. Redefine this macro to use a custom hook, which must follow the <ref refid="group__test__suites_1ga80efec0204108859c9ececa3921f6f76" kindref="member">PicoTestSuiteAfterSubtestProc</ref> signature.</para>
+<para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
+</simplesect>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__suites_1ga80efec0204108859c9ececa3921f6f76" kindref="member">PicoTestSuiteAfterSubtestProc</ref><sp/>afterSubtest;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_SUITE_AFTER_SUBTEST</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_SUITE_AFTER_SUBTEST<sp/>afterSubtest</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>afterSubtest(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*suiteName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sfail)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;=&gt;<sp/>subtest<sp/>%s<sp/>done<sp/>(%d<sp/>failed)...\n&quot;</highlight><highlight class="normal">,<sp/>testName,<sp/>sfail);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1ga80efec0204108859c9ececa3921f6f76" kindref="member">PicoTestSuiteAfterSubtestProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464" kindref="member">PICOTEST_SUITE_BEFORE_SUBTEST</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1479" column="9" bodyfile="include/picotest.h" bodystart="1479" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A test suite is a set of subtests in no special order. These subtests can themselves be test suites or test cases. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

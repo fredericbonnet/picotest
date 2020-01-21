@@ -1,0 +1,726 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="group__fixtures" kind="group">
+    <compoundname>fixtures</compoundname>
+    <title>Test Fixtures</title>
+      <sectiondef kind="user-defined">
+      <header>Test Fixture Definitions</header>
+      <memberdef kind="define" id="group__fixtures_1ga983cffc937dca4baa55f59afad404f03" prot="public" static="no">
+        <name>PICOTEST_FIXTURE_CONTEXT</name>
+        <param><defname>_fixtureName</defname></param>
+        <briefdescription>
+<para>Test fixture context declaration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Fixtures can optionally define a context structure that is passed to its setup and teardown functions.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_fixtureName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the fixture.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="mainSuite.inc"><codeline><highlight class="comment">/*<sp/>Fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga983cffc937dca4baa55f59afad404f03" kindref="member">PICOTEST_FIXTURE_CONTEXT</ref>(fixtureWithContext)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>var1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*var2;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*var3;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="main_suite_8inc" kindref="compound">mainSuite.inc</ref> Example of a simple PicoTest suite. <linebreak/>
+ <ref refid="fixtures_8c" kindref="compound">fixtures.c</ref> Demonstrates test fixture call sequences. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1ga1e98cba23391e13521100528ee1a2181" kindref="member">PICOTEST_FIXTURE_SETUP</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1ga0d887bdb08e22489fc3cf9fb28a35fd1" kindref="member">PICOTEST_FIXTURE_TEARDOWN</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kindref="member">PICOTEST_CASE</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="843" column="9" bodyfile="include/picotest.h" bodystart="843" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__fixtures_1ga1e98cba23391e13521100528ee1a2181" prot="public" static="no">
+        <name>PICOTEST_FIXTURE_SETUP</name>
+        <param><defname>...</defname></param>
+        <briefdescription>
+<para>Test fixture initialization. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_fixtureName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the fixture. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(optional) Fixture context structure defined using <ref refid="group__fixtures_1ga983cffc937dca4baa55f59afad404f03" kindref="member">PICOTEST_FIXTURE_CONTEXT(_fixtureName)</ref>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>Usage</title><para>A simple fixture with no context: <programlisting filename="mainSuite.inc"><codeline><highlight class="comment">/*<sp/>Simple<sp/>fixture<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga1e98cba23391e13521100528ee1a2181" kindref="member">PICOTEST_FIXTURE_SETUP</ref>(simpleFixture)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>static<sp/>stuff<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>srand(1234);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga0d887bdb08e22489fc3cf9fb28a35fd1" kindref="member">PICOTEST_FIXTURE_TEARDOWN</ref>(simpleFixture)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Cleanup<sp/>static<sp/>stuff<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>srand(clock());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> A more complex example with a context structure:</para>
+</simplesect>
+<programlisting filename="mainSuite.inc"><codeline></codeline>
+<codeline><highlight class="comment">/*<sp/>Fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga983cffc937dca4baa55f59afad404f03" kindref="member">PICOTEST_FIXTURE_CONTEXT</ref>(fixtureWithContext)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>var1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*var2;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*var3;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline><highlight class="comment">/*<sp/>Fixture<sp/>setup<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga1e98cba23391e13521100528ee1a2181" kindref="member">PICOTEST_FIXTURE_SETUP</ref>(fixtureWithContext,<sp/>context)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>static<sp/>stuff<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>2;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>context-&gt;var1<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>context-&gt;var2<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;test&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>context-&gt;var3<sp/>=<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*)<sp/>malloc(1);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Fixture<sp/>teardown<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga0d887bdb08e22489fc3cf9fb28a35fd1" kindref="member">PICOTEST_FIXTURE_TEARDOWN</ref>(fixtureWithContext,<sp/>context)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Cleanup<sp/>static<sp/>stuff<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Cleanup<sp/>fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>free(context-&gt;var3);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> Fixtures may define an optional context that test cases don&apos;t need, in this case the context passed to the setup and teardown functions is <bold>NULL</bold>: <programlisting filename="mainSuite.inc"><codeline><highlight class="comment">/*<sp/>Fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga983cffc937dca4baa55f59afad404f03" kindref="member">PICOTEST_FIXTURE_CONTEXT</ref>(fixtureWithOptionalContext)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*buffer;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Fixture<sp/>setup<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga1e98cba23391e13521100528ee1a2181" kindref="member">PICOTEST_FIXTURE_SETUP</ref>(fixtureWithOptionalContext,<sp/>context)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>static<sp/>stuff<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>3;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(context)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>staticVar++;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>context-&gt;buffer<sp/>=<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*)<sp/>malloc(1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Fixture<sp/>teardown<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga0d887bdb08e22489fc3cf9fb28a35fd1" kindref="member">PICOTEST_FIXTURE_TEARDOWN</ref>(fixtureWithOptionalContext,<sp/>context)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Cleanup<sp/>static<sp/>stuff<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Cleanup<sp/>fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(context)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(context-&gt;buffer);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting>Here is an example of such a test case: <programlisting filename="mainSuite.inc"><codeline><highlight class="normal"><ref refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kindref="member">PICOTEST_CASE</ref>(testCase5,<sp/>fixtureWithOptionalContext)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gacd07b017f38d1e3ad784f369345357a2" kindref="member">PICOTEST_VERIFY</ref>(staticVar<sp/>==<sp/>3);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" kindref="member">PICOTEST_ASSERT</ref>(PASSES);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> <simplesect kind="par"><title>Examples</title><para><ref refid="main_suite_8inc" kindref="compound">mainSuite.inc</ref> Example of a simple PicoTest suite. <linebreak/>
+ <ref refid="fixtures_8c" kindref="compound">fixtures.c</ref> Demonstrates test fixture call sequences. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1ga983cffc937dca4baa55f59afad404f03" kindref="member">PICOTEST_FIXTURE_CONTEXT</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1ga0d887bdb08e22489fc3cf9fb28a35fd1" kindref="member">PICOTEST_FIXTURE_TEARDOWN</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kindref="member">PICOTEST_CASE</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="878" column="13" bodyfile="include/picotest.h" bodystart="878" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__fixtures_1ga0d887bdb08e22489fc3cf9fb28a35fd1" prot="public" static="no">
+        <name>PICOTEST_FIXTURE_TEARDOWN</name>
+        <param><defname>...</defname></param>
+        <briefdescription>
+<para>Test fixture cleanup. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_fixtureName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the fixture. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_context</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(optional) Fixture context structure defined using <ref refid="group__fixtures_1ga983cffc937dca4baa55f59afad404f03" kindref="member">PICOTEST_FIXTURE_CONTEXT(_fixtureName)</ref>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>Usage</title><para>A simple fixture with no context: <programlisting filename="mainSuite.inc"><codeline><highlight class="comment">/*<sp/>Simple<sp/>fixture<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga1e98cba23391e13521100528ee1a2181" kindref="member">PICOTEST_FIXTURE_SETUP</ref>(simpleFixture)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>static<sp/>stuff<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>srand(1234);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga0d887bdb08e22489fc3cf9fb28a35fd1" kindref="member">PICOTEST_FIXTURE_TEARDOWN</ref>(simpleFixture)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Cleanup<sp/>static<sp/>stuff<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>srand(clock());</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> A more complex example with a context structure:</para>
+</simplesect>
+<programlisting filename="mainSuite.inc"><codeline></codeline>
+<codeline><highlight class="comment">/*<sp/>Fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga983cffc937dca4baa55f59afad404f03" kindref="member">PICOTEST_FIXTURE_CONTEXT</ref>(fixtureWithContext)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>var1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*var2;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*var3;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline><highlight class="comment">/*<sp/>Fixture<sp/>setup<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga1e98cba23391e13521100528ee1a2181" kindref="member">PICOTEST_FIXTURE_SETUP</ref>(fixtureWithContext,<sp/>context)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>static<sp/>stuff<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>2;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>context-&gt;var1<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>context-&gt;var2<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;test&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>context-&gt;var3<sp/>=<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*)<sp/>malloc(1);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Fixture<sp/>teardown<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga0d887bdb08e22489fc3cf9fb28a35fd1" kindref="member">PICOTEST_FIXTURE_TEARDOWN</ref>(fixtureWithContext,<sp/>context)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Cleanup<sp/>static<sp/>stuff<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Cleanup<sp/>fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>free(context-&gt;var3);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> Fixtures may define an optional context that test cases don&apos;t need, in this case the context passed to the setup and teardown functions is <bold>NULL</bold>: <programlisting filename="mainSuite.inc"><codeline><highlight class="comment">/*<sp/>Fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga983cffc937dca4baa55f59afad404f03" kindref="member">PICOTEST_FIXTURE_CONTEXT</ref>(fixtureWithOptionalContext)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*buffer;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Fixture<sp/>setup<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga1e98cba23391e13521100528ee1a2181" kindref="member">PICOTEST_FIXTURE_SETUP</ref>(fixtureWithOptionalContext,<sp/>context)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>static<sp/>stuff<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>3;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(context)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>staticVar++;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>context-&gt;buffer<sp/>=<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*)<sp/>malloc(1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Fixture<sp/>teardown<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga0d887bdb08e22489fc3cf9fb28a35fd1" kindref="member">PICOTEST_FIXTURE_TEARDOWN</ref>(fixtureWithOptionalContext,<sp/>context)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Cleanup<sp/>static<sp/>stuff<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Cleanup<sp/>fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(context)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(context-&gt;buffer);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting>Here is an example of such a test case: <programlisting filename="mainSuite.inc"><codeline><highlight class="normal"><ref refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kindref="member">PICOTEST_CASE</ref>(testCase5,<sp/>fixtureWithOptionalContext)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gacd07b017f38d1e3ad784f369345357a2" kindref="member">PICOTEST_VERIFY</ref>(staticVar<sp/>==<sp/>3);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" kindref="member">PICOTEST_ASSERT</ref>(PASSES);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> <simplesect kind="par"><title>Examples</title><para><ref refid="main_suite_8inc" kindref="compound">mainSuite.inc</ref> Example of a simple PicoTest suite. <linebreak/>
+ <ref refid="fixtures_8c" kindref="compound">fixtures.c</ref> Demonstrates test fixture call sequences. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1ga983cffc937dca4baa55f59afad404f03" kindref="member">PICOTEST_FIXTURE_CONTEXT</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1ga1e98cba23391e13521100528ee1a2181" kindref="member">PICOTEST_FIXTURE_SETUP</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kindref="member">PICOTEST_CASE</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="927" column="13" bodyfile="include/picotest.h" bodystart="927" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
+      <header>Test Fixture Hooks</header>
+      <description><para>PicoTest provides a way for client code to intercept test fixture events. This can be used for e.g. logging purpose or reporting. </para>
+</description>
+      <memberdef kind="typedef" id="group__fixtures_1ga78ede622d468ebbe0bcc47698146ead9" prot="public" static="no">
+        <type>void()</type>
+        <definition>typedef void() PicoTestFixtureBeforeSetupProc(const char *fixtureName, const char *testName)</definition>
+        <argsstring>(const char *fixtureName, const char *testName)</argsstring>
+        <name>PicoTestFixtureBeforeSetupProc</name>
+        <briefdescription>
+<para>Function signature of test fixture before setup hooks. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Called before running the test fixture setup.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fixtureName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test fixture name. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>testName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test case name.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga78ede622d468ebbe0bcc47698146ead9" kindref="member">PicoTestFixtureBeforeSetupProc</ref><sp/>beforeSetup;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FIXTURE_BEFORE_SETUP</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FIXTURE_BEFORE_SETUP<sp/>beforeSetup</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>beforeSetup(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*fixtureName,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;fixture<sp/>%s<sp/>setup...&quot;</highlight><highlight class="normal">,<sp/>fixtureName);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1gab6053367243af2ee7745bf35a3baaa4e" kindref="member">PICOTEST_FIXTURE_BEFORE_SETUP</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="973" column="1" bodyfile="include/picotest.h" bodystart="973" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__fixtures_1gae75749e42f2c93cfedae9220ad149e00" prot="public" static="no">
+        <type>void()</type>
+        <definition>typedef void() PicoTestFixtureAfterSetupProc(const char *fixtureName, const char *testName)</definition>
+        <argsstring>(const char *fixtureName, const char *testName)</argsstring>
+        <name>PicoTestFixtureAfterSetupProc</name>
+        <briefdescription>
+<para>Function signature of test fixture after setup hooks. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Called after running the test fixture setup.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fixtureName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test fixture name. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>testName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test case name.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1gae75749e42f2c93cfedae9220ad149e00" kindref="member">PicoTestFixtureAfterSetupProc</ref><sp/>afterSetup;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FIXTURE_AFTER_SETUP</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FIXTURE_AFTER_SETUP<sp/>afterSetup</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>afterSetup(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*fixtureName,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/>done\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>--level;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1ga679063021accc32a74c1e617ed68423f" kindref="member">PICOTEST_FIXTURE_AFTER_SETUP</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1022" column="1" bodyfile="include/picotest.h" bodystart="1022" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__fixtures_1ga154395391c0e95f5b08acaf38d2ef296" prot="public" static="no">
+        <type>void()</type>
+        <definition>typedef void() PicoTestFixtureBeforeTeardownProc(const char *fixtureName, const char *testName, int fail)</definition>
+        <argsstring>(const char *fixtureName, const char *testName, int fail)</argsstring>
+        <name>PicoTestFixtureBeforeTeardownProc</name>
+        <briefdescription>
+<para>Function signature of test fixture before teardown hooks. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Called before running the test fixture teardown.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fixtureName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test fixture name. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>testName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test case name. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fail</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Failed tests (including its subtests if any).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga154395391c0e95f5b08acaf38d2ef296" kindref="member">PicoTestFixtureBeforeTeardownProc</ref><sp/>beforeTeardown;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FIXTURE_BEFORE_TEARDOWN</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FIXTURE_BEFORE_TEARDOWN<sp/>beforeTeardown</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>beforeTeardown(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*fixtureName,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;fixture<sp/>%s<sp/>teardown...&quot;</highlight><highlight class="normal">,<sp/>fixtureName);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1gaf68cbda0bf19afd7994c2e0a15278f8d" kindref="member">PICOTEST_FIXTURE_BEFORE_TEARDOWN</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1072" column="1" bodyfile="include/picotest.h" bodystart="1072" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__fixtures_1gad1e2073b337cd5697af642ce44c98db4" prot="public" static="no">
+        <type>void()</type>
+        <definition>typedef void() PicoTestFixtureAfterTeardownProc(const char *fixtureName, const char *testName, int fail)</definition>
+        <argsstring>(const char *fixtureName, const char *testName, int fail)</argsstring>
+        <name>PicoTestFixtureAfterTeardownProc</name>
+        <briefdescription>
+<para>Function signature of test fixture after teardown hooks. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Called after running the test fixture teardown.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fixtureName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test fixture name. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>testName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test case name. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fail</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Failed tests (including its subtests if any).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1gad1e2073b337cd5697af642ce44c98db4" kindref="member">PicoTestFixtureAfterTeardownProc</ref><sp/>afterTeardown;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FIXTURE_AFTER_TEARDOWN</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FIXTURE_AFTER_TEARDOWN<sp/>afterTeardown</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>afterTeardown(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*fixtureName,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/>done\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>--level;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1ga1a910236e326a942bc3a5be5c6013520" kindref="member">PICOTEST_FIXTURE_AFTER_TEARDOWN</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1122" column="1" bodyfile="include/picotest.h" bodystart="1122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__fixtures_1ga647e76d678176d1544aa7e6391551fd1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void picoTest_beforeSetup</definition>
+        <argsstring>(const char *fixtureName, const char *testName)</argsstring>
+        <name>picoTest_beforeSetup</name>
+        <param>
+          <type>const char *</type>
+          <declname>fixtureName</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>testName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="982" column="1" bodyfile="include/picotest.h" bodystart="982" bodyend="983"/>
+      </memberdef>
+      <memberdef kind="function" id="group__fixtures_1ga30aa5012e97b77a401962e521595f460" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void picoTest_afterSetup</definition>
+        <argsstring>(const char *fixtureName, const char *testName)</argsstring>
+        <name>picoTest_afterSetup</name>
+        <param>
+          <type>const char *</type>
+          <declname>fixtureName</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>testName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1031" column="1" bodyfile="include/picotest.h" bodystart="1031" bodyend="1032"/>
+      </memberdef>
+      <memberdef kind="function" id="group__fixtures_1gaee626123a7789994c2f2a2c82dc3b6cf" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void picoTest_beforeTeardown</definition>
+        <argsstring>(const char *fixtureName, const char *testName, int fail)</argsstring>
+        <name>picoTest_beforeTeardown</name>
+        <param>
+          <type>const char *</type>
+          <declname>fixtureName</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>testName</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fail</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1081" column="1" bodyfile="include/picotest.h" bodystart="1081" bodyend="1082"/>
+      </memberdef>
+      <memberdef kind="function" id="group__fixtures_1gad92477b902f06bcef4bf83ba96f3400a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void picoTest_afterTeardown</definition>
+        <argsstring>(const char *fixtureName, const char *testName, int fail)</argsstring>
+        <name>picoTest_afterTeardown</name>
+        <param>
+          <type>const char *</type>
+          <declname>fixtureName</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>testName</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fail</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1131" column="1" bodyfile="include/picotest.h" bodystart="1131" bodyend="1132"/>
+      </memberdef>
+      <memberdef kind="define" id="group__fixtures_1gab6053367243af2ee7745bf35a3baaa4e" prot="public" static="no">
+        <name>PICOTEST_FIXTURE_BEFORE_SETUP</name>
+        <briefdescription>
+<para>Define the test fixture before setup hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The default hook does nothing. Redefine this macro to use a custom hook, which must follow the <ref refid="group__fixtures_1ga78ede622d468ebbe0bcc47698146ead9" kindref="member">PicoTestFixtureBeforeSetupProc</ref> signature.</para>
+<para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
+</simplesect>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga78ede622d468ebbe0bcc47698146ead9" kindref="member">PicoTestFixtureBeforeSetupProc</ref><sp/>beforeSetup;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FIXTURE_BEFORE_SETUP</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FIXTURE_BEFORE_SETUP<sp/>beforeSetup</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>beforeSetup(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*fixtureName,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;fixture<sp/>%s<sp/>setup...&quot;</highlight><highlight class="normal">,<sp/>fixtureName);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1ga78ede622d468ebbe0bcc47698146ead9" kindref="member">PicoTestFixtureBeforeSetupProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1ga679063021accc32a74c1e617ed68423f" kindref="member">PICOTEST_FIXTURE_AFTER_SETUP</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1004" column="9" bodyfile="include/picotest.h" bodystart="1004" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__fixtures_1ga679063021accc32a74c1e617ed68423f" prot="public" static="no">
+        <name>PICOTEST_FIXTURE_AFTER_SETUP</name>
+        <briefdescription>
+<para>Define the test fixture after setup hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The default hook does nothing. Redefine this macro to use a custom hook, which must follow the <ref refid="group__fixtures_1gae75749e42f2c93cfedae9220ad149e00" kindref="member">PicoTestFixtureAfterSetupProc</ref> signature.</para>
+<para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
+</simplesect>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1gae75749e42f2c93cfedae9220ad149e00" kindref="member">PicoTestFixtureAfterSetupProc</ref><sp/>afterSetup;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FIXTURE_AFTER_SETUP</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FIXTURE_AFTER_SETUP<sp/>afterSetup</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>afterSetup(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*fixtureName,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/>done\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>--level;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1gae75749e42f2c93cfedae9220ad149e00" kindref="member">PicoTestFixtureAfterSetupProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1gab6053367243af2ee7745bf35a3baaa4e" kindref="member">PICOTEST_FIXTURE_BEFORE_SETUP</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1053" column="9" bodyfile="include/picotest.h" bodystart="1053" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__fixtures_1gaf68cbda0bf19afd7994c2e0a15278f8d" prot="public" static="no">
+        <name>PICOTEST_FIXTURE_BEFORE_TEARDOWN</name>
+        <briefdescription>
+<para>Define the test fixture before teardown hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The default hook does nothing. Redefine this macro to use a custom hook, which must follow the <ref refid="group__fixtures_1ga154395391c0e95f5b08acaf38d2ef296" kindref="member">PicoTestFixtureBeforeTeardownProc</ref> signature.</para>
+<para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
+</simplesect>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga154395391c0e95f5b08acaf38d2ef296" kindref="member">PicoTestFixtureBeforeTeardownProc</ref><sp/>beforeTeardown;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FIXTURE_BEFORE_TEARDOWN</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FIXTURE_BEFORE_TEARDOWN<sp/>beforeTeardown</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>beforeTeardown(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*fixtureName,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;fixture<sp/>%s<sp/>teardown...&quot;</highlight><highlight class="normal">,<sp/>fixtureName);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1ga154395391c0e95f5b08acaf38d2ef296" kindref="member">PicoTestFixtureBeforeTeardownProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1ga1a910236e326a942bc3a5be5c6013520" kindref="member">PICOTEST_FIXTURE_AFTER_TEARDOWN</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1103" column="9" bodyfile="include/picotest.h" bodystart="1103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__fixtures_1ga1a910236e326a942bc3a5be5c6013520" prot="public" static="no">
+        <name>PICOTEST_FIXTURE_AFTER_TEARDOWN</name>
+        <briefdescription>
+<para>Define the test fixture after teardown hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The default hook does nothing. Redefine this macro to use a custom hook, which must follow the <ref refid="group__fixtures_1gad1e2073b337cd5697af642ce44c98db4" kindref="member">PicoTestFixtureAfterTeardownProc</ref> signature.</para>
+<para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
+</simplesect>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1gad1e2073b337cd5697af642ce44c98db4" kindref="member">PicoTestFixtureAfterTeardownProc</ref><sp/>afterTeardown;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FIXTURE_AFTER_TEARDOWN</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FIXTURE_AFTER_TEARDOWN<sp/>afterTeardown</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>afterTeardown(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*fixtureName,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/>done\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>--level;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1gad1e2073b337cd5697af642ce44c98db4" kindref="member">PicoTestFixtureAfterTeardownProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1gaf68cbda0bf19afd7994c2e0a15278f8d" kindref="member">PICOTEST_FIXTURE_BEFORE_TEARDOWN</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1153" column="9" bodyfile="include/picotest.h" bodystart="1153" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Test fixtures are used to establish the context needed to run test cases.</para>
+<para>A test fixture can be used by several, possibly unrelated test cases. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

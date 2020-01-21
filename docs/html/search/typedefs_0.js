@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['picotestassertafterproc',['PicoTestAssertAfterProc',['../group__assertions.html#ga9502bbfe9927766f12e8de83aa37b706',1,'picotest.h']]],
+  ['picotestassertbeforeproc',['PicoTestAssertBeforeProc',['../group__assertions.html#ga2011048ceed2457e95498573d0730eaf',1,'picotest.h']]],
   ['picotestcaseenterproc',['PicoTestCaseEnterProc',['../group__test__cases.html#ga0af0a0ec6d2bbee706b56fea6f60126e',1,'picotest.h']]],
   ['picotestcaseleaveproc',['PicoTestCaseLeaveProc',['../group__test__cases.html#gacce6ae69ea5064e39e3c56915978609e',1,'picotest.h']]],
   ['picotestfailureloggerproc',['PicoTestFailureLoggerProc',['../group__public__interface.html#ga407922fa95d91c28651b93fbafe1d1bb',1,'picotest.h']]],
