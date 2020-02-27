@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix issues with one-liner conditional tests. For example:
+
+    ```c
+    if (some_cond) PICOTEST_ASSERT(some_test);
+    ```
+
+    This code would compile, but the assertion would be evaluated whatever the condition `some_cond`.
+
 ## [1.2.0] - 2020-01-21
 
 ### Added

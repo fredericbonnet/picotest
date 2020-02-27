@@ -567,7 +567,7 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
  * @see PICOTEST_VERIFY
  */
 #define PICOTEST_ASSERT(x, /* msg, */ ...) \
-    _PICOTEST_ASSERT(x, #x, ## __VA_ARGS__)
+    {_PICOTEST_ASSERT(x, #x, ## __VA_ARGS__);}
 
 /*! \cond IGNORE */
 #define _PICOTEST_ASSERT(x, ...) \
@@ -602,7 +602,7 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
  * @see PICOTEST_ASSERT
  */
 #define PICOTEST_VERIFY(x, /* msg, */ ...) \
-    _PICOTEST_VERIFY(x, #x, ## __VA_ARGS__)
+    {_PICOTEST_VERIFY(x, #x, ## __VA_ARGS__);}
 
 /*! \cond IGNORE */
 #define _PICOTEST_VERIFY(x, ...) \
