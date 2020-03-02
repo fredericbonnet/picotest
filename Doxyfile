@@ -8,6 +8,7 @@ PROJECT_BRIEF          = "A minimalist unit testing framework for C programs"
 PROJECT_LOGO           =
 
 GENERATE_HTML          = YES
+GENERATE_XML           = YES
 GENERATE_LATEX         = NO
 OUTPUT_DIRECTORY       = docs
 WARN_IF_DOC_ERROR      = NO

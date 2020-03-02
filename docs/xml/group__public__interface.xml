@@ -86,7 +86,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="105" column="1" bodyfile="include/picotest.h" bodystart="105" bodyend="-1"/>
+        <location file="include/picotest.h" line="104" column="1" bodyfile="include/picotest.h" bodystart="104" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
@@ -146,7 +146,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="127" column="1" bodyfile="include/picotest.h" bodystart="127" bodyend="141"/>
+        <location file="include/picotest.h" line="126" column="1" bodyfile="include/picotest.h" bodystart="125" bodyend="140"/>
       </memberdef>
       <memberdef kind="typedef" id="group__public__interface_1gafc743c5aa3870900472bc701b3ad35a4" prot="public" static="no">
         <type><ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref>()</type>
@@ -215,7 +215,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="167" column="1" bodyfile="include/picotest.h" bodystart="167" bodyend="-1"/>
+        <location file="include/picotest.h" line="166" column="1" bodyfile="include/picotest.h" bodystart="166" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__public__interface_1ga47f93260349371f63f95900166cf7858" prot="public" static="no">
         <name>PICOTEST_FILTER</name>
@@ -254,7 +254,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="193" column="9" bodyfile="include/picotest.h" bodystart="193" bodyend="-1"/>
+        <location file="include/picotest.h" line="192" column="9" bodyfile="include/picotest.h" bodystart="192" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
@@ -311,7 +311,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="223" column="1" bodyfile="include/picotest.h" bodystart="223" bodyend="-1"/>
+        <location file="include/picotest.h" line="221" column="1" bodyfile="include/picotest.h" bodystart="221" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" prot="public" static="no">
         <name>PICOTEST_TRAVERSE</name>
@@ -347,7 +347,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="237" column="9" bodyfile="include/picotest.h" bodystart="237" bodyend="-1"/>
+        <location file="include/picotest.h" line="235" column="9" bodyfile="include/picotest.h" bodystart="235" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
@@ -449,7 +449,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="271" column="1" bodyfile="include/picotest.h" bodystart="271" bodyend="-1"/>
+        <location file="include/picotest.h" line="268" column="1" bodyfile="include/picotest.h" bodystart="268" bodyend="-1"/>
       </memberdef>
       <memberdef kind="function" id="group__public__interface_1gaeef4d6736aa1095a8272a00d003bfe22" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -486,7 +486,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="280" column="1" bodyfile="include/picotest.h" bodystart="280" bodyend="281"/>
+        <location file="include/picotest.h" line="277" column="1" bodyfile="include/picotest.h" bodystart="277" bodyend="278"/>
       </memberdef>
       <memberdef kind="define" id="group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48" prot="public" static="no">
         <name>PICOTEST_FAILURE_LOGGER</name>
@@ -533,7 +533,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="301" column="9" bodyfile="include/picotest.h" bodystart="301" bodyend="-1"/>
+        <location file="include/picotest.h" line="298" column="9" bodyfile="include/picotest.h" bodystart="298" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

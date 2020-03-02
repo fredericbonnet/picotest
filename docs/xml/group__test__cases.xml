@@ -91,7 +91,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="345" column="13" bodyfile="include/picotest.h" bodystart="345" bodyend="-1"/>
+        <location file="include/picotest.h" line="342" column="10" bodyfile="include/picotest.h" bodystart="342" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
@@ -138,7 +138,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="452" column="1" bodyfile="include/picotest.h" bodystart="452" bodyend="-1"/>
+        <location file="include/picotest.h" line="456" column="1" bodyfile="include/picotest.h" bodystart="456" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="group__test__cases_1gacce6ae69ea5064e39e3c56915978609e" prot="public" static="no">
         <type>void()</type>
@@ -188,7 +188,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="499" column="1" bodyfile="include/picotest.h" bodystart="499" bodyend="-1"/>
+        <location file="include/picotest.h" line="503" column="1" bodyfile="include/picotest.h" bodystart="503" bodyend="-1"/>
       </memberdef>
       <memberdef kind="function" id="group__test__cases_1gae45000329c7e66faad29a601a8f0e676" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -205,7 +205,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="460" column="1" bodyfile="include/picotest.h" bodystart="460" bodyend="460"/>
+        <location file="include/picotest.h" line="464" column="1" bodyfile="include/picotest.h" bodystart="464" bodyend="464"/>
       </memberdef>
       <memberdef kind="function" id="group__test__cases_1ga35c4adadabea624fe844fa784f173281" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -226,7 +226,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="507" column="1" bodyfile="include/picotest.h" bodystart="507" bodyend="507"/>
+        <location file="include/picotest.h" line="511" column="1" bodyfile="include/picotest.h" bodystart="511" bodyend="511"/>
       </memberdef>
       <memberdef kind="define" id="group__test__cases_1gad1f702ab6600b04f66731d35bf38fc67" prot="public" static="no">
         <name>PICOTEST_CASE_ENTER</name>
@@ -260,7 +260,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="481" column="9" bodyfile="include/picotest.h" bodystart="481" bodyend="-1"/>
+        <location file="include/picotest.h" line="485" column="9" bodyfile="include/picotest.h" bodystart="485" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a" prot="public" static="no">
         <name>PICOTEST_CASE_LEAVE</name>
@@ -294,7 +294,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="528" column="9" bodyfile="include/picotest.h" bodystart="528" bodyend="-1"/>
+        <location file="include/picotest.h" line="532" column="9" bodyfile="include/picotest.h" bodystart="532" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
