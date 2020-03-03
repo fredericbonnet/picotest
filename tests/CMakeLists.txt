@@ -13,6 +13,7 @@ target_sources(test_picotest
         traverse.c
         hooks.c
         testAssertions.c
+        testAssertionHooks.c
 )
 target_link_libraries(test_picotest
     PRIVATE

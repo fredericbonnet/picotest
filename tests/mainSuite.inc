@@ -1,3 +1,3 @@
 #include <picotest.h>
 
-PICOTEST_SUITE(mainSuite, testAssertions)
+PICOTEST_SUITE(mainSuite, testAssertions, testAssertionHooks)
