@@ -2,20 +2,20 @@
  * @file picotest.h
  *
  * This file defines a minimalist unit testing framework for C programs.
- * 
+ *
  * The assertion mechanism relies on `setjmp()` / `longjmp()`. While these
  * functions are discouraged for production code, their usage is acceptable in
  * the context of unit testing: in our case, `longjmp()` is only called when an
  * assertion fails, a situation where the actual process state is no longer
  * reliable anyway. Moreover, they constitute the only standard exception
  * handling mechanism for plain C code.
- * 
+ *
  * @par License
- * 
+ *
  * PicoTest is released under the terms of the The 3-Clause BSD License:
- * 
+ *
  * https://opensource.org/licenses/BSD-3-Clause
- * 
+ *
  * Copyright (c) 2018 Frederic Bonnet
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +55,7 @@
 #if defined(_MSC_VER)
 /** \internal
  * MSVC is buggy wrt. (__VA_ARGS__) syntax. The workaround involves the use of a
- * dummy macro before the parentheses. See the following for an alternate 
+ * dummy macro before the parentheses. See the following for an alternate
  * solution:
  *      http://www.gamedev.net/community/forums/topic.asp?topic_id=567686
  */
@@ -70,7 +70,7 @@
 /*!
  * \name Version
  * PicoTest follows the Semantic Versioning Specification (SemVer) 2.0.0:
- * 
+ *
  * https://semver.org/spec/v2.0.0.html
  * \{
  */
@@ -89,14 +89,14 @@
 
 /**
  * Signature of test functions.
- * 
+ *
  * Both @ref test_suites and @ref test_cases follow this signature.
- * 
- * @param cond  Test filtering condition, or **NULL**. In the former case, 
+ *
+ * @param cond  Test filtering condition, or **NULL**. In the former case,
  *              passed to the active test filter before running the test.
- * 
+ *
  * @return Number of failed tests.
- * 
+ *
  * @see PICOTEST_SUITE
  * @see PICOTEST_CASE
  * @see PICOTEST_FILTER
@@ -107,31 +107,30 @@ typedef int(PicoTestProc)(const char *cond);
 
 /*!
  * \name Test Filters
- * 
- * PicoTest provides a way for client code to select tests to be run using 
+ *
+ * PicoTest provides a way for client code to select tests to be run using
  * custom filter functions.
  * \{
  */
 
 /**
  * Result of test filter functions.
- * 
+ *
  * @par Examples
  *      @example_file{filter.c}
  *      @example_file{tags.c}
- * 
+ *
  * @see PicoTestFilterProc
  */
-typedef enum PicoTestFilterResult
-{
-    /** Test does not match the condition, skip this test and all its 
+typedef enum PicoTestFilterResult {
+    /** Test does not match the condition, skip this test and all its
      *  subtests. */
     PICOTEST_FILTER_SKIP = 0,
 
     /** Test matches the condition, run this test and all its subtests. */
     PICOTEST_FILTER_PASS = 1,
 
-    /** Test does not match the condition, skip this test but filter its 
+    /** Test does not match the condition, skip this test but filter its
      *  subtests. */
     PICOTEST_FILTER_SKIP_PROPAGATE = 2,
 
@@ -141,62 +140,64 @@ typedef enum PicoTestFilterResult
 
 /**
  * Signature of test filter functions.
- * 
+ *
  * A test called with a non- **NULL** condition must match this condition to be
  * run. The test filter is set using the @ref PICOTEST_FILTER macro.
- * 
+ *
  * @param test      Test function to filter.
  * @param testName  Name of test to filter.
  * @param cond      Test filtering condition.
- * 
+ *
  * @return a @ref PicoTestFilterResult value
- * 
+ *
  * @par Usage
  *      @snippet filter.c   PICOTEST_FILTER example
- * 
+ *
  * @par Examples
  *      @example_file{filter.c}
  *      @example_file{tags.c}
- * 
+ *
  * @see PICOTEST_SUITE
  * @see PICOTEST_CASE
  * @see PICOTEST_FILTER
  * @see PicoTestFilterResult
  */
 typedef PicoTestFilterResult(PicoTestFilterProc)(PicoTestProc *test,
-                                                 const char *testName, const char *cond);
+                                                 const char *testName,
+                                                 const char *cond);
 
 /**
  * Define the test filter function.
- * 
- * Called before calling a test with a non- **NULL** condition. 
- * 
- * The default filter does a simple string equality test between its 
- * **testName** and **cond** arguments, and propagates to subtests if it 
+ *
+ * Called before calling a test with a non- **NULL** condition.
+ *
+ * The default filter does a simple string equality test between its
+ * **testName** and **cond** arguments, and propagates to subtests if it
  * doesn't match. Redefine this macro to use a custom filter function, which
  * must follow the @ref PicoTestFilterProc signature.
- * 
- * @note Custom functions only apply to the tests defined after the macro 
- * redefinition. As macros can be redefined several times, this means that 
+ *
+ * @note Custom functions only apply to the tests defined after the macro
+ * redefinition. As macros can be redefined several times, this means that
  * different functions may apply for the same source.
- * 
+ *
  * @par Usage
  *      @snippet filter.c   PICOTEST_FILTER example
- * 
+ *
  * @par Examples
  *      @example_file{filter.c}
  *      @example_file{tags.c}
- * 
+ *
  * @see PicoTestFilterProc
  */
-#define PICOTEST_FILTER(_test, _testName, _cond) \
-    (strcmp((_testName), (_cond)) == 0 ? PICOTEST_FILTER_PASS : PICOTEST_FILTER_SKIP_PROPAGATE)
+#define PICOTEST_FILTER(_test, _testName, _cond)                               \
+    (strcmp((_testName), (_cond)) == 0 ? PICOTEST_FILTER_PASS                  \
+                                       : PICOTEST_FILTER_SKIP_PROPAGATE)
 
 /*! \} End of Test Filters */
 
 /*!
  * \name Test hierarchy traversal
- * 
+ *
  * Tests can form hierarchies of test suites and test cases. PicoTest provides
  * a way to traverse such hierarchies with a simple visitor pattern. This can
  * be used for e.g. test list discovery in build systems.
@@ -205,41 +206,40 @@ typedef PicoTestFilterResult(PicoTestFilterProc)(PicoTestProc *test,
 
 /**
  * Function signature of test traversal proc.
- * 
+ *
  * @param name  Name of traversed test.
  * @param nb    Number of subtests (zero for simple test cases, at least one
  *              for test suites).
- * 
+ *
  * @par Usage
  *      @snippet traverse.c     PicoTestTraverseProc example
- * 
+ *
  * @par Examples
  *      @example_file{traverse.c}
- * 
+ *
  * @see PICOTEST_TRAVERSE
  */
 typedef void(PicoTestTraverseProc)(const char *name, int nb);
 
 /**
  * Traverse a test hierarchy.
- * 
+ *
  * @param _testName     Name of the traversed test.
  * @param _proc         Test traversal proc. Must follow the @ref
- *                      PicoTestTraverseProc signature. 
- * 
+ *                      PicoTestTraverseProc signature.
+ *
  * @par Examples
  *      @example_file{traverse.c}
- * 
+ *
  * @see PicoTestTraverseProc
  */
-#define PICOTEST_TRAVERSE(_testName, _proc) \
-    _testName##_traverse(_proc)
+#define PICOTEST_TRAVERSE(_testName, _proc) _testName##_traverse(_proc)
 
 /*! \} End of Test Traversal */
 
 /*!
  * \name Logging
- * 
+ *
  * PicoTest provides a way for client code to intercept test failure events.
  * This can be used for e.g. logging purpose or reporting.
  * \{
@@ -247,52 +247,54 @@ typedef void(PicoTestTraverseProc)(const char *name, int nb);
 
 /**
  * Function signature of test failure log handlers.
- * 
+ *
  * @param file  File name where the test was defined.
  * @param line  Location of test in file.
  * @param type  Type of test that failed (e.g. ``"ASSERT"``).
  * @param test  Tested expression.
  * @param msg   Optional message format string, or **NULL**.
  * @param args  Optional message string parameter list, or **NULL**.
- * 
+ *
  * @note **msg** and **args** are suitable arguments to **vprintf()**.
- * 
- * @par Usage
- *      @snippet logger.c   PICOTEST_FAILURE_LOGGER example
- * 
- * @par Examples
- *      @example_file{logger.c}
- * 
- * @see PICOTEST_FAILURE_LOGGER
- */
-typedef void(PicoTestFailureLoggerProc)(const char *file, int line,
-                                        const char *type, const char *test, const char *msg, va_list args);
-
-/** \internal
- * Default test failure log handler. Does nothing.
- * 
- * @see PicoTestFailureLoggerProc
- * @see PICOTEST_FAILURE_LOGGER
- */
-static void picoTest_logFailure(const char *file, int line, const char *type,
-                                const char *test, const char *msg, va_list args) {}
-
-/**
- * Define the test failure log handler. Called when a test fails.
- * 
- * The default handler does nothing. Redefine this macro to use a custom
- * handler, which must follow the @ref PicoTestFailureLoggerProc signature.
- * 
- * @note Custom functions only apply to the tests defined after the macro 
- * redefinition. As macros can be redefined several times, this means that 
- * different functions may apply for the same source.
- * 
+ *
  * @par Usage
  *      @snippet logger.c   PICOTEST_FAILURE_LOGGER example
  *
  * @par Examples
  *      @example_file{logger.c}
- * 
+ *
+ * @see PICOTEST_FAILURE_LOGGER
+ */
+typedef void(PicoTestFailureLoggerProc)(const char *file, int line,
+                                        const char *type, const char *test,
+                                        const char *msg, va_list args);
+
+/** \internal
+ * Default test failure log handler. Does nothing.
+ *
+ * @see PicoTestFailureLoggerProc
+ * @see PICOTEST_FAILURE_LOGGER
+ */
+static void picoTest_logFailure(const char *file, int line, const char *type,
+                                const char *test, const char *msg,
+                                va_list args) {}
+
+/**
+ * Define the test failure log handler. Called when a test fails.
+ *
+ * The default handler does nothing. Redefine this macro to use a custom
+ * handler, which must follow the @ref PicoTestFailureLoggerProc signature.
+ *
+ * @note Custom functions only apply to the tests defined after the macro
+ * redefinition. As macros can be redefined several times, this means that
+ * different functions may apply for the same source.
+ *
+ * @par Usage
+ *      @snippet logger.c   PICOTEST_FAILURE_LOGGER example
+ *
+ * @par Examples
+ *      @example_file{logger.c}
+ *
  * @see PicoTestFailureLoggerProc
  */
 #define PICOTEST_FAILURE_LOGGER picoTest_logFailure
@@ -301,130 +303,126 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
 
 /*!
  * \defgroup test_cases Test Cases
- * 
+ *
  * Test cases are the most elementary test functions. They are defined as simple
  * functions blocks with assertions that checks the validity of the outcome.
  * \{
  */
 
 /*!
- * \name Test Case Definitions 
+ * \name Test Case Definitions
  * \{
  */
 
 /**
  * Test case declaration.
- * 
- * This macro defines a @ref PicoTestProc of the given name that can be called 
+ *
+ * This macro defines a @ref PicoTestProc of the given name that can be called
  * directly.
- * 
+ *
  * @param _testName     Name of the test case.
  * @param _fixtureName  (optional) Name of the test fixture used by the test.
  * @param _context      (optional) Fixture context structure defined using
  *                      PICOTEST_FIXTURE_CONTEXT(_fixtureName).
- * 
+ *
  * @return Number of failed tests.
- * 
+ *
  * @par Usage
  *      @snippet mainSuite.inc  PICOTEST_CASE examples
- * 
+ *
  * @par Examples
  *      @example_file{mainSuite.inc}
- * 
+ *
  * @see PicoTestProc
  * @see PICOTEST_FIXTURE_CONTEXT
  */
 #if defined(_PICOTEST_PARENS)
-#define PICOTEST_CASE(...)                                                  \
-    _PICOTEST_CONCATENATE(_PICOTEST_CASE_, _PICOTEST_ARGCOUNT(__VA_ARGS__)) \
+#define PICOTEST_CASE(...)                                                     \
+    _PICOTEST_CONCATENATE(_PICOTEST_CASE_, _PICOTEST_ARGCOUNT(__VA_ARGS__))    \
     _PICOTEST_PARENS(__VA_ARGS__)
 #else
-#define PICOTEST_CASE(...)                                                  \
-    _PICOTEST_CONCATENATE(_PICOTEST_CASE_, _PICOTEST_ARGCOUNT(__VA_ARGS__)) \
+#define PICOTEST_CASE(...)                                                     \
+    _PICOTEST_CONCATENATE(_PICOTEST_CASE_, _PICOTEST_ARGCOUNT(__VA_ARGS__))    \
     (__VA_ARGS__)
 #endif /* defined(_PICOTEST_PARENS) */
 
 /*! \cond IGNORE */
-#define _PICOTEST_CASE_DECLARE(_testName)                                                                           \
-    int _testName##_testCaseRunner(void);                                                                           \
-    void _testName##_traverse(PicoTestTraverseProc *proc)                                                           \
-    {                                                                                                               \
-        proc(_PICOTEST_STRINGIZE(_testName), 0);                                                                    \
-    }                                                                                                               \
-    int _testName(const char *cond)                                                                                 \
-    {                                                                                                               \
-        int fail = 0;                                                                                               \
-        PicoTestFilterResult filterResult = (cond == NULL)                                                          \
-                                                ? PICOTEST_FILTER_PASS                                              \
-                                                : PICOTEST_FILTER(_testName, _PICOTEST_STRINGIZE(_testName), cond); \
-        switch (filterResult)                                                                                       \
-        {                                                                                                           \
-        case PICOTEST_FILTER_PASS:                                                                                  \
-        case PICOTEST_FILTER_PASS_PROPAGATE:                                                                        \
-            fail += _testName##_testCaseRunner();                                                                   \
-            break;                                                                                                  \
-        }                                                                                                           \
-        return fail;                                                                                                \
+#define _PICOTEST_CASE_DECLARE(_testName)                                      \
+    int _testName##_testCaseRunner(void);                                      \
+    void _testName##_traverse(PicoTestTraverseProc *proc) {                    \
+        proc(_PICOTEST_STRINGIZE(_testName), 0);                               \
+    }                                                                          \
+    int _testName(const char *cond) {                                          \
+        int fail = 0;                                                          \
+        PicoTestFilterResult filterResult =                                    \
+            (cond == NULL)                                                     \
+                ? PICOTEST_FILTER_PASS                                         \
+                : PICOTEST_FILTER(_testName, _PICOTEST_STRINGIZE(_testName),   \
+                                  cond);                                       \
+        switch (filterResult) {                                                \
+        case PICOTEST_FILTER_PASS:                                             \
+        case PICOTEST_FILTER_PASS_PROPAGATE:                                   \
+            fail += _testName##_testCaseRunner();                              \
+            break;                                                             \
+        }                                                                      \
+        return fail;                                                           \
     }
 
-#define _PICOTEST_CASE_RUNNER_BEGIN(_testName)               \
-    int _testName##_testCaseRunner()                         \
-    {                                                        \
-        int abort;                                           \
-        jmp_buf failureEnv;                                  \
-        jmp_buf *oldEnv = picoTest_failureEnv;               \
-        int fail, oldFail = picoTest_fail;                   \
-        picoTest_failureEnv = &failureEnv;                   \
-        picoTest_fail = 0;                                   \
-        PICOTEST_CASE_ENTER(_PICOTEST_STRINGIZE(_testName)); \
+#define _PICOTEST_CASE_RUNNER_BEGIN(_testName)                                 \
+    int _testName##_testCaseRunner() {                                         \
+        int abort;                                                             \
+        jmp_buf failureEnv;                                                    \
+        jmp_buf *oldEnv = picoTest_failureEnv;                                 \
+        int fail, oldFail = picoTest_fail;                                     \
+        picoTest_failureEnv = &failureEnv;                                     \
+        picoTest_fail = 0;                                                     \
+        PICOTEST_CASE_ENTER(_PICOTEST_STRINGIZE(_testName));                   \
         abort = setjmp(failureEnv);
 
-#define _PICOTEST_CASE_RUNNER_END(_testName)                   \
-    fail = picoTest_fail;                                      \
-    PICOTEST_CASE_LEAVE(_PICOTEST_STRINGIZE(_testName), fail); \
-    picoTest_failureEnv = oldEnv;                              \
-    picoTest_fail = oldFail;                                   \
-    return fail;                                               \
+#define _PICOTEST_CASE_RUNNER_END(_testName)                                   \
+    fail = picoTest_fail;                                                      \
+    PICOTEST_CASE_LEAVE(_PICOTEST_STRINGIZE(_testName), fail);                 \
+    picoTest_failureEnv = oldEnv;                                              \
+    picoTest_fail = oldFail;                                                   \
+    return fail;                                                               \
     }
 
-#define _PICOTEST_CASE_1(_testName)         \
-    _PICOTEST_CASE_DECLARE(_testName)       \
-    static void _testName##_testCase(void); \
-    _PICOTEST_CASE_RUNNER_BEGIN(_testName)  \
-    if (!abort)                             \
-    {                                       \
-        _testName##_testCase();             \
-    }                                       \
-    _PICOTEST_CASE_RUNNER_END(_testName)    \
+#define _PICOTEST_CASE_1(_testName)                                            \
+    _PICOTEST_CASE_DECLARE(_testName)                                          \
+    static void _testName##_testCase(void);                                    \
+    _PICOTEST_CASE_RUNNER_BEGIN(_testName)                                     \
+    if (!abort) {                                                              \
+        _testName##_testCase();                                                \
+    }                                                                          \
+    _PICOTEST_CASE_RUNNER_END(_testName)                                       \
     static void _testName##_testCase(void)
 
-#define _PICOTEST_CASE_2(_testName, _fixtureName)                                  \
-    _PICOTEST_CASE_DECLARE(_testName)                                              \
-    static void _testName##_testCase(void);                                        \
-    _PICOTEST_CASE_RUNNER_BEGIN(_testName)                                         \
-    if (!abort)                                                                    \
-    {                                                                              \
-        _PICOTEST_FIXTURE_CALL_SETUP(_fixtureName, _testName, NULL);               \
-        _testName##_testCase();                                                    \
-    }                                                                              \
-    _PICOTEST_FIXTURE_CALL_TEARDOWN(_fixtureName, _testName, NULL, picoTest_fail); \
-    _PICOTEST_CASE_RUNNER_END(_testName)                                           \
+#define _PICOTEST_CASE_2(_testName, _fixtureName)                              \
+    _PICOTEST_CASE_DECLARE(_testName)                                          \
+    static void _testName##_testCase(void);                                    \
+    _PICOTEST_CASE_RUNNER_BEGIN(_testName)                                     \
+    if (!abort) {                                                              \
+        _PICOTEST_FIXTURE_CALL_SETUP(_fixtureName, _testName, NULL);           \
+        _testName##_testCase();                                                \
+    }                                                                          \
+    _PICOTEST_FIXTURE_CALL_TEARDOWN(_fixtureName, _testName, NULL,             \
+                                    picoTest_fail);                            \
+    _PICOTEST_CASE_RUNNER_END(_testName)                                       \
     static void _testName##_testCase()
 
-#define _PICOTEST_CASE_3(_testName, _fixtureName, _context)                                \
-    _PICOTEST_CASE_DECLARE(_testName)                                                      \
-    static void _testName##_testCase(struct _fixtureName##_Context *);                     \
-    _PICOTEST_CASE_RUNNER_BEGIN(_testName)                                                 \
-    {                                                                                      \
-        struct _fixtureName##_Context context;                                             \
-        if (!abort)                                                                        \
-        {                                                                                  \
-            _PICOTEST_FIXTURE_CALL_SETUP(_fixtureName, _testName, &context);               \
-            _testName##_testCase(&context);                                                \
-        }                                                                                  \
-        _PICOTEST_FIXTURE_CALL_TEARDOWN(_fixtureName, _testName, &context, picoTest_fail); \
-    }                                                                                      \
-    _PICOTEST_CASE_RUNNER_END(_testName)                                                   \
+#define _PICOTEST_CASE_3(_testName, _fixtureName, _context)                    \
+    _PICOTEST_CASE_DECLARE(_testName)                                          \
+    static void _testName##_testCase(struct _fixtureName##_Context *);         \
+    _PICOTEST_CASE_RUNNER_BEGIN(_testName) {                                   \
+        struct _fixtureName##_Context context;                                 \
+        if (!abort) {                                                          \
+            _PICOTEST_FIXTURE_CALL_SETUP(_fixtureName, _testName, &context);   \
+            _testName##_testCase(&context);                                    \
+        }                                                                      \
+        _PICOTEST_FIXTURE_CALL_TEARDOWN(_fixtureName, _testName, &context,     \
+                                        picoTest_fail);                        \
+    }                                                                          \
+    _PICOTEST_CASE_RUNNER_END(_testName)                                       \
     static void _testName##_testCase(struct _fixtureName##_Context *_context)
 /*! \endcond */
 
@@ -432,7 +430,7 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
 
 /*!
  * \name Test Case Hooks
- * 
+ *
  * PicoTest provides a way for client code to intercept test case events. This
  * can be used for e.g. logging purpose or reporting.
  * \{
@@ -440,24 +438,24 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
 
 /**
  * Function signature of test case enter hooks.
- * 
+ *
  * Called before running the test case.
- * 
+ *
  * @param testName      Test case name.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_CASE_ENTER example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PICOTEST_CASE_ENTER
  */
 typedef void(PicoTestCaseEnterProc)(const char *testName);
 
 /** \internal
  * Default test case enter hook. Does nothing.
- * 
+ *
  * @see PicoTestCaseEnterProc
  * @see PICOTEST_CASE_ENTER
  */
@@ -465,20 +463,20 @@ static void picoTest_enterTestCase(const char *testName) {}
 
 /**
  * Define the test case enter hook.
- * 
+ *
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestCaseEnterProc signature.
- * 
- * @note Custom functions only apply to the tests defined after the macro 
- * redefinition. As macros can be redefined several times, this means that 
+ *
+ * @note Custom functions only apply to the tests defined after the macro
+ * redefinition. As macros can be redefined several times, this means that
  * different functions may apply for the same source.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_CASE_ENTER example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PicoTestCaseEnterProc
  * @see PICOTEST_CASE_LEAVE
  */
@@ -486,25 +484,25 @@ static void picoTest_enterTestCase(const char *testName) {}
 
 /**
  * Function signature of test case leave hooks.
- * 
+ *
  * Called after running the test case.
- * 
+ *
  * @param testName      Test case name.
  * @param fail          Failed tests (including its subtests if any).
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_CASE_LEAVE example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PICOTEST_CASE_LEAVE
  */
 typedef void(PicoTestCaseLeaveProc)(const char *testName, int fail);
 
 /** \internal
  * Default test case enter hook. Does nothing.
- * 
+ *
  * @see PicoTestCaseLeaveProc
  * @see PICOTEST_CASE_LEAVE
  */
@@ -512,20 +510,20 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
 
 /**
  * Define the test case leave hook.
- * 
+ *
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestCaseLeaveProc signature.
- * 
- * @note Custom functions only apply to the tests defined after the macro 
- * redefinition. As macros can be redefined several times, this means that 
+ *
+ * @note Custom functions only apply to the tests defined after the macro
+ * redefinition. As macros can be redefined several times, this means that
  * different functions may apply for the same source.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_CASE_LEAVE example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PicoTestCaseLeaveProc
  * @see PICOTEST_CASE_ENTER
  */
@@ -537,102 +535,96 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
 
 /*!
  * \defgroup assertions Assertions
- * 
+ *
  * Assertions are the basic building blocks of test cases.
  * \{
  */
 
 /*!
- * \name Assertion Definitions 
+ * \name Assertion Definitions
  * \{
  */
 
 /**
  * Hard assertion. Logs an error if the given value is false, then stops the
  * test with PICOTEST_ABORT().
- * 
- * PICOTEST_FAILURE_LOGGER() is called with the **type** argument set to 
+ *
+ * PICOTEST_FAILURE_LOGGER() is called with the **type** argument set to
  * ``"ASSERT"``.
- * 
- * @param x     Value to test. Evaluated once, so it can be an expression with 
+ *
+ * @param x     Value to test. Evaluated once, so it can be an expression with
  *              side effects.
  * @param msg   (optional) Message format string.
  * @param ...   (optional) Message string arguments.
- * 
- * @note **msg** and following arguments arguments are suitable arguments to 
+ *
+ * @note **msg** and following arguments arguments are suitable arguments to
  * **printf()**.
- * 
+ *
  * @par Examples
  *      @example_file{mainSuite.inc}
- * 
+ *
  * @see PICOTEST_FAILURE_LOGGER
  * @see PICOTEST_ABORT
  * @see PICOTEST_VERIFY
  */
-#define PICOTEST_ASSERT(x, /* msg, */...)       \
-    {                                           \
-        _PICOTEST_ASSERT(x, #x, ##__VA_ARGS__); \
-    }
+#define PICOTEST_ASSERT(x, /* msg, */...)                                      \
+    { _PICOTEST_ASSERT(x, #x, ##__VA_ARGS__); }
 
 /*! \cond IGNORE */
-#define _PICOTEST_ASSERT(x, ...)                             \
-    PICOTEST_ASSERT_BEFORE("ASSERT", #x);                    \
-    {                                                        \
-        int _PICOTEST_FAIL = !(x);                           \
-        PICOTEST_ASSERT_AFTER("ASSERT", #x, _PICOTEST_FAIL); \
-        if (_PICOTEST_FAIL)                                  \
-        {                                                    \
-            PICOTEST_FAILURE("ASSERT", ##__VA_ARGS__);       \
-            PICOTEST_ABORT();                                \
-        }                                                    \
+#define _PICOTEST_ASSERT(x, ...)                                               \
+    PICOTEST_ASSERT_BEFORE("ASSERT", #x);                                      \
+    {                                                                          \
+        int _PICOTEST_FAIL = !(x);                                             \
+        PICOTEST_ASSERT_AFTER("ASSERT", #x, _PICOTEST_FAIL);                   \
+        if (_PICOTEST_FAIL) {                                                  \
+            PICOTEST_FAILURE("ASSERT", ##__VA_ARGS__);                         \
+            PICOTEST_ABORT();                                                  \
+        }                                                                      \
     }
 /*! \endcond */
 
 /**
  * Soft assertion. Logs an error if the given value is false, but let the test
  * continue.
- * 
- * PICOTEST_FAILURE_LOGGER() is called with the **type** argument set to 
+ *
+ * PICOTEST_FAILURE_LOGGER() is called with the **type** argument set to
  * ``"VERIFY"``.
- * 
- * @param x     Value to test. Evaluated once, so it can be an expression with 
+ *
+ * @param x     Value to test. Evaluated once, so it can be an expression with
  *              side effects.
  * @param msg   (optional) Message format string.
  * @param ...   (optional) Message string arguments.
- * 
- * @note **msg** and following arguments arguments are suitable arguments to 
+ *
+ * @note **msg** and following arguments arguments are suitable arguments to
  * **printf()**.
- * 
+ *
  * @par Examples
  *      @example_file{mainSuite.inc}
- * 
+ *
  * @see PICOTEST_FAILURE_LOGGER
  * @see PICOTEST_ASSERT
  */
-#define PICOTEST_VERIFY(x, /* msg, */...)       \
-    {                                           \
-        _PICOTEST_VERIFY(x, #x, ##__VA_ARGS__); \
-    }
+#define PICOTEST_VERIFY(x, /* msg, */...)                                      \
+    { _PICOTEST_VERIFY(x, #x, ##__VA_ARGS__); }
 
 /*! \cond IGNORE */
-#define _PICOTEST_VERIFY(x, ...)                             \
-    PICOTEST_ASSERT_BEFORE("VERIFY", #x);                    \
-    {                                                        \
-        int _PICOTEST_FAIL = !(x);                           \
-        PICOTEST_ASSERT_AFTER("VERIFY", #x, _PICOTEST_FAIL); \
-        if (_PICOTEST_FAIL)                                  \
-        {                                                    \
-            PICOTEST_FAILURE("VERIFY", ##__VA_ARGS__);       \
-        }                                                    \
+#define _PICOTEST_VERIFY(x, ...)                                               \
+    PICOTEST_ASSERT_BEFORE("VERIFY", #x);                                      \
+    {                                                                          \
+        int _PICOTEST_FAIL = !(x);                                             \
+        PICOTEST_ASSERT_AFTER("VERIFY", #x, _PICOTEST_FAIL);                   \
+        if (_PICOTEST_FAIL) {                                                  \
+            PICOTEST_FAILURE("VERIFY", ##__VA_ARGS__);                         \
+        }                                                                      \
     }
 /*! \endcond */
 
 /**
  * Generic failure.
- * 
+ *
  * PICOTEST_FAILURE_LOGGER() is called with the provided **type**, **test** and
  * **msg** arguments.
- * 
+ *
  * This can be used to implement custom testing logic.
  *
  * @param type  Type of test that failed (e.g. "ASSERT").
@@ -640,26 +632,26 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
  * @param msg   (optional) Message format string.
  * @param ...   (optional) Message string arguments.
  */
-#define PICOTEST_FAILURE(type, test, /* msg, */...) \
+#define PICOTEST_FAILURE(type, test, /* msg, */...)                            \
     _PICOTEST_FAILURE(type, test, ##__VA_ARGS__)
 
 /*! \cond IGNORE */
 #define _PICOTEST_FAILURE(type, ...)                                           \
     picoTest_fail++;                                                           \
-    picoTest_assertFailed(PICOTEST_FAILURE_LOGGER, __FILE__, __LINE__,         \
-                          type, _PICOTEST_ARGCOUNT(__VA_ARGS__), __VA_ARGS__); \
+    picoTest_assertFailed(PICOTEST_FAILURE_LOGGER, __FILE__, __LINE__, type,   \
+                          _PICOTEST_ARGCOUNT(__VA_ARGS__), __VA_ARGS__);       \
 /*! \endcond */
 
 /** \internal
  * Internal failure counter.
- * 
+ *
  * @see PICOTEST_FAILURE
  */
 static int picoTest_fail = 0;
 
 /** \internal
  * Tag used by **setjmp()** and **longjmp()** to jump out of failed tests.
- * 
+ *
  * @see PICOTEST_ABORT
  * @see PICOTEST_CASE
  */
@@ -667,18 +659,17 @@ static jmp_buf *picoTest_failureEnv = NULL;
 
 /**
  * Abort a test case.
- * 
+ *
  * This can be used to implement custom testing logic.
- * 
+ *
  * @see PICOTEST_CASE
  */
-#define PICOTEST_ABORT() \
-    longjmp(*picoTest_failureEnv, 1)
+#define PICOTEST_ABORT() longjmp(*picoTest_failureEnv, 1)
 
 /** \internal
- * 
+ *
  * Called when an assertion fails.
- * 
+ *
  * @param proc  Test failure log handler.
  * @param file  File name where the test was defined.
  * @param line  Location of test in file.
@@ -686,25 +677,21 @@ static jmp_buf *picoTest_failureEnv = NULL;
  * @param count Number of arguments after **test**.
  * @param test  Tested expression.
  * @param ...   Optional message format string and parameters.
- * 
+ *
  * @see PICOTEST_ASSERT
  * @see PICOTEST_VERIFY
  */
 static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
-                                  const char *file, int line, const char *type, int count,
-                                  const char *test, ...)
-{
-    if (count > 1)
-    {
+                                  const char *file, int line, const char *type,
+                                  int count, const char *test, ...) {
+    if (count > 1) {
         /* Extra args after **test** */
         va_list args;
         const char *msg;
         va_start(args, test);
         msg = va_arg(args, const char *);
         proc(file, line, type, test, msg, args);
-    }
-    else
-    {
+    } else {
         proc(file, line, type, test, NULL, NULL);
     }
 }
@@ -713,7 +700,7 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
 
 /*!
  * \name Assertion Hooks
- * 
+ *
  * PicoTest provides a way for client code to intercept assertions events. This
  * can be used for e.g. logging purpose or reporting.
  * \{
@@ -721,25 +708,25 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
 
 /**
  * Function signature of assert before hooks.
- * 
+ *
  * Called before running an assertion.
- * 
+ *
  * @param type  Type of test (e.g. "ASSERT").
  * @param test  Test.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_ASSERT_BEFORE example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PICOTEST_ASSERT_BEFORE
  */
 typedef void(PicoTestAssertBeforeProc)(const char *type, const char *test);
 
 /** \internal
  * Default assert before hook. Does nothing.
- * 
+ *
  * @see PicoTestAssertBeforeProc
  * @see PICOTEST_ASSERT_BEFORE
  */
@@ -747,20 +734,20 @@ static void picoTest_beforeAssert(const char *type, const char *test) {}
 
 /**
  * Define the assert before hook.
- * 
+ *
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestAssertBeforeProc signature.
- * 
- * @note Custom functions only apply to the tests defined after the macro 
- * redefinition. As macros can be redefined several times, this means that 
+ *
+ * @note Custom functions only apply to the tests defined after the macro
+ * redefinition. As macros can be redefined several times, this means that
  * different functions may apply for the same source.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_ASSERT_BEFORE example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PicoTestAssertBeforeProc
  * @see PICOTEST_ASSERT_AFTER
  */
@@ -768,21 +755,21 @@ static void picoTest_beforeAssert(const char *type, const char *test) {}
 
 /**
  * Function signature of assert after hooks.
- * 
+ *
  * Called after running an assertion.
- * 
+ *
  * @param type  Type of test (e.g. "ASSERT").
  * @param test  Test.
  * @param fail  Test result: zero for success, non-zero for failure.
  * @param msg   (optional) Message format string.
  * @param ...   (optional) Message string arguments.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_ASSERT_AFTER example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PICOTEST_ASSERT_AFTER
  */
 typedef void(PicoTestAssertAfterProc)(const char *type, const char *test,
@@ -790,29 +777,29 @@ typedef void(PicoTestAssertAfterProc)(const char *type, const char *test,
 
 /** \internal
  * Default assert after hook. Does nothing.
- * 
+ *
  * @see PicoTestAssertAfterProc
  * @see PICOTEST_ASSERT_AFTER
  */
-static void picoTest_afterAssert(const char *type, const char *test,
-                                 int fail) {}
+static void picoTest_afterAssert(const char *type, const char *test, int fail) {
+}
 
 /**
  * Define the assert after hook.
- * 
+ *
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestAssertAfterProc signature.
- * 
- * @note Custom functions only apply to the tests defined after the macro 
- * redefinition. As macros can be redefined several times, this means that 
+ *
+ * @note Custom functions only apply to the tests defined after the macro
+ * redefinition. As macros can be redefined several times, this means that
  * different functions may apply for the same source.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_ASSERT_AFTER example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PicoTestAssertAfterProc
  * @see PICOTEST_ASSERT_BEFORE
  */
@@ -824,10 +811,10 @@ static void picoTest_afterAssert(const char *type, const char *test,
 
 /*!
  * \defgroup fixtures Test Fixtures
- * 
+ *
  * Test fixtures are used to establish the context needed to run test cases.
- * 
- * A test fixture can be used by several, possibly unrelated test cases. 
+ *
+ * A test fixture can be used by several, possibly unrelated test cases.
  * \{
  */
 
@@ -838,154 +825,162 @@ static void picoTest_afterAssert(const char *type, const char *test,
 
 /**
  * Test fixture context declaration.
- * 
+ *
  * Fixtures can optionally define a context structure that is passed to its
  * setup and teardown functions.
- * 
+ *
  * @param _fixtureName      Name of the fixture.
- * 
+ *
  * @par Usage
  *      @snippet mainSuite.inc  PICOTEST_FIXTURE_CONTEXT example
- * 
+ *
  * @par Examples
  *      @example_file{mainSuite.inc}
  *      @example_file{fixtures.c}
- * 
+ *
  * @see PICOTEST_FIXTURE_SETUP
  * @see PICOTEST_FIXTURE_TEARDOWN
  * @see PICOTEST_CASE
  */
-#define PICOTEST_FIXTURE_CONTEXT(_fixtureName) \
-    struct _fixtureName##_Context
+#define PICOTEST_FIXTURE_CONTEXT(_fixtureName) struct _fixtureName##_Context
 
 /**
  * Test fixture initialization.
- * 
+ *
  * @param _fixtureName  Name of the fixture.
  * @param _context      (optional) Fixture context structure defined using
  *                      PICOTEST_FIXTURE_CONTEXT(_fixtureName).
- * 
+ *
  * @par Usage
  * A simple fixture with no context:
  *      @snippet mainSuite.inc  Simple fixture
- * 
- * A more complex example with a context structure:  
+ *
+ * A more complex example with a context structure:
  *      @snippet mainSuite.inc  Fixture with context
- * 
+ *
  * Fixtures may define an optional context that test cases don't need, in this
  * case the context passed to the setup and teardown functions is **NULL**:
  *      @snippet mainSuite.inc  Fixture with optional context
  * Here is an example of such a test case:
  *      @snippet mainSuite.inc  PICOTEST_CASE with fixture and optional context
- * 
+ *
  * @par Examples
  *      @example_file{mainSuite.inc}
  *      @example_file{fixtures.c}
- * 
+ *
  * @see PICOTEST_FIXTURE_CONTEXT
  * @see PICOTEST_FIXTURE_TEARDOWN
  * @see PICOTEST_CASE
  */
 #if defined(_PICOTEST_PARENS)
-#define PICOTEST_FIXTURE_SETUP(...)                                                  \
-    _PICOTEST_CONCATENATE(_PICOTEST_FIXTURE_SETUP_, _PICOTEST_ARGCOUNT(__VA_ARGS__)) \
+#define PICOTEST_FIXTURE_SETUP(...)                                            \
+    _PICOTEST_CONCATENATE(_PICOTEST_FIXTURE_SETUP_,                            \
+                          _PICOTEST_ARGCOUNT(__VA_ARGS__))                     \
     _PICOTEST_PARENS(__VA_ARGS__)
 #else
-#define PICOTEST_FIXTURE_SETUP(...)                                                  \
-    _PICOTEST_CONCATENATE(_PICOTEST_FIXTURE_SETUP_, _PICOTEST_ARGCOUNT(__VA_ARGS__)) \
+#define PICOTEST_FIXTURE_SETUP(...)                                            \
+    _PICOTEST_CONCATENATE(_PICOTEST_FIXTURE_SETUP_,                            \
+                          _PICOTEST_ARGCOUNT(__VA_ARGS__))                     \
     (__VA_ARGS__)
 #endif /* defined(_PICOTEST_PARENS) */
 
 /*! \cond IGNORE */
-#define _PICOTEST_FIXTURE_SETUP_1(_fixtureName) \
+#define _PICOTEST_FIXTURE_SETUP_1(_fixtureName)                                \
     static void _fixtureName##_setup(void *_fixtureName##_DUMMY)
 
-#define _PICOTEST_FIXTURE_SETUP_2(_fixtureName, _context) \
+#define _PICOTEST_FIXTURE_SETUP_2(_fixtureName, _context)                      \
     static void _fixtureName##_setup(struct _fixtureName##_Context *_context)
 
-#define _PICOTEST_FIXTURE_CALL_SETUP(_fixtureName, _testName, context)                                \
-    PICOTEST_FIXTURE_BEFORE_SETUP(_PICOTEST_STRINGIZE(_fixtureName), _PICOTEST_STRINGIZE(_testName)); \
-    _fixtureName##_setup(context);                                                                    \
-    PICOTEST_FIXTURE_AFTER_SETUP(_PICOTEST_STRINGIZE(_fixtureName), _PICOTEST_STRINGIZE(_testName));
+#define _PICOTEST_FIXTURE_CALL_SETUP(_fixtureName, _testName, context)         \
+    PICOTEST_FIXTURE_BEFORE_SETUP(_PICOTEST_STRINGIZE(_fixtureName),           \
+                                  _PICOTEST_STRINGIZE(_testName));             \
+    _fixtureName##_setup(context);                                             \
+    PICOTEST_FIXTURE_AFTER_SETUP(_PICOTEST_STRINGIZE(_fixtureName),            \
+                                 _PICOTEST_STRINGIZE(_testName));
 /*! \endcond */
 
 /**
  * Test fixture cleanup.
- * 
+ *
  * @param _fixtureName  Name of the fixture.
  * @param _context      (optional) Fixture context structure defined using
  *                      PICOTEST_FIXTURE_CONTEXT(_fixtureName).
- * 
+ *
  * @par Usage
  * A simple fixture with no context:
  *      @snippet mainSuite.inc  Simple fixture
- * 
- * A more complex example with a context structure:  
+ *
+ * A more complex example with a context structure:
  *      @snippet mainSuite.inc  Fixture with context
- * 
+ *
  * Fixtures may define an optional context that test cases don't need, in this
  * case the context passed to the setup and teardown functions is **NULL**:
  *      @snippet mainSuite.inc  Fixture with optional context
  * Here is an example of such a test case:
  *      @snippet mainSuite.inc  PICOTEST_CASE with fixture and optional context
- * 
+ *
  * @par Examples
  *      @example_file{mainSuite.inc}
  *      @example_file{fixtures.c}
- * 
+ *
  * @see PICOTEST_FIXTURE_CONTEXT
  * @see PICOTEST_FIXTURE_SETUP
  * @see PICOTEST_CASE
  */
 #if defined(_PICOTEST_PARENS)
-#define PICOTEST_FIXTURE_TEARDOWN(...)                                                  \
-    _PICOTEST_CONCATENATE(_PICOTEST_FIXTURE_TEARDOWN_, _PICOTEST_ARGCOUNT(__VA_ARGS__)) \
+#define PICOTEST_FIXTURE_TEARDOWN(...)                                         \
+    _PICOTEST_CONCATENATE(_PICOTEST_FIXTURE_TEARDOWN_,                         \
+                          _PICOTEST_ARGCOUNT(__VA_ARGS__))                     \
     _PICOTEST_PARENS(__VA_ARGS__)
 #else
-#define PICOTEST_FIXTURE_TEARDOWN(...)                                                  \
-    _PICOTEST_CONCATENATE(_PICOTEST_FIXTURE_TEARDOWN_, _PICOTEST_ARGCOUNT(__VA_ARGS__)) \
+#define PICOTEST_FIXTURE_TEARDOWN(...)                                         \
+    _PICOTEST_CONCATENATE(_PICOTEST_FIXTURE_TEARDOWN_,                         \
+                          _PICOTEST_ARGCOUNT(__VA_ARGS__))                     \
     (__VA_ARGS__)
 #endif /* defined(_PICOTEST_PARENS) */
 
 /*! \cond IGNORE */
-#define _PICOTEST_FIXTURE_TEARDOWN_1(_fixtureName)         \
-    static void _fixtureName##_teardown(int PICOTEST_FAIL, \
+#define _PICOTEST_FIXTURE_TEARDOWN_1(_fixtureName)                             \
+    static void _fixtureName##_teardown(int PICOTEST_FAIL,                     \
                                         void *_fixtureName##_DUMMY)
 
-#define _PICOTEST_FIXTURE_TEARDOWN_2(_fixtureName, _context) \
-    static void _fixtureName##_teardown(int PICOTEST_FAIL,   \
-                                        struct _fixtureName##_Context *_context)
+#define _PICOTEST_FIXTURE_TEARDOWN_2(_fixtureName, _context)                   \
+    static void _fixtureName##_teardown(                                       \
+        int PICOTEST_FAIL, struct _fixtureName##_Context *_context)
 
-#define _PICOTEST_FIXTURE_CALL_TEARDOWN(_fixtureName, _testName, context, fail)                                \
-    PICOTEST_FIXTURE_BEFORE_TEARDOWN(_PICOTEST_STRINGIZE(_fixtureName), _PICOTEST_STRINGIZE(_testName), fail); \
-    _fixtureName##_teardown(fail, context);                                                                    \
-    PICOTEST_FIXTURE_AFTER_TEARDOWN(_PICOTEST_STRINGIZE(_fixtureName), _PICOTEST_STRINGIZE(_testName), fail);  \
+#define _PICOTEST_FIXTURE_CALL_TEARDOWN(_fixtureName, _testName, context,      \
+                                        fail)                                  \
+    PICOTEST_FIXTURE_BEFORE_TEARDOWN(_PICOTEST_STRINGIZE(_fixtureName),        \
+                                     _PICOTEST_STRINGIZE(_testName), fail);    \
+    _fixtureName##_teardown(fail, context);                                    \
+    PICOTEST_FIXTURE_AFTER_TEARDOWN(_PICOTEST_STRINGIZE(_fixtureName),         \
+                                    _PICOTEST_STRINGIZE(_testName), fail);     \
 /*! \endcond */
 
 /*! \} End of Test Fixture Definitions */
 
 /*!
  * \name Test Fixture Hooks
- * 
- * PicoTest provides a way for client code to intercept test fixture events. 
+ *
+ * PicoTest provides a way for client code to intercept test fixture events.
  * This can be used for e.g. logging purpose or reporting.
  * \{
  */
 
 /**
  * Function signature of test fixture before setup hooks.
- * 
+ *
  * Called before running the test fixture setup.
- * 
+ *
  * @param fixtureName   Test fixture name.
  * @param testName      Test case name.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_FIXTURE_BEFORE_SETUP example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PICOTEST_FIXTURE_BEFORE_SETUP
  */
 typedef void(PicoTestFixtureBeforeSetupProc)(const char *fixtureName,
@@ -993,7 +988,7 @@ typedef void(PicoTestFixtureBeforeSetupProc)(const char *fixtureName,
 
 /** \internal
  * Default test fixture before setup hook. Does nothing.
- * 
+ *
  * @see PicoTestFixtureBeforeSetupProc
  * @see PICOTEST_FIXTURE_BEFORE_SETUP
  */
@@ -1002,20 +997,20 @@ static void picoTest_beforeSetup(const char *fixtureName,
 
 /**
  * Define the test fixture before setup hook.
- * 
+ *
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestFixtureBeforeSetupProc signature.
- * 
- * @note Custom functions only apply to the tests defined after the macro 
- * redefinition. As macros can be redefined several times, this means that 
+ *
+ * @note Custom functions only apply to the tests defined after the macro
+ * redefinition. As macros can be redefined several times, this means that
  * different functions may apply for the same source.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_FIXTURE_BEFORE_SETUP example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PicoTestFixtureBeforeSetupProc
  * @see PICOTEST_FIXTURE_AFTER_SETUP
  */
@@ -1023,18 +1018,18 @@ static void picoTest_beforeSetup(const char *fixtureName,
 
 /**
  * Function signature of test fixture after setup hooks.
- * 
+ *
  * Called after running the test fixture setup.
- * 
+ *
  * @param fixtureName   Test fixture name.
  * @param testName      Test case name.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_FIXTURE_AFTER_SETUP example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PICOTEST_FIXTURE_AFTER_SETUP
  */
 typedef void(PicoTestFixtureAfterSetupProc)(const char *fixtureName,
@@ -1042,29 +1037,29 @@ typedef void(PicoTestFixtureAfterSetupProc)(const char *fixtureName,
 
 /** \internal
  * Default test fixture after setup hook. Does nothing.
- * 
+ *
  * @see PicoTestFixtureAfterSetupProc
  * @see PICOTEST_FIXTURE_AFTER_SETUP
  */
-static void picoTest_afterSetup(const char *fixtureName,
-                                const char *testName) {}
+static void picoTest_afterSetup(const char *fixtureName, const char *testName) {
+}
 
 /**
  * Define the test fixture after setup hook.
- * 
+ *
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestFixtureAfterSetupProc signature.
- * 
- * @note Custom functions only apply to the tests defined after the macro 
- * redefinition. As macros can be redefined several times, this means that 
+ *
+ * @note Custom functions only apply to the tests defined after the macro
+ * redefinition. As macros can be redefined several times, this means that
  * different functions may apply for the same source.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_FIXTURE_AFTER_SETUP example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PicoTestFixtureAfterSetupProc
  * @see PICOTEST_FIXTURE_BEFORE_SETUP
  */
@@ -1072,19 +1067,19 @@ static void picoTest_afterSetup(const char *fixtureName,
 
 /**
  * Function signature of test fixture before teardown hooks.
- * 
+ *
  * Called before running the test fixture teardown.
- * 
+ *
  * @param fixtureName   Test fixture name.
  * @param testName      Test case name.
  * @param fail          Failed tests (including its subtests if any).
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_FIXTURE_BEFORE_TEARDOWN example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PICOTEST_FIXTURE_BEFORE_TEARDOWN
  */
 typedef void(PicoTestFixtureBeforeTeardownProc)(const char *fixtureName,
@@ -1092,7 +1087,7 @@ typedef void(PicoTestFixtureBeforeTeardownProc)(const char *fixtureName,
 
 /** \internal
  * Default test fixture before teardown hook. Does nothing.
- * 
+ *
  * @see PicoTestFixtureBeforeTeardownProc
  * @see PICOTEST_FIXTURE_BEFORE_TEARDOWN
  */
@@ -1101,20 +1096,20 @@ static void picoTest_beforeTeardown(const char *fixtureName,
 
 /**
  * Define the test fixture before teardown hook.
- * 
+ *
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestFixtureBeforeTeardownProc signature.
- * 
- * @note Custom functions only apply to the tests defined after the macro 
- * redefinition. As macros can be redefined several times, this means that 
+ *
+ * @note Custom functions only apply to the tests defined after the macro
+ * redefinition. As macros can be redefined several times, this means that
  * different functions may apply for the same source.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_FIXTURE_BEFORE_TEARDOWN example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PicoTestFixtureBeforeTeardownProc
  * @see PICOTEST_FIXTURE_AFTER_TEARDOWN
  */
@@ -1122,19 +1117,19 @@ static void picoTest_beforeTeardown(const char *fixtureName,
 
 /**
  * Function signature of test fixture after teardown hooks.
- * 
+ *
  * Called after running the test fixture teardown.
- * 
+ *
  * @param fixtureName   Test fixture name.
  * @param testName      Test case name.
  * @param fail          Failed tests (including its subtests if any).
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_FIXTURE_AFTER_TEARDOWN example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PICOTEST_FIXTURE_AFTER_TEARDOWN
  */
 typedef void(PicoTestFixtureAfterTeardownProc)(const char *fixtureName,
@@ -1142,7 +1137,7 @@ typedef void(PicoTestFixtureAfterTeardownProc)(const char *fixtureName,
 
 /** \internal
  * Default test fixture after teardown hook. Does nothing.
- * 
+ *
  * @see PicoTestFixtureAfterTeardownProc
  * @see PICOTEST_FIXTURE_AFTER_TEARDOWN
  */
@@ -1151,20 +1146,20 @@ static void picoTest_afterTeardown(const char *fixtureName,
 
 /**
  * Define the test fixture after teardown hook.
- * 
+ *
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestFixtureAfterTeardownProc signature.
- * 
- * @note Custom functions only apply to the tests defined after the macro 
- * redefinition. As macros can be redefined several times, this means that 
+ *
+ * @note Custom functions only apply to the tests defined after the macro
+ * redefinition. As macros can be redefined several times, this means that
  * different functions may apply for the same source.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_FIXTURE_AFTER_TEARDOWN example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PicoTestFixtureAfterTeardownProc
  * @see PICOTEST_FIXTURE_BEFORE_TEARDOWN
  */
@@ -1176,7 +1171,7 @@ static void picoTest_afterTeardown(const char *fixtureName,
 
 /*!
  * \defgroup test_suites Test Suites
- * 
+ *
  * A test suite is a set of subtests in no special order. These subtests can
  * themselves be test suites or test cases.
  * \{
@@ -1189,98 +1184,92 @@ static void picoTest_afterTeardown(const char *fixtureName,
 
 /**
  * Test suite declaration.
- * 
+ *
  * A test suite is a test function that is made of one or several subtests.
- * 
- * This macro defines a @ref PicoTestProc of the given name that can be called 
+ *
+ * This macro defines a @ref PicoTestProc of the given name that can be called
  * directly.
- * 
+ *
  * @param _suiteName    Name of the test suite.
  * @param ...           Names of the subtests in the suite.
- * 
+ *
  * @return Number of failed tests.
- * 
+ *
  * @see PicoTestProc
  * @see PICOTEST_CASE
- * 
+ *
  * @par Usage
  *      @snippet mainSuite.inc  PICOTEST_SUITE examples
  *
  * @par Examples
  *      @example_file{mainSuite.inc}
  */
-#define PICOTEST_SUITE(_suiteName, ...)                                                                               \
-    _PICOTEST_FOR_EACH(_PICOTEST_SUITE_DECLARE_TEST, __VA_ARGS__)                                                     \
-    static PicoTestDescr _suiteName##_tests[] = {                                                                     \
-        _PICOTEST_FOR_EACH(_PICOTEST_SUITE_DECLARE_TEST_CASE, __VA_ARGS__){NULL, NULL, NULL}};                        \
-    void _suiteName##_traverse(PicoTestTraverseProc *proc)                                                            \
-    {                                                                                                                 \
-        const int nb = sizeof(_suiteName##_tests) / sizeof(*_suiteName##_tests) - 1;                                  \
-        PicoTestDescr *test = _suiteName##_tests;                                                                     \
-        proc(_PICOTEST_STRINGIZE(_suiteName), nb);                                                                    \
-        for (; test->name; test++)                                                                                    \
-        {                                                                                                             \
-            test->traverse(proc);                                                                                     \
-        }                                                                                                             \
-    }                                                                                                                 \
-    int _suiteName##_testCaseRunner(const char *cond)                                                                 \
-    {                                                                                                                 \
-        const int nb = sizeof(_suiteName##_tests) / sizeof(*_suiteName##_tests) - 1;                                  \
-        PicoTestDescr *test = _suiteName##_tests;                                                                     \
-        int fail = 0;                                                                                                 \
-        PICOTEST_SUITE_ENTER(_PICOTEST_STRINGIZE(_suiteName), nb);                                                    \
-        for (; test->name; test++)                                                                                    \
-        {                                                                                                             \
-            const int index = (int)(test - _suiteName##_tests);                                                       \
-            int sfail = 0;                                                                                            \
-            PICOTEST_SUITE_BEFORE_SUBTEST(_PICOTEST_STRINGIZE(_suiteName), nb,                                        \
-                                          fail, index, test->name);                                                   \
-            sfail = test->test(cond);                                                                                 \
-            fail += sfail;                                                                                            \
-            PICOTEST_SUITE_AFTER_SUBTEST(_PICOTEST_STRINGIZE(_suiteName), nb,                                         \
-                                         fail, index, test->name, sfail);                                             \
-        }                                                                                                             \
-        PICOTEST_SUITE_LEAVE(_PICOTEST_STRINGIZE(_suiteName), nb, fail);                                              \
-        return fail;                                                                                                  \
-    }                                                                                                                 \
-    int _suiteName(const char *cond)                                                                                  \
-    {                                                                                                                 \
-        int fail = 0;                                                                                                 \
-        PicoTestFilterResult filterResult = (cond == NULL)                                                            \
-                                                ? PICOTEST_FILTER_PASS                                                \
-                                                : PICOTEST_FILTER(_suiteName, _PICOTEST_STRINGIZE(_suiteName), cond); \
-        switch (filterResult)                                                                                         \
-        {                                                                                                             \
-        case PICOTEST_FILTER_PASS:                                                                                    \
-            cond = NULL;                                                                                              \
-        case PICOTEST_FILTER_PASS_PROPAGATE:                                                                          \
-            fail += _suiteName##_testCaseRunner(cond);                                                                \
-            break;                                                                                                    \
-        case PICOTEST_FILTER_SKIP:                                                                                    \
-            break;                                                                                                    \
-        case PICOTEST_FILTER_SKIP_PROPAGATE:                                                                          \
-        {                                                                                                             \
-            PicoTestDescr *test = _suiteName##_tests;                                                                 \
-            for (; test->name; test++)                                                                                \
-            {                                                                                                         \
-                fail += test->test(cond);                                                                             \
-            }                                                                                                         \
-        }                                                                                                             \
-        break;                                                                                                        \
-        }                                                                                                             \
-        return fail;                                                                                                  \
+#define PICOTEST_SUITE(_suiteName, ...)                                        \
+    _PICOTEST_FOR_EACH(_PICOTEST_SUITE_DECLARE_TEST, __VA_ARGS__)              \
+    static PicoTestDescr _suiteName##_tests[] = {_PICOTEST_FOR_EACH(           \
+        _PICOTEST_SUITE_DECLARE_TEST_CASE, __VA_ARGS__){NULL, NULL, NULL}};    \
+    void _suiteName##_traverse(PicoTestTraverseProc *proc) {                   \
+        const int nb =                                                         \
+            sizeof(_suiteName##_tests) / sizeof(*_suiteName##_tests) - 1;      \
+        PicoTestDescr *test = _suiteName##_tests;                              \
+        proc(_PICOTEST_STRINGIZE(_suiteName), nb);                             \
+        for (; test->name; test++) {                                           \
+            test->traverse(proc);                                              \
+        }                                                                      \
+    }                                                                          \
+    int _suiteName##_testCaseRunner(const char *cond) {                        \
+        const int nb =                                                         \
+            sizeof(_suiteName##_tests) / sizeof(*_suiteName##_tests) - 1;      \
+        PicoTestDescr *test = _suiteName##_tests;                              \
+        int fail = 0;                                                          \
+        PICOTEST_SUITE_ENTER(_PICOTEST_STRINGIZE(_suiteName), nb);             \
+        for (; test->name; test++) {                                           \
+            const int index = (int)(test - _suiteName##_tests);                \
+            int sfail = 0;                                                     \
+            PICOTEST_SUITE_BEFORE_SUBTEST(_PICOTEST_STRINGIZE(_suiteName), nb, \
+                                          fail, index, test->name);            \
+            sfail = test->test(cond);                                          \
+            fail += sfail;                                                     \
+            PICOTEST_SUITE_AFTER_SUBTEST(_PICOTEST_STRINGIZE(_suiteName), nb,  \
+                                         fail, index, test->name, sfail);      \
+        }                                                                      \
+        PICOTEST_SUITE_LEAVE(_PICOTEST_STRINGIZE(_suiteName), nb, fail);       \
+        return fail;                                                           \
+    }                                                                          \
+    int _suiteName(const char *cond) {                                         \
+        int fail = 0;                                                          \
+        PicoTestFilterResult filterResult =                                    \
+            (cond == NULL)                                                     \
+                ? PICOTEST_FILTER_PASS                                         \
+                : PICOTEST_FILTER(_suiteName, _PICOTEST_STRINGIZE(_suiteName), \
+                                  cond);                                       \
+        switch (filterResult) {                                                \
+        case PICOTEST_FILTER_PASS:                                             \
+            cond = NULL;                                                       \
+        case PICOTEST_FILTER_PASS_PROPAGATE:                                   \
+            fail += _suiteName##_testCaseRunner(cond);                         \
+            break;                                                             \
+        case PICOTEST_FILTER_SKIP:                                             \
+            break;                                                             \
+        case PICOTEST_FILTER_SKIP_PROPAGATE: {                                 \
+            PicoTestDescr *test = _suiteName##_tests;                          \
+            for (; test->name; test++) {                                       \
+                fail += test->test(cond);                                      \
+            }                                                                  \
+        } break;                                                               \
+        }                                                                      \
+        return fail;                                                           \
     }
 
 /*! \cond IGNORE */
-#define _PICOTEST_SUITE_DECLARE_TEST_CASE(_testName) \
+#define _PICOTEST_SUITE_DECLARE_TEST_CASE(_testName)                           \
     {_PICOTEST_STRINGIZE(_testName), _testName, _testName##_traverse},
-#define _PICOTEST_SUITE_DECLARE_TEST(_testName) \
-    int _testName(const char *);                \
+#define _PICOTEST_SUITE_DECLARE_TEST(_testName)                                \
+    int _testName(const char *);                                               \
     void _testName##_traverse(PicoTestTraverseProc *);
 
 /** Test descriptor for test suites */
-typedef struct PicoTestDescr
-{
+typedef struct PicoTestDescr {
     const char *name;                         /*!< Test name. */
     PicoTestProc *test;                       /*!< Test function. */
     void (*traverse)(PicoTestTraverseProc *); /*!< Test traversal. */
@@ -1291,7 +1280,7 @@ typedef struct PicoTestDescr
 
 /*!
  * \name Test Suite Hooks
- * 
+ *
  * PicoTest provides a way for client code to intercept test execution events
  * on test suites and their subtests. This can be used for e.g. logging purpose
  * or reporting.
@@ -1300,25 +1289,25 @@ typedef struct PicoTestDescr
 
 /**
  * Function signature of test suite enter hooks.
- * 
+ *
  * Called before running the first subtest.
- * 
+ *
  * @param suiteName     Test suite name.
  * @param nb            Number of subtests.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_SUITE_ENTER example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PICOTEST_SUITE_ENTER
  */
 typedef void(PicoTestSuiteEnterProc)(const char *suiteName, int nb);
 
 /** \internal
  * Default test suite enter hook. Does nothing.
- * 
+ *
  * @see PicoTestSuiteEnterProc
  * @see PICOTEST_SUITE_ENTER
  */
@@ -1326,20 +1315,20 @@ static void picoTest_enterTestSuite(const char *suiteName, int nb) {}
 
 /**
  * Define the test suite enter hook.
- * 
+ *
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestSuiteEnterProc signature.
- * 
- * @note Custom functions only apply to the tests defined after the macro 
- * redefinition. As macros can be redefined several times, this means that 
+ *
+ * @note Custom functions only apply to the tests defined after the macro
+ * redefinition. As macros can be redefined several times, this means that
  * different functions may apply for the same source.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_SUITE_ENTER example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PicoTestSuiteEnterProc
  * @see PICOTEST_SUITE_LEAVE
  */
@@ -1347,25 +1336,25 @@ static void picoTest_enterTestSuite(const char *suiteName, int nb) {}
 
 /**
  * Function signature of test suite leave hooks.
- * 
+ *
  * @param suiteName     Test suite name.
  * @param nb            Number of subtests.
- * @param fail          Number of failed subtests (including the subtests' 
+ * @param fail          Number of failed subtests (including the subtests'
  *                      subtests if any).
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_SUITE_LEAVE example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PICOTEST_SUITE_LEAVE
  */
 typedef void(PicoTestSuiteLeaveProc)(const char *suiteName, int nb, int fail);
 
 /** \internal
  * Default test suite leave hook. Does nothing.
- * 
+ *
  * @see PicoTestSuiteLeaveProc
  * @see PICOTEST_SUITE_LEAVE
  */
@@ -1373,22 +1362,22 @@ static void picoTest_leaveTestSuite(const char *suiteName, int nb, int fail) {}
 
 /**
  * Define the test suite leave hook.
- * 
+ *
  * Called after running all subtests.
- * 
+ *
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestSuiteLeaveProc signature.
- * 
- * @note Custom functions only apply to the tests defined after the macro 
- * redefinition. As macros can be redefined several times, this means that 
+ *
+ * @note Custom functions only apply to the tests defined after the macro
+ * redefinition. As macros can be redefined several times, this means that
  * different functions may apply for the same source.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_SUITE_LEAVE example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PicoTestSuiteLeaveProc
  * @see PICOTEST_SUITE_ENTER
  */
@@ -1396,30 +1385,31 @@ static void picoTest_leaveTestSuite(const char *suiteName, int nb, int fail) {}
 
 /**
  * Function signature of test suite before subtest hooks.
- * 
+ *
  * Called before running each subtest.
- * 
+ *
  * @param suiteName     Test suite name.
  * @param nb            Number of subtests.
- * @param fail          Failed test suite subtests so far  (including its 
+ * @param fail          Failed test suite subtests so far  (including its
  *                      subtests' subtests if any).
  * @param index         Index of subtest.
  * @param testName      Name of subtest.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_SUITE_BEFORE_SUBTEST example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PICOTEST_SUITE_BEFORE_SUBTEST
  */
 typedef void(PicoTestSuiteBeforeSubtestProc)(const char *suiteName, int nb,
-                                             int fail, int index, const char *testName);
+                                             int fail, int index,
+                                             const char *testName);
 
 /** \internal
  * Default test suite before subtest hook. Does nothing.
- * 
+ *
  * @see PicoTestSuiteBeforeSubtestProc
  * @see PICOTEST_SUITE_BEFORE_SUBTEST
  */
@@ -1428,20 +1418,20 @@ static void picoTest_beforeSubtest(const char *suiteName, int nb, int fail,
 
 /**
  * Define the test suite before subset hook.
- * 
+ *
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestSuiteBeforeSubtestProc signature.
- * 
- * @note Custom functions only apply to the tests defined after the macro 
- * redefinition. As macros can be redefined several times, this means that 
+ *
+ * @note Custom functions only apply to the tests defined after the macro
+ * redefinition. As macros can be redefined several times, this means that
  * different functions may apply for the same source.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_SUITE_BEFORE_SUBTEST example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PicoTestSuiteBeforeSubtestProc
  * @see PICOTEST_SUITE_AFTER_SUBTEST
  */
@@ -1449,32 +1439,33 @@ static void picoTest_beforeSubtest(const char *suiteName, int nb, int fail,
 
 /**
  * Function signature of test suite after subtest hooks.
- * 
+ *
  * Called before running each subtest.
- * 
+ *
  * @param suiteName     Test suite name.
  * @param nb            Number of subtests.
- * @param fail          Failed test suite subtests so far (including its 
+ * @param fail          Failed test suite subtests so far (including its
  *                      subtests' subtests if any).
  * @param index         Index of subtest.
  * @param testName      Name of subtest.
  * @param sfail         The subtest's failed tests (including its subtests if
  *                      any).
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_SUITE_AFTER_SUBTEST example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PICOTEST_SUITE_AFTER_SUBTEST
  */
 typedef void(PicoTestSuiteAfterSubtestProc)(const char *suiteName, int nb,
-                                            int fail, int index, const char *testName, int sfail);
+                                            int fail, int index,
+                                            const char *testName, int sfail);
 
 /** \internal
  * Default test suite after subtest hook. Does nothing.
- * 
+ *
  * @see PicoTestSuiteAfterSubtestProc
  * @see PICOTEST_SUITE_AFTER_SUBTEST
  */
@@ -1483,20 +1474,20 @@ static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
 
 /**
  * Define the test suite after subset hook.
- * 
+ *
  * The default hook does nothing. Redefine this macro to use a custom hook,
  * which must follow the @ref PicoTestSuiteAfterSubtestProc signature.
- * 
- * @note Custom functions only apply to the tests defined after the macro 
- * redefinition. As macros can be redefined several times, this means that 
+ *
+ * @note Custom functions only apply to the tests defined after the macro
+ * redefinition. As macros can be redefined several times, this means that
  * different functions may apply for the same source.
- * 
+ *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_SUITE_AFTER_SUBTEST example
- * 
+ *
  * @par Examples
  *      @example_file{hooks.c}
- * 
+ *
  * @see PicoTestSuiteAfterSubtestProc
  * @see PICOTEST_SUITE_BEFORE_SUBTEST
  */
@@ -1508,9 +1499,9 @@ static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
 
 /*! \} End of Public Interface */
 
-/*! \internal 
+/*! \internal
  * \defgroup utilities Utilities
- * 
+ *
  * Utility macros and building blocks.
  * \{
  */
@@ -1523,20 +1514,16 @@ static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
 /** \internal
  * Turn argument into a C string.
  */
-#define _PICOTEST_STRINGIZE(arg) \
-#arg
+#define _PICOTEST_STRINGIZE(arg) #arg
 
 /** \internal
  * Concatenate both arguments.
  */
-#define _PICOTEST_CONCATENATE(arg1, arg2) \
-    _PICOTEST_CONCATENATE1(arg1, arg2)
+#define _PICOTEST_CONCATENATE(arg1, arg2) _PICOTEST_CONCATENATE1(arg1, arg2)
 
 /*! \cond IGNORE */
-#define _PICOTEST_CONCATENATE1(arg1, arg2) \
-    _PICOTEST_CONCATENATE2(arg1, arg2)
-#define _PICOTEST_CONCATENATE2(arg1, arg2) \
-    arg1##arg2
+#define _PICOTEST_CONCATENATE1(arg1, arg2) _PICOTEST_CONCATENATE2(arg1, arg2)
+#define _PICOTEST_CONCATENATE2(arg1, arg2) arg1##arg2
 /*! \endcond */
 
 /*! \} End of Basic Utilities */
@@ -1546,52 +1533,43 @@ static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
  *
  * Macro hackery for accessing args passed to variadic macros.
  *
- * @see http://groups.google.com/group/comp.std.c/browse_thread/thread/77ee8c8f92e4a3fb/346fc464319b1ee5?pli=1
+ * @see
+ * http://groups.google.com/group/comp.std.c/browse_thread/thread/77ee8c8f92e4a3fb/346fc464319b1ee5?pli=1
  * \{
  */
 
 /** \internal
  * Get the number of args passed to it.
- * 
+ *
  * @param ...   Arguments passed to the variadic macro.
  *
- * @warning Argument length must be between 1 and 63. Empty lists return zero 
+ * @warning Argument length must be between 1 and 63. Empty lists return zero
  * due to limitations of the C preprocessor.
  */
 #if defined(_PICOTEST_PARENS)
-#define _PICOTEST_ARGCOUNT(...)                 \
-    _PICOTEST_LASTARG _PICOTEST_PARENS(         \
-        __VA_ARGS__,                            \
-        63, 62, 61, 60,                         \
-        59, 58, 57, 56, 55, 54, 53, 52, 51, 50, \
-        49, 48, 47, 46, 45, 44, 43, 42, 41, 40, \
-        39, 38, 37, 36, 35, 34, 33, 32, 31, 30, \
-        29, 28, 27, 26, 25, 24, 23, 22, 21, 20, \
-        19, 18, 17, 16, 15, 14, 13, 12, 11, 10, \
-        9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
+#define _PICOTEST_ARGCOUNT(...)                                                \
+    _PICOTEST_LASTARG _PICOTEST_PARENS(                                        \
+        __VA_ARGS__, 63, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50,   \
+        49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33,    \
+        32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16,    \
+        15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
 #else
-#define _PICOTEST_ARGCOUNT(...)                 \
-    _PICOTEST_LASTARG(                          \
-        __VA_ARGS__,                            \
-        63, 62, 61, 60,                         \
-        59, 58, 57, 56, 55, 54, 53, 52, 51, 50, \
-        49, 48, 47, 46, 45, 44, 43, 42, 41, 40, \
-        39, 38, 37, 36, 35, 34, 33, 32, 31, 30, \
-        29, 28, 27, 26, 25, 24, 23, 22, 21, 20, \
-        19, 18, 17, 16, 15, 14, 13, 12, 11, 10, \
-        9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
+#define _PICOTEST_ARGCOUNT(...)                                                \
+    _PICOTEST_LASTARG(__VA_ARGS__, 63, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, \
+                      52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39,  \
+                      38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25,  \
+                      24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11,  \
+                      10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
 #endif /* defined(_PICOTEST_PARENS) */
 
 /*! \cond IGNORE */
-#define _PICOTEST_LASTARG(                            \
-    _1, _2, _3, _4, _5, _6, _7, _8, _9, _10,          \
-    _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, \
-    _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, \
-    _31, _32, _33, _34, _35, _36, _37, _38, _39, _40, \
-    _41, _42, _43, _44, _45, _46, _47, _48, _49, _50, \
-    _51, _52, _53, _54, _55, _56, _57, _58, _59, _60, \
-    _61, _62, _63,                                    \
-    N, ...) N
+#define _PICOTEST_LASTARG(                                                     \
+    _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16,     \
+    _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, \
+    _32, _33, _34, _35, _36, _37, _38, _39, _40, _41, _42, _43, _44, _45, _46, \
+    _47, _48, _49, _50, _51, _52, _53, _54, _55, _56, _57, _58, _59, _60, _61, \
+    _62, _63, N, ...)                                                          \
+    N
 /*! \endcond */
 
 /** \internal
@@ -1605,142 +1583,270 @@ static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
  */
 
 #if defined(_PICOTEST_PARENS)
-#define _PICOTEST_FOR_EACH(what, ...) _PICOTEST_CONCATENATE(_PICOTEST_FOR_EACH_, _PICOTEST_ARGCOUNT(__VA_ARGS__)) \
-_PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH(what, ...)                                          \
+    _PICOTEST_CONCATENATE(_PICOTEST_FOR_EACH_,                                 \
+                          _PICOTEST_ARGCOUNT(__VA_ARGS__))                     \
+    _PICOTEST_PARENS(what, __VA_ARGS__)
 #else
-#define _PICOTEST_FOR_EACH(what, ...) _PICOTEST_CONCATENATE(_PICOTEST_FOR_EACH_, _PICOTEST_ARGCOUNT(__VA_ARGS__)) \
-(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH(what, ...)                                          \
+    _PICOTEST_CONCATENATE(_PICOTEST_FOR_EACH_,                                 \
+                          _PICOTEST_ARGCOUNT(__VA_ARGS__))                     \
+    (what, __VA_ARGS__)
 #endif /* defined(_PICOTEST_PARENS) */
 
 /*! \cond IGNORE */
 #if defined(_PICOTEST_PARENS)
 #define _PICOTEST_FOR_EACH_1(what, x) what(x)
-#define _PICOTEST_FOR_EACH_2(what, x, ...) what(x) _PICOTEST_FOR_EACH_1 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_3(what, x, ...) what(x) _PICOTEST_FOR_EACH_2 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_4(what, x, ...) what(x) _PICOTEST_FOR_EACH_3 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_5(what, x, ...) what(x) _PICOTEST_FOR_EACH_4 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_6(what, x, ...) what(x) _PICOTEST_FOR_EACH_5 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_7(what, x, ...) what(x) _PICOTEST_FOR_EACH_6 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_8(what, x, ...) what(x) _PICOTEST_FOR_EACH_7 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_9(what, x, ...) what(x) _PICOTEST_FOR_EACH_8 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_10(what, x, ...) what(x) _PICOTEST_FOR_EACH_9 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_11(what, x, ...) what(x) _PICOTEST_FOR_EACH_10 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_12(what, x, ...) what(x) _PICOTEST_FOR_EACH_11 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_13(what, x, ...) what(x) _PICOTEST_FOR_EACH_12 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_14(what, x, ...) what(x) _PICOTEST_FOR_EACH_13 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_15(what, x, ...) what(x) _PICOTEST_FOR_EACH_14 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_16(what, x, ...) what(x) _PICOTEST_FOR_EACH_15 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_17(what, x, ...) what(x) _PICOTEST_FOR_EACH_16 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_18(what, x, ...) what(x) _PICOTEST_FOR_EACH_17 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_19(what, x, ...) what(x) _PICOTEST_FOR_EACH_18 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_20(what, x, ...) what(x) _PICOTEST_FOR_EACH_19 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_21(what, x, ...) what(x) _PICOTEST_FOR_EACH_20 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_22(what, x, ...) what(x) _PICOTEST_FOR_EACH_21 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_23(what, x, ...) what(x) _PICOTEST_FOR_EACH_22 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_24(what, x, ...) what(x) _PICOTEST_FOR_EACH_23 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_25(what, x, ...) what(x) _PICOTEST_FOR_EACH_24 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_26(what, x, ...) what(x) _PICOTEST_FOR_EACH_25 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_27(what, x, ...) what(x) _PICOTEST_FOR_EACH_26 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_28(what, x, ...) what(x) _PICOTEST_FOR_EACH_27 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_29(what, x, ...) what(x) _PICOTEST_FOR_EACH_28 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_30(what, x, ...) what(x) _PICOTEST_FOR_EACH_29 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_31(what, x, ...) what(x) _PICOTEST_FOR_EACH_30 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_32(what, x, ...) what(x) _PICOTEST_FOR_EACH_31 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_33(what, x, ...) what(x) _PICOTEST_FOR_EACH_32 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_34(what, x, ...) what(x) _PICOTEST_FOR_EACH_33 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_35(what, x, ...) what(x) _PICOTEST_FOR_EACH_34 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_36(what, x, ...) what(x) _PICOTEST_FOR_EACH_35 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_37(what, x, ...) what(x) _PICOTEST_FOR_EACH_36 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_38(what, x, ...) what(x) _PICOTEST_FOR_EACH_37 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_39(what, x, ...) what(x) _PICOTEST_FOR_EACH_38 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_40(what, x, ...) what(x) _PICOTEST_FOR_EACH_39 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_41(what, x, ...) what(x) _PICOTEST_FOR_EACH_40 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_42(what, x, ...) what(x) _PICOTEST_FOR_EACH_41 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_43(what, x, ...) what(x) _PICOTEST_FOR_EACH_42 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_44(what, x, ...) what(x) _PICOTEST_FOR_EACH_43 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_45(what, x, ...) what(x) _PICOTEST_FOR_EACH_44 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_46(what, x, ...) what(x) _PICOTEST_FOR_EACH_45 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_47(what, x, ...) what(x) _PICOTEST_FOR_EACH_46 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_48(what, x, ...) what(x) _PICOTEST_FOR_EACH_47 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_49(what, x, ...) what(x) _PICOTEST_FOR_EACH_48 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_50(what, x, ...) what(x) _PICOTEST_FOR_EACH_49 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_51(what, x, ...) what(x) _PICOTEST_FOR_EACH_50 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_52(what, x, ...) what(x) _PICOTEST_FOR_EACH_51 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_53(what, x, ...) what(x) _PICOTEST_FOR_EACH_52 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_54(what, x, ...) what(x) _PICOTEST_FOR_EACH_53 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_55(what, x, ...) what(x) _PICOTEST_FOR_EACH_54 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_56(what, x, ...) what(x) _PICOTEST_FOR_EACH_55 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_57(what, x, ...) what(x) _PICOTEST_FOR_EACH_56 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_58(what, x, ...) what(x) _PICOTEST_FOR_EACH_57 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_59(what, x, ...) what(x) _PICOTEST_FOR_EACH_58 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_60(what, x, ...) what(x) _PICOTEST_FOR_EACH_59 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_61(what, x, ...) what(x) _PICOTEST_FOR_EACH_60 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_62(what, x, ...) what(x) _PICOTEST_FOR_EACH_61 _PICOTEST_PARENS(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_63(what, x, ...) what(x) _PICOTEST_FOR_EACH_62 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_2(what, x, ...)                                     \
+    what(x) _PICOTEST_FOR_EACH_1 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_3(what, x, ...)                                     \
+    what(x) _PICOTEST_FOR_EACH_2 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_4(what, x, ...)                                     \
+    what(x) _PICOTEST_FOR_EACH_3 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_5(what, x, ...)                                     \
+    what(x) _PICOTEST_FOR_EACH_4 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_6(what, x, ...)                                     \
+    what(x) _PICOTEST_FOR_EACH_5 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_7(what, x, ...)                                     \
+    what(x) _PICOTEST_FOR_EACH_6 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_8(what, x, ...)                                     \
+    what(x) _PICOTEST_FOR_EACH_7 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_9(what, x, ...)                                     \
+    what(x) _PICOTEST_FOR_EACH_8 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_10(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_9 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_11(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_10 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_12(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_11 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_13(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_12 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_14(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_13 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_15(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_14 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_16(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_15 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_17(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_16 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_18(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_17 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_19(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_18 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_20(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_19 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_21(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_20 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_22(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_21 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_23(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_22 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_24(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_23 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_25(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_24 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_26(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_25 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_27(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_26 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_28(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_27 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_29(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_28 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_30(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_29 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_31(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_30 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_32(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_31 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_33(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_32 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_34(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_33 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_35(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_34 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_36(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_35 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_37(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_36 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_38(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_37 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_39(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_38 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_40(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_39 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_41(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_40 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_42(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_41 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_43(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_42 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_44(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_43 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_45(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_44 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_46(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_45 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_47(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_46 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_48(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_47 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_49(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_48 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_50(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_49 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_51(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_50 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_52(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_51 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_53(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_52 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_54(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_53 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_55(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_54 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_56(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_55 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_57(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_56 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_58(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_57 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_59(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_58 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_60(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_59 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_61(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_60 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_62(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_61 _PICOTEST_PARENS(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_63(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_62 _PICOTEST_PARENS(what, __VA_ARGS__)
 #else
 #define _PICOTEST_FOR_EACH_1(what, x) what(x)
-#define _PICOTEST_FOR_EACH_2(what, x, ...) what(x) _PICOTEST_FOR_EACH_1(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_3(what, x, ...) what(x) _PICOTEST_FOR_EACH_2(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_4(what, x, ...) what(x) _PICOTEST_FOR_EACH_3(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_5(what, x, ...) what(x) _PICOTEST_FOR_EACH_4(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_6(what, x, ...) what(x) _PICOTEST_FOR_EACH_5(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_7(what, x, ...) what(x) _PICOTEST_FOR_EACH_6(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_8(what, x, ...) what(x) _PICOTEST_FOR_EACH_7(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_9(what, x, ...) what(x) _PICOTEST_FOR_EACH_8(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_10(what, x, ...) what(x) _PICOTEST_FOR_EACH_9(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_11(what, x, ...) what(x) _PICOTEST_FOR_EACH_10(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_12(what, x, ...) what(x) _PICOTEST_FOR_EACH_11(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_13(what, x, ...) what(x) _PICOTEST_FOR_EACH_12(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_14(what, x, ...) what(x) _PICOTEST_FOR_EACH_13(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_15(what, x, ...) what(x) _PICOTEST_FOR_EACH_14(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_16(what, x, ...) what(x) _PICOTEST_FOR_EACH_15(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_17(what, x, ...) what(x) _PICOTEST_FOR_EACH_16(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_18(what, x, ...) what(x) _PICOTEST_FOR_EACH_17(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_19(what, x, ...) what(x) _PICOTEST_FOR_EACH_18(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_20(what, x, ...) what(x) _PICOTEST_FOR_EACH_19(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_21(what, x, ...) what(x) _PICOTEST_FOR_EACH_20(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_22(what, x, ...) what(x) _PICOTEST_FOR_EACH_21(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_23(what, x, ...) what(x) _PICOTEST_FOR_EACH_22(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_24(what, x, ...) what(x) _PICOTEST_FOR_EACH_23(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_25(what, x, ...) what(x) _PICOTEST_FOR_EACH_24(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_26(what, x, ...) what(x) _PICOTEST_FOR_EACH_25(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_27(what, x, ...) what(x) _PICOTEST_FOR_EACH_26(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_28(what, x, ...) what(x) _PICOTEST_FOR_EACH_27(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_29(what, x, ...) what(x) _PICOTEST_FOR_EACH_28(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_30(what, x, ...) what(x) _PICOTEST_FOR_EACH_29(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_31(what, x, ...) what(x) _PICOTEST_FOR_EACH_30(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_32(what, x, ...) what(x) _PICOTEST_FOR_EACH_31(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_33(what, x, ...) what(x) _PICOTEST_FOR_EACH_32(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_34(what, x, ...) what(x) _PICOTEST_FOR_EACH_33(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_35(what, x, ...) what(x) _PICOTEST_FOR_EACH_34(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_36(what, x, ...) what(x) _PICOTEST_FOR_EACH_35(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_37(what, x, ...) what(x) _PICOTEST_FOR_EACH_36(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_38(what, x, ...) what(x) _PICOTEST_FOR_EACH_37(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_39(what, x, ...) what(x) _PICOTEST_FOR_EACH_38(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_40(what, x, ...) what(x) _PICOTEST_FOR_EACH_39(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_41(what, x, ...) what(x) _PICOTEST_FOR_EACH_40(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_42(what, x, ...) what(x) _PICOTEST_FOR_EACH_41(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_43(what, x, ...) what(x) _PICOTEST_FOR_EACH_42(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_44(what, x, ...) what(x) _PICOTEST_FOR_EACH_43(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_45(what, x, ...) what(x) _PICOTEST_FOR_EACH_44(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_46(what, x, ...) what(x) _PICOTEST_FOR_EACH_45(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_47(what, x, ...) what(x) _PICOTEST_FOR_EACH_46(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_48(what, x, ...) what(x) _PICOTEST_FOR_EACH_47(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_49(what, x, ...) what(x) _PICOTEST_FOR_EACH_48(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_50(what, x, ...) what(x) _PICOTEST_FOR_EACH_49(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_51(what, x, ...) what(x) _PICOTEST_FOR_EACH_50(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_52(what, x, ...) what(x) _PICOTEST_FOR_EACH_51(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_53(what, x, ...) what(x) _PICOTEST_FOR_EACH_52(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_54(what, x, ...) what(x) _PICOTEST_FOR_EACH_53(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_55(what, x, ...) what(x) _PICOTEST_FOR_EACH_54(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_56(what, x, ...) what(x) _PICOTEST_FOR_EACH_55(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_57(what, x, ...) what(x) _PICOTEST_FOR_EACH_56(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_58(what, x, ...) what(x) _PICOTEST_FOR_EACH_57(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_59(what, x, ...) what(x) _PICOTEST_FOR_EACH_58(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_60(what, x, ...) what(x) _PICOTEST_FOR_EACH_59(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_61(what, x, ...) what(x) _PICOTEST_FOR_EACH_60(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_62(what, x, ...) what(x) _PICOTEST_FOR_EACH_61(what, __VA_ARGS__)
-#define _PICOTEST_FOR_EACH_63(what, x, ...) what(x) _PICOTEST_FOR_EACH_62(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_2(what, x, ...)                                     \
+    what(x) _PICOTEST_FOR_EACH_1(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_3(what, x, ...)                                     \
+    what(x) _PICOTEST_FOR_EACH_2(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_4(what, x, ...)                                     \
+    what(x) _PICOTEST_FOR_EACH_3(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_5(what, x, ...)                                     \
+    what(x) _PICOTEST_FOR_EACH_4(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_6(what, x, ...)                                     \
+    what(x) _PICOTEST_FOR_EACH_5(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_7(what, x, ...)                                     \
+    what(x) _PICOTEST_FOR_EACH_6(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_8(what, x, ...)                                     \
+    what(x) _PICOTEST_FOR_EACH_7(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_9(what, x, ...)                                     \
+    what(x) _PICOTEST_FOR_EACH_8(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_10(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_9(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_11(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_10(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_12(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_11(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_13(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_12(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_14(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_13(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_15(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_14(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_16(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_15(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_17(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_16(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_18(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_17(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_19(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_18(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_20(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_19(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_21(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_20(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_22(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_21(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_23(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_22(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_24(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_23(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_25(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_24(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_26(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_25(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_27(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_26(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_28(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_27(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_29(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_28(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_30(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_29(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_31(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_30(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_32(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_31(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_33(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_32(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_34(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_33(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_35(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_34(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_36(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_35(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_37(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_36(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_38(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_37(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_39(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_38(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_40(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_39(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_41(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_40(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_42(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_41(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_43(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_42(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_44(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_43(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_45(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_44(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_46(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_45(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_47(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_46(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_48(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_47(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_49(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_48(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_50(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_49(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_51(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_50(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_52(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_51(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_53(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_52(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_54(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_53(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_55(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_54(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_56(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_55(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_57(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_56(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_58(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_57(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_59(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_58(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_60(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_59(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_61(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_60(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_62(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_61(what, __VA_ARGS__)
+#define _PICOTEST_FOR_EACH_63(what, x, ...)                                    \
+    what(x) _PICOTEST_FOR_EACH_62(what, __VA_ARGS__)
 #endif /* defined(_PICOTEST_PARENS) */
 /*! \endcond */
 
