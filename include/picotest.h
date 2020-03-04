@@ -166,6 +166,34 @@ typedef PicoTestFilterResult(PicoTestFilterProc)(PicoTestProc *test,
                                                  const char *testName,
                                                  const char *cond);
 
+/** \internal
+ * Implementation of default test filter function.
+ *
+ * Does a simple string equality test between **testName** and **cond**, and
+ * propagates to subtests if it doesn't match.
+ *
+ * @see PicoTestFailureLoggerProc
+ * @see PICOTEST_FAILURE_LOGGER
+ * @see PICOTEST_FAILURE_LOGGER_DEFAULT
+ */
+static PicoTestFilterResult _picoTest_filterByName(PicoTestProc *test,
+                                                   const char *testName,
+                                                   const char *cond) {
+    return (strcmp(testName, cond) == 0 ? PICOTEST_FILTER_PASS
+                                        : PICOTEST_FILTER_SKIP_PROPAGATE);
+}
+
+/**
+ * Default test filter function.
+ *
+ * Does a simple string equality test between **testName** and **cond**, and
+ * propagates to subtests if it doesn't match.
+ *
+ * @see PicoTestFilterProc
+ * @see PICOTEST_FILTER
+ */
+#define PICOTEST_FILTER_DEFAULT _picoTest_filterByName
+
 /**
  * Define the test filter function.
  *
@@ -188,10 +216,9 @@ typedef PicoTestFilterResult(PicoTestFilterProc)(PicoTestProc *test,
  *      @example_file{tags.c}
  *
  * @see PicoTestFilterProc
+ * @see PICOTEST_FILTER_DEFAULT
  */
-#define PICOTEST_FILTER(_test, _testName, _cond)                               \
-    (strcmp((_testName), (_cond)) == 0 ? PICOTEST_FILTER_PASS                  \
-                                       : PICOTEST_FILTER_SKIP_PROPAGATE)
+#define PICOTEST_FILTER PICOTEST_FILTER_DEFAULT
 
 /*! \} End of Test Filters */
 
@@ -270,14 +297,23 @@ typedef void(PicoTestFailureLoggerProc)(const char *file, int line,
                                         const char *msg, va_list args);
 
 /** \internal
+ * Implementation of default test failure log handler. Does nothing.
+ *
+ * @see PicoTestFailureLoggerProc
+ * @see PICOTEST_FAILURE_LOGGER
+ * @see PICOTEST_FAILURE_LOGGER_DEFAULT
+ */
+static void _picoTest_logFailure(const char *file, int line, const char *type,
+                                 const char *test, const char *msg,
+                                 va_list args) {}
+
+/**
  * Default test failure log handler. Does nothing.
  *
  * @see PicoTestFailureLoggerProc
  * @see PICOTEST_FAILURE_LOGGER
  */
-static void picoTest_logFailure(const char *file, int line, const char *type,
-                                const char *test, const char *msg,
-                                va_list args) {}
+#define PICOTEST_FAILURE_LOGGER_DEFAULT _picoTest_logFailure
 
 /**
  * Define the test failure log handler. Called when a test fails.
@@ -296,8 +332,9 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
  *      @example_file{logger.c}
  *
  * @see PicoTestFailureLoggerProc
+ * @see PICOTEST_FAILURE_LOGGER_DEFAULT
  */
-#define PICOTEST_FAILURE_LOGGER picoTest_logFailure
+#define PICOTEST_FAILURE_LOGGER PICOTEST_FAILURE_LOGGER_DEFAULT
 
 /*! \} End of Logging */
 
@@ -372,18 +409,18 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
     int _testName##_testCaseRunner() {                                         \
         int abort;                                                             \
         jmp_buf failureEnv;                                                    \
-        jmp_buf *oldEnv = picoTest_failureEnv;                                 \
-        int fail, oldFail = picoTest_fail;                                     \
-        picoTest_failureEnv = &failureEnv;                                     \
-        picoTest_fail = 0;                                                     \
+        jmp_buf *oldEnv = _picoTest_failureEnv;                                \
+        int fail, oldFail = _picoTest_fail;                                    \
+        _picoTest_failureEnv = &failureEnv;                                    \
+        _picoTest_fail = 0;                                                    \
         PICOTEST_CASE_ENTER(_PICOTEST_STRINGIZE(_testName));                   \
         abort = setjmp(failureEnv);
 
 #define _PICOTEST_CASE_RUNNER_END(_testName)                                   \
-    fail = picoTest_fail;                                                      \
+    fail = _picoTest_fail;                                                     \
     PICOTEST_CASE_LEAVE(_PICOTEST_STRINGIZE(_testName), fail);                 \
-    picoTest_failureEnv = oldEnv;                                              \
-    picoTest_fail = oldFail;                                                   \
+    _picoTest_failureEnv = oldEnv;                                             \
+    _picoTest_fail = oldFail;                                                  \
     return fail;                                                               \
     }
 
@@ -406,7 +443,7 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
         _testName##_testCase();                                                \
     }                                                                          \
     _PICOTEST_FIXTURE_CALL_TEARDOWN(_fixtureName, _testName, NULL,             \
-                                    picoTest_fail);                            \
+                                    _picoTest_fail);                           \
     _PICOTEST_CASE_RUNNER_END(_testName)                                       \
     static void _testName##_testCase()
 
@@ -420,7 +457,7 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
             _testName##_testCase(&context);                                    \
         }                                                                      \
         _PICOTEST_FIXTURE_CALL_TEARDOWN(_fixtureName, _testName, &context,     \
-                                        picoTest_fail);                        \
+                                        _picoTest_fail);                       \
     }                                                                          \
     _PICOTEST_CASE_RUNNER_END(_testName)                                       \
     static void _testName##_testCase(struct _fixtureName##_Context *_context)
@@ -453,13 +490,13 @@ static void picoTest_logFailure(const char *file, int line, const char *type,
  */
 typedef void(PicoTestCaseEnterProc)(const char *testName);
 
-/** \internal
+/**
  * Default test case enter hook. Does nothing.
  *
  * @see PicoTestCaseEnterProc
  * @see PICOTEST_CASE_ENTER
  */
-static void picoTest_enterTestCase(const char *testName) {}
+#define PICOTEST_CASE_ENTER_DEFAULT(testName)
 
 /**
  * Define the test case enter hook.
@@ -478,9 +515,10 @@ static void picoTest_enterTestCase(const char *testName) {}
  *      @example_file{hooks.c}
  *
  * @see PicoTestCaseEnterProc
+ * @see PICOTEST_CASE_ENTER_DEFAULT
  * @see PICOTEST_CASE_LEAVE
  */
-#define PICOTEST_CASE_ENTER picoTest_enterTestCase
+#define PICOTEST_CASE_ENTER PICOTEST_CASE_ENTER_DEFAULT
 
 /**
  * Function signature of test case leave hooks.
@@ -500,13 +538,13 @@ static void picoTest_enterTestCase(const char *testName) {}
  */
 typedef void(PicoTestCaseLeaveProc)(const char *testName, int fail);
 
-/** \internal
+/**
  * Default test case enter hook. Does nothing.
  *
  * @see PicoTestCaseLeaveProc
  * @see PICOTEST_CASE_LEAVE
  */
-static void picoTest_leaveTestCase(const char *testName, int fail) {}
+#define PICOTEST_CASE_LEAVE_DEFAULT(testName, fail)
 
 /**
  * Define the test case leave hook.
@@ -525,9 +563,10 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
  *      @example_file{hooks.c}
  *
  * @see PicoTestCaseLeaveProc
+ * @see PICOTEST_CASE_LEAVE_DEFAULT
  * @see PICOTEST_CASE_ENTER
  */
-#define PICOTEST_CASE_LEAVE picoTest_leaveTestCase
+#define PICOTEST_CASE_LEAVE PICOTEST_CASE_LEAVE_DEFAULT
 
 /*! \} End of Test Case Hooks */
 
@@ -637,9 +676,9 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
 
 /*! \cond IGNORE */
 #define _PICOTEST_FAILURE(type, ...)                                           \
-    picoTest_fail++;                                                           \
-    picoTest_assertFailed(PICOTEST_FAILURE_LOGGER, __FILE__, __LINE__, type,   \
-                          _PICOTEST_ARGCOUNT(__VA_ARGS__), __VA_ARGS__);       \
+    _picoTest_fail++;                                                          \
+    _picoTest_assertFailed(PICOTEST_FAILURE_LOGGER, __FILE__, __LINE__, type,  \
+                           _PICOTEST_ARGCOUNT(__VA_ARGS__), __VA_ARGS__);      \
 /*! \endcond */
 
 /** \internal
@@ -647,7 +686,7 @@ static void picoTest_leaveTestCase(const char *testName, int fail) {}
  *
  * @see PICOTEST_FAILURE
  */
-static int picoTest_fail = 0;
+static int _picoTest_fail = 0;
 
 /** \internal
  * Tag used by **setjmp()** and **longjmp()** to jump out of failed tests.
@@ -655,7 +694,7 @@ static int picoTest_fail = 0;
  * @see PICOTEST_ABORT
  * @see PICOTEST_CASE
  */
-static jmp_buf *picoTest_failureEnv = NULL;
+static jmp_buf *_picoTest_failureEnv = NULL;
 
 /**
  * Abort a test case.
@@ -664,7 +703,7 @@ static jmp_buf *picoTest_failureEnv = NULL;
  *
  * @see PICOTEST_CASE
  */
-#define PICOTEST_ABORT() longjmp(*picoTest_failureEnv, 1)
+#define PICOTEST_ABORT() longjmp(*_picoTest_failureEnv, 1)
 
 /** \internal
  *
@@ -681,9 +720,9 @@ static jmp_buf *picoTest_failureEnv = NULL;
  * @see PICOTEST_ASSERT
  * @see PICOTEST_VERIFY
  */
-static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
-                                  const char *file, int line, const char *type,
-                                  int count, const char *test, ...) {
+static void _picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
+                                   const char *file, int line, const char *type,
+                                   int count, const char *test, ...) {
     if (count > 1) {
         /* Extra args after **test** */
         va_list args;
@@ -724,13 +763,13 @@ static void picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
  */
 typedef void(PicoTestAssertBeforeProc)(const char *type, const char *test);
 
-/** \internal
+/**
  * Default assert before hook. Does nothing.
  *
  * @see PicoTestAssertBeforeProc
  * @see PICOTEST_ASSERT_BEFORE
  */
-static void picoTest_beforeAssert(const char *type, const char *test) {}
+#define PICOTEST_ASSERT_BEFORE_DEFAULT(type, test)
 
 /**
  * Define the assert before hook.
@@ -749,9 +788,10 @@ static void picoTest_beforeAssert(const char *type, const char *test) {}
  *      @example_file{hooks.c}
  *
  * @see PicoTestAssertBeforeProc
+ * @see PICOTEST_ASSERT_BEFORE_DEFAULT
  * @see PICOTEST_ASSERT_AFTER
  */
-#define PICOTEST_ASSERT_BEFORE picoTest_beforeAssert
+#define PICOTEST_ASSERT_BEFORE PICOTEST_ASSERT_BEFORE_DEFAULT
 
 /**
  * Function signature of assert after hooks.
@@ -761,8 +801,6 @@ static void picoTest_beforeAssert(const char *type, const char *test) {}
  * @param type  Type of test (e.g. "ASSERT").
  * @param test  Test.
  * @param fail  Test result: zero for success, non-zero for failure.
- * @param msg   (optional) Message format string.
- * @param ...   (optional) Message string arguments.
  *
  * @par Usage
  *      @snippet hooks.c    PICOTEST_ASSERT_AFTER example
@@ -775,14 +813,13 @@ static void picoTest_beforeAssert(const char *type, const char *test) {}
 typedef void(PicoTestAssertAfterProc)(const char *type, const char *test,
                                       int fail);
 
-/** \internal
+/**
  * Default assert after hook. Does nothing.
  *
  * @see PicoTestAssertAfterProc
  * @see PICOTEST_ASSERT_AFTER
  */
-static void picoTest_afterAssert(const char *type, const char *test, int fail) {
-}
+#define PICOTEST_ASSERT_AFTER_DEFAULT(type, test, fail)
 
 /**
  * Define the assert after hook.
@@ -801,9 +838,10 @@ static void picoTest_afterAssert(const char *type, const char *test, int fail) {
  *      @example_file{hooks.c}
  *
  * @see PicoTestAssertAfterProc
+ * @see PICOTEST_ASSERT_AFTER_DEFAULT
  * @see PICOTEST_ASSERT_BEFORE
  */
-#define PICOTEST_ASSERT_AFTER picoTest_afterAssert
+#define PICOTEST_ASSERT_AFTER PICOTEST_ASSERT_AFTER_DEFAULT
 
 /*! \} End of Assertion Hooks */
 
@@ -986,14 +1024,13 @@ static void picoTest_afterAssert(const char *type, const char *test, int fail) {
 typedef void(PicoTestFixtureBeforeSetupProc)(const char *fixtureName,
                                              const char *testName);
 
-/** \internal
+/**
  * Default test fixture before setup hook. Does nothing.
  *
  * @see PicoTestFixtureBeforeSetupProc
  * @see PICOTEST_FIXTURE_BEFORE_SETUP
  */
-static void picoTest_beforeSetup(const char *fixtureName,
-                                 const char *testName) {}
+#define PICOTEST_FIXTURE_BEFORE_SETUP_DEFAULT(fixtureName, testName)
 
 /**
  * Define the test fixture before setup hook.
@@ -1012,9 +1049,10 @@ static void picoTest_beforeSetup(const char *fixtureName,
  *      @example_file{hooks.c}
  *
  * @see PicoTestFixtureBeforeSetupProc
+ * @see PICOTEST_FIXTURE_BEFORE_SETUP_DEFAULT
  * @see PICOTEST_FIXTURE_AFTER_SETUP
  */
-#define PICOTEST_FIXTURE_BEFORE_SETUP picoTest_beforeSetup
+#define PICOTEST_FIXTURE_BEFORE_SETUP PICOTEST_FIXTURE_BEFORE_SETUP_DEFAULT
 
 /**
  * Function signature of test fixture after setup hooks.
@@ -1035,14 +1073,13 @@ static void picoTest_beforeSetup(const char *fixtureName,
 typedef void(PicoTestFixtureAfterSetupProc)(const char *fixtureName,
                                             const char *testName);
 
-/** \internal
+/**
  * Default test fixture after setup hook. Does nothing.
  *
  * @see PicoTestFixtureAfterSetupProc
  * @see PICOTEST_FIXTURE_AFTER_SETUP
  */
-static void picoTest_afterSetup(const char *fixtureName, const char *testName) {
-}
+#define PICOTEST_FIXTURE_AFTER_SETUP_DEFAULT(fixtureName, testName)
 
 /**
  * Define the test fixture after setup hook.
@@ -1061,9 +1098,10 @@ static void picoTest_afterSetup(const char *fixtureName, const char *testName) {
  *      @example_file{hooks.c}
  *
  * @see PicoTestFixtureAfterSetupProc
+ * @see PICOTEST_FIXTURE_AFTER_SETUP_DEFAULT
  * @see PICOTEST_FIXTURE_BEFORE_SETUP
  */
-#define PICOTEST_FIXTURE_AFTER_SETUP picoTest_afterSetup
+#define PICOTEST_FIXTURE_AFTER_SETUP PICOTEST_FIXTURE_AFTER_SETUP_DEFAULT
 
 /**
  * Function signature of test fixture before teardown hooks.
@@ -1085,14 +1123,13 @@ static void picoTest_afterSetup(const char *fixtureName, const char *testName) {
 typedef void(PicoTestFixtureBeforeTeardownProc)(const char *fixtureName,
                                                 const char *testName, int fail);
 
-/** \internal
+/**
  * Default test fixture before teardown hook. Does nothing.
  *
  * @see PicoTestFixtureBeforeTeardownProc
  * @see PICOTEST_FIXTURE_BEFORE_TEARDOWN
  */
-static void picoTest_beforeTeardown(const char *fixtureName,
-                                    const char *testName, int fail) {}
+#define PICOTEST_FIXTURE_BEFORE_TEARDOWN_DEFAULT(fixtureName, testName, fail)
 
 /**
  * Define the test fixture before teardown hook.
@@ -1111,9 +1148,11 @@ static void picoTest_beforeTeardown(const char *fixtureName,
  *      @example_file{hooks.c}
  *
  * @see PicoTestFixtureBeforeTeardownProc
+ * @see PICOTEST_FIXTURE_BEFORE_TEARDOWN_DEFAULT
  * @see PICOTEST_FIXTURE_AFTER_TEARDOWN
  */
-#define PICOTEST_FIXTURE_BEFORE_TEARDOWN picoTest_beforeTeardown
+#define PICOTEST_FIXTURE_BEFORE_TEARDOWN                                       \
+    PICOTEST_FIXTURE_BEFORE_TEARDOWN_DEFAULT
 
 /**
  * Function signature of test fixture after teardown hooks.
@@ -1135,14 +1174,13 @@ static void picoTest_beforeTeardown(const char *fixtureName,
 typedef void(PicoTestFixtureAfterTeardownProc)(const char *fixtureName,
                                                const char *testName, int fail);
 
-/** \internal
+/**
  * Default test fixture after teardown hook. Does nothing.
  *
  * @see PicoTestFixtureAfterTeardownProc
  * @see PICOTEST_FIXTURE_AFTER_TEARDOWN
  */
-static void picoTest_afterTeardown(const char *fixtureName,
-                                   const char *testName, int fail) {}
+#define PICOTEST_FIXTURE_AFTER_TEARDOWN_DEFAULT(fixtureName, testName, fail)
 
 /**
  * Define the test fixture after teardown hook.
@@ -1161,9 +1199,10 @@ static void picoTest_afterTeardown(const char *fixtureName,
  *      @example_file{hooks.c}
  *
  * @see PicoTestFixtureAfterTeardownProc
+ * @see PICOTEST_FIXTURE_AFTER_TEARDOWN_DEFAULT
  * @see PICOTEST_FIXTURE_BEFORE_TEARDOWN
  */
-#define PICOTEST_FIXTURE_AFTER_TEARDOWN picoTest_afterTeardown
+#define PICOTEST_FIXTURE_AFTER_TEARDOWN PICOTEST_FIXTURE_AFTER_TEARDOWN_DEFAULT
 
 /*! \} End of Test Fixture Hooks */
 
@@ -1305,13 +1344,13 @@ typedef struct PicoTestDescr {
  */
 typedef void(PicoTestSuiteEnterProc)(const char *suiteName, int nb);
 
-/** \internal
+/**
  * Default test suite enter hook. Does nothing.
  *
  * @see PicoTestSuiteEnterProc
  * @see PICOTEST_SUITE_ENTER
  */
-static void picoTest_enterTestSuite(const char *suiteName, int nb) {}
+#define PICOTEST_SUITE_ENTER_DEFAULT(suiteName, nb)
 
 /**
  * Define the test suite enter hook.
@@ -1330,9 +1369,10 @@ static void picoTest_enterTestSuite(const char *suiteName, int nb) {}
  *      @example_file{hooks.c}
  *
  * @see PicoTestSuiteEnterProc
+ * @see PICOTEST_SUITE_ENTER_DEFAULT
  * @see PICOTEST_SUITE_LEAVE
  */
-#define PICOTEST_SUITE_ENTER picoTest_enterTestSuite
+#define PICOTEST_SUITE_ENTER PICOTEST_SUITE_ENTER_DEFAULT
 
 /**
  * Function signature of test suite leave hooks.
@@ -1352,13 +1392,13 @@ static void picoTest_enterTestSuite(const char *suiteName, int nb) {}
  */
 typedef void(PicoTestSuiteLeaveProc)(const char *suiteName, int nb, int fail);
 
-/** \internal
+/**
  * Default test suite leave hook. Does nothing.
  *
  * @see PicoTestSuiteLeaveProc
  * @see PICOTEST_SUITE_LEAVE
  */
-static void picoTest_leaveTestSuite(const char *suiteName, int nb, int fail) {}
+#define PICOTEST_SUITE_LEAVE_DEFAULT(suiteName, nb, fail)
 
 /**
  * Define the test suite leave hook.
@@ -1379,9 +1419,10 @@ static void picoTest_leaveTestSuite(const char *suiteName, int nb, int fail) {}
  *      @example_file{hooks.c}
  *
  * @see PicoTestSuiteLeaveProc
+ * @see PICOTEST_SUITE_LEAVE_DEFAULT
  * @see PICOTEST_SUITE_ENTER
  */
-#define PICOTEST_SUITE_LEAVE picoTest_leaveTestSuite
+#define PICOTEST_SUITE_LEAVE PICOTEST_SUITE_LEAVE_DEFAULT
 
 /**
  * Function signature of test suite before subtest hooks.
@@ -1407,14 +1448,14 @@ typedef void(PicoTestSuiteBeforeSubtestProc)(const char *suiteName, int nb,
                                              int fail, int index,
                                              const char *testName);
 
-/** \internal
+/**
  * Default test suite before subtest hook. Does nothing.
  *
  * @see PicoTestSuiteBeforeSubtestProc
  * @see PICOTEST_SUITE_BEFORE_SUBTEST
  */
-static void picoTest_beforeSubtest(const char *suiteName, int nb, int fail,
-                                   int index, const char *testName) {}
+#define PICOTEST_SUITE_BEFORE_SUBTEST_DEFAULT(suiteName, nb, fail, index,      \
+                                              testName)
 
 /**
  * Define the test suite before subset hook.
@@ -1433,9 +1474,10 @@ static void picoTest_beforeSubtest(const char *suiteName, int nb, int fail,
  *      @example_file{hooks.c}
  *
  * @see PicoTestSuiteBeforeSubtestProc
+ * @see PICOTEST_SUITE_BEFORE_SUBTEST_DEFAULT
  * @see PICOTEST_SUITE_AFTER_SUBTEST
  */
-#define PICOTEST_SUITE_BEFORE_SUBTEST picoTest_beforeSubtest
+#define PICOTEST_SUITE_BEFORE_SUBTEST PICOTEST_SUITE_BEFORE_SUBTEST_DEFAULT
 
 /**
  * Function signature of test suite after subtest hooks.
@@ -1463,14 +1505,14 @@ typedef void(PicoTestSuiteAfterSubtestProc)(const char *suiteName, int nb,
                                             int fail, int index,
                                             const char *testName, int sfail);
 
-/** \internal
+/**
  * Default test suite after subtest hook. Does nothing.
  *
  * @see PicoTestSuiteAfterSubtestProc
  * @see PICOTEST_SUITE_AFTER_SUBTEST
  */
-static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
-                                  int index, const char *testName, int sfail) {}
+#define PICOTEST_SUITE_AFTER_SUBTEST_DEFAULT(suiteName, nb, fail, index,       \
+                                             testName, sfail)
 
 /**
  * Define the test suite after subset hook.
@@ -1489,9 +1531,10 @@ static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
  *      @example_file{hooks.c}
  *
  * @see PicoTestSuiteAfterSubtestProc
+ * @see PICOTEST_SUITE_AFTER_SUBTEST_DEFAULT
  * @see PICOTEST_SUITE_BEFORE_SUBTEST
  */
-#define PICOTEST_SUITE_AFTER_SUBTEST picoTest_afterSubtest
+#define PICOTEST_SUITE_AFTER_SUBTEST PICOTEST_SUITE_AFTER_SUBTEST_DEFAULT
 
 /*! \} End of Test Suite Hooks */
 
@@ -1528,7 +1571,7 @@ static void picoTest_afterSubtest(const char *suiteName, int nb, int fail,
 
 /*! \} End of Basic Utilities */
 
-/*!\internal
+/*! \internal
  * \name Variadic Macro Utilities
  *
  * Macro hackery for accessing args passed to variadic macros.

@@ -89,15 +89,27 @@ Test Suite Hooks</h2></td></tr>
 <tr class="memitem:ga80efec0204108859c9ececa3921f6f76"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__suites.html#ga80efec0204108859c9ececa3921f6f76">PicoTestSuiteAfterSubtestProc</a>(const char *suiteName, int nb, int fail, int index, const char *testName, int sfail)</td></tr>
 <tr class="memdesc:ga80efec0204108859c9ececa3921f6f76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function signature of test suite after subtest hooks.  <a href="#ga80efec0204108859c9ececa3921f6f76">More...</a><br /></td></tr>
 <tr class="separator:ga80efec0204108859c9ececa3921f6f76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga50f13419afbe35f17150bacd7a906838"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__suites.html#ga50f13419afbe35f17150bacd7a906838">PICOTEST_SUITE_ENTER_DEFAULT</a>(suiteName,  nb)</td></tr>
+<tr class="memdesc:ga50f13419afbe35f17150bacd7a906838"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test suite enter hook.  <a href="#ga50f13419afbe35f17150bacd7a906838">More...</a><br /></td></tr>
+<tr class="separator:ga50f13419afbe35f17150bacd7a906838"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae569b3a4f05ebefc297411072e505fd3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__suites.html#gae569b3a4f05ebefc297411072e505fd3">PICOTEST_SUITE_ENTER</a></td></tr>
 <tr class="memdesc:gae569b3a4f05ebefc297411072e505fd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test suite enter hook.  <a href="#gae569b3a4f05ebefc297411072e505fd3">More...</a><br /></td></tr>
 <tr class="separator:gae569b3a4f05ebefc297411072e505fd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf24c1f7c243e1990463aea4fbd4d5324"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__suites.html#gaf24c1f7c243e1990463aea4fbd4d5324">PICOTEST_SUITE_LEAVE_DEFAULT</a>(suiteName,  nb,  fail)</td></tr>
+<tr class="memdesc:gaf24c1f7c243e1990463aea4fbd4d5324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test suite leave hook.  <a href="#gaf24c1f7c243e1990463aea4fbd4d5324">More...</a><br /></td></tr>
+<tr class="separator:gaf24c1f7c243e1990463aea4fbd4d5324"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2ce5e2f78882e9f26067dc4ca9d0570c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__suites.html#ga2ce5e2f78882e9f26067dc4ca9d0570c">PICOTEST_SUITE_LEAVE</a></td></tr>
 <tr class="memdesc:ga2ce5e2f78882e9f26067dc4ca9d0570c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test suite leave hook.  <a href="#ga2ce5e2f78882e9f26067dc4ca9d0570c">More...</a><br /></td></tr>
 <tr class="separator:ga2ce5e2f78882e9f26067dc4ca9d0570c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab5b747836950016e04544e29879f3da3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__suites.html#gab5b747836950016e04544e29879f3da3">PICOTEST_SUITE_BEFORE_SUBTEST_DEFAULT</a>(suiteName,  nb,  fail,  index,  testName)</td></tr>
+<tr class="memdesc:gab5b747836950016e04544e29879f3da3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test suite before subtest hook.  <a href="#gab5b747836950016e04544e29879f3da3">More...</a><br /></td></tr>
+<tr class="separator:gab5b747836950016e04544e29879f3da3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5a49439f633f383f0bb3d2a6e700d464"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__suites.html#ga5a49439f633f383f0bb3d2a6e700d464">PICOTEST_SUITE_BEFORE_SUBTEST</a></td></tr>
 <tr class="memdesc:ga5a49439f633f383f0bb3d2a6e700d464"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test suite before subset hook.  <a href="#ga5a49439f633f383f0bb3d2a6e700d464">More...</a><br /></td></tr>
 <tr class="separator:ga5a49439f633f383f0bb3d2a6e700d464"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0aa7b03502294fee8f3e5b4951027145"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__suites.html#ga0aa7b03502294fee8f3e5b4951027145">PICOTEST_SUITE_AFTER_SUBTEST_DEFAULT</a>(suiteName,  nb,  fail,  index,  testName,  sfail)</td></tr>
+<tr class="memdesc:ga0aa7b03502294fee8f3e5b4951027145"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test suite after subtest hook.  <a href="#ga0aa7b03502294fee8f3e5b4951027145">More...</a><br /></td></tr>
+<tr class="separator:ga0aa7b03502294fee8f3e5b4951027145"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaab4493d86071cc9263827bf9a05a3b24"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__suites.html#gaab4493d86071cc9263827bf9a05a3b24">PICOTEST_SUITE_AFTER_SUBTEST</a></td></tr>
 <tr class="memdesc:gaab4493d86071cc9263827bf9a05a3b24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test suite after subset hook.  <a href="#gaab4493d86071cc9263827bf9a05a3b24">More...</a><br /></td></tr>
 <tr class="separator:gaab4493d86071cc9263827bf9a05a3b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,6 +163,40 @@ Test Suite Hooks</h2></td></tr>
 
 </div>
 </div>
+<a id="ga50f13419afbe35f17150bacd7a906838"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga50f13419afbe35f17150bacd7a906838">&#9670;&nbsp;</a></span>PICOTEST_SUITE_ENTER_DEFAULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PICOTEST_SUITE_ENTER_DEFAULT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">suiteName, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">nb&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default test suite enter hook. </p>
+<p>Does nothing.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__test__suites.html#ga881ee23cced7bc4df9427409dcb55254" title="Function signature of test suite enter hooks.">PicoTestSuiteEnterProc</a> </dd>
+<dd>
+<a class="el" href="group__test__suites.html#gae569b3a4f05ebefc297411072e505fd3" title="Define the test suite enter hook.">PICOTEST_SUITE_ENTER</a> </dd></dl>
+
+</div>
+</div>
 <a id="gae569b3a4f05ebefc297411072e505fd3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gae569b3a4f05ebefc297411072e505fd3">&#9670;&nbsp;</a></span>PICOTEST_SUITE_ENTER</h2>
 
@@ -170,6 +216,48 @@ Test Suite Hooks</h2></td></tr>
 <dl class="section user"><dt>Examples</dt><dd><a class="el" href="hooks_8c.html">hooks.c</a> Example of PicoTest hooks, prints all events to stdout. <br />
  </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__test__suites.html#ga881ee23cced7bc4df9427409dcb55254" title="Function signature of test suite enter hooks.">PicoTestSuiteEnterProc</a> </dd>
+<dd>
+<a class="el" href="group__test__suites.html#ga50f13419afbe35f17150bacd7a906838" title="Default test suite enter hook.">PICOTEST_SUITE_ENTER_DEFAULT</a> </dd>
+<dd>
+<a class="el" href="group__test__suites.html#ga2ce5e2f78882e9f26067dc4ca9d0570c" title="Define the test suite leave hook.">PICOTEST_SUITE_LEAVE</a> </dd></dl>
+
+</div>
+</div>
+<a id="gaf24c1f7c243e1990463aea4fbd4d5324"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf24c1f7c243e1990463aea4fbd4d5324">&#9670;&nbsp;</a></span>PICOTEST_SUITE_LEAVE_DEFAULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PICOTEST_SUITE_LEAVE_DEFAULT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">suiteName, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">nb, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">fail&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default test suite leave hook. </p>
+<p>Does nothing.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__test__suites.html#gabc6f39019f0cde9f04812785aceaab09" title="Function signature of test suite leave hooks.">PicoTestSuiteLeaveProc</a> </dd>
 <dd>
 <a class="el" href="group__test__suites.html#ga2ce5e2f78882e9f26067dc4ca9d0570c" title="Define the test suite leave hook.">PICOTEST_SUITE_LEAVE</a> </dd></dl>
 
@@ -196,7 +284,61 @@ Test Suite Hooks</h2></td></tr>
  </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__test__suites.html#gabc6f39019f0cde9f04812785aceaab09" title="Function signature of test suite leave hooks.">PicoTestSuiteLeaveProc</a> </dd>
 <dd>
+<a class="el" href="group__test__suites.html#gaf24c1f7c243e1990463aea4fbd4d5324" title="Default test suite leave hook.">PICOTEST_SUITE_LEAVE_DEFAULT</a> </dd>
+<dd>
 <a class="el" href="group__test__suites.html#gae569b3a4f05ebefc297411072e505fd3" title="Define the test suite enter hook.">PICOTEST_SUITE_ENTER</a> </dd></dl>
+
+</div>
+</div>
+<a id="gab5b747836950016e04544e29879f3da3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab5b747836950016e04544e29879f3da3">&#9670;&nbsp;</a></span>PICOTEST_SUITE_BEFORE_SUBTEST_DEFAULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PICOTEST_SUITE_BEFORE_SUBTEST_DEFAULT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">suiteName, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">nb, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">fail, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">index, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">testName&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default test suite before subtest hook. </p>
+<p>Does nothing.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__test__suites.html#gade4d2a7d8a611ca76c675607529a3edb" title="Function signature of test suite before subtest hooks.">PicoTestSuiteBeforeSubtestProc</a> </dd>
+<dd>
+<a class="el" href="group__test__suites.html#ga5a49439f633f383f0bb3d2a6e700d464" title="Define the test suite before subset hook.">PICOTEST_SUITE_BEFORE_SUBTEST</a> </dd></dl>
 
 </div>
 </div>
@@ -219,6 +361,66 @@ Test Suite Hooks</h2></td></tr>
 <dl class="section user"><dt>Examples</dt><dd><a class="el" href="hooks_8c.html">hooks.c</a> Example of PicoTest hooks, prints all events to stdout. <br />
  </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__test__suites.html#gade4d2a7d8a611ca76c675607529a3edb" title="Function signature of test suite before subtest hooks.">PicoTestSuiteBeforeSubtestProc</a> </dd>
+<dd>
+<a class="el" href="group__test__suites.html#gab5b747836950016e04544e29879f3da3" title="Default test suite before subtest hook.">PICOTEST_SUITE_BEFORE_SUBTEST_DEFAULT</a> </dd>
+<dd>
+<a class="el" href="group__test__suites.html#gaab4493d86071cc9263827bf9a05a3b24" title="Define the test suite after subset hook.">PICOTEST_SUITE_AFTER_SUBTEST</a> </dd></dl>
+
+</div>
+</div>
+<a id="ga0aa7b03502294fee8f3e5b4951027145"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0aa7b03502294fee8f3e5b4951027145">&#9670;&nbsp;</a></span>PICOTEST_SUITE_AFTER_SUBTEST_DEFAULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PICOTEST_SUITE_AFTER_SUBTEST_DEFAULT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">suiteName, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">nb, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">fail, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">index, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">testName, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">sfail&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default test suite after subtest hook. </p>
+<p>Does nothing.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__test__suites.html#ga80efec0204108859c9ececa3921f6f76" title="Function signature of test suite after subtest hooks.">PicoTestSuiteAfterSubtestProc</a> </dd>
 <dd>
 <a class="el" href="group__test__suites.html#gaab4493d86071cc9263827bf9a05a3b24" title="Define the test suite after subset hook.">PICOTEST_SUITE_AFTER_SUBTEST</a> </dd></dl>
 
@@ -243,6 +445,8 @@ Test Suite Hooks</h2></td></tr>
 <dl class="section user"><dt>Examples</dt><dd><a class="el" href="hooks_8c.html">hooks.c</a> Example of PicoTest hooks, prints all events to stdout. <br />
  </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__test__suites.html#ga80efec0204108859c9ececa3921f6f76" title="Function signature of test suite after subtest hooks.">PicoTestSuiteAfterSubtestProc</a> </dd>
+<dd>
+<a class="el" href="group__test__suites.html#ga0aa7b03502294fee8f3e5b4951027145" title="Default test suite after subtest hook.">PICOTEST_SUITE_AFTER_SUBTEST_DEFAULT</a> </dd>
 <dd>
 <a class="el" href="group__test__suites.html#ga5a49439f633f383f0bb3d2a6e700d464" title="Define the test suite before subset hook.">PICOTEST_SUITE_BEFORE_SUBTEST</a> </dd></dl>
 

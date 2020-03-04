@@ -107,9 +107,12 @@ Test Functions</h2></td></tr>
 Test Filters</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp74627bee0e0205d20926f990fd942afa"></a>PicoTest provides a way for client code to select tests to be run using custom filter functions. </p>
 </td></tr>
-<tr class="memitem:ga47f93260349371f63f95900166cf7858"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#ga47f93260349371f63f95900166cf7858">PICOTEST_FILTER</a>(_test,  _testName,  _cond)</td></tr>
-<tr class="memdesc:ga47f93260349371f63f95900166cf7858"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test filter function.  <a href="group__public__interface.html#ga47f93260349371f63f95900166cf7858">More...</a><br /></td></tr>
-<tr class="separator:ga47f93260349371f63f95900166cf7858"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7dccbea985fb578ba6b7639fb66fc3ea"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#ga7dccbea985fb578ba6b7639fb66fc3ea">PICOTEST_FILTER_DEFAULT</a></td></tr>
+<tr class="memdesc:ga7dccbea985fb578ba6b7639fb66fc3ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test filter function.  <a href="group__public__interface.html#ga7dccbea985fb578ba6b7639fb66fc3ea">More...</a><br /></td></tr>
+<tr class="separator:ga7dccbea985fb578ba6b7639fb66fc3ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabd82de0bec174d972151cd122a0a03ff"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#gabd82de0bec174d972151cd122a0a03ff">PICOTEST_FILTER</a></td></tr>
+<tr class="memdesc:gabd82de0bec174d972151cd122a0a03ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test filter function.  <a href="group__public__interface.html#gabd82de0bec174d972151cd122a0a03ff">More...</a><br /></td></tr>
+<tr class="separator:gabd82de0bec174d972151cd122a0a03ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf5acf1a68605f6c8b758bae0224e03fc"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#gaf5acf1a68605f6c8b758bae0224e03fc">PicoTestFilterResult</a> { <a class="el" href="group__public__interface.html#ggaf5acf1a68605f6c8b758bae0224e03fca0ee37a1cf8a2347fb3c42636dfb80b1c">PICOTEST_FILTER_SKIP</a>, 
 <a class="el" href="group__public__interface.html#ggaf5acf1a68605f6c8b758bae0224e03fca35508816a12c32e7ce536786e5ffc8d9">PICOTEST_FILTER_PASS</a>, 
 <a class="el" href="group__public__interface.html#ggaf5acf1a68605f6c8b758bae0224e03fca487de7ecca4099ee737bd41a8d75ba75">PICOTEST_FILTER_SKIP_PROPAGATE</a>, 
@@ -136,6 +139,9 @@ Test hierarchy traversal</h2></td></tr>
 Logging</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp8db7df66ab1d7ab5f1dc947acdb5fae4"></a>PicoTest provides a way for client code to intercept test failure events. This can be used for e.g. logging purpose or reporting. </p>
 </td></tr>
+<tr class="memitem:gaf08fabb517d01d11ce72614d1df51687"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#gaf08fabb517d01d11ce72614d1df51687">PICOTEST_FAILURE_LOGGER_DEFAULT</a></td></tr>
+<tr class="memdesc:gaf08fabb517d01d11ce72614d1df51687"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test failure log handler.  <a href="group__public__interface.html#gaf08fabb517d01d11ce72614d1df51687">More...</a><br /></td></tr>
+<tr class="separator:gaf08fabb517d01d11ce72614d1df51687"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae4b2f943bef59bd05fb7a328a6c39d48"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#gae4b2f943bef59bd05fb7a328a6c39d48">PICOTEST_FAILURE_LOGGER</a></td></tr>
 <tr class="memdesc:gae4b2f943bef59bd05fb7a328a6c39d48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test failure log handler.  <a href="group__public__interface.html#gae4b2f943bef59bd05fb7a328a6c39d48">More...</a><br /></td></tr>
 <tr class="separator:gae4b2f943bef59bd05fb7a328a6c39d48"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,9 +159,15 @@ Test Case Definitions</h2></td></tr>
 Test Case Hooks</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp0021901452cf1d9b6e38f9fb83dfedac"></a>PicoTest provides a way for client code to intercept test case events. This can be used for e.g. logging purpose or reporting. </p>
 </td></tr>
+<tr class="memitem:ga4a4a1356f85b26cd29f2f7ae4c09cf91"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__cases.html#ga4a4a1356f85b26cd29f2f7ae4c09cf91">PICOTEST_CASE_ENTER_DEFAULT</a>(testName)</td></tr>
+<tr class="memdesc:ga4a4a1356f85b26cd29f2f7ae4c09cf91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test case enter hook.  <a href="group__test__cases.html#ga4a4a1356f85b26cd29f2f7ae4c09cf91">More...</a><br /></td></tr>
+<tr class="separator:ga4a4a1356f85b26cd29f2f7ae4c09cf91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad1f702ab6600b04f66731d35bf38fc67"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__cases.html#gad1f702ab6600b04f66731d35bf38fc67">PICOTEST_CASE_ENTER</a></td></tr>
 <tr class="memdesc:gad1f702ab6600b04f66731d35bf38fc67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test case enter hook.  <a href="group__test__cases.html#gad1f702ab6600b04f66731d35bf38fc67">More...</a><br /></td></tr>
 <tr class="separator:gad1f702ab6600b04f66731d35bf38fc67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5ff2295c5a324991c72a81bcfb949522"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__cases.html#ga5ff2295c5a324991c72a81bcfb949522">PICOTEST_CASE_LEAVE_DEFAULT</a>(testName,  fail)</td></tr>
+<tr class="memdesc:ga5ff2295c5a324991c72a81bcfb949522"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test case enter hook.  <a href="group__test__cases.html#ga5ff2295c5a324991c72a81bcfb949522">More...</a><br /></td></tr>
+<tr class="separator:ga5ff2295c5a324991c72a81bcfb949522"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4fd71dfed1ce3733b0d670c86b8d523a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__cases.html#ga4fd71dfed1ce3733b0d670c86b8d523a">PICOTEST_CASE_LEAVE</a></td></tr>
 <tr class="memdesc:ga4fd71dfed1ce3733b0d670c86b8d523a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test case leave hook.  <a href="group__test__cases.html#ga4fd71dfed1ce3733b0d670c86b8d523a">More...</a><br /></td></tr>
 <tr class="separator:ga4fd71dfed1ce3733b0d670c86b8d523a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,9 +197,15 @@ Assertion Definitions</h2></td></tr>
 Assertion Hooks</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp7148f0c9091d7e8e94b666aba3f844bb"></a>PicoTest provides a way for client code to intercept assertions events. This can be used for e.g. logging purpose or reporting. </p>
 </td></tr>
+<tr class="memitem:ga331ef495337f7e2aae8be15cfd2a170a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__assertions.html#ga331ef495337f7e2aae8be15cfd2a170a">PICOTEST_ASSERT_BEFORE_DEFAULT</a>(type,  test)</td></tr>
+<tr class="memdesc:ga331ef495337f7e2aae8be15cfd2a170a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default assert before hook.  <a href="group__assertions.html#ga331ef495337f7e2aae8be15cfd2a170a">More...</a><br /></td></tr>
+<tr class="separator:ga331ef495337f7e2aae8be15cfd2a170a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa38b1a0014fe2ab172a5466f9031aafb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__assertions.html#gaa38b1a0014fe2ab172a5466f9031aafb">PICOTEST_ASSERT_BEFORE</a></td></tr>
 <tr class="memdesc:gaa38b1a0014fe2ab172a5466f9031aafb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the assert before hook.  <a href="group__assertions.html#gaa38b1a0014fe2ab172a5466f9031aafb">More...</a><br /></td></tr>
 <tr class="separator:gaa38b1a0014fe2ab172a5466f9031aafb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab1f1711109e4a8443a61c228194a6825"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__assertions.html#gab1f1711109e4a8443a61c228194a6825">PICOTEST_ASSERT_AFTER_DEFAULT</a>(type,  test,  fail)</td></tr>
+<tr class="memdesc:gab1f1711109e4a8443a61c228194a6825"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default assert after hook.  <a href="group__assertions.html#gab1f1711109e4a8443a61c228194a6825">More...</a><br /></td></tr>
+<tr class="separator:gab1f1711109e4a8443a61c228194a6825"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae6c0c62e54611c6d92a3a8b81545f934"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__assertions.html#gae6c0c62e54611c6d92a3a8b81545f934">PICOTEST_ASSERT_AFTER</a></td></tr>
 <tr class="memdesc:gae6c0c62e54611c6d92a3a8b81545f934"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the assert after hook.  <a href="group__assertions.html#gae6c0c62e54611c6d92a3a8b81545f934">More...</a><br /></td></tr>
 <tr class="separator:gae6c0c62e54611c6d92a3a8b81545f934"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -214,15 +232,27 @@ Test Fixture Definitions</h2></td></tr>
 Test Fixture Hooks</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp81e07d5c312b7f0fff56abcd70da10bf"></a>PicoTest provides a way for client code to intercept test fixture events. This can be used for e.g. logging purpose or reporting. </p>
 </td></tr>
+<tr class="memitem:ga503733d3013e81575c72a1100437ccf0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fixtures.html#ga503733d3013e81575c72a1100437ccf0">PICOTEST_FIXTURE_BEFORE_SETUP_DEFAULT</a>(fixtureName,  testName)</td></tr>
+<tr class="memdesc:ga503733d3013e81575c72a1100437ccf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test fixture before setup hook.  <a href="group__fixtures.html#ga503733d3013e81575c72a1100437ccf0">More...</a><br /></td></tr>
+<tr class="separator:ga503733d3013e81575c72a1100437ccf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab6053367243af2ee7745bf35a3baaa4e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fixtures.html#gab6053367243af2ee7745bf35a3baaa4e">PICOTEST_FIXTURE_BEFORE_SETUP</a></td></tr>
 <tr class="memdesc:gab6053367243af2ee7745bf35a3baaa4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test fixture before setup hook.  <a href="group__fixtures.html#gab6053367243af2ee7745bf35a3baaa4e">More...</a><br /></td></tr>
 <tr class="separator:gab6053367243af2ee7745bf35a3baaa4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8bfe212f7c3bed6d83be102510086012"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fixtures.html#ga8bfe212f7c3bed6d83be102510086012">PICOTEST_FIXTURE_AFTER_SETUP_DEFAULT</a>(fixtureName,  testName)</td></tr>
+<tr class="memdesc:ga8bfe212f7c3bed6d83be102510086012"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test fixture after setup hook.  <a href="group__fixtures.html#ga8bfe212f7c3bed6d83be102510086012">More...</a><br /></td></tr>
+<tr class="separator:ga8bfe212f7c3bed6d83be102510086012"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga679063021accc32a74c1e617ed68423f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fixtures.html#ga679063021accc32a74c1e617ed68423f">PICOTEST_FIXTURE_AFTER_SETUP</a></td></tr>
 <tr class="memdesc:ga679063021accc32a74c1e617ed68423f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test fixture after setup hook.  <a href="group__fixtures.html#ga679063021accc32a74c1e617ed68423f">More...</a><br /></td></tr>
 <tr class="separator:ga679063021accc32a74c1e617ed68423f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga11bbe6bcd529ac78264411add1275635"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fixtures.html#ga11bbe6bcd529ac78264411add1275635">PICOTEST_FIXTURE_BEFORE_TEARDOWN_DEFAULT</a>(fixtureName,  testName,  fail)</td></tr>
+<tr class="memdesc:ga11bbe6bcd529ac78264411add1275635"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test fixture before teardown hook.  <a href="group__fixtures.html#ga11bbe6bcd529ac78264411add1275635">More...</a><br /></td></tr>
+<tr class="separator:ga11bbe6bcd529ac78264411add1275635"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaf68cbda0bf19afd7994c2e0a15278f8d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fixtures.html#gaf68cbda0bf19afd7994c2e0a15278f8d">PICOTEST_FIXTURE_BEFORE_TEARDOWN</a></td></tr>
 <tr class="memdesc:gaf68cbda0bf19afd7994c2e0a15278f8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test fixture before teardown hook.  <a href="group__fixtures.html#gaf68cbda0bf19afd7994c2e0a15278f8d">More...</a><br /></td></tr>
 <tr class="separator:gaf68cbda0bf19afd7994c2e0a15278f8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga667b954d1448d95e022451b8711e6abf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fixtures.html#ga667b954d1448d95e022451b8711e6abf">PICOTEST_FIXTURE_AFTER_TEARDOWN_DEFAULT</a>(fixtureName,  testName,  fail)</td></tr>
+<tr class="memdesc:ga667b954d1448d95e022451b8711e6abf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test fixture after teardown hook.  <a href="group__fixtures.html#ga667b954d1448d95e022451b8711e6abf">More...</a><br /></td></tr>
+<tr class="separator:ga667b954d1448d95e022451b8711e6abf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1a910236e326a942bc3a5be5c6013520"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__fixtures.html#ga1a910236e326a942bc3a5be5c6013520">PICOTEST_FIXTURE_AFTER_TEARDOWN</a></td></tr>
 <tr class="memdesc:ga1a910236e326a942bc3a5be5c6013520"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test fixture after teardown hook.  <a href="group__fixtures.html#ga1a910236e326a942bc3a5be5c6013520">More...</a><br /></td></tr>
 <tr class="separator:ga1a910236e326a942bc3a5be5c6013520"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -249,15 +279,27 @@ Test Suite Definitions</h2></td></tr>
 Test Suite Hooks</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrpe9d38c3641cbdc07de8dbeec44404906"></a>PicoTest provides a way for client code to intercept test execution events on test suites and their subtests. This can be used for e.g. logging purpose or reporting. </p>
 </td></tr>
+<tr class="memitem:ga50f13419afbe35f17150bacd7a906838"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__suites.html#ga50f13419afbe35f17150bacd7a906838">PICOTEST_SUITE_ENTER_DEFAULT</a>(suiteName,  nb)</td></tr>
+<tr class="memdesc:ga50f13419afbe35f17150bacd7a906838"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test suite enter hook.  <a href="group__test__suites.html#ga50f13419afbe35f17150bacd7a906838">More...</a><br /></td></tr>
+<tr class="separator:ga50f13419afbe35f17150bacd7a906838"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae569b3a4f05ebefc297411072e505fd3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__suites.html#gae569b3a4f05ebefc297411072e505fd3">PICOTEST_SUITE_ENTER</a></td></tr>
 <tr class="memdesc:gae569b3a4f05ebefc297411072e505fd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test suite enter hook.  <a href="group__test__suites.html#gae569b3a4f05ebefc297411072e505fd3">More...</a><br /></td></tr>
 <tr class="separator:gae569b3a4f05ebefc297411072e505fd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf24c1f7c243e1990463aea4fbd4d5324"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__suites.html#gaf24c1f7c243e1990463aea4fbd4d5324">PICOTEST_SUITE_LEAVE_DEFAULT</a>(suiteName,  nb,  fail)</td></tr>
+<tr class="memdesc:gaf24c1f7c243e1990463aea4fbd4d5324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test suite leave hook.  <a href="group__test__suites.html#gaf24c1f7c243e1990463aea4fbd4d5324">More...</a><br /></td></tr>
+<tr class="separator:gaf24c1f7c243e1990463aea4fbd4d5324"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2ce5e2f78882e9f26067dc4ca9d0570c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__suites.html#ga2ce5e2f78882e9f26067dc4ca9d0570c">PICOTEST_SUITE_LEAVE</a></td></tr>
 <tr class="memdesc:ga2ce5e2f78882e9f26067dc4ca9d0570c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test suite leave hook.  <a href="group__test__suites.html#ga2ce5e2f78882e9f26067dc4ca9d0570c">More...</a><br /></td></tr>
 <tr class="separator:ga2ce5e2f78882e9f26067dc4ca9d0570c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab5b747836950016e04544e29879f3da3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__suites.html#gab5b747836950016e04544e29879f3da3">PICOTEST_SUITE_BEFORE_SUBTEST_DEFAULT</a>(suiteName,  nb,  fail,  index,  testName)</td></tr>
+<tr class="memdesc:gab5b747836950016e04544e29879f3da3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test suite before subtest hook.  <a href="group__test__suites.html#gab5b747836950016e04544e29879f3da3">More...</a><br /></td></tr>
+<tr class="separator:gab5b747836950016e04544e29879f3da3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5a49439f633f383f0bb3d2a6e700d464"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__suites.html#ga5a49439f633f383f0bb3d2a6e700d464">PICOTEST_SUITE_BEFORE_SUBTEST</a></td></tr>
 <tr class="memdesc:ga5a49439f633f383f0bb3d2a6e700d464"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test suite before subset hook.  <a href="group__test__suites.html#ga5a49439f633f383f0bb3d2a6e700d464">More...</a><br /></td></tr>
 <tr class="separator:ga5a49439f633f383f0bb3d2a6e700d464"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0aa7b03502294fee8f3e5b4951027145"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__suites.html#ga0aa7b03502294fee8f3e5b4951027145">PICOTEST_SUITE_AFTER_SUBTEST_DEFAULT</a>(suiteName,  nb,  fail,  index,  testName,  sfail)</td></tr>
+<tr class="memdesc:ga0aa7b03502294fee8f3e5b4951027145"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test suite after subtest hook.  <a href="group__test__suites.html#ga0aa7b03502294fee8f3e5b4951027145">More...</a><br /></td></tr>
+<tr class="separator:ga0aa7b03502294fee8f3e5b4951027145"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaab4493d86071cc9263827bf9a05a3b24"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__suites.html#gaab4493d86071cc9263827bf9a05a3b24">PICOTEST_SUITE_AFTER_SUBTEST</a></td></tr>
 <tr class="memdesc:gaab4493d86071cc9263827bf9a05a3b24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test suite after subset hook.  <a href="group__test__suites.html#gaab4493d86071cc9263827bf9a05a3b24">More...</a><br /></td></tr>
 <tr class="separator:gaab4493d86071cc9263827bf9a05a3b24"><td class="memSeparator" colspan="2">&#160;</td></tr>

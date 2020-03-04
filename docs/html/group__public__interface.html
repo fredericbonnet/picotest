@@ -118,9 +118,12 @@ Test Filters</h2></td></tr>
 <tr class="memitem:gafc743c5aa3870900472bc701b3ad35a4"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="group__public__interface.html#gaf5acf1a68605f6c8b758bae0224e03fc">PicoTestFilterResult</a>()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#gafc743c5aa3870900472bc701b3ad35a4">PicoTestFilterProc</a>(<a class="el" href="group__public__interface.html#ga824e8707dfbd1726aa15beb5f27b957a">PicoTestProc</a> *test, const char *testName, const char *cond)</td></tr>
 <tr class="memdesc:gafc743c5aa3870900472bc701b3ad35a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signature of test filter functions.  <a href="#gafc743c5aa3870900472bc701b3ad35a4">More...</a><br /></td></tr>
 <tr class="separator:gafc743c5aa3870900472bc701b3ad35a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga47f93260349371f63f95900166cf7858"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#ga47f93260349371f63f95900166cf7858">PICOTEST_FILTER</a>(_test,  _testName,  _cond)</td></tr>
-<tr class="memdesc:ga47f93260349371f63f95900166cf7858"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test filter function.  <a href="#ga47f93260349371f63f95900166cf7858">More...</a><br /></td></tr>
-<tr class="separator:ga47f93260349371f63f95900166cf7858"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7dccbea985fb578ba6b7639fb66fc3ea"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#ga7dccbea985fb578ba6b7639fb66fc3ea">PICOTEST_FILTER_DEFAULT</a></td></tr>
+<tr class="memdesc:ga7dccbea985fb578ba6b7639fb66fc3ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test filter function.  <a href="#ga7dccbea985fb578ba6b7639fb66fc3ea">More...</a><br /></td></tr>
+<tr class="separator:ga7dccbea985fb578ba6b7639fb66fc3ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabd82de0bec174d972151cd122a0a03ff"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#gabd82de0bec174d972151cd122a0a03ff">PICOTEST_FILTER</a></td></tr>
+<tr class="memdesc:gabd82de0bec174d972151cd122a0a03ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test filter function.  <a href="#gabd82de0bec174d972151cd122a0a03ff">More...</a><br /></td></tr>
+<tr class="separator:gabd82de0bec174d972151cd122a0a03ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Test hierarchy traversal</h2></td></tr>
@@ -140,40 +143,43 @@ Logging</h2></td></tr>
 <tr class="memitem:ga407922fa95d91c28651b93fbafe1d1bb"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#ga407922fa95d91c28651b93fbafe1d1bb">PicoTestFailureLoggerProc</a>(const char *file, int line, const char *type, const char *test, const char *msg, va_list args)</td></tr>
 <tr class="memdesc:ga407922fa95d91c28651b93fbafe1d1bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function signature of test failure log handlers.  <a href="#ga407922fa95d91c28651b93fbafe1d1bb">More...</a><br /></td></tr>
 <tr class="separator:ga407922fa95d91c28651b93fbafe1d1bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf08fabb517d01d11ce72614d1df51687"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#gaf08fabb517d01d11ce72614d1df51687">PICOTEST_FAILURE_LOGGER_DEFAULT</a></td></tr>
+<tr class="memdesc:gaf08fabb517d01d11ce72614d1df51687"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test failure log handler.  <a href="#gaf08fabb517d01d11ce72614d1df51687">More...</a><br /></td></tr>
+<tr class="separator:gaf08fabb517d01d11ce72614d1df51687"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae4b2f943bef59bd05fb7a328a6c39d48"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#gae4b2f943bef59bd05fb7a328a6c39d48">PICOTEST_FAILURE_LOGGER</a></td></tr>
 <tr class="memdesc:gae4b2f943bef59bd05fb7a328a6c39d48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test failure log handler.  <a href="#gae4b2f943bef59bd05fb7a328a6c39d48">More...</a><br /></td></tr>
 <tr class="separator:gae4b2f943bef59bd05fb7a328a6c39d48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ga47f93260349371f63f95900166cf7858"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga47f93260349371f63f95900166cf7858">&#9670;&nbsp;</a></span>PICOTEST_FILTER</h2>
+<a id="ga7dccbea985fb578ba6b7639fb66fc3ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7dccbea985fb578ba6b7639fb66fc3ea">&#9670;&nbsp;</a></span>PICOTEST_FILTER_DEFAULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PICOTEST_FILTER_DEFAULT</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default test filter function. </p>
+<p>Does a simple string equality test between <b>testName</b> and <b>cond</b>, and propagates to subtests if it doesn't match.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__public__interface.html#gafc743c5aa3870900472bc701b3ad35a4" title="Signature of test filter functions.">PicoTestFilterProc</a> </dd>
+<dd>
+<a class="el" href="group__public__interface.html#gabd82de0bec174d972151cd122a0a03ff" title="Define the test filter function.">PICOTEST_FILTER</a> </dd></dl>
+
+</div>
+</div>
+<a id="gabd82de0bec174d972151cd122a0a03ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabd82de0bec174d972151cd122a0a03ff">&#9670;&nbsp;</a></span>PICOTEST_FILTER</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">#define PICOTEST_FILTER</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">_test, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">_testName, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">_cond&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -186,7 +192,9 @@ Logging</h2></td></tr>
 <dl class="section user"><dt>Examples</dt><dd><a class="el" href="filter_8c.html">filter.c</a> Example of PicoTest test filter, allows custom filtering of test functions. <br />
  <a class="el" href="tags_8c.html">tags.c</a> Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering. <br />
  </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__public__interface.html#gafc743c5aa3870900472bc701b3ad35a4" title="Signature of test filter functions.">PicoTestFilterProc</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__public__interface.html#gafc743c5aa3870900472bc701b3ad35a4" title="Signature of test filter functions.">PicoTestFilterProc</a> </dd>
+<dd>
+<a class="el" href="group__public__interface.html#ga7dccbea985fb578ba6b7639fb66fc3ea" title="Default test filter function.">PICOTEST_FILTER_DEFAULT</a> </dd></dl>
 
 </div>
 </div>
@@ -230,6 +238,26 @@ Logging</h2></td></tr>
 
 </div>
 </div>
+<a id="gaf08fabb517d01d11ce72614d1df51687"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf08fabb517d01d11ce72614d1df51687">&#9670;&nbsp;</a></span>PICOTEST_FAILURE_LOGGER_DEFAULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PICOTEST_FAILURE_LOGGER_DEFAULT</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default test failure log handler. </p>
+<p>Does nothing.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__public__interface.html#ga407922fa95d91c28651b93fbafe1d1bb" title="Function signature of test failure log handlers.">PicoTestFailureLoggerProc</a> </dd>
+<dd>
+<a class="el" href="group__public__interface.html#gae4b2f943bef59bd05fb7a328a6c39d48" title="Define the test failure log handler.">PICOTEST_FAILURE_LOGGER</a> </dd></dl>
+
+</div>
+</div>
 <a id="gae4b2f943bef59bd05fb7a328a6c39d48"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gae4b2f943bef59bd05fb7a328a6c39d48">&#9670;&nbsp;</a></span>PICOTEST_FAILURE_LOGGER</h2>
 
@@ -249,7 +277,9 @@ Logging</h2></td></tr>
 <dl class="section user"><dt>Usage</dt><dd><div class="fragment"><div class="line"><span class="comment">/* Test failure logger declaration. */</span></div><div class="line"><a class="code" href="group__public__interface.html#ga407922fa95d91c28651b93fbafe1d1bb">PicoTestFailureLoggerProc</a> logFailure;</div><div class="line"><span class="preprocessor">#undef PICOTEST_FAILURE_LOGGER</span></div><div class="line"><span class="preprocessor">#define PICOTEST_FAILURE_LOGGER logFailure</span></div><div class="line"></div><div class="line"><span class="comment">/* Test failure logger function. */</span></div><div class="line"><span class="keywordtype">void</span> logFailure(<span class="keyword">const</span> <span class="keywordtype">char</span> *file, <span class="keywordtype">int</span> line, <span class="keyword">const</span> <span class="keywordtype">char</span> *type, <span class="keyword">const</span> <span class="keywordtype">char</span> *test, <span class="keyword">const</span> <span class="keywordtype">char</span> *msg, va_list args) {</div><div class="line">    <span class="comment">/* Error type. */</span></div><div class="line">    printf(<span class="stringliteral">&quot;[%s] &quot;</span>, type);</div><div class="line"></div><div class="line">    <span class="comment">/* Location in source code. */</span></div><div class="line">    printf(<span class="stringliteral">&quot;%s(%d) : &quot;</span>, file, line);</div><div class="line"></div><div class="line">    <span class="comment">/* Failed expression. */</span></div><div class="line">    printf(<span class="stringliteral">&quot;%s&quot;</span>, test);</div><div class="line"></div><div class="line">    <span class="comment">/* Optional message. */</span></div><div class="line">    <span class="keywordflow">if</span> (msg) {</div><div class="line">        printf(<span class="stringliteral">&quot; | &quot;</span>); </div><div class="line">        vprintf(msg, args);</div><div class="line">    }</div><div class="line"></div><div class="line">    printf(<span class="stringliteral">&quot;\n&quot;</span>);</div><div class="line">}</div></div><!-- fragment --> </dd></dl>
 <dl class="section user"><dt>Examples</dt><dd><a class="el" href="logger_8c.html">logger.c</a> Example of PicoTest error logging, prints location and info of failed assertions to stdout. <br />
  </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__public__interface.html#ga407922fa95d91c28651b93fbafe1d1bb" title="Function signature of test failure log handlers.">PicoTestFailureLoggerProc</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__public__interface.html#ga407922fa95d91c28651b93fbafe1d1bb" title="Function signature of test failure log handlers.">PicoTestFailureLoggerProc</a> </dd>
+<dd>
+<a class="el" href="group__public__interface.html#gaf08fabb517d01d11ce72614d1df51687" title="Default test failure log handler.">PICOTEST_FAILURE_LOGGER_DEFAULT</a> </dd></dl>
 
 </div>
 </div>
@@ -279,7 +309,7 @@ Logging</h2></td></tr>
 <dd>
 <a class="el" href="group__test__cases.html#gadca8898d29eb42dde764ed83a5d9faf5" title="Test case declaration.">PICOTEST_CASE</a> </dd>
 <dd>
-<a class="el" href="group__public__interface.html#ga47f93260349371f63f95900166cf7858" title="Define the test filter function.">PICOTEST_FILTER</a> </dd></dl>
+<a class="el" href="group__public__interface.html#gabd82de0bec174d972151cd122a0a03ff" title="Define the test filter function.">PICOTEST_FILTER</a> </dd></dl>
 
 </div>
 </div>
@@ -296,7 +326,7 @@ Logging</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Signature of test filter functions. </p>
-<p>A test called with a non- <b>NULL</b> condition must match this condition to be run. The test filter is set using the <a class="el" href="group__public__interface.html#ga47f93260349371f63f95900166cf7858">PICOTEST_FILTER</a> macro.</p>
+<p>A test called with a non- <b>NULL</b> condition must match this condition to be run. The test filter is set using the <a class="el" href="group__public__interface.html#gabd82de0bec174d972151cd122a0a03ff">PICOTEST_FILTER</a> macro.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">test</td><td>Test function to filter. </td></tr>
@@ -314,7 +344,7 @@ Logging</h2></td></tr>
 <dd>
 <a class="el" href="group__test__cases.html#gadca8898d29eb42dde764ed83a5d9faf5" title="Test case declaration.">PICOTEST_CASE</a> </dd>
 <dd>
-<a class="el" href="group__public__interface.html#ga47f93260349371f63f95900166cf7858" title="Define the test filter function.">PICOTEST_FILTER</a> </dd>
+<a class="el" href="group__public__interface.html#gabd82de0bec174d972151cd122a0a03ff" title="Define the test filter function.">PICOTEST_FILTER</a> </dd>
 <dd>
 <a class="el" href="group__public__interface.html#gaf5acf1a68605f6c8b758bae0224e03fc" title="Result of test filter functions.">PicoTestFilterResult</a> </dd></dl>
 

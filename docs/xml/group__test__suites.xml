@@ -56,7 +56,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1212" column="9" bodyfile="include/picotest.h" bodystart="1212" bodyend="-1"/>
+        <location file="include/picotest.h" line="1246" column="9" bodyfile="include/picotest.h" bodystart="1246" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
@@ -111,7 +111,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1317" column="1" bodyfile="include/picotest.h" bodystart="1317" bodyend="-1"/>
+        <location file="include/picotest.h" line="1345" column="1" bodyfile="include/picotest.h" bodystart="1345" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="group__test__suites_1gabc6f39019f0cde9f04812785aceaab09" prot="public" static="no">
         <type>void()</type>
@@ -168,7 +168,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1364" column="1" bodyfile="include/picotest.h" bodystart="1364" bodyend="-1"/>
+        <location file="include/picotest.h" line="1393" column="1" bodyfile="include/picotest.h" bodystart="1393" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="group__test__suites_1gade4d2a7d8a611ca76c675607529a3edb" prot="public" static="no">
         <type>void()</type>
@@ -243,7 +243,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1417" column="1" bodyfile="include/picotest.h" bodystart="1417" bodyend="-1"/>
+        <location file="include/picotest.h" line="1447" column="1" bodyfile="include/picotest.h" bodystart="1447" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="group__test__suites_1ga80efec0204108859c9ececa3921f6f76" prot="public" static="no">
         <type>void()</type>
@@ -326,123 +326,26 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1472" column="1" bodyfile="include/picotest.h" bodystart="1472" bodyend="-1"/>
+        <location file="include/picotest.h" line="1504" column="1" bodyfile="include/picotest.h" bodystart="1504" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="group__test__suites_1ga5bc4119292d7cb86b645b0c4e0b51b8d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>static void picoTest_enterTestSuite</definition>
-        <argsstring>(const char *suiteName, int nb)</argsstring>
-        <name>picoTest_enterTestSuite</name>
-        <param>
-          <type>const char *</type>
-          <declname>suiteName</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>nb</declname>
-        </param>
+      <memberdef kind="define" id="group__test__suites_1ga50f13419afbe35f17150bacd7a906838" prot="public" static="no">
+        <name>PICOTEST_SUITE_ENTER_DEFAULT</name>
+        <param><defname>suiteName</defname></param>
+        <param><defname>nb</defname></param>
         <briefdescription>
+<para>Default test suite enter hook. </para>
         </briefdescription>
         <detaileddescription>
+<para>Does nothing.</para>
+<para><simplesect kind="see"><para><ref refid="group__test__suites_1ga881ee23cced7bc4df9427409dcb55254" kindref="member">PicoTestSuiteEnterProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1gae569b3a4f05ebefc297411072e505fd3" kindref="member">PICOTEST_SUITE_ENTER</ref> </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1325" column="1" bodyfile="include/picotest.h" bodystart="1325" bodyend="1325"/>
-      </memberdef>
-      <memberdef kind="function" id="group__test__suites_1ga8a2f437d7d0a53f802e77d158567221a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>static void picoTest_leaveTestSuite</definition>
-        <argsstring>(const char *suiteName, int nb, int fail)</argsstring>
-        <name>picoTest_leaveTestSuite</name>
-        <param>
-          <type>const char *</type>
-          <declname>suiteName</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>nb</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>fail</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="1372" column="1" bodyfile="include/picotest.h" bodystart="1372" bodyend="1372"/>
-      </memberdef>
-      <memberdef kind="function" id="group__test__suites_1gab093971a14a1391e27696ef425173c23" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>static void picoTest_beforeSubtest</definition>
-        <argsstring>(const char *suiteName, int nb, int fail, int index, const char *testName)</argsstring>
-        <name>picoTest_beforeSubtest</name>
-        <param>
-          <type>const char *</type>
-          <declname>suiteName</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>nb</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>fail</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>index</declname>
-        </param>
-        <param>
-          <type>const char *</type>
-          <declname>testName</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="1426" column="1" bodyfile="include/picotest.h" bodystart="1426" bodyend="1427"/>
-      </memberdef>
-      <memberdef kind="function" id="group__test__suites_1ga08d7616c2c00cd11b4709d4baee64f5d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>static void picoTest_afterSubtest</definition>
-        <argsstring>(const char *suiteName, int nb, int fail, int index, const char *testName, int sfail)</argsstring>
-        <name>picoTest_afterSubtest</name>
-        <param>
-          <type>const char *</type>
-          <declname>suiteName</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>nb</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>fail</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>index</declname>
-        </param>
-        <param>
-          <type>const char *</type>
-          <declname>testName</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>sfail</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="1481" column="1" bodyfile="include/picotest.h" bodystart="1481" bodyend="1482"/>
+        <location file="include/picotest.h" line="1353" column="9" bodyfile="include/picotest.h" bodystart="1353" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__test__suites_1gae569b3a4f05ebefc297411072e505fd3" prot="public" static="no">
         <name>PICOTEST_SUITE_ENTER</name>
@@ -470,13 +373,35 @@
 </simplesect>
 <simplesect kind="see"><para><ref refid="group__test__suites_1ga881ee23cced7bc4df9427409dcb55254" kindref="member">PicoTestSuiteEnterProc</ref> </para>
 </simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1ga50f13419afbe35f17150bacd7a906838" kindref="member">PICOTEST_SUITE_ENTER_DEFAULT</ref> </para>
+</simplesect>
 <simplesect kind="see"><para><ref refid="group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c" kindref="member">PICOTEST_SUITE_LEAVE</ref> </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1346" column="9" bodyfile="include/picotest.h" bodystart="1346" bodyend="-1"/>
+        <location file="include/picotest.h" line="1375" column="9" bodyfile="include/picotest.h" bodystart="1375" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__test__suites_1gaf24c1f7c243e1990463aea4fbd4d5324" prot="public" static="no">
+        <name>PICOTEST_SUITE_LEAVE_DEFAULT</name>
+        <param><defname>suiteName</defname></param>
+        <param><defname>nb</defname></param>
+        <param><defname>fail</defname></param>
+        <briefdescription>
+<para>Default test suite leave hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does nothing.</para>
+<para><simplesect kind="see"><para><ref refid="group__test__suites_1gabc6f39019f0cde9f04812785aceaab09" kindref="member">PicoTestSuiteLeaveProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c" kindref="member">PICOTEST_SUITE_LEAVE</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1401" column="9" bodyfile="include/picotest.h" bodystart="1401" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c" prot="public" static="no">
         <name>PICOTEST_SUITE_LEAVE</name>
@@ -505,13 +430,37 @@
 </simplesect>
 <simplesect kind="see"><para><ref refid="group__test__suites_1gabc6f39019f0cde9f04812785aceaab09" kindref="member">PicoTestSuiteLeaveProc</ref> </para>
 </simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1gaf24c1f7c243e1990463aea4fbd4d5324" kindref="member">PICOTEST_SUITE_LEAVE_DEFAULT</ref> </para>
+</simplesect>
 <simplesect kind="see"><para><ref refid="group__test__suites_1gae569b3a4f05ebefc297411072e505fd3" kindref="member">PICOTEST_SUITE_ENTER</ref> </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1395" column="9" bodyfile="include/picotest.h" bodystart="1395" bodyend="-1"/>
+        <location file="include/picotest.h" line="1425" column="9" bodyfile="include/picotest.h" bodystart="1425" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__test__suites_1gab5b747836950016e04544e29879f3da3" prot="public" static="no">
+        <name>PICOTEST_SUITE_BEFORE_SUBTEST_DEFAULT</name>
+        <param><defname>suiteName</defname></param>
+        <param><defname>nb</defname></param>
+        <param><defname>fail</defname></param>
+        <param><defname>index</defname></param>
+        <param><defname>testName</defname></param>
+        <briefdescription>
+<para>Default test suite before subtest hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does nothing.</para>
+<para><simplesect kind="see"><para><ref refid="group__test__suites_1gade4d2a7d8a611ca76c675607529a3edb" kindref="member">PicoTestSuiteBeforeSubtestProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464" kindref="member">PICOTEST_SUITE_BEFORE_SUBTEST</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1458" column="9" bodyfile="include/picotest.h" bodystart="1457" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464" prot="public" static="no">
         <name>PICOTEST_SUITE_BEFORE_SUBTEST</name>
@@ -540,13 +489,38 @@
 </simplesect>
 <simplesect kind="see"><para><ref refid="group__test__suites_1gade4d2a7d8a611ca76c675607529a3edb" kindref="member">PicoTestSuiteBeforeSubtestProc</ref> </para>
 </simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1gab5b747836950016e04544e29879f3da3" kindref="member">PICOTEST_SUITE_BEFORE_SUBTEST_DEFAULT</ref> </para>
+</simplesect>
 <simplesect kind="see"><para><ref refid="group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24" kindref="member">PICOTEST_SUITE_AFTER_SUBTEST</ref> </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1448" column="9" bodyfile="include/picotest.h" bodystart="1448" bodyend="-1"/>
+        <location file="include/picotest.h" line="1480" column="9" bodyfile="include/picotest.h" bodystart="1480" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__test__suites_1ga0aa7b03502294fee8f3e5b4951027145" prot="public" static="no">
+        <name>PICOTEST_SUITE_AFTER_SUBTEST_DEFAULT</name>
+        <param><defname>suiteName</defname></param>
+        <param><defname>nb</defname></param>
+        <param><defname>fail</defname></param>
+        <param><defname>index</defname></param>
+        <param><defname>testName</defname></param>
+        <param><defname>sfail</defname></param>
+        <briefdescription>
+<para>Default test suite after subtest hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does nothing.</para>
+<para><simplesect kind="see"><para><ref refid="group__test__suites_1ga80efec0204108859c9ececa3921f6f76" kindref="member">PicoTestSuiteAfterSubtestProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24" kindref="member">PICOTEST_SUITE_AFTER_SUBTEST</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1515" column="9" bodyfile="include/picotest.h" bodystart="1514" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24" prot="public" static="no">
         <name>PICOTEST_SUITE_AFTER_SUBTEST</name>
@@ -575,13 +549,15 @@
 </simplesect>
 <simplesect kind="see"><para><ref refid="group__test__suites_1ga80efec0204108859c9ececa3921f6f76" kindref="member">PicoTestSuiteAfterSubtestProc</ref> </para>
 </simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1ga0aa7b03502294fee8f3e5b4951027145" kindref="member">PICOTEST_SUITE_AFTER_SUBTEST_DEFAULT</ref> </para>
+</simplesect>
 <simplesect kind="see"><para><ref refid="group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464" kindref="member">PICOTEST_SUITE_BEFORE_SUBTEST</ref> </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1503" column="9" bodyfile="include/picotest.h" bodystart="1503" bodyend="-1"/>
+        <location file="include/picotest.h" line="1537" column="9" bodyfile="include/picotest.h" bodystart="1537" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

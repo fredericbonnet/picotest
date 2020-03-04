@@ -20,66 +20,69 @@
     <member refid="group__public__interface_1ga6488c76f8a06a1a8222c2309b170bd1d" kind="define"><name>PICOTEST_VERSION_MINOR</name></member>
     <member refid="group__public__interface_1gafc9d1ab6d8cced95f3560c3a006d8005" kind="define"><name>PICOTEST_VERSION_PATCH</name></member>
     <member refid="group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a" kind="typedef"><name>PicoTestProc</name></member>
-    <member refid="group__public__interface_1ga47f93260349371f63f95900166cf7858" kind="define"><name>PICOTEST_FILTER</name></member>
+    <member refid="group__public__interface_1ga7dccbea985fb578ba6b7639fb66fc3ea" kind="define"><name>PICOTEST_FILTER_DEFAULT</name></member>
+    <member refid="group__public__interface_1gabd82de0bec174d972151cd122a0a03ff" kind="define"><name>PICOTEST_FILTER</name></member>
     <member refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kind="enum"><name>PicoTestFilterResult</name></member>
     <member refid="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca0ee37a1cf8a2347fb3c42636dfb80b1c" kind="enumvalue"><name>PICOTEST_FILTER_SKIP</name></member>
     <member refid="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca35508816a12c32e7ce536786e5ffc8d9" kind="enumvalue"><name>PICOTEST_FILTER_PASS</name></member>
     <member refid="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca487de7ecca4099ee737bd41a8d75ba75" kind="enumvalue"><name>PICOTEST_FILTER_SKIP_PROPAGATE</name></member>
     <member refid="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fcaf2aa19fa3a0a1bc56585df626aa8e188" kind="enumvalue"><name>PICOTEST_FILTER_PASS_PROPAGATE</name></member>
     <member refid="group__public__interface_1gafc743c5aa3870900472bc701b3ad35a4" kind="typedef"><name>PicoTestFilterProc</name></member>
+    <member refid="group__public__interface_1gace2d0b7428d63b90190fe65b619a8680" kind="function"><name>_picoTest_filterByName</name></member>
     <member refid="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" kind="define"><name>PICOTEST_TRAVERSE</name></member>
     <member refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kind="typedef"><name>PicoTestTraverseProc</name></member>
+    <member refid="group__public__interface_1gaf08fabb517d01d11ce72614d1df51687" kind="define"><name>PICOTEST_FAILURE_LOGGER_DEFAULT</name></member>
     <member refid="group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48" kind="define"><name>PICOTEST_FAILURE_LOGGER</name></member>
     <member refid="group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb" kind="typedef"><name>PicoTestFailureLoggerProc</name></member>
-    <member refid="group__public__interface_1gaeef4d6736aa1095a8272a00d003bfe22" kind="function"><name>picoTest_logFailure</name></member>
+    <member refid="group__public__interface_1gae3c669f4ae731be32a25df3d3a97b599" kind="function"><name>_picoTest_logFailure</name></member>
     <member refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kind="define"><name>PICOTEST_CASE</name></member>
+    <member refid="group__test__cases_1ga4a4a1356f85b26cd29f2f7ae4c09cf91" kind="define"><name>PICOTEST_CASE_ENTER_DEFAULT</name></member>
     <member refid="group__test__cases_1gad1f702ab6600b04f66731d35bf38fc67" kind="define"><name>PICOTEST_CASE_ENTER</name></member>
+    <member refid="group__test__cases_1ga5ff2295c5a324991c72a81bcfb949522" kind="define"><name>PICOTEST_CASE_LEAVE_DEFAULT</name></member>
     <member refid="group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a" kind="define"><name>PICOTEST_CASE_LEAVE</name></member>
     <member refid="group__test__cases_1ga0af0a0ec6d2bbee706b56fea6f60126e" kind="typedef"><name>PicoTestCaseEnterProc</name></member>
     <member refid="group__test__cases_1gacce6ae69ea5064e39e3c56915978609e" kind="typedef"><name>PicoTestCaseLeaveProc</name></member>
-    <member refid="group__test__cases_1gae45000329c7e66faad29a601a8f0e676" kind="function"><name>picoTest_enterTestCase</name></member>
-    <member refid="group__test__cases_1ga35c4adadabea624fe844fa784f173281" kind="function"><name>picoTest_leaveTestCase</name></member>
     <member refid="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" kind="define"><name>PICOTEST_ASSERT</name></member>
     <member refid="group__assertions_1gacd07b017f38d1e3ad784f369345357a2" kind="define"><name>PICOTEST_VERIFY</name></member>
     <member refid="group__assertions_1ga89a35f18021df570967bb707a8537f3b" kind="define"><name>PICOTEST_FAILURE</name></member>
     <member refid="group__assertions_1ga62031fa5f6f86e517565b77a1fa37f59" kind="define"><name>PICOTEST_ABORT</name></member>
-    <member refid="group__assertions_1ga595654acabcad939ec980f6bff185ac2" kind="variable"><name>picoTest_fail</name></member>
-    <member refid="group__assertions_1ga2b15359007b17554685f0c42fdd56eae" kind="variable"><name>picoTest_failureEnv</name></member>
-    <member refid="group__assertions_1ga0287f1bec06763a541b02c24e52fdb7f" kind="function"><name>picoTest_assertFailed</name></member>
+    <member refid="group__assertions_1ga8d7eb92ca21dfb7fe46fc2472e11f496" kind="variable"><name>_picoTest_fail</name></member>
+    <member refid="group__assertions_1ga2fdb4a73b6a0abc186a27065a36db6ed" kind="variable"><name>_picoTest_failureEnv</name></member>
+    <member refid="group__assertions_1gadd80bff454009ce1077d81f1f5552f34" kind="function"><name>_picoTest_assertFailed</name></member>
+    <member refid="group__assertions_1ga331ef495337f7e2aae8be15cfd2a170a" kind="define"><name>PICOTEST_ASSERT_BEFORE_DEFAULT</name></member>
     <member refid="group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb" kind="define"><name>PICOTEST_ASSERT_BEFORE</name></member>
+    <member refid="group__assertions_1gab1f1711109e4a8443a61c228194a6825" kind="define"><name>PICOTEST_ASSERT_AFTER_DEFAULT</name></member>
     <member refid="group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934" kind="define"><name>PICOTEST_ASSERT_AFTER</name></member>
     <member refid="group__assertions_1ga2011048ceed2457e95498573d0730eaf" kind="typedef"><name>PicoTestAssertBeforeProc</name></member>
     <member refid="group__assertions_1ga9502bbfe9927766f12e8de83aa37b706" kind="typedef"><name>PicoTestAssertAfterProc</name></member>
-    <member refid="group__assertions_1gaf24af47f297f3e4460d9af2f55be6d67" kind="function"><name>picoTest_beforeAssert</name></member>
-    <member refid="group__assertions_1ga9ff53eb3221368fa7a9964eb2e5c64da" kind="function"><name>picoTest_afterAssert</name></member>
     <member refid="group__fixtures_1ga983cffc937dca4baa55f59afad404f03" kind="define"><name>PICOTEST_FIXTURE_CONTEXT</name></member>
     <member refid="group__fixtures_1ga1e98cba23391e13521100528ee1a2181" kind="define"><name>PICOTEST_FIXTURE_SETUP</name></member>
     <member refid="group__fixtures_1ga0d887bdb08e22489fc3cf9fb28a35fd1" kind="define"><name>PICOTEST_FIXTURE_TEARDOWN</name></member>
+    <member refid="group__fixtures_1ga503733d3013e81575c72a1100437ccf0" kind="define"><name>PICOTEST_FIXTURE_BEFORE_SETUP_DEFAULT</name></member>
     <member refid="group__fixtures_1gab6053367243af2ee7745bf35a3baaa4e" kind="define"><name>PICOTEST_FIXTURE_BEFORE_SETUP</name></member>
+    <member refid="group__fixtures_1ga8bfe212f7c3bed6d83be102510086012" kind="define"><name>PICOTEST_FIXTURE_AFTER_SETUP_DEFAULT</name></member>
     <member refid="group__fixtures_1ga679063021accc32a74c1e617ed68423f" kind="define"><name>PICOTEST_FIXTURE_AFTER_SETUP</name></member>
+    <member refid="group__fixtures_1ga11bbe6bcd529ac78264411add1275635" kind="define"><name>PICOTEST_FIXTURE_BEFORE_TEARDOWN_DEFAULT</name></member>
     <member refid="group__fixtures_1gaf68cbda0bf19afd7994c2e0a15278f8d" kind="define"><name>PICOTEST_FIXTURE_BEFORE_TEARDOWN</name></member>
+    <member refid="group__fixtures_1ga667b954d1448d95e022451b8711e6abf" kind="define"><name>PICOTEST_FIXTURE_AFTER_TEARDOWN_DEFAULT</name></member>
     <member refid="group__fixtures_1ga1a910236e326a942bc3a5be5c6013520" kind="define"><name>PICOTEST_FIXTURE_AFTER_TEARDOWN</name></member>
     <member refid="group__fixtures_1ga78ede622d468ebbe0bcc47698146ead9" kind="typedef"><name>PicoTestFixtureBeforeSetupProc</name></member>
     <member refid="group__fixtures_1gae75749e42f2c93cfedae9220ad149e00" kind="typedef"><name>PicoTestFixtureAfterSetupProc</name></member>
     <member refid="group__fixtures_1ga154395391c0e95f5b08acaf38d2ef296" kind="typedef"><name>PicoTestFixtureBeforeTeardownProc</name></member>
     <member refid="group__fixtures_1gad1e2073b337cd5697af642ce44c98db4" kind="typedef"><name>PicoTestFixtureAfterTeardownProc</name></member>
-    <member refid="group__fixtures_1ga647e76d678176d1544aa7e6391551fd1" kind="function"><name>picoTest_beforeSetup</name></member>
-    <member refid="group__fixtures_1ga30aa5012e97b77a401962e521595f460" kind="function"><name>picoTest_afterSetup</name></member>
-    <member refid="group__fixtures_1gaee626123a7789994c2f2a2c82dc3b6cf" kind="function"><name>picoTest_beforeTeardown</name></member>
-    <member refid="group__fixtures_1gad92477b902f06bcef4bf83ba96f3400a" kind="function"><name>picoTest_afterTeardown</name></member>
     <member refid="group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f" kind="define"><name>PICOTEST_SUITE</name></member>
+    <member refid="group__test__suites_1ga50f13419afbe35f17150bacd7a906838" kind="define"><name>PICOTEST_SUITE_ENTER_DEFAULT</name></member>
     <member refid="group__test__suites_1gae569b3a4f05ebefc297411072e505fd3" kind="define"><name>PICOTEST_SUITE_ENTER</name></member>
+    <member refid="group__test__suites_1gaf24c1f7c243e1990463aea4fbd4d5324" kind="define"><name>PICOTEST_SUITE_LEAVE_DEFAULT</name></member>
     <member refid="group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c" kind="define"><name>PICOTEST_SUITE_LEAVE</name></member>
+    <member refid="group__test__suites_1gab5b747836950016e04544e29879f3da3" kind="define"><name>PICOTEST_SUITE_BEFORE_SUBTEST_DEFAULT</name></member>
     <member refid="group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464" kind="define"><name>PICOTEST_SUITE_BEFORE_SUBTEST</name></member>
+    <member refid="group__test__suites_1ga0aa7b03502294fee8f3e5b4951027145" kind="define"><name>PICOTEST_SUITE_AFTER_SUBTEST_DEFAULT</name></member>
     <member refid="group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24" kind="define"><name>PICOTEST_SUITE_AFTER_SUBTEST</name></member>
     <member refid="group__test__suites_1ga881ee23cced7bc4df9427409dcb55254" kind="typedef"><name>PicoTestSuiteEnterProc</name></member>
     <member refid="group__test__suites_1gabc6f39019f0cde9f04812785aceaab09" kind="typedef"><name>PicoTestSuiteLeaveProc</name></member>
     <member refid="group__test__suites_1gade4d2a7d8a611ca76c675607529a3edb" kind="typedef"><name>PicoTestSuiteBeforeSubtestProc</name></member>
     <member refid="group__test__suites_1ga80efec0204108859c9ececa3921f6f76" kind="typedef"><name>PicoTestSuiteAfterSubtestProc</name></member>
-    <member refid="group__test__suites_1ga5bc4119292d7cb86b645b0c4e0b51b8d" kind="function"><name>picoTest_enterTestSuite</name></member>
-    <member refid="group__test__suites_1ga8a2f437d7d0a53f802e77d158567221a" kind="function"><name>picoTest_leaveTestSuite</name></member>
-    <member refid="group__test__suites_1gab093971a14a1391e27696ef425173c23" kind="function"><name>picoTest_beforeSubtest</name></member>
-    <member refid="group__test__suites_1ga08d7616c2c00cd11b4709d4baee64f5d" kind="function"><name>picoTest_afterSubtest</name></member>
     <member refid="picotest_8h_1a9e72654d611dd79773814aac688dd1bc" kind="define"><name>_PICOTEST_STRINGIZE</name></member>
     <member refid="picotest_8h_1a8fdd0e34f725f8e37ca020d13d056001" kind="define"><name>_PICOTEST_CONCATENATE</name></member>
     <member refid="picotest_8h_1a921cd46c5670838c4e662e3e35caf680" kind="define"><name>_PICOTEST_ARGCOUNT</name></member>
@@ -99,35 +102,38 @@
     <member refid="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca487de7ecca4099ee737bd41a8d75ba75" kind="enumvalue"><name>PICOTEST_FILTER_SKIP_PROPAGATE</name></member>
     <member refid="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fcaf2aa19fa3a0a1bc56585df626aa8e188" kind="enumvalue"><name>PICOTEST_FILTER_PASS_PROPAGATE</name></member>
     <member refid="group__public__interface_1gafc743c5aa3870900472bc701b3ad35a4" kind="typedef"><name>PicoTestFilterProc</name></member>
-    <member refid="group__public__interface_1ga47f93260349371f63f95900166cf7858" kind="define"><name>PICOTEST_FILTER</name></member>
+    <member refid="group__public__interface_1gace2d0b7428d63b90190fe65b619a8680" kind="function"><name>_picoTest_filterByName</name></member>
+    <member refid="group__public__interface_1ga7dccbea985fb578ba6b7639fb66fc3ea" kind="define"><name>PICOTEST_FILTER_DEFAULT</name></member>
+    <member refid="group__public__interface_1gabd82de0bec174d972151cd122a0a03ff" kind="define"><name>PICOTEST_FILTER</name></member>
     <member refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kind="typedef"><name>PicoTestTraverseProc</name></member>
     <member refid="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" kind="define"><name>PICOTEST_TRAVERSE</name></member>
     <member refid="group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb" kind="typedef"><name>PicoTestFailureLoggerProc</name></member>
-    <member refid="group__public__interface_1gaeef4d6736aa1095a8272a00d003bfe22" kind="function"><name>picoTest_logFailure</name></member>
+    <member refid="group__public__interface_1gae3c669f4ae731be32a25df3d3a97b599" kind="function"><name>_picoTest_logFailure</name></member>
+    <member refid="group__public__interface_1gaf08fabb517d01d11ce72614d1df51687" kind="define"><name>PICOTEST_FAILURE_LOGGER_DEFAULT</name></member>
     <member refid="group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48" kind="define"><name>PICOTEST_FAILURE_LOGGER</name></member>
   </compound>
   <compound refid="group__test__cases" kind="group"><name>test_cases</name>
     <member refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kind="define"><name>PICOTEST_CASE</name></member>
     <member refid="group__test__cases_1ga0af0a0ec6d2bbee706b56fea6f60126e" kind="typedef"><name>PicoTestCaseEnterProc</name></member>
     <member refid="group__test__cases_1gacce6ae69ea5064e39e3c56915978609e" kind="typedef"><name>PicoTestCaseLeaveProc</name></member>
-    <member refid="group__test__cases_1gae45000329c7e66faad29a601a8f0e676" kind="function"><name>picoTest_enterTestCase</name></member>
-    <member refid="group__test__cases_1ga35c4adadabea624fe844fa784f173281" kind="function"><name>picoTest_leaveTestCase</name></member>
+    <member refid="group__test__cases_1ga4a4a1356f85b26cd29f2f7ae4c09cf91" kind="define"><name>PICOTEST_CASE_ENTER_DEFAULT</name></member>
     <member refid="group__test__cases_1gad1f702ab6600b04f66731d35bf38fc67" kind="define"><name>PICOTEST_CASE_ENTER</name></member>
+    <member refid="group__test__cases_1ga5ff2295c5a324991c72a81bcfb949522" kind="define"><name>PICOTEST_CASE_LEAVE_DEFAULT</name></member>
     <member refid="group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a" kind="define"><name>PICOTEST_CASE_LEAVE</name></member>
   </compound>
   <compound refid="group__assertions" kind="group"><name>assertions</name>
-    <member refid="group__assertions_1ga595654acabcad939ec980f6bff185ac2" kind="variable"><name>picoTest_fail</name></member>
-    <member refid="group__assertions_1ga2b15359007b17554685f0c42fdd56eae" kind="variable"><name>picoTest_failureEnv</name></member>
-    <member refid="group__assertions_1ga0287f1bec06763a541b02c24e52fdb7f" kind="function"><name>picoTest_assertFailed</name></member>
+    <member refid="group__assertions_1ga8d7eb92ca21dfb7fe46fc2472e11f496" kind="variable"><name>_picoTest_fail</name></member>
+    <member refid="group__assertions_1ga2fdb4a73b6a0abc186a27065a36db6ed" kind="variable"><name>_picoTest_failureEnv</name></member>
+    <member refid="group__assertions_1gadd80bff454009ce1077d81f1f5552f34" kind="function"><name>_picoTest_assertFailed</name></member>
     <member refid="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" kind="define"><name>PICOTEST_ASSERT</name></member>
     <member refid="group__assertions_1gacd07b017f38d1e3ad784f369345357a2" kind="define"><name>PICOTEST_VERIFY</name></member>
     <member refid="group__assertions_1ga89a35f18021df570967bb707a8537f3b" kind="define"><name>PICOTEST_FAILURE</name></member>
     <member refid="group__assertions_1ga62031fa5f6f86e517565b77a1fa37f59" kind="define"><name>PICOTEST_ABORT</name></member>
     <member refid="group__assertions_1ga2011048ceed2457e95498573d0730eaf" kind="typedef"><name>PicoTestAssertBeforeProc</name></member>
     <member refid="group__assertions_1ga9502bbfe9927766f12e8de83aa37b706" kind="typedef"><name>PicoTestAssertAfterProc</name></member>
-    <member refid="group__assertions_1gaf24af47f297f3e4460d9af2f55be6d67" kind="function"><name>picoTest_beforeAssert</name></member>
-    <member refid="group__assertions_1ga9ff53eb3221368fa7a9964eb2e5c64da" kind="function"><name>picoTest_afterAssert</name></member>
+    <member refid="group__assertions_1ga331ef495337f7e2aae8be15cfd2a170a" kind="define"><name>PICOTEST_ASSERT_BEFORE_DEFAULT</name></member>
     <member refid="group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb" kind="define"><name>PICOTEST_ASSERT_BEFORE</name></member>
+    <member refid="group__assertions_1gab1f1711109e4a8443a61c228194a6825" kind="define"><name>PICOTEST_ASSERT_AFTER_DEFAULT</name></member>
     <member refid="group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934" kind="define"><name>PICOTEST_ASSERT_AFTER</name></member>
   </compound>
   <compound refid="group__fixtures" kind="group"><name>fixtures</name>
@@ -138,13 +144,13 @@
     <member refid="group__fixtures_1gae75749e42f2c93cfedae9220ad149e00" kind="typedef"><name>PicoTestFixtureAfterSetupProc</name></member>
     <member refid="group__fixtures_1ga154395391c0e95f5b08acaf38d2ef296" kind="typedef"><name>PicoTestFixtureBeforeTeardownProc</name></member>
     <member refid="group__fixtures_1gad1e2073b337cd5697af642ce44c98db4" kind="typedef"><name>PicoTestFixtureAfterTeardownProc</name></member>
-    <member refid="group__fixtures_1ga647e76d678176d1544aa7e6391551fd1" kind="function"><name>picoTest_beforeSetup</name></member>
-    <member refid="group__fixtures_1ga30aa5012e97b77a401962e521595f460" kind="function"><name>picoTest_afterSetup</name></member>
-    <member refid="group__fixtures_1gaee626123a7789994c2f2a2c82dc3b6cf" kind="function"><name>picoTest_beforeTeardown</name></member>
-    <member refid="group__fixtures_1gad92477b902f06bcef4bf83ba96f3400a" kind="function"><name>picoTest_afterTeardown</name></member>
+    <member refid="group__fixtures_1ga503733d3013e81575c72a1100437ccf0" kind="define"><name>PICOTEST_FIXTURE_BEFORE_SETUP_DEFAULT</name></member>
     <member refid="group__fixtures_1gab6053367243af2ee7745bf35a3baaa4e" kind="define"><name>PICOTEST_FIXTURE_BEFORE_SETUP</name></member>
+    <member refid="group__fixtures_1ga8bfe212f7c3bed6d83be102510086012" kind="define"><name>PICOTEST_FIXTURE_AFTER_SETUP_DEFAULT</name></member>
     <member refid="group__fixtures_1ga679063021accc32a74c1e617ed68423f" kind="define"><name>PICOTEST_FIXTURE_AFTER_SETUP</name></member>
+    <member refid="group__fixtures_1ga11bbe6bcd529ac78264411add1275635" kind="define"><name>PICOTEST_FIXTURE_BEFORE_TEARDOWN_DEFAULT</name></member>
     <member refid="group__fixtures_1gaf68cbda0bf19afd7994c2e0a15278f8d" kind="define"><name>PICOTEST_FIXTURE_BEFORE_TEARDOWN</name></member>
+    <member refid="group__fixtures_1ga667b954d1448d95e022451b8711e6abf" kind="define"><name>PICOTEST_FIXTURE_AFTER_TEARDOWN_DEFAULT</name></member>
     <member refid="group__fixtures_1ga1a910236e326a942bc3a5be5c6013520" kind="define"><name>PICOTEST_FIXTURE_AFTER_TEARDOWN</name></member>
   </compound>
   <compound refid="group__test__suites" kind="group"><name>test_suites</name>
@@ -153,13 +159,13 @@
     <member refid="group__test__suites_1gabc6f39019f0cde9f04812785aceaab09" kind="typedef"><name>PicoTestSuiteLeaveProc</name></member>
     <member refid="group__test__suites_1gade4d2a7d8a611ca76c675607529a3edb" kind="typedef"><name>PicoTestSuiteBeforeSubtestProc</name></member>
     <member refid="group__test__suites_1ga80efec0204108859c9ececa3921f6f76" kind="typedef"><name>PicoTestSuiteAfterSubtestProc</name></member>
-    <member refid="group__test__suites_1ga5bc4119292d7cb86b645b0c4e0b51b8d" kind="function"><name>picoTest_enterTestSuite</name></member>
-    <member refid="group__test__suites_1ga8a2f437d7d0a53f802e77d158567221a" kind="function"><name>picoTest_leaveTestSuite</name></member>
-    <member refid="group__test__suites_1gab093971a14a1391e27696ef425173c23" kind="function"><name>picoTest_beforeSubtest</name></member>
-    <member refid="group__test__suites_1ga08d7616c2c00cd11b4709d4baee64f5d" kind="function"><name>picoTest_afterSubtest</name></member>
+    <member refid="group__test__suites_1ga50f13419afbe35f17150bacd7a906838" kind="define"><name>PICOTEST_SUITE_ENTER_DEFAULT</name></member>
     <member refid="group__test__suites_1gae569b3a4f05ebefc297411072e505fd3" kind="define"><name>PICOTEST_SUITE_ENTER</name></member>
+    <member refid="group__test__suites_1gaf24c1f7c243e1990463aea4fbd4d5324" kind="define"><name>PICOTEST_SUITE_LEAVE_DEFAULT</name></member>
     <member refid="group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c" kind="define"><name>PICOTEST_SUITE_LEAVE</name></member>
+    <member refid="group__test__suites_1gab5b747836950016e04544e29879f3da3" kind="define"><name>PICOTEST_SUITE_BEFORE_SUBTEST_DEFAULT</name></member>
     <member refid="group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464" kind="define"><name>PICOTEST_SUITE_BEFORE_SUBTEST</name></member>
+    <member refid="group__test__suites_1ga0aa7b03502294fee8f3e5b4951027145" kind="define"><name>PICOTEST_SUITE_AFTER_SUBTEST_DEFAULT</name></member>
     <member refid="group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24" kind="define"><name>PICOTEST_SUITE_AFTER_SUBTEST</name></member>
   </compound>
   <compound refid="dir_d28a4824dc47e487b107a5db32ef43c4" kind="dir"><name>examples</name>

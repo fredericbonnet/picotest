@@ -83,9 +83,15 @@ Test Case Hooks</h2></td></tr>
 <tr class="memitem:gacce6ae69ea5064e39e3c56915978609e"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__cases.html#gacce6ae69ea5064e39e3c56915978609e">PicoTestCaseLeaveProc</a>(const char *testName, int fail)</td></tr>
 <tr class="memdesc:gacce6ae69ea5064e39e3c56915978609e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function signature of test case leave hooks.  <a href="#gacce6ae69ea5064e39e3c56915978609e">More...</a><br /></td></tr>
 <tr class="separator:gacce6ae69ea5064e39e3c56915978609e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4a4a1356f85b26cd29f2f7ae4c09cf91"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__cases.html#ga4a4a1356f85b26cd29f2f7ae4c09cf91">PICOTEST_CASE_ENTER_DEFAULT</a>(testName)</td></tr>
+<tr class="memdesc:ga4a4a1356f85b26cd29f2f7ae4c09cf91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test case enter hook.  <a href="#ga4a4a1356f85b26cd29f2f7ae4c09cf91">More...</a><br /></td></tr>
+<tr class="separator:ga4a4a1356f85b26cd29f2f7ae4c09cf91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad1f702ab6600b04f66731d35bf38fc67"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__cases.html#gad1f702ab6600b04f66731d35bf38fc67">PICOTEST_CASE_ENTER</a></td></tr>
 <tr class="memdesc:gad1f702ab6600b04f66731d35bf38fc67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test case enter hook.  <a href="#gad1f702ab6600b04f66731d35bf38fc67">More...</a><br /></td></tr>
 <tr class="separator:gad1f702ab6600b04f66731d35bf38fc67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5ff2295c5a324991c72a81bcfb949522"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__cases.html#ga5ff2295c5a324991c72a81bcfb949522">PICOTEST_CASE_LEAVE_DEFAULT</a>(testName,  fail)</td></tr>
+<tr class="memdesc:ga5ff2295c5a324991c72a81bcfb949522"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test case enter hook.  <a href="#ga5ff2295c5a324991c72a81bcfb949522">More...</a><br /></td></tr>
+<tr class="separator:ga5ff2295c5a324991c72a81bcfb949522"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4fd71dfed1ce3733b0d670c86b8d523a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__test__cases.html#ga4fd71dfed1ce3733b0d670c86b8d523a">PICOTEST_CASE_LEAVE</a></td></tr>
 <tr class="memdesc:ga4fd71dfed1ce3733b0d670c86b8d523a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test case leave hook.  <a href="#ga4fd71dfed1ce3733b0d670c86b8d523a">More...</a><br /></td></tr>
 <tr class="separator:ga4fd71dfed1ce3733b0d670c86b8d523a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,6 +135,30 @@ Test Case Hooks</h2></td></tr>
 
 </div>
 </div>
+<a id="ga4a4a1356f85b26cd29f2f7ae4c09cf91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4a4a1356f85b26cd29f2f7ae4c09cf91">&#9670;&nbsp;</a></span>PICOTEST_CASE_ENTER_DEFAULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PICOTEST_CASE_ENTER_DEFAULT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">testName</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default test case enter hook. </p>
+<p>Does nothing.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__test__cases.html#ga0af0a0ec6d2bbee706b56fea6f60126e" title="Function signature of test case enter hooks.">PicoTestCaseEnterProc</a> </dd>
+<dd>
+<a class="el" href="group__test__cases.html#gad1f702ab6600b04f66731d35bf38fc67" title="Define the test case enter hook.">PICOTEST_CASE_ENTER</a> </dd></dl>
+
+</div>
+</div>
 <a id="gad1f702ab6600b04f66731d35bf38fc67"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gad1f702ab6600b04f66731d35bf38fc67">&#9670;&nbsp;</a></span>PICOTEST_CASE_ENTER</h2>
 
@@ -148,6 +178,42 @@ Test Case Hooks</h2></td></tr>
 <dl class="section user"><dt>Examples</dt><dd><a class="el" href="hooks_8c.html">hooks.c</a> Example of PicoTest hooks, prints all events to stdout. <br />
  </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__test__cases.html#ga0af0a0ec6d2bbee706b56fea6f60126e" title="Function signature of test case enter hooks.">PicoTestCaseEnterProc</a> </dd>
+<dd>
+<a class="el" href="group__test__cases.html#ga4a4a1356f85b26cd29f2f7ae4c09cf91" title="Default test case enter hook.">PICOTEST_CASE_ENTER_DEFAULT</a> </dd>
+<dd>
+<a class="el" href="group__test__cases.html#ga4fd71dfed1ce3733b0d670c86b8d523a" title="Define the test case leave hook.">PICOTEST_CASE_LEAVE</a> </dd></dl>
+
+</div>
+</div>
+<a id="ga5ff2295c5a324991c72a81bcfb949522"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5ff2295c5a324991c72a81bcfb949522">&#9670;&nbsp;</a></span>PICOTEST_CASE_LEAVE_DEFAULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PICOTEST_CASE_LEAVE_DEFAULT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">testName, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">fail&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default test case enter hook. </p>
+<p>Does nothing.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__test__cases.html#gacce6ae69ea5064e39e3c56915978609e" title="Function signature of test case leave hooks.">PicoTestCaseLeaveProc</a> </dd>
 <dd>
 <a class="el" href="group__test__cases.html#ga4fd71dfed1ce3733b0d670c86b8d523a" title="Define the test case leave hook.">PICOTEST_CASE_LEAVE</a> </dd></dl>
 
@@ -172,6 +238,8 @@ Test Case Hooks</h2></td></tr>
 <dl class="section user"><dt>Examples</dt><dd><a class="el" href="hooks_8c.html">hooks.c</a> Example of PicoTest hooks, prints all events to stdout. <br />
  </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__test__cases.html#gacce6ae69ea5064e39e3c56915978609e" title="Function signature of test case leave hooks.">PicoTestCaseLeaveProc</a> </dd>
+<dd>
+<a class="el" href="group__test__cases.html#ga5ff2295c5a324991c72a81bcfb949522" title="Default test case enter hook.">PICOTEST_CASE_LEAVE_DEFAULT</a> </dd>
 <dd>
 <a class="el" href="group__test__cases.html#gad1f702ab6600b04f66731d35bf38fc67" title="Define the test case enter hook.">PICOTEST_CASE_ENTER</a> </dd></dl>
 

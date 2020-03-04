@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="858" column="9" bodyfile="include/picotest.h" bodystart="858" bodyend="-1"/>
+        <location file="include/picotest.h" line="883" column="9" bodyfile="include/picotest.h" bodystart="883" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__fixtures_1ga1e98cba23391e13521100528ee1a2181" prot="public" static="no">
         <name>PICOTEST_FIXTURE_SETUP</name>
@@ -81,9 +81,7 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>0;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>srand(clock());</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> A more complex example with a context structure:</para>
-</simplesect>
-<programlisting filename="mainSuite.inc"><codeline></codeline>
+</programlisting> A more complex example with a context structure: <programlisting filename="mainSuite.inc"><codeline></codeline>
 <codeline><highlight class="comment">/*<sp/>Fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><ref refid="group__fixtures_1ga983cffc937dca4baa55f59afad404f03" kindref="member">PICOTEST_FIXTURE_CONTEXT</ref>(fixtureWithContext)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>var1;</highlight></codeline>
@@ -140,7 +138,9 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gacd07b017f38d1e3ad784f369345357a2" kindref="member">PICOTEST_VERIFY</ref>(staticVar<sp/>==<sp/>3);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" kindref="member">PICOTEST_ASSERT</ref>(PASSES);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> <simplesect kind="par"><title>Examples</title><para><ref refid="main_suite_8inc" kindref="compound">mainSuite.inc</ref> Example of a simple PicoTest suite. <linebreak/>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="main_suite_8inc" kindref="compound">mainSuite.inc</ref> Example of a simple PicoTest suite. <linebreak/>
  <ref refid="fixtures_8c" kindref="compound">fixtures.c</ref> Demonstrates test fixture call sequences. <linebreak/>
  </para>
 </simplesect>
@@ -154,7 +154,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="894" column="10" bodyfile="include/picotest.h" bodystart="894" bodyend="-1"/>
+        <location file="include/picotest.h" line="919" column="10" bodyfile="include/picotest.h" bodystart="919" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__fixtures_1ga0d887bdb08e22489fc3cf9fb28a35fd1" prot="public" static="no">
         <name>PICOTEST_FIXTURE_TEARDOWN</name>
@@ -191,9 +191,7 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>0;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>srand(clock());</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> A more complex example with a context structure:</para>
-</simplesect>
-<programlisting filename="mainSuite.inc"><codeline></codeline>
+</programlisting> A more complex example with a context structure: <programlisting filename="mainSuite.inc"><codeline></codeline>
 <codeline><highlight class="comment">/*<sp/>Fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><ref refid="group__fixtures_1ga983cffc937dca4baa55f59afad404f03" kindref="member">PICOTEST_FIXTURE_CONTEXT</ref>(fixtureWithContext)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>var1;</highlight></codeline>
@@ -250,7 +248,9 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gacd07b017f38d1e3ad784f369345357a2" kindref="member">PICOTEST_VERIFY</ref>(staticVar<sp/>==<sp/>3);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" kindref="member">PICOTEST_ASSERT</ref>(PASSES);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> <simplesect kind="par"><title>Examples</title><para><ref refid="main_suite_8inc" kindref="compound">mainSuite.inc</ref> Example of a simple PicoTest suite. <linebreak/>
+</programlisting> </para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="main_suite_8inc" kindref="compound">mainSuite.inc</ref> Example of a simple PicoTest suite. <linebreak/>
  <ref refid="fixtures_8c" kindref="compound">fixtures.c</ref> Demonstrates test fixture call sequences. <linebreak/>
  </para>
 </simplesect>
@@ -264,7 +264,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="945" column="10" bodyfile="include/picotest.h" bodystart="945" bodyend="-1"/>
+        <location file="include/picotest.h" line="974" column="10" bodyfile="include/picotest.h" bodystart="974" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
@@ -319,7 +319,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="991" column="1" bodyfile="include/picotest.h" bodystart="991" bodyend="-1"/>
+        <location file="include/picotest.h" line="1024" column="1" bodyfile="include/picotest.h" bodystart="1024" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="group__fixtures_1gae75749e42f2c93cfedae9220ad149e00" prot="public" static="no">
         <type>void()</type>
@@ -369,7 +369,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1040" column="1" bodyfile="include/picotest.h" bodystart="1040" bodyend="-1"/>
+        <location file="include/picotest.h" line="1073" column="1" bodyfile="include/picotest.h" bodystart="1073" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="group__fixtures_1ga154395391c0e95f5b08acaf38d2ef296" prot="public" static="no">
         <type>void()</type>
@@ -427,7 +427,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1090" column="1" bodyfile="include/picotest.h" bodystart="1090" bodyend="-1"/>
+        <location file="include/picotest.h" line="1123" column="1" bodyfile="include/picotest.h" bodystart="1123" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="group__fixtures_1gad1e2073b337cd5697af642ce44c98db4" prot="public" static="no">
         <type>void()</type>
@@ -485,99 +485,26 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1140" column="1" bodyfile="include/picotest.h" bodystart="1140" bodyend="-1"/>
+        <location file="include/picotest.h" line="1174" column="1" bodyfile="include/picotest.h" bodystart="1174" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="function" id="group__fixtures_1ga647e76d678176d1544aa7e6391551fd1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>static void picoTest_beforeSetup</definition>
-        <argsstring>(const char *fixtureName, const char *testName)</argsstring>
-        <name>picoTest_beforeSetup</name>
-        <param>
-          <type>const char *</type>
-          <declname>fixtureName</declname>
-        </param>
-        <param>
-          <type>const char *</type>
-          <declname>testName</declname>
-        </param>
+      <memberdef kind="define" id="group__fixtures_1ga503733d3013e81575c72a1100437ccf0" prot="public" static="no">
+        <name>PICOTEST_FIXTURE_BEFORE_SETUP_DEFAULT</name>
+        <param><defname>fixtureName</defname></param>
+        <param><defname>testName</defname></param>
         <briefdescription>
+<para>Default test fixture before setup hook. </para>
         </briefdescription>
         <detaileddescription>
+<para>Does nothing.</para>
+<para><simplesect kind="see"><para><ref refid="group__fixtures_1ga78ede622d468ebbe0bcc47698146ead9" kindref="member">PicoTestFixtureBeforeSetupProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1gab6053367243af2ee7745bf35a3baaa4e" kindref="member">PICOTEST_FIXTURE_BEFORE_SETUP</ref> </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1000" column="1" bodyfile="include/picotest.h" bodystart="1000" bodyend="1001"/>
-      </memberdef>
-      <memberdef kind="function" id="group__fixtures_1ga30aa5012e97b77a401962e521595f460" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>static void picoTest_afterSetup</definition>
-        <argsstring>(const char *fixtureName, const char *testName)</argsstring>
-        <name>picoTest_afterSetup</name>
-        <param>
-          <type>const char *</type>
-          <declname>fixtureName</declname>
-        </param>
-        <param>
-          <type>const char *</type>
-          <declname>testName</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="1049" column="1" bodyfile="include/picotest.h" bodystart="1049" bodyend="1050"/>
-      </memberdef>
-      <memberdef kind="function" id="group__fixtures_1gaee626123a7789994c2f2a2c82dc3b6cf" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>static void picoTest_beforeTeardown</definition>
-        <argsstring>(const char *fixtureName, const char *testName, int fail)</argsstring>
-        <name>picoTest_beforeTeardown</name>
-        <param>
-          <type>const char *</type>
-          <declname>fixtureName</declname>
-        </param>
-        <param>
-          <type>const char *</type>
-          <declname>testName</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>fail</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="1099" column="1" bodyfile="include/picotest.h" bodystart="1099" bodyend="1100"/>
-      </memberdef>
-      <memberdef kind="function" id="group__fixtures_1gad92477b902f06bcef4bf83ba96f3400a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>static void picoTest_afterTeardown</definition>
-        <argsstring>(const char *fixtureName, const char *testName, int fail)</argsstring>
-        <name>picoTest_afterTeardown</name>
-        <param>
-          <type>const char *</type>
-          <declname>fixtureName</declname>
-        </param>
-        <param>
-          <type>const char *</type>
-          <declname>testName</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>fail</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="1149" column="1" bodyfile="include/picotest.h" bodystart="1149" bodyend="1150"/>
+        <location file="include/picotest.h" line="1033" column="9" bodyfile="include/picotest.h" bodystart="1033" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__fixtures_1gab6053367243af2ee7745bf35a3baaa4e" prot="public" static="no">
         <name>PICOTEST_FIXTURE_BEFORE_SETUP</name>
@@ -605,13 +532,34 @@
 </simplesect>
 <simplesect kind="see"><para><ref refid="group__fixtures_1ga78ede622d468ebbe0bcc47698146ead9" kindref="member">PicoTestFixtureBeforeSetupProc</ref> </para>
 </simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1ga503733d3013e81575c72a1100437ccf0" kindref="member">PICOTEST_FIXTURE_BEFORE_SETUP_DEFAULT</ref> </para>
+</simplesect>
 <simplesect kind="see"><para><ref refid="group__fixtures_1ga679063021accc32a74c1e617ed68423f" kindref="member">PICOTEST_FIXTURE_AFTER_SETUP</ref> </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1022" column="9" bodyfile="include/picotest.h" bodystart="1022" bodyend="-1"/>
+        <location file="include/picotest.h" line="1055" column="9" bodyfile="include/picotest.h" bodystart="1055" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__fixtures_1ga8bfe212f7c3bed6d83be102510086012" prot="public" static="no">
+        <name>PICOTEST_FIXTURE_AFTER_SETUP_DEFAULT</name>
+        <param><defname>fixtureName</defname></param>
+        <param><defname>testName</defname></param>
+        <briefdescription>
+<para>Default test fixture after setup hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does nothing.</para>
+<para><simplesect kind="see"><para><ref refid="group__fixtures_1gae75749e42f2c93cfedae9220ad149e00" kindref="member">PicoTestFixtureAfterSetupProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1ga679063021accc32a74c1e617ed68423f" kindref="member">PICOTEST_FIXTURE_AFTER_SETUP</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1082" column="9" bodyfile="include/picotest.h" bodystart="1082" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__fixtures_1ga679063021accc32a74c1e617ed68423f" prot="public" static="no">
         <name>PICOTEST_FIXTURE_AFTER_SETUP</name>
@@ -639,13 +587,35 @@
 </simplesect>
 <simplesect kind="see"><para><ref refid="group__fixtures_1gae75749e42f2c93cfedae9220ad149e00" kindref="member">PicoTestFixtureAfterSetupProc</ref> </para>
 </simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1ga8bfe212f7c3bed6d83be102510086012" kindref="member">PICOTEST_FIXTURE_AFTER_SETUP_DEFAULT</ref> </para>
+</simplesect>
 <simplesect kind="see"><para><ref refid="group__fixtures_1gab6053367243af2ee7745bf35a3baaa4e" kindref="member">PICOTEST_FIXTURE_BEFORE_SETUP</ref> </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1071" column="9" bodyfile="include/picotest.h" bodystart="1071" bodyend="-1"/>
+        <location file="include/picotest.h" line="1104" column="9" bodyfile="include/picotest.h" bodystart="1104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__fixtures_1ga11bbe6bcd529ac78264411add1275635" prot="public" static="no">
+        <name>PICOTEST_FIXTURE_BEFORE_TEARDOWN_DEFAULT</name>
+        <param><defname>fixtureName</defname></param>
+        <param><defname>testName</defname></param>
+        <param><defname>fail</defname></param>
+        <briefdescription>
+<para>Default test fixture before teardown hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does nothing.</para>
+<para><simplesect kind="see"><para><ref refid="group__fixtures_1ga154395391c0e95f5b08acaf38d2ef296" kindref="member">PicoTestFixtureBeforeTeardownProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1gaf68cbda0bf19afd7994c2e0a15278f8d" kindref="member">PICOTEST_FIXTURE_BEFORE_TEARDOWN</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1132" column="9" bodyfile="include/picotest.h" bodystart="1132" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__fixtures_1gaf68cbda0bf19afd7994c2e0a15278f8d" prot="public" static="no">
         <name>PICOTEST_FIXTURE_BEFORE_TEARDOWN</name>
@@ -673,13 +643,35 @@
 </simplesect>
 <simplesect kind="see"><para><ref refid="group__fixtures_1ga154395391c0e95f5b08acaf38d2ef296" kindref="member">PicoTestFixtureBeforeTeardownProc</ref> </para>
 </simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1ga11bbe6bcd529ac78264411add1275635" kindref="member">PICOTEST_FIXTURE_BEFORE_TEARDOWN_DEFAULT</ref> </para>
+</simplesect>
 <simplesect kind="see"><para><ref refid="group__fixtures_1ga1a910236e326a942bc3a5be5c6013520" kindref="member">PICOTEST_FIXTURE_AFTER_TEARDOWN</ref> </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1121" column="9" bodyfile="include/picotest.h" bodystart="1121" bodyend="-1"/>
+        <location file="include/picotest.h" line="1154" column="9" bodyfile="include/picotest.h" bodystart="1154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__fixtures_1ga667b954d1448d95e022451b8711e6abf" prot="public" static="no">
+        <name>PICOTEST_FIXTURE_AFTER_TEARDOWN_DEFAULT</name>
+        <param><defname>fixtureName</defname></param>
+        <param><defname>testName</defname></param>
+        <param><defname>fail</defname></param>
+        <briefdescription>
+<para>Default test fixture after teardown hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does nothing.</para>
+<para><simplesect kind="see"><para><ref refid="group__fixtures_1gad1e2073b337cd5697af642ce44c98db4" kindref="member">PicoTestFixtureAfterTeardownProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1ga1a910236e326a942bc3a5be5c6013520" kindref="member">PICOTEST_FIXTURE_AFTER_TEARDOWN</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="1183" column="9" bodyfile="include/picotest.h" bodystart="1183" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__fixtures_1ga1a910236e326a942bc3a5be5c6013520" prot="public" static="no">
         <name>PICOTEST_FIXTURE_AFTER_TEARDOWN</name>
@@ -707,13 +699,15 @@
 </simplesect>
 <simplesect kind="see"><para><ref refid="group__fixtures_1gad1e2073b337cd5697af642ce44c98db4" kindref="member">PicoTestFixtureAfterTeardownProc</ref> </para>
 </simplesect>
+<simplesect kind="see"><para><ref refid="group__fixtures_1ga667b954d1448d95e022451b8711e6abf" kindref="member">PICOTEST_FIXTURE_AFTER_TEARDOWN_DEFAULT</ref> </para>
+</simplesect>
 <simplesect kind="see"><para><ref refid="group__fixtures_1gaf68cbda0bf19afd7994c2e0a15278f8d" kindref="member">PICOTEST_FIXTURE_BEFORE_TEARDOWN</ref> </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1171" column="9" bodyfile="include/picotest.h" bodystart="1171" bodyend="-1"/>
+        <location file="include/picotest.h" line="1205" column="9" bodyfile="include/picotest.h" bodystart="1205" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

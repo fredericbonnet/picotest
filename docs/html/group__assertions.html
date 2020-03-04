@@ -92,9 +92,15 @@ Assertion Hooks</h2></td></tr>
 <tr class="memitem:ga9502bbfe9927766f12e8de83aa37b706"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__assertions.html#ga9502bbfe9927766f12e8de83aa37b706">PicoTestAssertAfterProc</a>(const char *type, const char *test, int fail)</td></tr>
 <tr class="memdesc:ga9502bbfe9927766f12e8de83aa37b706"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function signature of assert after hooks.  <a href="#ga9502bbfe9927766f12e8de83aa37b706">More...</a><br /></td></tr>
 <tr class="separator:ga9502bbfe9927766f12e8de83aa37b706"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga331ef495337f7e2aae8be15cfd2a170a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__assertions.html#ga331ef495337f7e2aae8be15cfd2a170a">PICOTEST_ASSERT_BEFORE_DEFAULT</a>(type,  test)</td></tr>
+<tr class="memdesc:ga331ef495337f7e2aae8be15cfd2a170a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default assert before hook.  <a href="#ga331ef495337f7e2aae8be15cfd2a170a">More...</a><br /></td></tr>
+<tr class="separator:ga331ef495337f7e2aae8be15cfd2a170a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa38b1a0014fe2ab172a5466f9031aafb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__assertions.html#gaa38b1a0014fe2ab172a5466f9031aafb">PICOTEST_ASSERT_BEFORE</a></td></tr>
 <tr class="memdesc:gaa38b1a0014fe2ab172a5466f9031aafb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the assert before hook.  <a href="#gaa38b1a0014fe2ab172a5466f9031aafb">More...</a><br /></td></tr>
 <tr class="separator:gaa38b1a0014fe2ab172a5466f9031aafb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab1f1711109e4a8443a61c228194a6825"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__assertions.html#gab1f1711109e4a8443a61c228194a6825">PICOTEST_ASSERT_AFTER_DEFAULT</a>(type,  test,  fail)</td></tr>
+<tr class="memdesc:gab1f1711109e4a8443a61c228194a6825"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default assert after hook.  <a href="#gab1f1711109e4a8443a61c228194a6825">More...</a><br /></td></tr>
+<tr class="separator:gab1f1711109e4a8443a61c228194a6825"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae6c0c62e54611c6d92a3a8b81545f934"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__assertions.html#gae6c0c62e54611c6d92a3a8b81545f934">PICOTEST_ASSERT_AFTER</a></td></tr>
 <tr class="memdesc:gae6c0c62e54611c6d92a3a8b81545f934"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the assert after hook.  <a href="#gae6c0c62e54611c6d92a3a8b81545f934">More...</a><br /></td></tr>
 <tr class="separator:gae6c0c62e54611c6d92a3a8b81545f934"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -264,6 +270,40 @@ Assertion Hooks</h2></td></tr>
 
 </div>
 </div>
+<a id="ga331ef495337f7e2aae8be15cfd2a170a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga331ef495337f7e2aae8be15cfd2a170a">&#9670;&nbsp;</a></span>PICOTEST_ASSERT_BEFORE_DEFAULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PICOTEST_ASSERT_BEFORE_DEFAULT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">type, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">test&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default assert before hook. </p>
+<p>Does nothing.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__assertions.html#ga2011048ceed2457e95498573d0730eaf" title="Function signature of assert before hooks.">PicoTestAssertBeforeProc</a> </dd>
+<dd>
+<a class="el" href="group__assertions.html#gaa38b1a0014fe2ab172a5466f9031aafb" title="Define the assert before hook.">PICOTEST_ASSERT_BEFORE</a> </dd></dl>
+
+</div>
+</div>
 <a id="gaa38b1a0014fe2ab172a5466f9031aafb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaa38b1a0014fe2ab172a5466f9031aafb">&#9670;&nbsp;</a></span>PICOTEST_ASSERT_BEFORE</h2>
 
@@ -283,6 +323,48 @@ Assertion Hooks</h2></td></tr>
 <dl class="section user"><dt>Examples</dt><dd><a class="el" href="hooks_8c.html">hooks.c</a> Example of PicoTest hooks, prints all events to stdout. <br />
  </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__assertions.html#ga2011048ceed2457e95498573d0730eaf" title="Function signature of assert before hooks.">PicoTestAssertBeforeProc</a> </dd>
+<dd>
+<a class="el" href="group__assertions.html#ga331ef495337f7e2aae8be15cfd2a170a" title="Default assert before hook.">PICOTEST_ASSERT_BEFORE_DEFAULT</a> </dd>
+<dd>
+<a class="el" href="group__assertions.html#gae6c0c62e54611c6d92a3a8b81545f934" title="Define the assert after hook.">PICOTEST_ASSERT_AFTER</a> </dd></dl>
+
+</div>
+</div>
+<a id="gab1f1711109e4a8443a61c228194a6825"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab1f1711109e4a8443a61c228194a6825">&#9670;&nbsp;</a></span>PICOTEST_ASSERT_AFTER_DEFAULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PICOTEST_ASSERT_AFTER_DEFAULT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">type, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">test, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">fail&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default assert after hook. </p>
+<p>Does nothing.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__assertions.html#ga9502bbfe9927766f12e8de83aa37b706" title="Function signature of assert after hooks.">PicoTestAssertAfterProc</a> </dd>
 <dd>
 <a class="el" href="group__assertions.html#gae6c0c62e54611c6d92a3a8b81545f934" title="Define the assert after hook.">PICOTEST_ASSERT_AFTER</a> </dd></dl>
 
@@ -307,6 +389,8 @@ Assertion Hooks</h2></td></tr>
 <dl class="section user"><dt>Examples</dt><dd><a class="el" href="hooks_8c.html">hooks.c</a> Example of PicoTest hooks, prints all events to stdout. <br />
  </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__assertions.html#ga9502bbfe9927766f12e8de83aa37b706" title="Function signature of assert after hooks.">PicoTestAssertAfterProc</a> </dd>
+<dd>
+<a class="el" href="group__assertions.html#gab1f1711109e4a8443a61c228194a6825" title="Default assert after hook.">PICOTEST_ASSERT_AFTER_DEFAULT</a> </dd>
 <dd>
 <a class="el" href="group__assertions.html#gaa38b1a0014fe2ab172a5466f9031aafb" title="Define the assert before hook.">PICOTEST_ASSERT_BEFORE</a> </dd></dl>
 
@@ -359,9 +443,7 @@ Assertion Hooks</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">type</td><td>Type of test (e.g. "ASSERT"). </td></tr>
     <tr><td class="paramname">test</td><td>Test. </td></tr>
-    <tr><td class="paramname">fail</td><td>Test result: zero for success, non-zero for failure. </td></tr>
-    <tr><td class="paramname">msg</td><td>(optional) Message format string. </td></tr>
-    <tr><td class="paramname">...</td><td>(optional) Message string arguments.</td></tr>
+    <tr><td class="paramname">fail</td><td>Test result: zero for success, non-zero for failure.</td></tr>
   </table>
   </dd>
 </dl>
