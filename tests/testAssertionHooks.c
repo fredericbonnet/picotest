@@ -76,21 +76,13 @@ PICOTEST_CASE(doVerifyFail) {
     state.testCaseStep++;
 }
 
-/* Reset default logger and hooks */
-#undef PICOTEST_FAILURE_LOGGER
-#define PICOTEST_FAILURE_LOGGER PICOTEST_FAILURE_LOGGER_DEFAULT
-
-#undef PICOTEST_ASSERT_BEFORE
-#undef PICOTEST_ASSERT_AFTER
-#define PICOTEST_ASSERT_BEFORE PICOTEST_ASSERT_BEFORE_DEFAULT
-#define PICOTEST_ASSERT_AFTER PICOTEST_ASSERT_AFTER_DEFAULT
-
-/* Import hooks for test suite */
-#include "hooks.h"
+/* Reset default settings */
+#include "reset.h"
 
 /*
  * Test suite for assertion hooks
  */
+#include "hooks.h"
 
 PICOTEST_SUITE(testAssertionHooks, testAssertionHooksCallOrder,
                testAssertBeforeHook, testAssertAfterHook);
