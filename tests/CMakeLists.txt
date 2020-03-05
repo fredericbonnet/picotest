@@ -16,6 +16,7 @@ target_sources(test_picotest
         testAssertionHooks.c
         testFilters.c
         testLoggers.c
+        testCases.c
 )
 target_link_libraries(test_picotest
     PRIVATE
