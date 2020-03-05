@@ -6,8 +6,24 @@
 
 /* Filters and hooks used for testing */
 static int filterCalled, testCaseCalled;
-static PicoTestFilterProc filterSkip, filterPass, filterSkipPropagate,
-    filterPassPropagate;
+static struct {
+    PicoTestProc *test;
+    const char *testName;
+    const char *cond;
+} args;
+static void init() {
+    filterCalled = testCaseCalled = 0;
+    memset(&args, 0, sizeof(args));
+}
+static PicoTestFilterProc filterArgs, filterSkip, filterPass,
+    filterSkipPropagate, filterPassPropagate;
+PicoTestFilterResult filterArgs(PicoTestProc *test, const char *testName,
+                                const char *cond) {
+    args.test = test;
+    args.testName = testName;
+    args.cond = cond;
+    return PICOTEST_FILTER_PASS;
+}
 PicoTestFilterResult filterSkip(PicoTestProc *test, const char *testName,
                                 const char *cond) {
     filterCalled++;
@@ -29,6 +45,12 @@ PicoTestFilterResult filterPassPropagate(PicoTestProc *test,
                                          const char *cond) {
     filterCalled++;
     return PICOTEST_FILTER_PASS_PROPAGATE;
+}
+
+#undef PICOTEST_FILTER
+#define PICOTEST_FILTER filterArgs
+PICOTEST_CASE(doFilterArgs) {
+    testCaseCalled++;
 }
 
 #define NB_SUITES 2
@@ -77,9 +99,21 @@ PICOTEST_CASE(doFilterPassPropagateCase) {
  */
 #include "hooks.h"
 
-PICOTEST_SUITE(testFilters, testFilterNoCondition, testFilterSkip,
-               testFilterPass, testFilterSkipPropagate,
+PICOTEST_SUITE(testFilters, testFilterArguments, testFilterNoCondition,
+               testFilterSkip, testFilterPass, testFilterSkipPropagate,
                testFilterPassPropagate);
+
+/*
+ * Arguments
+ */
+
+PICOTEST_CASE(testFilterArguments) {
+    init();
+    doFilterArgs("condition");
+    PICOTEST_VERIFY(args.test == doFilterArgs);
+    PICOTEST_VERIFY(strcmp(args.testName, "doFilterArgs") == 0);
+    PICOTEST_VERIFY(strcmp(args.cond, "condition") == 0);
+}
 
 /*
  * No condition
@@ -90,43 +124,43 @@ PICOTEST_SUITE(testFilterNoCondition,
                testFilterNoConditionShouldBypassFilterAndRunWholeSuite);
 
 PICOTEST_CASE(testFilterNoConditionShouldBypassFilterAndRunCase) {
-    filterCalled = testCaseCalled = 0;
+    init();
     doFilterSkipCase(NULL);
     PICOTEST_VERIFY(filterCalled == 0)
     PICOTEST_VERIFY(testCaseCalled == 1);
 
-    filterCalled = testCaseCalled = 0;
+    init();
     doFilterPassCase(NULL);
     PICOTEST_VERIFY(filterCalled == 0);
     PICOTEST_VERIFY(testCaseCalled == 1);
 
-    filterCalled = testCaseCalled = 0;
+    init();
     doFilterSkipPropagateCase(NULL);
     PICOTEST_VERIFY(filterCalled == 0);
     PICOTEST_VERIFY(testCaseCalled == 1);
 
-    filterCalled = testCaseCalled = 0;
+    init();
     doFilterPassPropagateCase(NULL);
     PICOTEST_VERIFY(filterCalled == 0);
     PICOTEST_VERIFY(testCaseCalled == 1);
 }
 PICOTEST_CASE(testFilterNoConditionShouldBypassFilterAndRunWholeSuite) {
-    filterCalled = testCaseCalled = 0;
+    init();
     doFilterSkipSuite(NULL);
     PICOTEST_VERIFY(filterCalled == 0);
     PICOTEST_VERIFY(testCaseCalled == NB_CASES);
 
-    filterCalled = testCaseCalled = 0;
+    init();
     doFilterPassSuite(NULL);
     PICOTEST_VERIFY(filterCalled == 0);
     PICOTEST_VERIFY(testCaseCalled == NB_CASES);
 
-    filterCalled = testCaseCalled = 0;
+    init();
     doFilterSkipPropagateSuite(NULL);
     PICOTEST_VERIFY(filterCalled == 0);
     PICOTEST_VERIFY(testCaseCalled == NB_CASES);
 
-    filterCalled = testCaseCalled = 0;
+    init();
     doFilterPassPropagateSuite(NULL);
     PICOTEST_VERIFY(filterCalled == 0);
     PICOTEST_VERIFY(testCaseCalled == NB_CASES);
@@ -140,13 +174,13 @@ PICOTEST_SUITE(testFilterSkip, testFilterSkipShouldSkipCase,
                testFilterSkipShouldSkipWholeSuite);
 
 PICOTEST_CASE(testFilterSkipShouldSkipCase) {
-    filterCalled = testCaseCalled = 0;
+    init();
     doFilterSkipCase("dummy");
     PICOTEST_VERIFY(filterCalled == 1);
     PICOTEST_VERIFY(testCaseCalled == 0);
 }
 PICOTEST_CASE(testFilterSkipShouldSkipWholeSuite) {
-    filterCalled = testCaseCalled = 0;
+    init();
     doFilterSkipSuite("dummy");
     PICOTEST_VERIFY(filterCalled == 1);
     PICOTEST_VERIFY(testCaseCalled == 0);
@@ -160,13 +194,13 @@ PICOTEST_SUITE(testFilterPass, testFilterPassShouldRunCase,
                testFilterPassShouldRunWholeSuite);
 
 PICOTEST_CASE(testFilterPassShouldRunCase) {
-    filterCalled = testCaseCalled = 0;
+    init();
     doFilterPassCase("dummy");
     PICOTEST_VERIFY(filterCalled == 1);
     PICOTEST_VERIFY(testCaseCalled == 1);
 }
 PICOTEST_CASE(testFilterPassShouldRunWholeSuite) {
-    filterCalled = testCaseCalled = 0;
+    init();
     doFilterPassSuite("dummy");
     PICOTEST_VERIFY(filterCalled == 1);
     PICOTEST_VERIFY(testCaseCalled == NB_CASES);
@@ -180,13 +214,13 @@ PICOTEST_SUITE(testFilterSkipPropagate, testFilterSkipPropagateShouldSkipCase,
                testFilterSkipPropagateShouldSkipSuiteAndFilterSubtests);
 
 PICOTEST_CASE(testFilterSkipPropagateShouldSkipCase) {
-    filterCalled = testCaseCalled = 0;
+    init();
     doFilterSkipPropagateCase("dummy");
     PICOTEST_VERIFY(filterCalled == 1);
     PICOTEST_VERIFY(testCaseCalled == 0);
 }
 PICOTEST_CASE(testFilterSkipPropagateShouldSkipSuiteAndFilterSubtests) {
-    filterCalled = testCaseCalled = 0;
+    init();
     doFilterSkipPropagateSuite("dummy");
     PICOTEST_VERIFY(filterCalled == SUITE_LENGTH);
     PICOTEST_VERIFY(testCaseCalled == 0);
@@ -200,13 +234,13 @@ PICOTEST_SUITE(testFilterPassPropagate, testFilterPassPropagateShouldRunCase,
                testFilterPassPropagateShouldRunSuiteAndFilterSubtests);
 
 PICOTEST_CASE(testFilterPassPropagateShouldRunCase) {
-    filterCalled = testCaseCalled = 0;
+    init();
     doFilterPassPropagateCase("dummy");
     PICOTEST_VERIFY(filterCalled == 1);
     PICOTEST_VERIFY(testCaseCalled == 1);
 }
 PICOTEST_CASE(testFilterPassPropagateShouldRunSuiteAndFilterSubtests) {
-    filterCalled = testCaseCalled = 0;
+    init();
     doFilterPassPropagateSuite("dummy");
     PICOTEST_VERIFY(filterCalled == SUITE_LENGTH);
     PICOTEST_VERIFY(testCaseCalled == NB_CASES);
