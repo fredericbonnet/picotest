@@ -77,13 +77,40 @@ PICOTEST_CASE(doFilterPassPropagateCase) {
  */
 #include "hooks.h"
 
-PICOTEST_SUITE(testFilters, testFilterDefaultShouldBypassFilterAndRunWholeSuite,
-               testFilterSkipShouldSkipWholeSuite,
-               testFilterPassShouldRunWholeSuite,
-               testFilterSkipPropagateShouldSkipSuiteAndFilterSubtests,
-               testFilterPassPropagateShouldRunSuiteAndFilterSubtests);
+PICOTEST_SUITE(testFilters, testFilterNoCondition, testFilterSkip,
+               testFilterPass, testFilterSkipPropagate,
+               testFilterPassPropagate);
 
-PICOTEST_CASE(testFilterDefaultShouldBypassFilterAndRunWholeSuite) {
+/*
+ * No condition
+ */
+
+PICOTEST_SUITE(testFilterNoCondition,
+               testFilterNoConditionShouldBypassFilterAndRunCase,
+               testFilterNoConditionShouldBypassFilterAndRunWholeSuite);
+
+PICOTEST_CASE(testFilterNoConditionShouldBypassFilterAndRunCase) {
+    filterCalled = testCaseCalled = 0;
+    doFilterSkipCase(NULL);
+    PICOTEST_VERIFY(filterCalled == 0)
+    PICOTEST_VERIFY(testCaseCalled == 1);
+
+    filterCalled = testCaseCalled = 0;
+    doFilterPassCase(NULL);
+    PICOTEST_VERIFY(filterCalled == 0);
+    PICOTEST_VERIFY(testCaseCalled == 1);
+
+    filterCalled = testCaseCalled = 0;
+    doFilterSkipPropagateCase(NULL);
+    PICOTEST_VERIFY(filterCalled == 0);
+    PICOTEST_VERIFY(testCaseCalled == 1);
+
+    filterCalled = testCaseCalled = 0;
+    doFilterPassPropagateCase(NULL);
+    PICOTEST_VERIFY(filterCalled == 0);
+    PICOTEST_VERIFY(testCaseCalled == 1);
+}
+PICOTEST_CASE(testFilterNoConditionShouldBypassFilterAndRunWholeSuite) {
     filterCalled = testCaseCalled = 0;
     doFilterSkipSuite(NULL);
     PICOTEST_VERIFY(filterCalled == 0);
@@ -109,6 +136,15 @@ PICOTEST_CASE(testFilterDefaultShouldBypassFilterAndRunWholeSuite) {
  * PICOTEST_FILTER_SKIP
  */
 
+PICOTEST_SUITE(testFilterSkip, testFilterSkipShouldSkipCase,
+               testFilterSkipShouldSkipWholeSuite);
+
+PICOTEST_CASE(testFilterSkipShouldSkipCase) {
+    filterCalled = testCaseCalled = 0;
+    doFilterSkipCase("dummy");
+    PICOTEST_VERIFY(filterCalled == 1);
+    PICOTEST_VERIFY(testCaseCalled == 0);
+}
 PICOTEST_CASE(testFilterSkipShouldSkipWholeSuite) {
     filterCalled = testCaseCalled = 0;
     doFilterSkipSuite("dummy");
@@ -120,6 +156,15 @@ PICOTEST_CASE(testFilterSkipShouldSkipWholeSuite) {
  * PICOTEST_FILTER_PASS
  */
 
+PICOTEST_SUITE(testFilterPass, testFilterPassShouldRunCase,
+               testFilterPassShouldRunWholeSuite);
+
+PICOTEST_CASE(testFilterPassShouldRunCase) {
+    filterCalled = testCaseCalled = 0;
+    doFilterPassCase("dummy");
+    PICOTEST_VERIFY(filterCalled == 1);
+    PICOTEST_VERIFY(testCaseCalled == 1);
+}
 PICOTEST_CASE(testFilterPassShouldRunWholeSuite) {
     filterCalled = testCaseCalled = 0;
     doFilterPassSuite("dummy");
@@ -131,6 +176,15 @@ PICOTEST_CASE(testFilterPassShouldRunWholeSuite) {
  * PICOTEST_FILTER_SKIP_PROPAGATE
  */
 
+PICOTEST_SUITE(testFilterSkipPropagate, testFilterSkipPropagateShouldSkipCase,
+               testFilterSkipPropagateShouldSkipSuiteAndFilterSubtests);
+
+PICOTEST_CASE(testFilterSkipPropagateShouldSkipCase) {
+    filterCalled = testCaseCalled = 0;
+    doFilterSkipPropagateCase("dummy");
+    PICOTEST_VERIFY(filterCalled == 1);
+    PICOTEST_VERIFY(testCaseCalled == 0);
+}
 PICOTEST_CASE(testFilterSkipPropagateShouldSkipSuiteAndFilterSubtests) {
     filterCalled = testCaseCalled = 0;
     doFilterSkipPropagateSuite("dummy");
@@ -142,6 +196,15 @@ PICOTEST_CASE(testFilterSkipPropagateShouldSkipSuiteAndFilterSubtests) {
  * PICOTEST_FILTER_PASS_PROPAGATE
  */
 
+PICOTEST_SUITE(testFilterPassPropagate, testFilterPassPropagateShouldRunCase,
+               testFilterPassPropagateShouldRunSuiteAndFilterSubtests);
+
+PICOTEST_CASE(testFilterPassPropagateShouldRunCase) {
+    filterCalled = testCaseCalled = 0;
+    doFilterPassPropagateCase("dummy");
+    PICOTEST_VERIFY(filterCalled == 1);
+    PICOTEST_VERIFY(testCaseCalled == 1);
+}
 PICOTEST_CASE(testFilterPassPropagateShouldRunSuiteAndFilterSubtests) {
     filterCalled = testCaseCalled = 0;
     doFilterPassPropagateSuite("dummy");
