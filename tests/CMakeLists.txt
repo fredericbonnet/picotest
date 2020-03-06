@@ -21,6 +21,7 @@ target_sources(test_picotest
         testSuites.c
         testSuiteHooks.c
         testFixtures.c
+        testFixtureHooks.c
 )
 target_link_libraries(test_picotest
     PRIVATE
