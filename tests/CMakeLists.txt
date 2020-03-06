@@ -14,14 +14,15 @@ target_sources(test_picotest
         hooks.c
         testAssertions.c
         testAssertionHooks.c
-        testFilters.c
-        testLoggers.c
         testCases.c
         testCaseHooks.c
-        testSuites.c
-        testSuiteHooks.c
         testFixtures.c
         testFixtureHooks.c
+        testSuites.c
+        testSuiteHooks.c
+        testFilters.c
+        testTraversal.c
+        testLoggers.c
 )
 target_link_libraries(test_picotest
     PRIVATE

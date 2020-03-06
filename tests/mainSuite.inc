@@ -1,5 +1,5 @@
 #include <picotest.h>
 
-PICOTEST_SUITE(mainSuite, testAssertions, testAssertionHooks, testFilters,
-               testLoggers, testCases, testCaseHooks, testSuites,
-               testSuiteHooks, testFixtures, testFixtureHooks);
+PICOTEST_SUITE(mainSuite, testAssertions, testAssertionHooks, testCases,
+               testCaseHooks, testFixtures, testFixtureHooks, testSuites,
+               testSuiteHooks, testFilters, testTraversal, testLoggers);
