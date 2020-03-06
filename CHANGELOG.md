@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2020-03-06
+
+### Added
+
+- Add test suite
+- Make default logger/filter/hooks public:
+
+  - `PICOTEST_FILTER_DEFAULT`
+  - `PICOTEST_FAILURE_LOGGER_DEFAULT`
+  - `PICOTEST_CASE_ENTER_DEFAULT`
+  - `PICOTEST_CASE_LEAVE_DEFAULT`
+  - `PICOTEST_ASSERT_BEFORE_DEFAULT`
+  - `PICOTEST_ASSERT_AFTER_DEFAULT`
+  - `PICOTEST_FIXTURE_BEFORE_SETUP_DEFAULT`
+  - `PICOTEST_FIXTURE_AFTER_SETUP_DEFAULT`
+  - `PICOTEST_FIXTURE_BEFORE_TEARDOWN_DEFAULT`
+  - `PICOTEST_FIXTURE_AFTER_TEARDOWN_DEFAULT`
+  - `PICOTEST_SUITE_ENTER_DEFAULT`
+  - `PICOTEST_SUITE_LEAVE_DEFAULT`
+  - `PICOTEST_SUITE_BEFORE_SUBTEST_DEFAULT`
+  - `PICOTEST_SUITE_AFTER_SUBTEST_DEFAULT`
+
 ## [1.2.1] - 2020-03-02
 
 ### Fixed
@@ -29,7 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Add PICOTEST_FAILURE
+- Add `PICOTEST_FAILURE`
 
 ### Fixed
 
@@ -41,7 +63,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First release.
 
-[unreleased]: https://github.com/fredericbonnet/picotest/compare/v1.2.1...HEAD
+[unreleased]: https://github.com/fredericbonnet/picotest/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/fredericbonnet/picotest/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/fredericbonnet/picotest/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/fredericbonnet/picotest/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/fredericbonnet/picotest/compare/v1.0.0...v1.1.0

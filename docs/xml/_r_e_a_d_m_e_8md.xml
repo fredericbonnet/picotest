@@ -14,20 +14,17 @@
 <codeline></codeline>
 <codeline><highlight class="normal">https://en.wikipedia.org/wiki/XUnit</highlight></codeline>
 <codeline></codeline>
-<codeline></codeline>
 <codeline><highlight class="normal">##<sp/>License</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">PicoTest<sp/>is<sp/>released<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>The<sp/>3-Clause<sp/>BSD<sp/>License:</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">https://opensource.org/licenses/BSD-3-Clause</highlight></codeline>
 <codeline></codeline>
-<codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Installation</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">PicoTest<sp/>is<sp/>a<sp/>single-file<sp/>package,<sp/>everything<sp/>is<sp/>defined<sp/>in<sp/>the<sp/>header<sp/>file</highlight></codeline>
 <codeline><highlight class="normal">`picotest.h`.<sp/>So<sp/>you<sp/>can<sp/>either<sp/>install<sp/>this<sp/>file<sp/>in<sp/>a<sp/>standard<sp/>location,<sp/>or</highlight></codeline>
 <codeline><highlight class="normal">copy<sp/>it<sp/>within<sp/>your<sp/>project<sp/>source<sp/>tree.</highlight></codeline>
-<codeline></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Usage</highlight></codeline>
 <codeline></codeline>
@@ -51,7 +48,6 @@
 <codeline><highlight class="normal">You<sp/>can<sp/>rebuild<sp/>the<sp/>documentation<sp/>from<sp/>scratch<sp/>using<sp/>the<sp/>provided<sp/>`Doxyfile`</highlight></codeline>
 <codeline><highlight class="normal">file.</highlight></codeline>
 <codeline></codeline>
-<codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Examples</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">The<sp/>`examples`<sp/>subdirectory<sp/>contains<sp/>several<sp/>example<sp/>source<sp/>files<sp/>that</highlight></codeline>
@@ -63,10 +59,38 @@
 <codeline></codeline>
 <codeline><highlight class="normal">https://cmake.org/</highlight></codeline>
 <codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Tests</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">PicoTest<sp/>is<sp/>self-tested<sp/>and<sp/>comes<sp/>with<sp/>a<sp/>complete<sp/>test<sp/>suite<sp/>that<sp/>covers<sp/>all</highlight></codeline>
+<codeline><highlight class="normal">aspects<sp/>of<sp/>the<sp/>framework.<sp/>This<sp/>guarantees<sp/>that<sp/>PicoTest<sp/>is<sp/>production-ready.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>test<sp/>suite<sp/>itself<sp/>is<sp/>a<sp/>good<sp/>real-world<sp/>example<sp/>of<sp/>PicoTest<sp/>in<sp/>action.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Building<sp/>and<sp/>running<sp/>the<sp/>test<sp/>suite<sp/>requires<sp/>CMake<sp/>(see<sp/>next<sp/>section<sp/>for<sp/>more</highlight></codeline>
+<codeline><highlight class="normal">information).<sp/>To<sp/>build<sp/>the<sp/>suite:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```sh</highlight></codeline>
+<codeline><highlight class="normal">cd<sp/>tests</highlight></codeline>
+<codeline><highlight class="normal">cmake<sp/>-S<sp/>.<sp/>-B<sp/>build</highlight></codeline>
+<codeline><highlight class="normal">cmake<sp/>--build<sp/>build</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>build<sp/>process<sp/>makes<sp/>use<sp/>of<sp/>the<sp/>test<sp/>discovery<sp/>mechanism<sp/>described<sp/>in<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">next<sp/>section.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">To<sp/>run<sp/>the<sp/>suite<sp/>using<sp/>CTest:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```sh</highlight></codeline>
+<codeline><highlight class="normal">cd<sp/>tests/build</highlight></codeline>
+<codeline><highlight class="normal">ctest</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">You<sp/>can<sp/>also<sp/>run<sp/>the<sp/>suite<sp/>executable<sp/>`test_picotest`<sp/>directly<sp/>from<sp/>the<sp/>CMake</highlight></codeline>
+<codeline><highlight class="normal">output<sp/>directory.</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Integration<sp/>with<sp/>CMake</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">PicoTest<sp/>provides<sp/><sp/>a<sp/>CMake<sp/>module<sp/>definition<sp/>for<sp/>easier<sp/>integration<sp/>with</highlight></codeline>
+<codeline><highlight class="normal">PicoTest<sp/>provides<sp/>a<sp/>CMake<sp/>module<sp/>definition<sp/>for<sp/>easier<sp/>integration<sp/>with</highlight></codeline>
 <codeline><highlight class="normal">other<sp/>CMake<sp/>projects.<sp/>In<sp/>particular,<sp/>it<sp/>comes<sp/>with<sp/>an<sp/>auto-discovery<sp/>script<sp/>for</highlight></codeline>
 <codeline><highlight class="normal">CTest<sp/>that<sp/>makes<sp/>use<sp/>of<sp/>the<sp/>test<sp/>traversal<sp/>features<sp/>of<sp/>PicoTest.</highlight></codeline>
 <codeline></codeline>
@@ -75,7 +99,7 @@
 <codeline></codeline>
 <codeline><highlight class="normal">```cmake</highlight></codeline>
 <codeline><highlight class="normal">find_package(PicoTest)</highlight></codeline>
-<codeline><highlight class="normal">```<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">You<sp/>can<sp/>then<sp/>add<sp/>the<sp/>`PicoTest`<sp/>dependency<sp/>to<sp/>your<sp/>targets,<sp/>e.g.:</highlight></codeline>
 <codeline></codeline>
@@ -84,9 +108,10 @@
 <codeline><highlight class="normal">target_link_libraries(my_test_runner</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>PRIVATE<sp/>PicoTest</highlight></codeline>
 <codeline><highlight class="normal">)</highlight></codeline>
-<codeline><highlight class="normal">```<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">If<sp/>you<sp/>also<sp/>use<sp/>CTest<sp/>for<sp/>test<sp/>automation<sp/>with<sp/>`enable_testing()`,<sp/>you<sp/>can<sp/>also<sp/>call<sp/>the<sp/>provided<sp/>`picotest_discover_tests`<sp/>macro<sp/>to<sp/>integrate<sp/>PicoTest<sp/>test</highlight></codeline>
+<codeline><highlight class="normal">If<sp/>you<sp/>also<sp/>use<sp/>CTest<sp/>for<sp/>test<sp/>automation<sp/>with<sp/>`enable_testing()`,<sp/>you<sp/>can<sp/>also</highlight></codeline>
+<codeline><highlight class="normal">call<sp/>the<sp/>provided<sp/>`picotest_discover_tests`<sp/>macro<sp/>to<sp/>integrate<sp/>PicoTest<sp/>test</highlight></codeline>
 <codeline><highlight class="normal">cases<sp/>in<sp/>your<sp/>build<sp/>process<sp/>automatically.<sp/>For<sp/>example,<sp/>assuming<sp/>that<sp/>the</highlight></codeline>
 <codeline><highlight class="normal">`my_test_runner`<sp/>executable:</highlight></codeline>
 <codeline></codeline>
@@ -95,7 +120,8 @@
 <codeline><highlight class="normal">-<sp/>when<sp/>passed<sp/>`&lt;test_name&gt;`,<sp/>will<sp/>execute<sp/>the<sp/>matching<sp/>test<sp/>case.</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">Then<sp/>the<sp/>following<sp/>lines<sp/>will:</highlight></codeline>
-<codeline><highlight class="normal">1.<sp/>execute<sp/>`my_test_runner<sp/>-l`<sp/>as<sp/>a<sp/>post-build<sp/>command<sp/>to<sp/>`my_test_runner`,<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">1.<sp/>execute<sp/>`my_test_runner<sp/>-l`<sp/>as<sp/>a<sp/>post-build<sp/>command<sp/>to<sp/>`my_test_runner`,</highlight></codeline>
 <codeline><highlight class="normal">2.<sp/>add<sp/>each<sp/>discovered<sp/>test<sp/>case<sp/>using<sp/>`add_test(&lt;test_name&gt;)`,</highlight></codeline>
 <codeline><highlight class="normal">3.<sp/>when<sp/>invoking<sp/>the<sp/>`test`<sp/>rule,<sp/>execute<sp/>each<sp/>test<sp/>unitarily<sp/>with</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/>`my_test_runner<sp/>&lt;test_name&gt;`.</highlight></codeline>
@@ -105,8 +131,7 @@
 <codeline><highlight class="normal">picotest_discover_tests(my_test_runner</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TEST_LIST_OPTION<sp/>&quot;-l&quot;</highlight></codeline>
 <codeline><highlight class="normal">)</highlight></codeline>
-<codeline><highlight class="normal">```<sp/></highlight></codeline>
-<codeline></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Development</highlight></codeline>
 <codeline></codeline>
@@ -114,11 +139,12 @@
 <codeline><highlight class="normal">tools:</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">-<sp/>IDE:<sp/>Visual<sp/>Studio<sp/>Code</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>Build<sp/>tool:<sp/>CMake<sp/>3.11.0<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Build<sp/>tool:<sp/>CMake<sp/>3.15.2</highlight></codeline>
 <codeline><highlight class="normal">-<sp/>Windows<sp/>toolchain:<sp/>Microsoft<sp/>Visual<sp/>C++<sp/>Build<sp/>Tools<sp/>14</highlight></codeline>
 <codeline><highlight class="normal">-<sp/>Linux<sp/>toolchain:<sp/>GCC<sp/>5.4.0</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">It<sp/>should<sp/>work<sp/>with<sp/>any<sp/>reasonably<sp/>modern<sp/>C<sp/>compiler<sp/>that<sp/>supports<sp/>variadic<sp/>macros.</highlight></codeline>
+<codeline><highlight class="normal">It<sp/>should<sp/>work<sp/>with<sp/>any<sp/>reasonably<sp/>modern<sp/>C<sp/>compiler<sp/>that<sp/>supports<sp/>variadic</highlight></codeline>
+<codeline><highlight class="normal">macros.</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">The<sp/>assertion<sp/>mechanism<sp/>relies<sp/>on<sp/>`setjmp()`<sp/>/<sp/>`longjmp()`.<sp/>While<sp/>these</highlight></codeline>
 <codeline><highlight class="normal">functions<sp/>are<sp/>discouraged<sp/>for<sp/>production<sp/>code,<sp/>their<sp/>usage<sp/>is<sp/>acceptable<sp/>in<sp/>the</highlight></codeline>
