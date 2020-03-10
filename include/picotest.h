@@ -103,6 +103,56 @@
  */
 typedef int(PicoTestProc)(const char *cond);
 
+/**
+ * Test metadata.
+ */
+typedef struct PicoTestMetadata {
+    const char *name;         /*!< Test name. */
+    const char *file;         /*!< Test file location. */
+    int line;                 /*!< Test line location. */
+    PicoTestProc *const test; /*!< Test function. */
+    int nbSubtests;           /*!< Number of subtests. */
+    const struct PicoTestMetadata *
+        *subtests; /*!< Subtests (NULL-terminated array for test suites, NULL
+                      pointer for test cases). */
+} PicoTestMetadata;
+
+/**
+ * Declare an extern test for metadata access.
+ *
+ * @param _testName     Test name.
+ *
+ * @see PICOTEST_METADATA
+ */
+#define PICOTEST_EXTERN(_testName)                                             \
+    PicoTestProc _testName;                                                    \
+    PicoTestMetadata _PICOTEST_METADATA(_testName);
+
+/**
+ * Get test metadata.
+ *
+ * @note Tests in other modules need to be declared first with PICOTEST_EXTERN.
+ *
+ * @param _testName     Test name.
+ *
+ * @see PicoTestMetadata
+ * @see PICOTEST_EXTERN
+ */
+#define PICOTEST_METADATA(_testName) &_PICOTEST_METADATA(_testName)
+
+/*! \cond IGNORE */
+#define _PICOTEST_METADATA(_testName) _testName##_metadata
+#define _PICOTEST_TEST_DECLARE(_testName, _nbSubtests, _subtests)              \
+    PicoTestProc _testName;                                                    \
+    PicoTestMetadata _PICOTEST_METADATA(_testName) = {                         \
+        _PICOTEST_STRINGIZE(_testName),                                        \
+        __FILE__,                                                              \
+        __LINE__,                                                              \
+        _testName,                                                             \
+        _nbSubtests,                                                           \
+        _subtests};
+/*! \endcond */
+
 /*! \} End of Test Functions */
 
 /*!
@@ -249,7 +299,7 @@ static PicoTestFilterResult _picoTest_filterByName(PicoTestProc *test,
 typedef void(PicoTestTraverseProc)(const char *name, int nb);
 
 /**
- * Traverse a test hierarchy.
+ * Traverse a test hierarchy depth-first.
  *
  * @param _testName     Name of the traversed test.
  * @param _proc         Test traversal proc. Must follow the @ref
@@ -260,7 +310,29 @@ typedef void(PicoTestTraverseProc)(const char *name, int nb);
  *
  * @see PicoTestTraverseProc
  */
-#define PICOTEST_TRAVERSE(_testName, _proc) _testName##_traverse(_proc)
+#define PICOTEST_TRAVERSE(_testName, _proc)                                    \
+    _picoTest_traverse(PICOTEST_METADATA(_testName), _proc)
+
+/** \internal
+ * Perform test traversal.
+ *
+ * @param metadata      Metadata of test to traverse.
+ * @param proc          Test traversal proc.
+ *
+ * @see PicoTestTraverseProc
+ * @see PicoTestMetadata
+ * @see PICOTEST_TRAVERSE
+ */
+static void _picoTest_traverse(const PicoTestMetadata *metadata,
+                               PicoTestTraverseProc *proc) {
+    const PicoTestMetadata **subtest = metadata->subtests;
+    proc(metadata->name, metadata->nbSubtests);
+    if (metadata->nbSubtests) {
+        for (; *subtest; subtest++) {
+            _picoTest_traverse(*subtest, proc);
+        }
+    }
+}
 
 /*! \} End of Test Traversal */
 
@@ -385,10 +457,8 @@ static void _picoTest_logFailure(const char *file, int line, const char *type,
 
 /*! \cond IGNORE */
 #define _PICOTEST_CASE_DECLARE(_testName)                                      \
-    int _testName##_testCaseRunner(void);                                      \
-    void _testName##_traverse(PicoTestTraverseProc *proc) {                    \
-        proc(_PICOTEST_STRINGIZE(_testName), 0);                               \
-    }                                                                          \
+    _PICOTEST_TEST_DECLARE(_testName, 0, NULL);                                \
+    static int _testName##_testCaseRunner(void);                               \
     int _testName(const char *cond) {                                          \
         int fail = 0;                                                          \
         PicoTestFilterResult filterResult =                                    \
@@ -406,7 +476,7 @@ static void _picoTest_logFailure(const char *file, int line, const char *type,
     }
 
 #define _PICOTEST_CASE_RUNNER_BEGIN(_testName)                                 \
-    int _testName##_testCaseRunner() {                                         \
+    static int _testName##_testCaseRunner() {                                  \
         int abort;                                                             \
         jmp_buf failureEnv;                                                    \
         jmp_buf *oldEnv = _picoTest_failureEnv;                                \
@@ -706,7 +776,6 @@ static jmp_buf *_picoTest_failureEnv = NULL;
 #define PICOTEST_ABORT() longjmp(*_picoTest_failureEnv, 1)
 
 /** \internal
- *
  * Called when an assertion fails.
  *
  * @param proc  Test failure log handler.
@@ -1244,33 +1313,26 @@ typedef void(PicoTestFixtureAfterTeardownProc)(const char *fixtureName,
  *      @example_file{mainSuite.inc}
  */
 #define PICOTEST_SUITE(_suiteName, ...)                                        \
-    _PICOTEST_FOR_EACH(_PICOTEST_SUITE_DECLARE_TEST, __VA_ARGS__)              \
-    static PicoTestDescr _suiteName##_tests[] = {_PICOTEST_FOR_EACH(           \
-        _PICOTEST_SUITE_DECLARE_TEST_CASE, __VA_ARGS__){NULL, NULL, NULL}};    \
-    void _suiteName##_traverse(PicoTestTraverseProc *proc) {                   \
-        const int nb =                                                         \
-            sizeof(_suiteName##_tests) / sizeof(*_suiteName##_tests) - 1;      \
-        PicoTestDescr *test = _suiteName##_tests;                              \
-        proc(_PICOTEST_STRINGIZE(_suiteName), nb);                             \
-        for (; test->name; test++) {                                           \
-            test->traverse(proc);                                              \
-        }                                                                      \
-    }                                                                          \
-    int _suiteName##_testCaseRunner(const char *cond) {                        \
-        const int nb =                                                         \
-            sizeof(_suiteName##_tests) / sizeof(*_suiteName##_tests) - 1;      \
-        PicoTestDescr *test = _suiteName##_tests;                              \
+    _PICOTEST_FOR_EACH(_PICOTEST_SUITE_DECLARE_SUBTEST, __VA_ARGS__)           \
+    static PicoTestMetadata *_suiteName##_subtests[] = {_PICOTEST_FOR_EACH(    \
+        _PICOTEST_SUITE_ENUMERATE_SUBTEST, __VA_ARGS__) NULL};                 \
+    _PICOTEST_TEST_DECLARE(_suiteName, _PICOTEST_ARGCOUNT(__VA_ARGS__),        \
+                           _suiteName##_subtests);                             \
+    static int _suiteName##_testSuiteRunner(const char *cond) {                \
+        const int nb = _PICOTEST_ARGCOUNT(__VA_ARGS__);                        \
+        PicoTestMetadata **subtest = _suiteName##_subtests;                    \
         int fail = 0;                                                          \
         PICOTEST_SUITE_ENTER(_PICOTEST_STRINGIZE(_suiteName), nb);             \
-        for (; test->name; test++) {                                           \
-            const int index = (int)(test - _suiteName##_tests);                \
+        for (; *subtest; subtest++) {                                          \
+            const int index = (int)(subtest - _suiteName##_subtests);          \
             int sfail = 0;                                                     \
             PICOTEST_SUITE_BEFORE_SUBTEST(_PICOTEST_STRINGIZE(_suiteName), nb, \
-                                          fail, index, test->name);            \
-            sfail = test->test(cond);                                          \
+                                          fail, index, (*subtest)->name);      \
+            sfail = (*subtest)->test(cond);                                    \
             fail += sfail;                                                     \
             PICOTEST_SUITE_AFTER_SUBTEST(_PICOTEST_STRINGIZE(_suiteName), nb,  \
-                                         fail, index, test->name, sfail);      \
+                                         fail, index, (*subtest)->name,        \
+                                         sfail);                               \
         }                                                                      \
         PICOTEST_SUITE_LEAVE(_PICOTEST_STRINGIZE(_suiteName), nb, fail);       \
         return fail;                                                           \
@@ -1286,14 +1348,14 @@ typedef void(PicoTestFixtureAfterTeardownProc)(const char *fixtureName,
         case PICOTEST_FILTER_PASS:                                             \
             cond = NULL;                                                       \
         case PICOTEST_FILTER_PASS_PROPAGATE:                                   \
-            fail += _suiteName##_testCaseRunner(cond);                         \
+            fail += _suiteName##_testSuiteRunner(cond);                        \
             break;                                                             \
         case PICOTEST_FILTER_SKIP:                                             \
             break;                                                             \
         case PICOTEST_FILTER_SKIP_PROPAGATE: {                                 \
-            PicoTestDescr *test = _suiteName##_tests;                          \
-            for (; test->name; test++) {                                       \
-                fail += test->test(cond);                                      \
+            PicoTestMetadata **subtest = _suiteName##_subtests;                \
+            for (; *subtest; subtest++) {                                      \
+                fail += (*subtest)->test(cond);                                \
             }                                                                  \
         } break;                                                               \
         }                                                                      \
@@ -1301,18 +1363,10 @@ typedef void(PicoTestFixtureAfterTeardownProc)(const char *fixtureName,
     }
 
 /*! \cond IGNORE */
-#define _PICOTEST_SUITE_DECLARE_TEST_CASE(_testName)                           \
-    {_PICOTEST_STRINGIZE(_testName), _testName, _testName##_traverse},
-#define _PICOTEST_SUITE_DECLARE_TEST(_testName)                                \
-    int _testName(const char *);                                               \
-    void _testName##_traverse(PicoTestTraverseProc *);
-
-/** Test descriptor for test suites */
-typedef struct PicoTestDescr {
-    const char *name;                         /*!< Test name. */
-    PicoTestProc *test;                       /*!< Test function. */
-    void (*traverse)(PicoTestTraverseProc *); /*!< Test traversal. */
-} PicoTestDescr;
+#define _PICOTEST_SUITE_DECLARE_SUBTEST(_testName)                             \
+    PicoTestMetadata _PICOTEST_METADATA(_testName);
+#define _PICOTEST_SUITE_ENUMERATE_SUBTEST(_testName)                           \
+    PICOTEST_METADATA(_testName),
 /*! \endcond */
 
 /*! \} End of Test Suite Definitions */

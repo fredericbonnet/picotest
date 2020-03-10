@@ -23,6 +23,7 @@ target_sources(test_picotest
         testFilters.c
         testTraversal.c
         testLoggers.c
+        testMetadata.c
 )
 target_link_libraries(test_picotest
     PRIVATE
