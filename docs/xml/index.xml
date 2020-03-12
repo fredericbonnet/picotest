@@ -1,5 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.15">
+  <compound refid="struct_pico_test_metadata" kind="struct"><name>PicoTestMetadata</name>
+    <member refid="struct_pico_test_metadata_1a253651ce46bc33b206c12787e8ccb166" kind="variable"><name>name</name></member>
+    <member refid="struct_pico_test_metadata_1a1e57db62ee1f5581d0f0bca333e21304" kind="variable"><name>file</name></member>
+    <member refid="struct_pico_test_metadata_1a98c9bcbb6844cf75dd8005110b03887d" kind="variable"><name>line</name></member>
+    <member refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kind="variable"><name>test</name></member>
+    <member refid="struct_pico_test_metadata_1a7dd93cc6b50428b9594d171c28a563c1" kind="variable"><name>nbSubtests</name></member>
+    <member refid="struct_pico_test_metadata_1a543874ce98d5f3516e4e5bda6f4e61a3" kind="variable"><name>subtests</name></member>
+  </compound>
   <compound refid="filter_8c" kind="file"><name>filter.c</name>
   </compound>
   <compound refid="fixtures_8c" kind="file"><name>fixtures.c</name>
@@ -19,6 +27,8 @@
     <member refid="group__public__interface_1ga9ea29549254cbe44f25ef974d0458e57" kind="define"><name>PICOTEST_VERSION_MAJOR</name></member>
     <member refid="group__public__interface_1ga6488c76f8a06a1a8222c2309b170bd1d" kind="define"><name>PICOTEST_VERSION_MINOR</name></member>
     <member refid="group__public__interface_1gafc9d1ab6d8cced95f3560c3a006d8005" kind="define"><name>PICOTEST_VERSION_PATCH</name></member>
+    <member refid="group__public__interface_1ga88033e8fb73d885670773cfc8ad1d024" kind="define"><name>PICOTEST_EXTERN</name></member>
+    <member refid="group__public__interface_1gaa7f907387dd96cac614ad0dfe4cbb858" kind="define"><name>PICOTEST_METADATA</name></member>
     <member refid="group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a" kind="typedef"><name>PicoTestProc</name></member>
     <member refid="group__public__interface_1ga7dccbea985fb578ba6b7639fb66fc3ea" kind="define"><name>PICOTEST_FILTER_DEFAULT</name></member>
     <member refid="group__public__interface_1gabd82de0bec174d972151cd122a0a03ff" kind="define"><name>PICOTEST_FILTER</name></member>
@@ -30,7 +40,14 @@
     <member refid="group__public__interface_1gafc743c5aa3870900472bc701b3ad35a4" kind="typedef"><name>PicoTestFilterProc</name></member>
     <member refid="group__public__interface_1gace2d0b7428d63b90190fe65b619a8680" kind="function"><name>_picoTest_filterByName</name></member>
     <member refid="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" kind="define"><name>PICOTEST_TRAVERSE</name></member>
+    <member refid="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" kind="define"><name>PICOTEST_VISIT</name></member>
+    <member refid="group__public__interface_1gad78162429011bb689a76e91530ac7a22" kind="enum"><name>PicoTestVisitStep</name></member>
+    <member refid="group__public__interface_1ggad78162429011bb689a76e91530ac7a22a2590077bf6aceab607a23c349140af25" kind="enumvalue"><name>PICOTEST_VISIT_ENTER</name></member>
+    <member refid="group__public__interface_1ggad78162429011bb689a76e91530ac7a22a70b432be5fb3de15623c7cb1562544d0" kind="enumvalue"><name>PICOTEST_VISIT_LEAVE</name></member>
     <member refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kind="typedef"><name>PicoTestTraverseProc</name></member>
+    <member refid="group__public__interface_1ga1ae925d603c838714097a508a19be99b" kind="typedef"><name>PicoTestVisitProc</name></member>
+    <member refid="group__public__interface_1gaacd9c37695afbb5b3bb8c5373c527641" kind="function"><name>_picoTest_traverse</name></member>
+    <member refid="group__public__interface_1ga114c577e2b5e238b8545c80be5783fea" kind="function"><name>_picoTest_visit</name></member>
     <member refid="group__public__interface_1gaf08fabb517d01d11ce72614d1df51687" kind="define"><name>PICOTEST_FAILURE_LOGGER_DEFAULT</name></member>
     <member refid="group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48" kind="define"><name>PICOTEST_FAILURE_LOGGER</name></member>
     <member refid="group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb" kind="typedef"><name>PicoTestFailureLoggerProc</name></member>
@@ -96,6 +113,8 @@
     <member refid="group__public__interface_1ga6488c76f8a06a1a8222c2309b170bd1d" kind="define"><name>PICOTEST_VERSION_MINOR</name></member>
     <member refid="group__public__interface_1gafc9d1ab6d8cced95f3560c3a006d8005" kind="define"><name>PICOTEST_VERSION_PATCH</name></member>
     <member refid="group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a" kind="typedef"><name>PicoTestProc</name></member>
+    <member refid="group__public__interface_1ga88033e8fb73d885670773cfc8ad1d024" kind="define"><name>PICOTEST_EXTERN</name></member>
+    <member refid="group__public__interface_1gaa7f907387dd96cac614ad0dfe4cbb858" kind="define"><name>PICOTEST_METADATA</name></member>
     <member refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kind="enum"><name>PicoTestFilterResult</name></member>
     <member refid="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca0ee37a1cf8a2347fb3c42636dfb80b1c" kind="enumvalue"><name>PICOTEST_FILTER_SKIP</name></member>
     <member refid="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca35508816a12c32e7ce536786e5ffc8d9" kind="enumvalue"><name>PICOTEST_FILTER_PASS</name></member>
@@ -105,8 +124,15 @@
     <member refid="group__public__interface_1gace2d0b7428d63b90190fe65b619a8680" kind="function"><name>_picoTest_filterByName</name></member>
     <member refid="group__public__interface_1ga7dccbea985fb578ba6b7639fb66fc3ea" kind="define"><name>PICOTEST_FILTER_DEFAULT</name></member>
     <member refid="group__public__interface_1gabd82de0bec174d972151cd122a0a03ff" kind="define"><name>PICOTEST_FILTER</name></member>
+    <member refid="group__public__interface_1gad78162429011bb689a76e91530ac7a22" kind="enum"><name>PicoTestVisitStep</name></member>
+    <member refid="group__public__interface_1ggad78162429011bb689a76e91530ac7a22a2590077bf6aceab607a23c349140af25" kind="enumvalue"><name>PICOTEST_VISIT_ENTER</name></member>
+    <member refid="group__public__interface_1ggad78162429011bb689a76e91530ac7a22a70b432be5fb3de15623c7cb1562544d0" kind="enumvalue"><name>PICOTEST_VISIT_LEAVE</name></member>
     <member refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kind="typedef"><name>PicoTestTraverseProc</name></member>
+    <member refid="group__public__interface_1ga1ae925d603c838714097a508a19be99b" kind="typedef"><name>PicoTestVisitProc</name></member>
+    <member refid="group__public__interface_1gaacd9c37695afbb5b3bb8c5373c527641" kind="function"><name>_picoTest_traverse</name></member>
+    <member refid="group__public__interface_1ga114c577e2b5e238b8545c80be5783fea" kind="function"><name>_picoTest_visit</name></member>
     <member refid="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" kind="define"><name>PICOTEST_TRAVERSE</name></member>
+    <member refid="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" kind="define"><name>PICOTEST_VISIT</name></member>
     <member refid="group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb" kind="typedef"><name>PicoTestFailureLoggerProc</name></member>
     <member refid="group__public__interface_1gae3c669f4ae731be32a25df3d3a97b599" kind="function"><name>_picoTest_logFailure</name></member>
     <member refid="group__public__interface_1gaf08fabb517d01d11ce72614d1df51687" kind="define"><name>PICOTEST_FAILURE_LOGGER_DEFAULT</name></member>

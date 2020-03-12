@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="689" column="1" bodyfile="include/picotest.h" bodystart="689" bodyend="-1"/>
+        <location file="include/picotest.h" line="830" column="1" bodyfile="include/picotest.h" bodystart="830" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="group__assertions_1ga2fdb4a73b6a0abc186a27065a36db6ed" prot="public" static="yes" mutable="no">
         <type>jmp_buf *</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="697" column="1" bodyfile="include/picotest.h" bodystart="697" bodyend="-1"/>
+        <location file="include/picotest.h" line="838" column="1" bodyfile="include/picotest.h" bodystart="838" bodyend="-1"/>
       </memberdef>
       <memberdef kind="function" id="group__assertions_1gadd80bff454009ce1077d81f1f5552f34" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -69,7 +69,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="723" column="1" bodyfile="include/picotest.h" bodystart="723" bodyend="736"/>
+        <location file="include/picotest.h" line="863" column="1" bodyfile="include/picotest.h" bodystart="863" bodyend="876"/>
       </memberdef>
       <memberdef kind="define" id="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" prot="public" static="no">
         <name>PICOTEST_ASSERT</name>
@@ -121,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="609" column="9" bodyfile="include/picotest.h" bodystart="609" bodyend="-1"/>
+        <location file="include/picotest.h" line="750" column="9" bodyfile="include/picotest.h" bodystart="750" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__assertions_1gacd07b017f38d1e3ad784f369345357a2" prot="public" static="no">
         <name>PICOTEST_VERIFY</name>
@@ -171,7 +171,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="646" column="9" bodyfile="include/picotest.h" bodystart="646" bodyend="-1"/>
+        <location file="include/picotest.h" line="787" column="9" bodyfile="include/picotest.h" bodystart="787" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__assertions_1ga89a35f18021df570967bb707a8537f3b" prot="public" static="no">
         <name>PICOTEST_FAILURE</name>
@@ -221,7 +221,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="674" column="9" bodyfile="include/picotest.h" bodystart="674" bodyend="-1"/>
+        <location file="include/picotest.h" line="815" column="9" bodyfile="include/picotest.h" bodystart="815" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__assertions_1ga62031fa5f6f86e517565b77a1fa37f59" prot="public" static="no">
         <name>PICOTEST_ABORT</name>
@@ -237,7 +237,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="706" column="9" bodyfile="include/picotest.h" bodystart="706" bodyend="-1"/>
+        <location file="include/picotest.h" line="847" column="9" bodyfile="include/picotest.h" bodystart="847" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
@@ -277,9 +277,9 @@
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_ASSERT_BEFORE<sp/>beforeAssert</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>beforeAssert(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*test)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>beforeAssert(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;before<sp/>assertion<sp/>%s(%s)...\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/>test);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;before<sp/>assertion<sp/>%s(%s)...\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/><ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 </programlisting> </para>
 </simplesect>
@@ -292,7 +292,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="764" column="1" bodyfile="include/picotest.h" bodystart="764" bodyend="-1"/>
+        <location file="include/picotest.h" line="904" column="1" bodyfile="include/picotest.h" bodystart="904" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="group__assertions_1ga9502bbfe9927766f12e8de83aa37b706" prot="public" static="no">
         <type>void()</type>
@@ -335,9 +335,9 @@
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_ASSERT_AFTER<sp/>afterAssert</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>afterAssert(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*test,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>afterAssert(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;after<sp/>assertion<sp/>%s(%s)<sp/>=&gt;<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/>test,<sp/>fail<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;fails&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;passes&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;after<sp/>assertion<sp/>%s(%s)<sp/>=&gt;<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/><ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>,<sp/>fail<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;fails&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;passes&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 </programlisting> </para>
 </simplesect>
@@ -350,7 +350,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="813" column="1" bodyfile="include/picotest.h" bodystart="813" bodyend="-1"/>
+        <location file="include/picotest.h" line="953" column="1" bodyfile="include/picotest.h" bodystart="953" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__assertions_1ga331ef495337f7e2aae8be15cfd2a170a" prot="public" static="no">
         <name>PICOTEST_ASSERT_BEFORE_DEFAULT</name>
@@ -369,7 +369,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="772" column="9" bodyfile="include/picotest.h" bodystart="772" bodyend="-1"/>
+        <location file="include/picotest.h" line="912" column="9" bodyfile="include/picotest.h" bodystart="912" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb" prot="public" static="no">
         <name>PICOTEST_ASSERT_BEFORE</name>
@@ -386,9 +386,9 @@
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_ASSERT_BEFORE<sp/>beforeAssert</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>beforeAssert(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*test)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>beforeAssert(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;before<sp/>assertion<sp/>%s(%s)...\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/>test);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;before<sp/>assertion<sp/>%s(%s)...\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/><ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 </programlisting> </para>
 </simplesect>
@@ -405,7 +405,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="794" column="9" bodyfile="include/picotest.h" bodystart="794" bodyend="-1"/>
+        <location file="include/picotest.h" line="934" column="9" bodyfile="include/picotest.h" bodystart="934" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__assertions_1gab1f1711109e4a8443a61c228194a6825" prot="public" static="no">
         <name>PICOTEST_ASSERT_AFTER_DEFAULT</name>
@@ -425,7 +425,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="822" column="9" bodyfile="include/picotest.h" bodystart="822" bodyend="-1"/>
+        <location file="include/picotest.h" line="962" column="9" bodyfile="include/picotest.h" bodystart="962" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934" prot="public" static="no">
         <name>PICOTEST_ASSERT_AFTER</name>
@@ -442,9 +442,9 @@
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_ASSERT_AFTER<sp/>afterAssert</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>afterAssert(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*test,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>afterAssert(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;after<sp/>assertion<sp/>%s(%s)<sp/>=&gt;<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/>test,<sp/>fail<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;fails&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;passes&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;after<sp/>assertion<sp/>%s(%s)<sp/>=&gt;<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/><ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>,<sp/>fail<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;fails&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;passes&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 </programlisting> </para>
 </simplesect>
@@ -461,7 +461,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="844" column="9" bodyfile="include/picotest.h" bodystart="844" bodyend="-1"/>
+        <location file="include/picotest.h" line="984" column="9" bodyfile="include/picotest.h" bodystart="984" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

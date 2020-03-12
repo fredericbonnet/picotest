@@ -276,7 +276,7 @@ static PicoTestFilterResult _picoTest_filterByName(PicoTestProc *test,
  * \name Test hierarchy traversal
  *
  * Tests can form hierarchies of test suites and test cases. PicoTest provides
- * a way to traverse such hierarchies with a simple visitor pattern. This can
+ * two ways to traverse such hierarchies with a simple visitor pattern. This can
  * be used for e.g. test list discovery in build systems.
  * \{
  */
@@ -301,6 +301,9 @@ typedef void(PicoTestTraverseProc)(const char *name, int nb);
 /**
  * Traverse a test hierarchy depth-first.
  *
+ * This feature covers simple use cases such as getting the flat list of all
+ * test names. For more advanced usage, see #PICOTEST_VISIT.
+ *
  * @param _testName     Name of the traversed test.
  * @param _proc         Test traversal proc. Must follow the @ref
  *                      PicoTestTraverseProc signature.
@@ -309,6 +312,7 @@ typedef void(PicoTestTraverseProc)(const char *name, int nb);
  *      @example_file{traverse.c}
  *
  * @see PicoTestTraverseProc
+ * @see PICOTEST_VISIT
  */
 #define PICOTEST_TRAVERSE(_testName, _proc)                                    \
     _picoTest_traverse(PICOTEST_METADATA(_testName), _proc)
@@ -332,6 +336,73 @@ static void _picoTest_traverse(const PicoTestMetadata *metadata,
             _picoTest_traverse(*subtest, proc);
         }
     }
+}
+
+/**
+ * Test visit step.
+ *
+ * @see PicoTestVisitProc
+ * @see PICOTEST_VISIT
+ */
+typedef enum PicoTestVisitStep {
+    /** Enter the test. */
+    PICOTEST_VISIT_ENTER = 0,
+
+    /** Leave the test. */
+    PICOTEST_VISIT_LEAVE = 1,
+} PicoTestVisitStep;
+
+/**
+ * Function signature of test visit proc.
+ *
+ * Proc is called once for each value of #PicoTestVisitStep.
+ *
+ * @param metadata      Metadata of the visited test.
+ * @param step          Visit step.
+ *
+ * @see PICOTEST_VISIT
+ * @see PicoTestVisitStep
+ */
+typedef void(PicoTestVisitProc)(const PicoTestMetadata *metadata,
+                                PicoTestVisitStep step);
+
+/**
+ * Visit a test hierarchy depth-first.
+ *
+ * This feature covers more advanced use cases than #PICOTEST_TRAVERSE, such as
+ * exporting the test hierarchy as a structured format such as XML or JSON,
+ * or accessing test metadata.
+ *
+ * @param _testName     Name of the visited test.
+ * @param _proc         Test visit proc. Must follow the @ref
+ *                      PicoTestVisitProc signature.
+ *
+ * @see PicoTestVisitProc
+ * @see PICOTEST_TRAVERSE
+ */
+#define PICOTEST_VISIT(_testName, _proc)                                       \
+    _picoTest_visit(PICOTEST_METADATA(_testName), _proc)
+
+/** \internal
+ * Perform test visit.
+ *
+ * @param metadata      Metadata of test to visit.
+ * @param proc          Test visit proc.
+ *
+ * @see PicoTestVisitProc
+ * @see PicoTestMetadata
+ * @see PICOTEST_VISIT
+ */
+static void _picoTest_visit(const PicoTestMetadata *metadata,
+                            PicoTestVisitProc *proc) {
+    const PicoTestMetadata **subtest = metadata->subtests;
+    proc(metadata, PICOTEST_VISIT_ENTER);
+    if (metadata->nbSubtests) {
+        for (; *subtest; subtest++) {
+            _picoTest_visit(*subtest, proc);
+        }
+    }
+    proc(metadata, PICOTEST_VISIT_LEAVE);
 }
 
 /*! \} End of Test Traversal */

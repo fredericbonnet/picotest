@@ -3,6 +3,7 @@
   <compounddef id="group__public__interface" kind="group">
     <compoundname>public_interface</compoundname>
     <title>Public interface</title>
+    <innerclass refid="struct_pico_test_metadata" prot="public">PicoTestMetadata</innerclass>
     <innergroup refid="group__test__cases">Test Cases</innergroup>
     <innergroup refid="group__assertions">Assertions</innergroup>
     <innergroup refid="group__fixtures">Test Fixtures</innergroup>
@@ -88,6 +89,58 @@
         </inbodydescription>
         <location file="include/picotest.h" line="104" column="1" bodyfile="include/picotest.h" bodystart="104" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="define" id="group__public__interface_1ga88033e8fb73d885670773cfc8ad1d024" prot="public" static="no">
+        <name>PICOTEST_EXTERN</name>
+        <param><defname>_testName</defname></param>
+        <briefdescription>
+<para>Declare an extern test for metadata access. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_testName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test name.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__public__interface_1gaa7f907387dd96cac614ad0dfe4cbb858" kindref="member">PICOTEST_METADATA</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="127" column="9" bodyfile="include/picotest.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__public__interface_1gaa7f907387dd96cac614ad0dfe4cbb858" prot="public" static="no">
+        <name>PICOTEST_METADATA</name>
+        <param><defname>_testName</defname></param>
+        <briefdescription>
+<para>Get test metadata. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>Tests in other modules need to be declared first with PICOTEST_EXTERN.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_testName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test name.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="struct_pico_test_metadata" kindref="compound">PicoTestMetadata</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga88033e8fb73d885670773cfc8ad1d024" kindref="member">PICOTEST_EXTERN</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="141" column="9" bodyfile="include/picotest.h" bodystart="141" bodyend="-1"/>
+      </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
       <header>Test Filters</header>
@@ -146,7 +199,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="125" column="1" bodyfile="include/picotest.h" bodystart="125" bodyend="139"/>
+        <location file="include/picotest.h" line="175" column="1" bodyfile="include/picotest.h" bodystart="175" bodyend="189"/>
       </memberdef>
       <memberdef kind="typedef" id="group__public__interface_1gafc743c5aa3870900472bc701b3ad35a4" prot="public" static="no">
         <type><ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref>()</type>
@@ -191,7 +244,7 @@
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FILTER<sp/>matchSubstring</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Test<sp/>filter<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref><sp/>matchSubstring(<ref refid="group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a" kindref="member">PicoTestProc</ref><sp/>*test,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*cond)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref><sp/>matchSubstring(<ref refid="group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a" kindref="member">PicoTestProc</ref><sp/>*<ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*cond)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Match<sp/>tests<sp/>containing<sp/>**cond**<sp/>substring.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(strstr(testName,<sp/>cond)<sp/>==<sp/>NULL<sp/></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>?<sp/><ref refid="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca487de7ecca4099ee737bd41a8d75ba75" kindref="member">PICOTEST_FILTER_SKIP_PROPAGATE</ref><sp/></highlight></codeline>
@@ -215,7 +268,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="165" column="1" bodyfile="include/picotest.h" bodystart="165" bodyend="-1"/>
+        <location file="include/picotest.h" line="215" column="1" bodyfile="include/picotest.h" bodystart="215" bodyend="-1"/>
       </memberdef>
       <memberdef kind="function" id="group__public__interface_1gace2d0b7428d63b90190fe65b619a8680" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref></type>
@@ -240,7 +293,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="179" column="1" bodyfile="include/picotest.h" bodystart="179" bodyend="184"/>
+        <location file="include/picotest.h" line="229" column="1" bodyfile="include/picotest.h" bodystart="229" bodyend="234"/>
       </memberdef>
       <memberdef kind="define" id="group__public__interface_1ga7dccbea985fb578ba6b7639fb66fc3ea" prot="public" static="no">
         <name>PICOTEST_FILTER_DEFAULT</name>
@@ -257,7 +310,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="195" column="9" bodyfile="include/picotest.h" bodystart="195" bodyend="-1"/>
+        <location file="include/picotest.h" line="245" column="9" bodyfile="include/picotest.h" bodystart="245" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__public__interface_1gabd82de0bec174d972151cd122a0a03ff" prot="public" static="no">
         <name>PICOTEST_FILTER</name>
@@ -275,7 +328,7 @@
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FILTER<sp/>matchSubstring</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Test<sp/>filter<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref><sp/>matchSubstring(<ref refid="group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a" kindref="member">PicoTestProc</ref><sp/>*test,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*cond)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref><sp/>matchSubstring(<ref refid="group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a" kindref="member">PicoTestProc</ref><sp/>*<ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*cond)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Match<sp/>tests<sp/>containing<sp/>**cond**<sp/>substring.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(strstr(testName,<sp/>cond)<sp/>==<sp/>NULL<sp/></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>?<sp/><ref refid="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca487de7ecca4099ee737bd41a8d75ba75" kindref="member">PICOTEST_FILTER_SKIP_PROPAGATE</ref><sp/></highlight></codeline>
@@ -295,13 +348,48 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="221" column="9" bodyfile="include/picotest.h" bodystart="221" bodyend="-1"/>
+        <location file="include/picotest.h" line="271" column="9" bodyfile="include/picotest.h" bodystart="271" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
       <header>Test hierarchy traversal</header>
-      <description><para>Tests can form hierarchies of test suites and test cases. PicoTest provides a way to traverse such hierarchies with a simple visitor pattern. This can be used for e.g. test list discovery in build systems. </para>
+      <description><para>Tests can form hierarchies of test suites and test cases. PicoTest provides two ways to traverse such hierarchies with a simple visitor pattern. This can be used for e.g. test list discovery in build systems. </para>
 </description>
+      <memberdef kind="enum" id="group__public__interface_1gad78162429011bb689a76e91530ac7a22" prot="public" static="no" strong="no">
+        <type></type>
+        <name>PicoTestVisitStep</name>
+        <enumvalue id="group__public__interface_1ggad78162429011bb689a76e91530ac7a22a2590077bf6aceab607a23c349140af25" prot="public">
+          <name>PICOTEST_VISIT_ENTER</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para>Enter the test. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__public__interface_1ggad78162429011bb689a76e91530ac7a22a70b432be5fb3de15623c7cb1562544d0" prot="public">
+          <name>PICOTEST_VISIT_LEAVE</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>Leave the test. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Test visit step. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="group__public__interface_1ga1ae925d603c838714097a508a19be99b" kindref="member">PicoTestVisitProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" kindref="member">PICOTEST_VISIT</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="347" column="1" bodyfile="include/picotest.h" bodystart="347" bodyend="353"/>
+      </memberdef>
       <memberdef kind="typedef" id="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" prot="public" static="no">
         <type>void()</type>
         <definition>typedef void() PicoTestTraverseProc(const char *name, int nb)</definition>
@@ -333,13 +421,13 @@
 <codeline><highlight class="normal"><ref refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kindref="member">PicoTestTraverseProc</ref><sp/>printTestName;</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Traversal<sp/>function,<sp/>will<sp/>print<sp/>test<sp/>cases<sp/>only.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printTestCase(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nb<sp/>==<sp/>0)<sp/>printf(</highlight><highlight class="stringliteral">&quot;%s\n&quot;</highlight><highlight class="normal">,<sp/>name);</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printTestCase(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a253651ce46bc33b206c12787e8ccb166" kindref="member">name</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nb<sp/>==<sp/>0)<sp/>printf(</highlight><highlight class="stringliteral">&quot;%s\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="struct_pico_test_metadata_1a253651ce46bc33b206c12787e8ccb166" kindref="member">name</ref>);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Traversal<sp/>function,<sp/>will<sp/>print<sp/>all<sp/>tests.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printTestName(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s\n&quot;</highlight><highlight class="normal">,<sp/>name);</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printTestName(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a253651ce46bc33b206c12787e8ccb166" kindref="member">name</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="struct_pico_test_metadata_1a253651ce46bc33b206c12787e8ccb166" kindref="member">name</ref>);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 </programlisting> </para>
 </simplesect>
@@ -352,16 +440,96 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="249" column="1" bodyfile="include/picotest.h" bodystart="249" bodyend="-1"/>
+        <location file="include/picotest.h" line="299" column="1" bodyfile="include/picotest.h" bodystart="299" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__public__interface_1ga1ae925d603c838714097a508a19be99b" prot="public" static="no">
+        <type>void()</type>
+        <definition>typedef void() PicoTestVisitProc(const PicoTestMetadata *metadata, PicoTestVisitStep step)</definition>
+        <argsstring>(const PicoTestMetadata *metadata, PicoTestVisitStep step)</argsstring>
+        <name>PicoTestVisitProc</name>
+        <briefdescription>
+<para>Function signature of test visit proc. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Proc is called once for each value of <ref refid="group__public__interface_1gad78162429011bb689a76e91530ac7a22" kindref="member">PicoTestVisitStep</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>metadata</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Metadata of the visited test. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>step</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Visit step.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" kindref="member">PICOTEST_VISIT</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1gad78162429011bb689a76e91530ac7a22" kindref="member">PicoTestVisitStep</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="366" column="1" bodyfile="include/picotest.h" bodystart="366" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__public__interface_1gaacd9c37695afbb5b3bb8c5373c527641" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void _picoTest_traverse</definition>
+        <argsstring>(const PicoTestMetadata *metadata, PicoTestTraverseProc *proc)</argsstring>
+        <name>_picoTest_traverse</name>
+        <param>
+          <type>const <ref refid="struct_pico_test_metadata" kindref="compound">PicoTestMetadata</ref> *</type>
+          <declname>metadata</declname>
+        </param>
+        <param>
+          <type><ref refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kindref="member">PicoTestTraverseProc</ref> *</type>
+          <declname>proc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="330" column="1" bodyfile="include/picotest.h" bodystart="330" bodyend="339"/>
+      </memberdef>
+      <memberdef kind="function" id="group__public__interface_1ga114c577e2b5e238b8545c80be5783fea" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void _picoTest_visit</definition>
+        <argsstring>(const PicoTestMetadata *metadata, PicoTestVisitProc *proc)</argsstring>
+        <name>_picoTest_visit</name>
+        <param>
+          <type>const <ref refid="struct_pico_test_metadata" kindref="compound">PicoTestMetadata</ref> *</type>
+          <declname>metadata</declname>
+        </param>
+        <param>
+          <type><ref refid="group__public__interface_1ga1ae925d603c838714097a508a19be99b" kindref="member">PicoTestVisitProc</ref> *</type>
+          <declname>proc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="396" column="1" bodyfile="include/picotest.h" bodystart="396" bodyend="406"/>
       </memberdef>
       <memberdef kind="define" id="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" prot="public" static="no">
         <name>PICOTEST_TRAVERSE</name>
         <param><defname>_testName</defname></param>
         <param><defname>_proc</defname></param>
         <briefdescription>
-<para>Traverse a test hierarchy. </para>
+<para>Traverse a test hierarchy depth-first. </para>
         </briefdescription>
         <detaileddescription>
+<para>This feature covers simple use cases such as getting the flat list of all test names. For more advanced usage, see <ref refid="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" kindref="member">PICOTEST_VISIT</ref>.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>_testName</parametername>
@@ -384,11 +552,49 @@
 </simplesect>
 <simplesect kind="see"><para><ref refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kindref="member">PicoTestTraverseProc</ref> </para>
 </simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" kindref="member">PICOTEST_VISIT</ref> </para>
+</simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="263" column="9" bodyfile="include/picotest.h" bodystart="263" bodyend="-1"/>
+        <location file="include/picotest.h" line="317" column="9" bodyfile="include/picotest.h" bodystart="317" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" prot="public" static="no">
+        <name>PICOTEST_VISIT</name>
+        <param><defname>_testName</defname></param>
+        <param><defname>_proc</defname></param>
+        <briefdescription>
+<para>Visit a test hierarchy depth-first. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This feature covers more advanced use cases than <ref refid="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" kindref="member">PICOTEST_TRAVERSE</ref>, such as exporting the test hierarchy as a structured format such as XML or JSON, or accessing test metadata.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_testName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the visited test. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_proc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test visit proc. Must follow the <ref refid="group__public__interface_1ga1ae925d603c838714097a508a19be99b" kindref="member">PicoTestVisitProc</ref> signature.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga1ae925d603c838714097a508a19be99b" kindref="member">PicoTestVisitProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" kindref="member">PICOTEST_TRAVERSE</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="383" column="9" bodyfile="include/picotest.h" bodystart="383" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
@@ -461,15 +667,15 @@
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FAILURE_LOGGER<sp/>logFailure</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Test<sp/>failure<sp/>logger<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>logFailure(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*file,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>line,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*test,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*msg,<sp/>va_list<sp/>args)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>logFailure(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a1e57db62ee1f5581d0f0bca333e21304" kindref="member">file</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_pico_test_metadata_1a98c9bcbb6844cf75dd8005110b03887d" kindref="member">line</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*msg,<sp/>va_list<sp/>args)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Error<sp/>type.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;[%s]<sp/>&quot;</highlight><highlight class="normal">,<sp/>type);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Location<sp/>in<sp/>source<sp/>code.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s(%d)<sp/>:<sp/>&quot;</highlight><highlight class="normal">,<sp/>file,<sp/>line);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s(%d)<sp/>:<sp/>&quot;</highlight><highlight class="normal">,<sp/><ref refid="struct_pico_test_metadata_1a1e57db62ee1f5581d0f0bca333e21304" kindref="member">file</ref>,<sp/><ref refid="struct_pico_test_metadata_1a98c9bcbb6844cf75dd8005110b03887d" kindref="member">line</ref>);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Failed<sp/>expression.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s&quot;</highlight><highlight class="normal">,<sp/>test);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s&quot;</highlight><highlight class="normal">,<sp/><ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Optional<sp/>message.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(msg)<sp/>{</highlight></codeline>
@@ -490,7 +696,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="295" column="1" bodyfile="include/picotest.h" bodystart="295" bodyend="-1"/>
+        <location file="include/picotest.h" line="438" column="1" bodyfile="include/picotest.h" bodystart="438" bodyend="-1"/>
       </memberdef>
       <memberdef kind="function" id="group__public__interface_1gae3c669f4ae731be32a25df3d3a97b599" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -527,7 +733,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="306" column="1" bodyfile="include/picotest.h" bodystart="306" bodyend="308"/>
+        <location file="include/picotest.h" line="449" column="1" bodyfile="include/picotest.h" bodystart="449" bodyend="451"/>
       </memberdef>
       <memberdef kind="define" id="group__public__interface_1gaf08fabb517d01d11ce72614d1df51687" prot="public" static="no">
         <name>PICOTEST_FAILURE_LOGGER_DEFAULT</name>
@@ -544,7 +750,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="316" column="9" bodyfile="include/picotest.h" bodystart="316" bodyend="-1"/>
+        <location file="include/picotest.h" line="459" column="9" bodyfile="include/picotest.h" bodystart="459" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48" prot="public" static="no">
         <name>PICOTEST_FAILURE_LOGGER</name>
@@ -562,15 +768,15 @@
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FAILURE_LOGGER<sp/>logFailure</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Test<sp/>failure<sp/>logger<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>logFailure(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*file,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>line,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*test,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*msg,<sp/>va_list<sp/>args)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>logFailure(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a1e57db62ee1f5581d0f0bca333e21304" kindref="member">file</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_pico_test_metadata_1a98c9bcbb6844cf75dd8005110b03887d" kindref="member">line</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*msg,<sp/>va_list<sp/>args)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Error<sp/>type.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;[%s]<sp/>&quot;</highlight><highlight class="normal">,<sp/>type);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Location<sp/>in<sp/>source<sp/>code.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s(%d)<sp/>:<sp/>&quot;</highlight><highlight class="normal">,<sp/>file,<sp/>line);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s(%d)<sp/>:<sp/>&quot;</highlight><highlight class="normal">,<sp/><ref refid="struct_pico_test_metadata_1a1e57db62ee1f5581d0f0bca333e21304" kindref="member">file</ref>,<sp/><ref refid="struct_pico_test_metadata_1a98c9bcbb6844cf75dd8005110b03887d" kindref="member">line</ref>);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Failed<sp/>expression.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s&quot;</highlight><highlight class="normal">,<sp/>test);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s&quot;</highlight><highlight class="normal">,<sp/><ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Optional<sp/>message.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(msg)<sp/>{</highlight></codeline>
@@ -593,7 +799,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="337" column="9" bodyfile="include/picotest.h" bodystart="337" bodyend="-1"/>
+        <location file="include/picotest.h" line="480" column="9" bodyfile="include/picotest.h" bodystart="480" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

@@ -66,6 +66,8 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Data Structures</a>  </div>
   <div class="headertitle">
 <div class="title">picotest.h File Reference</div>  </div>
 </div><!--header-->
@@ -79,6 +81,12 @@ $(function() {
 </div>
 <p><a href="picotest_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:struct_pico_test_metadata"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#struct_pico_test_metadata">PicoTestMetadata</a></td></tr>
+<tr class="memdesc:struct_pico_test_metadata"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test metadata.  <a href="group__public__interface.html#struct_pico_test_metadata">More...</a><br /></td></tr>
+<tr class="separator:struct_pico_test_metadata"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Version</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp34b6cd75171affba6957e308dcbd92be"></a>PicoTest follows the Semantic Versioning Specification (SemVer) 2.0.0:</p>
@@ -99,6 +107,12 @@ Version</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Test Functions</h2></td></tr>
+<tr class="memitem:ga88033e8fb73d885670773cfc8ad1d024"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#ga88033e8fb73d885670773cfc8ad1d024">PICOTEST_EXTERN</a>(_testName)</td></tr>
+<tr class="memdesc:ga88033e8fb73d885670773cfc8ad1d024"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declare an extern test for metadata access.  <a href="group__public__interface.html#ga88033e8fb73d885670773cfc8ad1d024">More...</a><br /></td></tr>
+<tr class="separator:ga88033e8fb73d885670773cfc8ad1d024"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa7f907387dd96cac614ad0dfe4cbb858"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#gaa7f907387dd96cac614ad0dfe4cbb858">PICOTEST_METADATA</a>(_testName)</td></tr>
+<tr class="memdesc:gaa7f907387dd96cac614ad0dfe4cbb858"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get test metadata.  <a href="group__public__interface.html#gaa7f907387dd96cac614ad0dfe4cbb858">More...</a><br /></td></tr>
+<tr class="separator:gaa7f907387dd96cac614ad0dfe4cbb858"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga824e8707dfbd1726aa15beb5f27b957a"><td class="memItemLeft" align="right" valign="top">typedef int()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#ga824e8707dfbd1726aa15beb5f27b957a">PicoTestProc</a>(const char *cond)</td></tr>
 <tr class="memdesc:ga824e8707dfbd1726aa15beb5f27b957a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signature of test functions.  <a href="group__public__interface.html#ga824e8707dfbd1726aa15beb5f27b957a">More...</a><br /></td></tr>
 <tr class="separator:ga824e8707dfbd1726aa15beb5f27b957a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,14 +140,25 @@ Test Filters</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Test hierarchy traversal</h2></td></tr>
-<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp09ae273d143f0650c691a59b393e3595"></a>Tests can form hierarchies of test suites and test cases. PicoTest provides a way to traverse such hierarchies with a simple visitor pattern. This can be used for e.g. test list discovery in build systems. </p>
+<tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp09ae273d143f0650c691a59b393e3595"></a>Tests can form hierarchies of test suites and test cases. PicoTest provides two ways to traverse such hierarchies with a simple visitor pattern. This can be used for e.g. test list discovery in build systems. </p>
 </td></tr>
 <tr class="memitem:gaee8202c2543c7fb59fa08aec75b6cc63"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#gaee8202c2543c7fb59fa08aec75b6cc63">PICOTEST_TRAVERSE</a>(_testName,  _proc)</td></tr>
-<tr class="memdesc:gaee8202c2543c7fb59fa08aec75b6cc63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Traverse a test hierarchy.  <a href="group__public__interface.html#gaee8202c2543c7fb59fa08aec75b6cc63">More...</a><br /></td></tr>
+<tr class="memdesc:gaee8202c2543c7fb59fa08aec75b6cc63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Traverse a test hierarchy depth-first.  <a href="group__public__interface.html#gaee8202c2543c7fb59fa08aec75b6cc63">More...</a><br /></td></tr>
 <tr class="separator:gaee8202c2543c7fb59fa08aec75b6cc63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga84b8e9060ee56ca5c5b64da168ee7f6f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#ga84b8e9060ee56ca5c5b64da168ee7f6f">PICOTEST_VISIT</a>(_testName,  _proc)</td></tr>
+<tr class="memdesc:ga84b8e9060ee56ca5c5b64da168ee7f6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visit a test hierarchy depth-first.  <a href="group__public__interface.html#ga84b8e9060ee56ca5c5b64da168ee7f6f">More...</a><br /></td></tr>
+<tr class="separator:ga84b8e9060ee56ca5c5b64da168ee7f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad78162429011bb689a76e91530ac7a22"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#gad78162429011bb689a76e91530ac7a22">PicoTestVisitStep</a> { <a class="el" href="group__public__interface.html#ggad78162429011bb689a76e91530ac7a22a2590077bf6aceab607a23c349140af25">PICOTEST_VISIT_ENTER</a>, 
+<a class="el" href="group__public__interface.html#ggad78162429011bb689a76e91530ac7a22a70b432be5fb3de15623c7cb1562544d0">PICOTEST_VISIT_LEAVE</a>
+ }</td></tr>
+<tr class="memdesc:gad78162429011bb689a76e91530ac7a22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test visit step.  <a href="group__public__interface.html#gad78162429011bb689a76e91530ac7a22">More...</a><br /></td></tr>
+<tr class="separator:gad78162429011bb689a76e91530ac7a22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0b6b1fbb66a2062b823d28026399d27b"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#ga0b6b1fbb66a2062b823d28026399d27b">PicoTestTraverseProc</a>(const char *name, int nb)</td></tr>
 <tr class="memdesc:ga0b6b1fbb66a2062b823d28026399d27b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function signature of test traversal proc.  <a href="group__public__interface.html#ga0b6b1fbb66a2062b823d28026399d27b">More...</a><br /></td></tr>
 <tr class="separator:ga0b6b1fbb66a2062b823d28026399d27b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1ae925d603c838714097a508a19be99b"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__public__interface.html#ga1ae925d603c838714097a508a19be99b">PicoTestVisitProc</a>(const <a class="el" href="group__public__interface.html#struct_pico_test_metadata">PicoTestMetadata</a> *metadata, <a class="el" href="group__public__interface.html#gad78162429011bb689a76e91530ac7a22">PicoTestVisitStep</a> step)</td></tr>
+<tr class="memdesc:ga1ae925d603c838714097a508a19be99b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function signature of test visit proc.  <a href="group__public__interface.html#ga1ae925d603c838714097a508a19be99b">More...</a><br /></td></tr>
+<tr class="separator:ga1ae925d603c838714097a508a19be99b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Logging</h2></td></tr>

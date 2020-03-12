@@ -15,5 +15,6 @@ var searchData=
   ['picotestsuitebeforesubtestproc',['PicoTestSuiteBeforeSubtestProc',['../group__test__suites.html#gade4d2a7d8a611ca76c675607529a3edb',1,'picotest.h']]],
   ['picotestsuiteenterproc',['PicoTestSuiteEnterProc',['../group__test__suites.html#ga881ee23cced7bc4df9427409dcb55254',1,'picotest.h']]],
   ['picotestsuiteleaveproc',['PicoTestSuiteLeaveProc',['../group__test__suites.html#gabc6f39019f0cde9f04812785aceaab09',1,'picotest.h']]],
-  ['picotesttraverseproc',['PicoTestTraverseProc',['../group__public__interface.html#ga0b6b1fbb66a2062b823d28026399d27b',1,'picotest.h']]]
+  ['picotesttraverseproc',['PicoTestTraverseProc',['../group__public__interface.html#ga0b6b1fbb66a2062b823d28026399d27b',1,'picotest.h']]],
+  ['picotestvisitproc',['PicoTestVisitProc',['../group__public__interface.html#ga1ae925d603c838714097a508a19be99b',1,'picotest.h']]]
 ];
