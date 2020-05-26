@@ -1,10 +1,11 @@
-#ifndef _TRAVERSE_H_
-#define _TRAVERSE_H_
+#ifndef _PICOTEST_HELPERS_JSON_
+#define _PICOTEST_HELPERS_JSON_
 
 #include <picotest.h>
 
 /* Traversal functions */
 PicoTestTraverseProc printTestCase;
 PicoTestTraverseProc printTestName;
+PicoTestVisitProc printTestSuiteJson;
 
-#endif /* _TRAVERSE_H_ */
+#endif /*_PICOTEST_HELPERS_JSON_ */

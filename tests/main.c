@@ -15,9 +15,13 @@ int main(int argc, char *argv[]) {
             /* List test cases. */
             PICOTEST_TRAVERSE(mainSuite, printTestCase);
         } else if (strcmp(argv[1], "-a") == 0 ||
-                   strcmp(argv[1], "--list-all") == 0 || fail) {
+                   strcmp(argv[1], "--list-all") == 0) {
             /* List all tests. */
             PICOTEST_TRAVERSE(mainSuite, printTestName);
+        } else if (strcmp(argv[1], "-j") == 0 ||
+                   strcmp(argv[1], "--json") == 0) {
+            /* Print test suite as JSON. */
+            PICOTEST_VISIT(mainSuite, printTestSuiteJson);
         }
         return 0;
     }
