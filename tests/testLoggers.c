@@ -36,7 +36,7 @@ void testFailureLogger(const char *file, int line, const char *type,
         logs[i].test = test;
         logs[i].msg = msg;
         if (msg) {
-            vsprintf_s(logs[i].msgPrinted, MAX_MSG_SIZE, msg, args);
+            vsnprintf(logs[i].msgPrinted, MAX_MSG_SIZE, msg, args);
         } else {
             *(logs[i].msgPrinted) = '\0';
         }

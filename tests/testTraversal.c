@@ -25,7 +25,7 @@ static struct {
 void init() {
     memset(&state, 0, sizeof(state));
 }
-PicoTestTraverseProc traverse;
+static PicoTestTraverseProc traverse;
 static void traverse(const char *name, int nb) {
     int i = state.nbTests++;
     if (nb) {
@@ -38,7 +38,7 @@ static void traverse(const char *name, int nb) {
         state.tests[i].nb = nb;
     }
 }
-PicoTestVisitProc visit;
+static PicoTestVisitProc visit;
 static void visit(const PicoTestMetadata *metadata, PicoTestVisitStep step) {
     int i = state.nbVisits++;
     if (step == PICOTEST_VISIT_ENTER) {
