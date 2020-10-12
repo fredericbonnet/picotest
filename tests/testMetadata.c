@@ -8,17 +8,17 @@
 
 PICOTEST_SUITE(doMetadataSuite, doMetadataCase1, doMetadataSubsuite,
                doMetadataCase2);
-static doMetadataSuiteLine = __LINE__ - 1;
+static int doMetadataSuiteLine = __LINE__ - 1;
 PICOTEST_SUITE(doMetadataSubsuite, doMetadataSubcase1, doMetadataSubcase2);
-static doMetadataSubsuiteLine = __LINE__ - 1;
+static int doMetadataSubsuiteLine = __LINE__ - 1;
 PICOTEST_CASE(doMetadataCase1) {}
-static doMetadataCase1Line = __LINE__ - 1;
+static int doMetadataCase1Line = __LINE__ - 1;
 PICOTEST_CASE(doMetadataCase2) {}
-static doMetadataCase2Line = __LINE__ - 1;
+static int doMetadataCase2Line = __LINE__ - 1;
 PICOTEST_CASE(doMetadataSubcase1) {}
-static doMetadataSubcase1Line = __LINE__ - 1;
+static int doMetadataSubcase1Line = __LINE__ - 1;
 PICOTEST_CASE(doMetadataSubcase2) {}
-static doMetadataSubcase2Line = __LINE__ - 1;
+static int doMetadataSubcase2Line = __LINE__ - 1;
 
 /*
  * Test suite for test metadata
