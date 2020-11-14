@@ -1,0 +1,17 @@
+:root {
+  /* Reduce the font size */
+  /* --base-font-size: 14px; */
+
+  /* Change the theme color hue (0-360) */
+  /* --theme-color: "#019CB7"; */
+  --theme-hue: 240;
+
+  --link-color: var(--theme-color);
+
+  /* Add sidebar navigation bullets */
+  /* --sidebar-nav-link-before-content-l1: "😀"; */
+  /* --sidebar-nav-link-before-content-l2: "💩"; */
+}
+a {
+  font-weight: 600;
+}

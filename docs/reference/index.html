@@ -2,29 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>PicoTest: A minimalist unit testing framework for C programs</title>
+  <title>PicoTest Reference</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="PicoTest is a single-file unit testing framework for C programs that follows the xUnit principles.  ">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="//unpkg.com/docsify-themeable/dist/css/theme-simple.css">
-	<link rel="stylesheet" href="theme.css">
+	<link rel="stylesheet" href="../theme.css">
   <!-- mermaid -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.css">
   <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
   <div id="app">Please wait...</div>
-  <script src="config.js"></script>
+  <script id="compound-list" data-varname="compoundList" src="compound-list.js"></script>
+  <script src="../config.js"></script>
   <script>
     Object.assign(window.$docsify, {
-      name: 'PicoTest',
-      coverpage: true,
+      name: "PicoTest Reference",
+      homepage: 'group__public__interface.md',
+      loadNavbar: true,
       search: {
         maxAge: 1,
         placeholder: 'Search...',
-        paths: ['README.md'],
+        paths: compoundList,
         depth: 3,
-      }
+      },
     });
   </script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>

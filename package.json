@@ -1,0 +1,26 @@
+{
+  "name": "picotest",
+  "version": "1.4.1",
+  "description": "PicoTest is a single-file unit testing framework for C programs that follows the xUnit principles",
+  "author": "Frédéric Bonnet <fredericbonnet@free.fr>",
+  "license": "BSD-3-Clause",
+  "scripts": {
+    "docs": "npm-run-all --serial docs:*",
+    "docs:doxygen": "doxygen",
+    "docs:seaborg": "seaborg -c seaborg-config.json docs/xml docs/reference",
+    "docsify": "docsify serve ./docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fredericbonnet/picotest.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fredericbonnet/picotest/issues"
+  },
+  "homepage": "https://fredericbonnet.github.io/picotest",
+  "devDependencies": {
+    "@seaborg/cli": "^0.4.1",
+    "docsify": "^4.11.6",
+    "npm-run-all": "^4.1.5"
+  }
+}
