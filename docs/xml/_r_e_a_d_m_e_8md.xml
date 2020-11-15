@@ -36,17 +36,32 @@
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Documentation</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">The<sp/>complete<sp/>HTML<sp/>documentation<sp/>is<sp/>available<sp/>here:</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>complete<sp/>documentation<sp/>is<sp/>available<sp/>here:</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">https://fredericbonnet.github.io/picotest/html/index.html</highlight></codeline>
+<codeline><highlight class="normal">https://fredericbonnet.github.io/picotest</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">The<sp/>PicoTest<sp/>documentation<sp/>was<sp/>generated<sp/>from<sp/>its<sp/>source<sp/>code<sp/>using<sp/>the<sp/>great</highlight></codeline>
-<codeline><highlight class="normal">Doxygen<sp/>tool:</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>documentation<sp/>site<sp/>was<sp/>built<sp/>using<sp/>these<sp/>great<sp/>tools:</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">http://www.stack.nl/~dimitri/doxygen/</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[Doxygen]<sp/>extracts<sp/>the<sp/>documentation<sp/>from<sp/>the<sp/>source<sp/>code<sp/>as<sp/>both<sp/>HTML<sp/>and<sp/>XML</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>formats<sp/>(the<sp/>raw<sp/>HTML<sp/>output<sp/>is<sp/>available<sp/>[here][htmldocs])</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[seaborg]<sp/>converts<sp/>the<sp/>XML<sp/>files<sp/>to<sp/>Markdown<sp/>(full<sp/>disclosure:<sp/>I&apos;m<sp/>the<sp/>author</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>of<sp/>this<sp/>tool!)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[docsify]<sp/>generates<sp/>the<sp/>documentation<sp/>site<sp/>from<sp/>the<sp/>Markdown<sp/>files</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">You<sp/>can<sp/>rebuild<sp/>the<sp/>documentation<sp/>from<sp/>scratch<sp/>using<sp/>the<sp/>provided<sp/>`Doxyfile`</highlight></codeline>
-<codeline><highlight class="normal">file.</highlight></codeline>
+<codeline><highlight class="normal">To<sp/>rebuild<sp/>the<sp/>documentation<sp/>you&apos;ll<sp/>need<sp/>the<sp/>following<sp/>tools:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>[Doxygen]<sp/>to<sp/>process<sp/>the<sp/>provided<sp/>`Doxyfile`<sp/>and<sp/>parse<sp/>the<sp/>source<sp/>code</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[Node.js]<sp/>to<sp/>run<sp/>the<sp/>build<sp/>scripts:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```sh</highlight></codeline>
+<codeline><highlight class="normal">npm<sp/>run<sp/>docs</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">If<sp/>you<sp/>want<sp/>to<sp/>serve<sp/>the<sp/>documentation<sp/>locally<sp/>you<sp/>can<sp/>use<sp/>the<sp/>provided<sp/>script:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```sh</highlight></codeline>
+<codeline><highlight class="normal">npm<sp/>run<sp/>docsify</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Examples</highlight></codeline>
 <codeline></codeline>
@@ -152,6 +167,13 @@
 <codeline><highlight class="normal">assertion<sp/>fails,<sp/>a<sp/>situation<sp/>where<sp/>the<sp/>actual<sp/>process<sp/>state<sp/>is<sp/>no<sp/>longer</highlight></codeline>
 <codeline><highlight class="normal">reliable<sp/>anyway.<sp/>Moreover,<sp/>they<sp/>constitute<sp/>the<sp/>only<sp/>standard<sp/>exception<sp/>handling</highlight></codeline>
 <codeline><highlight class="normal">mechanism<sp/>for<sp/>plain<sp/>C<sp/>code.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[docs]:<sp/>https://fredericbonnet.github.io/picotest</highlight></codeline>
+<codeline><highlight class="normal">[htmldocs]:<sp/>https://fredericbonnet.github.io/picotest/html/index.html</highlight></codeline>
+<codeline><highlight class="normal">[doxygen]:<sp/>http://www.stack.nl/~dimitri/doxygen/</highlight></codeline>
+<codeline><highlight class="normal">[seaborg]:<sp/>https://github.com/fredericbonnet/seaborg</highlight></codeline>
+<codeline><highlight class="normal">[docsify]:<sp/>https://docsify.js.org/</highlight></codeline>
+<codeline><highlight class="normal">[node.js]:<sp/>https://nodejs.org/</highlight></codeline>
     </programlisting>
     <location file="README.md"/>
   </compounddef>

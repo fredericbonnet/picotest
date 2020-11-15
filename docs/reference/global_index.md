@@ -135,17 +135,3 @@
 * [PICOTEST\_VISIT\_LEAVE](picotest_8h.md#group__public__interface_1ggad78162429011bb689a76e91530ac7a22a70b432be5fb3de15623c7cb1562544d0) undefined
 * [PicoTestVisitProc](picotest_8h.md#group__public__interface_1ga1ae925d603c838714097a508a19be99b) Typedef
 * [PicoTestVisitStep](picotest_8h.md#group__public__interface_1gad78162429011bb689a76e91530ac7a22) Enumeration type
-
-## _
-
-* [\_PICOTEST\_ARGCOUNT](picotest_8h.md#picotest_8h_1a921cd46c5670838c4e662e3e35caf680) Macro
-* [\_picoTest\_assertFailed](picotest_8h.md#group__assertions_1gadd80bff454009ce1077d81f1f5552f34) Function
-* [\_PICOTEST\_CONCATENATE](picotest_8h.md#picotest_8h_1a8fdd0e34f725f8e37ca020d13d056001) Macro
-* [\_picoTest\_fail](picotest_8h.md#group__assertions_1ga8d7eb92ca21dfb7fe46fc2472e11f496) Variable
-* [\_picoTest\_failureEnv](picotest_8h.md#group__assertions_1ga2fdb4a73b6a0abc186a27065a36db6ed) Variable
-* [\_picoTest\_filterByName](picotest_8h.md#group__public__interface_1gace2d0b7428d63b90190fe65b619a8680) Function
-* [\_PICOTEST\_FOR\_EACH](picotest_8h.md#picotest_8h_1aa36b887c3add49c79e23a95ba5b733b2) Macro
-* [\_picoTest\_logFailure](picotest_8h.md#group__public__interface_1gae3c669f4ae731be32a25df3d3a97b599) Function
-* [\_PICOTEST\_STRINGIZE](picotest_8h.md#picotest_8h_1a9e72654d611dd79773814aac688dd1bc) Macro
-* [\_picoTest\_traverse](picotest_8h.md#group__public__interface_1gaacd9c37695afbb5b3bb8c5373c527641) Function
-* [\_picoTest\_visit](picotest_8h.md#group__public__interface_1ga114c577e2b5e238b8545c80be5783fea) Function

@@ -75,31 +75,71 @@ Simply include the file in your source file, then start writing your tests!
 
 
 
-The complete HTML documentation is available here:
+The complete documentation is available here:
 
 
 
 
 
-[https://fredericbonnet.github.io/picotest/html/index.html](https://fredericbonnet.github.io/picotest/html/index.html)
+[https://fredericbonnet.github.io/picotest](https://fredericbonnet.github.io/picotest)
 
 
 
 
 
-The PicoTest documentation was generated from its source code using the great Doxygen tool:
+The documentation site was built using these great tools:
 
 
 
 
 
-[http://www.stack.nl/~dimitri/doxygen/](http://www.stack.nl/~dimitri/doxygen/)
+
+* [Doxygen](http://www.stack.nl/~dimitri/doxygen/) extracts the documentation from the source code as both HTML and XML formats (the raw HTML output is available [here](https://fredericbonnet.github.io/picotest/html/index.html))
+
+* [seaborg](https://github.com/fredericbonnet/seaborg) converts the XML files to Markdown (full disclosure: I'm the author of this tool!)
+
+* [docsify](https://docsify.js.org/) generates the documentation site from the Markdown files
 
 
 
 
 
-You can rebuild the documentation from scratch using the provided <code>Doxyfile</code> file.
+
+
+To rebuild the documentation you'll need the following tools:
+
+
+
+
+
+
+* [Doxygen](http://www.stack.nl/~dimitri/doxygen/) to process the provided <code>Doxyfile</code> and parse the source code
+
+* [Node.js](https://nodejs.org/) to run the build scripts:
+
+
+
+
+
+
+
+```
+npm run docs
+```
+
+
+
+
+
+If you want to serve the documentation locally you can use the provided script:
+
+
+
+
+
+```
+npm run docsify
+```
 
 
 
@@ -319,7 +359,6 @@ It should work with any reasonably modern C compiler that supports variadic macr
 
 The assertion mechanism relies on <code>setjmp()</code> / <code>longjmp()</code>. While these functions are discouraged for production code, their usage is acceptable in the context of unit testing: in our case, <code>longjmp()</code> is only called when an assertion fails, a situation where the actual process state is no longer reliable anyway. Moreover, they constitute the only standard exception handling mechanism for plain C code.
 
-[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
-[static]: https://img.shields.io/badge/-static-lightgrey (static)

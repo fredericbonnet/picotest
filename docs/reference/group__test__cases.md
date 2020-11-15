@@ -101,7 +101,7 @@ PicoTest provides a way for client code to intercept test case events. This can 
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 632)
+**Definition**: `include/picotest.h` (line 636)
 
 ```cpp
 typedef void() PicoTestCaseEnterProc(const char *testName)
@@ -154,7 +154,7 @@ void enterTestCase(const char *testName) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 680)
+**Definition**: `include/picotest.h` (line 684)
 
 ```cpp
 typedef void() PicoTestCaseLeaveProc(const char *testName, int fail)
@@ -349,5 +349,6 @@ void leaveTestCase(const char *testName, int fail) {
 
 
 
-[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
+[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)

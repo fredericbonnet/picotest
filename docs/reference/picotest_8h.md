@@ -449,30 +449,6 @@ PicoTestFilterResult matchSubstring(PicoTestProc *test, const char *testName, co
 
 **Return type**: [PicoTestFilterResult](picotest_8h.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc)()
 
-<a id="group__public__interface_1gace2d0b7428d63b90190fe65b619a8680"></a>
-### Function \_picoTest\_filterByName
-
-![][public]
-![][static]
-
-```cpp
-static PicoTestFilterResult _picoTest_filterByName(PicoTestProc *test, const char *testName, const char *cond)
-```
-
-
-
-
-
-
-
-**Parameters**:
-
-* [PicoTestProc](picotest_8h.md#group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a) * **test**
-* const char * **testName**
-* const char * **cond**
-
-**Return type**: [PicoTestFilterResult](picotest_8h.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc)
-
 ## Test hierarchy traversal
 
 Tests can form hierarchies of test suites and test cases. PicoTest provides two ways to traverse such hierarchies with a simple visitor pattern. This can be used for e.g. test list discovery in build systems.
@@ -547,7 +523,7 @@ This feature covers more advanced use cases than [PICOTEST\_TRAVERSE](picotest_8
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 347)
+**Definition**: `include/picotest.h` (line 349)
 
 ```cpp
 enum PicoTestVisitStep {
@@ -581,7 +557,7 @@ Leave the test.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 299)
+**Definition**: `include/picotest.h` (line 300)
 
 ```cpp
 typedef void() PicoTestTraverseProc(const char *name, int nb)
@@ -631,7 +607,7 @@ void printTestName(const char *name, int nb) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 366)
+**Definition**: `include/picotest.h` (line 368)
 
 ```cpp
 typedef void() PicoTestVisitProc(const PicoTestMetadata *metadata, PicoTestVisitStep step)
@@ -659,52 +635,6 @@ Proc is called once for each value of [PicoTestVisitStep](picotest_8h.md#group__
 
 
 **Return type**: void()
-
-<a id="group__public__interface_1gaacd9c37695afbb5b3bb8c5373c527641"></a>
-### Function \_picoTest\_traverse
-
-![][public]
-![][static]
-
-```cpp
-static void _picoTest_traverse(const PicoTestMetadata *metadata, PicoTestTraverseProc *proc)
-```
-
-
-
-
-
-
-
-**Parameters**:
-
-* const [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata) * **metadata**
-* [PicoTestTraverseProc](picotest_8h.md#group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b) * **proc**
-
-**Return type**: void
-
-<a id="group__public__interface_1ga114c577e2b5e238b8545c80be5783fea"></a>
-### Function \_picoTest\_visit
-
-![][public]
-![][static]
-
-```cpp
-static void _picoTest_visit(const PicoTestMetadata *metadata, PicoTestVisitProc *proc)
-```
-
-
-
-
-
-
-
-**Parameters**:
-
-* const [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata) * **metadata**
-* [PicoTestVisitProc](picotest_8h.md#group__public__interface_1ga1ae925d603c838714097a508a19be99b) * **proc**
-
-**Return type**: void
 
 ## Logging
 
@@ -807,7 +737,7 @@ void logFailure(const char *file, int line, const char *type, const char *test, 
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 438)
+**Definition**: `include/picotest.h` (line 441)
 
 ```cpp
 typedef void() PicoTestFailureLoggerProc(const char *file, int line, const char *type, const char *test, const char *msg, va_list args)
@@ -869,33 +799,6 @@ void logFailure(const char *file, int line, const char *type, const char *test, 
 
 
 **Return type**: void()
-
-<a id="group__public__interface_1gae3c669f4ae731be32a25df3d3a97b599"></a>
-### Function \_picoTest\_logFailure
-
-![][public]
-![][static]
-
-```cpp
-static void _picoTest_logFailure(const char *file, int line, const char *type, const char *test, const char *msg, va_list args)
-```
-
-
-
-
-
-
-
-**Parameters**:
-
-* const char * **file**
-* int **line**
-* const char * **type**
-* const char * **test**
-* const char * **msg**
-* va_list **args**
-
-**Return type**: void
 
 ## Test Case Definitions
 
@@ -1139,7 +1042,7 @@ void leaveTestCase(const char *testName, int fail) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 632)
+**Definition**: `include/picotest.h` (line 636)
 
 ```cpp
 typedef void() PicoTestCaseEnterProc(const char *testName)
@@ -1192,7 +1095,7 @@ void enterTestCase(const char *testName) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 680)
+**Definition**: `include/picotest.h` (line 684)
 
 ```cpp
 typedef void() PicoTestCaseLeaveProc(const char *testName, int fail)
@@ -1390,74 +1293,6 @@ This can be used to implement custom testing logic.
 
 
 
-<a id="group__assertions_1ga8d7eb92ca21dfb7fe46fc2472e11f496"></a>
-### Variable \_picoTest\_fail
-
-![][public]
-![][static]
-
-**Definition**: `include/picotest.h` (line 830)
-
-```cpp
-int _picoTest_fail
-```
-
-
-
-
-
-
-
-**Type**: int
-
-<a id="group__assertions_1ga2fdb4a73b6a0abc186a27065a36db6ed"></a>
-### Variable \_picoTest\_failureEnv
-
-![][public]
-![][static]
-
-**Definition**: `include/picotest.h` (line 838)
-
-```cpp
-jmp_buf* _picoTest_failureEnv
-```
-
-
-
-
-
-
-
-**Type**: jmp_buf *
-
-<a id="group__assertions_1gadd80bff454009ce1077d81f1f5552f34"></a>
-### Function \_picoTest\_assertFailed
-
-![][public]
-![][static]
-
-```cpp
-static void _picoTest_assertFailed(PicoTestFailureLoggerProc *proc, const char *file, int line, const char *type, int count, const char *test,...)
-```
-
-
-
-
-
-
-
-**Parameters**:
-
-* [PicoTestFailureLoggerProc](picotest_8h.md#group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb) * **proc**
-* const char * **file**
-* int **line**
-* const char * **type**
-* int **count**
-* const char * **test**
-* ...
-
-**Return type**: void
-
 ## Assertion Hooks
 
 PicoTest provides a way for client code to intercept assertions events. This can be used for e.g. logging purpose or reporting.
@@ -1613,7 +1448,7 @@ void afterAssert(const char *type, const char *test, int fail) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 904)
+**Definition**: `include/picotest.h` (line 911)
 
 ```cpp
 typedef void() PicoTestAssertBeforeProc(const char *type, const char *test)
@@ -1667,7 +1502,7 @@ void beforeAssert(const char *type, const char *test) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 953)
+**Definition**: `include/picotest.h` (line 960)
 
 ```cpp
 typedef void() PicoTestAssertAfterProc(const char *type, const char *test, int fail)
@@ -2285,7 +2120,7 @@ void afterTeardown(const char *fixtureName, const char *testName, int fail) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1164)
+**Definition**: `include/picotest.h` (line 1171)
 
 ```cpp
 typedef void() PicoTestFixtureBeforeSetupProc(const char *fixtureName, const char *testName)
@@ -2339,7 +2174,7 @@ void beforeSetup(const char *fixtureName, const char *testName) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1213)
+**Definition**: `include/picotest.h` (line 1220)
 
 ```cpp
 typedef void() PicoTestFixtureAfterSetupProc(const char *fixtureName, const char *testName)
@@ -2393,7 +2228,7 @@ void afterSetup(const char *fixtureName, const char *testName) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1263)
+**Definition**: `include/picotest.h` (line 1270)
 
 ```cpp
 typedef void() PicoTestFixtureBeforeTeardownProc(const char *fixtureName, const char *testName, int fail)
@@ -2448,7 +2283,7 @@ void beforeTeardown(const char *fixtureName, const char *testName, int fail) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1314)
+**Definition**: `include/picotest.h` (line 1321)
 
 ```cpp
 typedef void() PicoTestFixtureAfterTeardownProc(const char *fixtureName, const char *testName, int fail)
@@ -2870,7 +2705,7 @@ void afterSubtest(const char *suiteName, int nb, int fail, int index,
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1468)
+**Definition**: `include/picotest.h` (line 1475)
 
 ```cpp
 typedef void() PicoTestSuiteEnterProc(const char *suiteName, int nb)
@@ -2924,7 +2759,7 @@ void enterTestSuite(const char *suiteName, int nb) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1516)
+**Definition**: `include/picotest.h` (line 1523)
 
 ```cpp
 typedef void() PicoTestSuiteLeaveProc(const char *suiteName, int nb, int fail)
@@ -2972,7 +2807,7 @@ void leaveTestSuite(const char *suiteName, int nb, int fail) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1570)
+**Definition**: `include/picotest.h` (line 1577)
 
 ```cpp
 typedef void() PicoTestSuiteBeforeSubtestProc(const char *suiteName, int nb, int fail, int index, const char *testName)
@@ -3030,7 +2865,7 @@ void beforeSubtest(const char *suiteName, int nb, int fail, int index,
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1627)
+**Definition**: `include/picotest.h` (line 1634)
 
 ```cpp
 typedef void() PicoTestSuiteAfterSubtestProc(const char *suiteName, int nb, int fail, int index, const char *testName, int sfail)
@@ -3083,68 +2918,6 @@ void afterSubtest(const char *suiteName, int nb, int fail, int index,
 
 
 **Return type**: void()
-
-## Macros
-
-<a id="picotest_8h_1a9e72654d611dd79773814aac688dd1bc"></a>
-### Macro \_PICOTEST\_STRINGIZE
-
-![][public]
-
-```cpp
-#define _PICOTEST_STRINGIZE( arg )
-```
-
-
-
-
-
-
-
-<a id="picotest_8h_1a8fdd0e34f725f8e37ca020d13d056001"></a>
-### Macro \_PICOTEST\_CONCATENATE
-
-![][public]
-
-```cpp
-#define _PICOTEST_CONCATENATE( arg1 ,arg2 )
-```
-
-
-
-
-
-
-
-<a id="picotest_8h_1a921cd46c5670838c4e662e3e35caf680"></a>
-### Macro \_PICOTEST\_ARGCOUNT
-
-![][public]
-
-```cpp
-#define _PICOTEST_ARGCOUNT( ... )
-```
-
-
-
-
-
-
-
-<a id="picotest_8h_1aa36b887c3add49c79e23a95ba5b733b2"></a>
-### Macro \_PICOTEST\_FOR\_EACH
-
-![][public]
-
-```cpp
-#define _PICOTEST_FOR_EACH( what ,... )
-```
-
-
-
-
-
-
 
 ## Source
 
@@ -3216,7 +2989,6 @@ static PicoTestFilterResult _picoTest_filterByName(PicoTestProc *test,
     return (strcmp(testName, cond) == 0 ? PICOTEST_FILTER_PASS
                                         : PICOTEST_FILTER_SKIP_PROPAGATE);
 }
-
 #define PICOTEST_FILTER_DEFAULT _picoTest_filterByName
 
 #define PICOTEST_FILTER PICOTEST_FILTER_DEFAULT
@@ -3236,7 +3008,6 @@ static void _picoTest_traverse(const PicoTestMetadata *metadata,
         }
     }
 }
-
 typedef enum PicoTestVisitStep {
     PICOTEST_VISIT_ENTER = 0,
 
@@ -3260,7 +3031,6 @@ static void _picoTest_visit(const PicoTestMetadata *metadata,
     }
     proc(metadata, PICOTEST_VISIT_LEAVE);
 }
-
 typedef void(PicoTestFailureLoggerProc)(const char *file, int line,
                                         const char *type, const char *test,
                                         const char *msg, va_list args);
@@ -3268,7 +3038,6 @@ typedef void(PicoTestFailureLoggerProc)(const char *file, int line,
 static void _picoTest_logFailure(const char *file, int line, const char *type,
                                  const char *test, const char *msg,
                                  va_list args) {}
-
 #define PICOTEST_FAILURE_LOGGER_DEFAULT _picoTest_logFailure
 
 #define PICOTEST_FAILURE_LOGGER PICOTEST_FAILURE_LOGGER_DEFAULT
@@ -3409,7 +3178,6 @@ typedef void(PicoTestCaseLeaveProc)(const char *testName, int fail);
 static int _picoTest_fail = 0;
 
 static jmp_buf *_picoTest_failureEnv = NULL;
-
 #define PICOTEST_ABORT() longjmp(*_picoTest_failureEnv, 1)
 
 static void _picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
@@ -3426,7 +3194,6 @@ static void _picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
         proc(file, line, type, test, NULL, NULL);
     }
 }
-
 typedef void(PicoTestAssertBeforeProc)(const char *type, const char *test);
 
 #define PICOTEST_ASSERT_BEFORE_DEFAULT(type, test)
@@ -3907,7 +3674,5 @@ typedef void(PicoTestSuiteAfterSubtestProc)(const char *suiteName, int nb,
 #endif /* _PICOTEST */
 ```
 
-[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
-[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
-[static]: https://img.shields.io/badge/-static-lightgrey (static)
+[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)

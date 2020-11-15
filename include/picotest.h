@@ -216,7 +216,7 @@ typedef PicoTestFilterResult(PicoTestFilterProc)(PicoTestProc *test,
                                                  const char *testName,
                                                  const char *cond);
 
-/** \internal
+/** \cond INTERNAL \internal
  * Implementation of default test filter function.
  *
  * Does a simple string equality test between **testName** and **cond**, and
@@ -232,6 +232,7 @@ static PicoTestFilterResult _picoTest_filterByName(PicoTestProc *test,
     return (strcmp(testName, cond) == 0 ? PICOTEST_FILTER_PASS
                                         : PICOTEST_FILTER_SKIP_PROPAGATE);
 }
+/*! \endcond */
 
 /**
  * Default test filter function.
@@ -317,7 +318,7 @@ typedef void(PicoTestTraverseProc)(const char *name, int nb);
 #define PICOTEST_TRAVERSE(_testName, _proc)                                    \
     _picoTest_traverse(PICOTEST_METADATA(_testName), _proc)
 
-/** \internal
+/** \cond INTERNAL \internal
  * Perform test traversal.
  *
  * @param metadata      Metadata of test to traverse.
@@ -337,6 +338,7 @@ static void _picoTest_traverse(const PicoTestMetadata *metadata,
         }
     }
 }
+/*! \endcond */
 
 /**
  * Test visit step.
@@ -383,7 +385,7 @@ typedef void(PicoTestVisitProc)(const PicoTestMetadata *metadata,
 #define PICOTEST_VISIT(_testName, _proc)                                       \
     _picoTest_visit(PICOTEST_METADATA(_testName), _proc)
 
-/** \internal
+/** \cond INTERNAL \internal
  * Perform test visit.
  *
  * @param metadata      Metadata of test to visit.
@@ -404,6 +406,7 @@ static void _picoTest_visit(const PicoTestMetadata *metadata,
     }
     proc(metadata, PICOTEST_VISIT_LEAVE);
 }
+/*! \endcond */
 
 /*! \} End of Test Traversal */
 
@@ -439,7 +442,7 @@ typedef void(PicoTestFailureLoggerProc)(const char *file, int line,
                                         const char *type, const char *test,
                                         const char *msg, va_list args);
 
-/** \internal
+/** \cond INTERNAL \internal
  * Implementation of default test failure log handler. Does nothing.
  *
  * @see PicoTestFailureLoggerProc
@@ -449,6 +452,7 @@ typedef void(PicoTestFailureLoggerProc)(const char *file, int line,
 static void _picoTest_logFailure(const char *file, int line, const char *type,
                                  const char *test, const char *msg,
                                  va_list args) {}
+/*! \endcond */
 
 /**
  * Default test failure log handler. Does nothing.
@@ -822,20 +826,22 @@ typedef void(PicoTestCaseLeaveProc)(const char *testName, int fail);
                            _PICOTEST_ARGCOUNT(__VA_ARGS__), __VA_ARGS__);      \
 /*! \endcond */
 
-/** \internal
+/** \cond INTERNAL \internal
  * Internal failure counter.
  *
  * @see PICOTEST_FAILURE
  */
 static int _picoTest_fail = 0;
+/*! \endcond */
 
-/** \internal
+/** \cond INTERNAL \internal
  * Tag used by **setjmp()** and **longjmp()** to jump out of failed tests.
  *
  * @see PICOTEST_ABORT
  * @see PICOTEST_CASE
  */
 static jmp_buf *_picoTest_failureEnv = NULL;
+/*! \endcond */
 
 /**
  * Abort a test case.
@@ -846,7 +852,7 @@ static jmp_buf *_picoTest_failureEnv = NULL;
  */
 #define PICOTEST_ABORT() longjmp(*_picoTest_failureEnv, 1)
 
-/** \internal
+/** \cond INTERNAL \internal
  * Called when an assertion fails.
  *
  * @param proc  Test failure log handler.
@@ -874,6 +880,7 @@ static void _picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
         proc(file, line, type, test, NULL, NULL);
     }
 }
+/*! \endcond */
 
 /*! \} End of Assertion Definitions */
 
@@ -1677,15 +1684,17 @@ typedef void(PicoTestSuiteAfterSubtestProc)(const char *suiteName, int nb,
  * \{
  */
 
-/** \internal
+/** \cond INTERNAL \internal
  * Turn argument into a C string.
  */
 #define _PICOTEST_STRINGIZE(arg) #arg
+/*! \endcond */
 
-/** \internal
+/** \cond INTERNAL \internal
  * Concatenate both arguments.
  */
 #define _PICOTEST_CONCATENATE(arg1, arg2) _PICOTEST_CONCATENATE1(arg1, arg2)
+/*! \endcond */
 
 /*! \cond IGNORE */
 #define _PICOTEST_CONCATENATE1(arg1, arg2) _PICOTEST_CONCATENATE2(arg1, arg2)
@@ -1704,7 +1713,7 @@ typedef void(PicoTestSuiteAfterSubtestProc)(const char *suiteName, int nb,
  * \{
  */
 
-/** \internal
+/** \cond INTERNAL \internal
  * Get the number of args passed to it.
  *
  * @param ...   Arguments passed to the variadic macro.
@@ -1727,6 +1736,7 @@ typedef void(PicoTestSuiteAfterSubtestProc)(const char *suiteName, int nb,
                       24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11,  \
                       10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
 #endif /* defined(_PICOTEST_PARENS) */
+/*! \endcond */
 
 /*! \cond IGNORE */
 #define _PICOTEST_LASTARG(                                                     \
@@ -1738,7 +1748,7 @@ typedef void(PicoTestSuiteAfterSubtestProc)(const char *suiteName, int nb,
     N
 /*! \endcond */
 
-/** \internal
+/** \cond INTERNAL \internal
  * Iterate over the args passed to it.
  *
  * @param what  Function taking one argument, applied to all remaining
@@ -1759,6 +1769,7 @@ typedef void(PicoTestSuiteAfterSubtestProc)(const char *suiteName, int nb,
                           _PICOTEST_ARGCOUNT(__VA_ARGS__))                     \
     (what, __VA_ARGS__)
 #endif /* defined(_PICOTEST_PARENS) */
+/*! \endcond */
 
 /*! \cond IGNORE */
 #if defined(_PICOTEST_PARENS)

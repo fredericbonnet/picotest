@@ -287,7 +287,7 @@ PicoTest provides a way for client code to intercept test fixture events. This c
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1164)
+**Definition**: `include/picotest.h` (line 1171)
 
 ```cpp
 typedef void() PicoTestFixtureBeforeSetupProc(const char *fixtureName, const char *testName)
@@ -341,7 +341,7 @@ void beforeSetup(const char *fixtureName, const char *testName) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1213)
+**Definition**: `include/picotest.h` (line 1220)
 
 ```cpp
 typedef void() PicoTestFixtureAfterSetupProc(const char *fixtureName, const char *testName)
@@ -395,7 +395,7 @@ void afterSetup(const char *fixtureName, const char *testName) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1263)
+**Definition**: `include/picotest.h` (line 1270)
 
 ```cpp
 typedef void() PicoTestFixtureBeforeTeardownProc(const char *fixtureName, const char *testName, int fail)
@@ -450,7 +450,7 @@ void beforeTeardown(const char *fixtureName, const char *testName, int fail) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1314)
+**Definition**: `include/picotest.h` (line 1321)
 
 ```cpp
 typedef void() PicoTestFixtureAfterTeardownProc(const char *fixtureName, const char *testName, int fail)
@@ -792,7 +792,6 @@ void afterTeardown(const char *fixtureName, const char *testName, int fail) {
 
 
 
-[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
-[static]: https://img.shields.io/badge/-static-lightgrey (static)

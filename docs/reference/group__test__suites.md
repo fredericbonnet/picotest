@@ -77,7 +77,7 @@ PicoTest provides a way for client code to intercept test execution events on te
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1468)
+**Definition**: `include/picotest.h` (line 1475)
 
 ```cpp
 typedef void() PicoTestSuiteEnterProc(const char *suiteName, int nb)
@@ -131,7 +131,7 @@ void enterTestSuite(const char *suiteName, int nb) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1516)
+**Definition**: `include/picotest.h` (line 1523)
 
 ```cpp
 typedef void() PicoTestSuiteLeaveProc(const char *suiteName, int nb, int fail)
@@ -179,7 +179,7 @@ void leaveTestSuite(const char *suiteName, int nb, int fail) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1570)
+**Definition**: `include/picotest.h` (line 1577)
 
 ```cpp
 typedef void() PicoTestSuiteBeforeSubtestProc(const char *suiteName, int nb, int fail, int index, const char *testName)
@@ -237,7 +237,7 @@ void beforeSubtest(const char *suiteName, int nb, int fail, int index,
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1627)
+**Definition**: `include/picotest.h` (line 1634)
 
 ```cpp
 typedef void() PicoTestSuiteAfterSubtestProc(const char *suiteName, int nb, int fail, int index, const char *testName, int sfail)
@@ -591,6 +591,6 @@ void afterSubtest(const char *suiteName, int nb, int fail, int index,
 
 
 
-[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)

@@ -7,74 +7,6 @@ Assertions are the basic building blocks of test cases.
 
 ## Assertion Definitions
 
-<a id="group__assertions_1ga8d7eb92ca21dfb7fe46fc2472e11f496"></a>
-### Variable \_picoTest\_fail
-
-![][public]
-![][static]
-
-**Definition**: `include/picotest.h` (line 830)
-
-```cpp
-int _picoTest_fail
-```
-
-
-
-
-
-
-
-**Type**: int
-
-<a id="group__assertions_1ga2fdb4a73b6a0abc186a27065a36db6ed"></a>
-### Variable \_picoTest\_failureEnv
-
-![][public]
-![][static]
-
-**Definition**: `include/picotest.h` (line 838)
-
-```cpp
-jmp_buf* _picoTest_failureEnv
-```
-
-
-
-
-
-
-
-**Type**: jmp_buf *
-
-<a id="group__assertions_1gadd80bff454009ce1077d81f1f5552f34"></a>
-### Function \_picoTest\_assertFailed
-
-![][public]
-![][static]
-
-```cpp
-static void _picoTest_assertFailed(PicoTestFailureLoggerProc *proc, const char *file, int line, const char *type, int count, const char *test,...)
-```
-
-
-
-
-
-
-
-**Parameters**:
-
-* [PicoTestFailureLoggerProc](picotest_8h.md#group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb) * **proc**
-* const char * **file**
-* int **line**
-* const char * **type**
-* int **count**
-* const char * **test**
-* ...
-
-**Return type**: void
-
 <a id="group__assertions_1gad71b76cf1173654acc95df79d1c7040b"></a>
 ### Macro PICOTEST\_ASSERT
 
@@ -231,7 +163,7 @@ PicoTest provides a way for client code to intercept assertions events. This can
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 904)
+**Definition**: `include/picotest.h` (line 911)
 
 ```cpp
 typedef void() PicoTestAssertBeforeProc(const char *type, const char *test)
@@ -285,7 +217,7 @@ void beforeAssert(const char *type, const char *test) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 953)
+**Definition**: `include/picotest.h` (line 960)
 
 ```cpp
 typedef void() PicoTestAssertAfterProc(const char *type, const char *test, int fail)
@@ -481,7 +413,6 @@ void afterAssert(const char *type, const char *test, int fail) {
 
 
 
-[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
-[static]: https://img.shields.io/badge/-static-lightgrey (static)

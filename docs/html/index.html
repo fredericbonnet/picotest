@@ -76,12 +76,21 @@ $(function() {
 <h2>Usage</h2>
 <p>Simply include the file in your source file, then start writing your tests!</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="picotest_8h.html">picotest.h</a>&gt;</span></div></div><!-- fragment --><h2>Documentation</h2>
-<p>The complete HTML documentation is available here:</p>
-<p><a href="https://fredericbonnet.github.io/picotest/html/index.html">https://fredericbonnet.github.io/picotest/html/index.html</a></p>
-<p>The PicoTest documentation was generated from its source code using the great Doxygen tool:</p>
-<p><a href="http://www.stack.nl/~dimitri/doxygen/">http://www.stack.nl/~dimitri/doxygen/</a></p>
-<p>You can rebuild the documentation from scratch using the provided <code>Doxyfile</code> file.</p>
-<h2>Examples</h2>
+<p>The complete documentation is available here:</p>
+<p><a href="https://fredericbonnet.github.io/picotest">https://fredericbonnet.github.io/picotest</a></p>
+<p>The documentation site was built using these great tools:</p>
+<ul>
+<li><a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> extracts the documentation from the source code as both HTML and XML formats (the raw HTML output is available <a href="https://fredericbonnet.github.io/picotest/html/index.html">here</a>)</li>
+<li><a href="https://github.com/fredericbonnet/seaborg">seaborg</a> converts the XML files to Markdown (full disclosure: I'm the author of this tool!)</li>
+<li><a href="https://docsify.js.org/">docsify</a> generates the documentation site from the Markdown files</li>
+</ul>
+<p>To rebuild the documentation you'll need the following tools:</p>
+<ul>
+<li><a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> to process the provided <code>Doxyfile</code> and parse the source code</li>
+<li><a href="https://nodejs.org/">Node.js</a> to run the build scripts:</li>
+</ul>
+<div class="fragment"><div class="line">npm run docs</div></div><!-- fragment --><p>If you want to serve the documentation locally you can use the provided script:</p>
+<div class="fragment"><div class="line">npm run docsify</div></div><!-- fragment --><h2>Examples</h2>
 <p>The <code>examples</code> subdirectory contains several example source files that demonstrate the various features of PicoTest. These examples are also integrated in the documentation.</p>
 <p>Building the examples requires the CMake build tool along with your favorite toolchain:</p>
 <p><a href="https://cmake.org/">https://cmake.org/</a></p>

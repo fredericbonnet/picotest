@@ -22,11 +22,26 @@
 </programlisting></para>
 <para><heading level="2">Documentation</heading>
 </para>
-<para>The complete HTML documentation is available here:</para>
-<para><ulink url="https://fredericbonnet.github.io/picotest/html/index.html">https://fredericbonnet.github.io/picotest/html/index.html</ulink></para>
-<para>The PicoTest documentation was generated from its source code using the great Doxygen tool:</para>
-<para><ulink url="http://www.stack.nl/~dimitri/doxygen/">http://www.stack.nl/~dimitri/doxygen/</ulink></para>
-<para>You can rebuild the documentation from scratch using the provided <computeroutput>Doxyfile</computeroutput> file.</para>
+<para>The complete documentation is available here:</para>
+<para><ulink url="https://fredericbonnet.github.io/picotest">https://fredericbonnet.github.io/picotest</ulink></para>
+<para>The documentation site was built using these great tools:</para>
+<para><itemizedlist>
+<listitem><para><ulink url="http://www.stack.nl/~dimitri/doxygen/">Doxygen</ulink> extracts the documentation from the source code as both HTML and XML formats (the raw HTML output is available <ulink url="https://fredericbonnet.github.io/picotest/html/index.html">here</ulink>)</para>
+</listitem><listitem><para><ulink url="https://github.com/fredericbonnet/seaborg">seaborg</ulink> converts the XML files to Markdown (full disclosure: I&apos;m the author of this tool!)</para>
+</listitem><listitem><para><ulink url="https://docsify.js.org/">docsify</ulink> generates the documentation site from the Markdown files</para>
+</listitem></itemizedlist>
+</para>
+<para>To rebuild the documentation you&apos;ll need the following tools:</para>
+<para><itemizedlist>
+<listitem><para><ulink url="http://www.stack.nl/~dimitri/doxygen/">Doxygen</ulink> to process the provided <computeroutput>Doxyfile</computeroutput> and parse the source code</para>
+</listitem><listitem><para><ulink url="https://nodejs.org/">Node.js</ulink> to run the build scripts:</para>
+</listitem></itemizedlist>
+</para>
+<para><programlisting filename=".sh"><codeline><highlight class="normal">npm<sp/>run<sp/>docs</highlight></codeline>
+</programlisting></para>
+<para>If you want to serve the documentation locally you can use the provided script:</para>
+<para><programlisting filename=".sh"><codeline><highlight class="normal">npm<sp/>run<sp/>docsify</highlight></codeline>
+</programlisting></para>
 <para><heading level="2">Examples</heading>
 </para>
 <para>The <computeroutput>examples</computeroutput> subdirectory contains several example source files that demonstrate the various features of PicoTest. These examples are also integrated in the documentation.</para>
