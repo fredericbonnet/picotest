@@ -1,3 +1,3 @@
-- [Home](/ ':ignore :target=_self')
+- [Home](.. ":ignore :target=_self")
 - [Public interface](/)
 - [Index](/index.md)
