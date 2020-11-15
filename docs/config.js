@@ -7,6 +7,21 @@ mermaid.initialize({
     htmlLabels: false,
   },
 });
+function renderMermaid(code, link) {
+  // Generate Mermaid SVG into container
+  const div = document.createElement("div");
+  div.className = "mermaid";
+  div.innerHTML = mermaid.render("mermaid-svg-" + mermaidId++, code);
+
+  // Convert SVG links to docsify format
+  const div2 = document.createElement("div");
+  div.querySelectorAll("a.clickable").forEach((a) => {
+    div2.innerHTML = link(a.getAttribute("href"));
+    a.setAttribute("href", div2.firstChild.getAttribute("href"));
+  });
+
+  return div.outerHTML;
+}
 window.$docsify = {
   repo: "https://github.com/fredericbonnet/picotest",
   themeColor: "#019CB7",
@@ -19,11 +34,7 @@ window.$docsify = {
       code: function (code, lang) {
         try {
           if (lang === "mermaid") {
-            return (
-              '<div class="mermaid">' +
-              mermaid.render("mermaid-svg-" + mermaidId++, code) +
-              "</div>"
-            );
+            return renderMermaid(code, this.origin.link);
           }
         } catch (e) {
           /* ignore */
