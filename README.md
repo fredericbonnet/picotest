@@ -27,17 +27,32 @@ Simply include the file in your source file, then start writing your tests!
 
 ## Documentation
 
-The complete HTML documentation is available here:
+The complete documentation is available here:
 
-https://fredericbonnet.github.io/picotest/html/index.html
+https://fredericbonnet.github.io/picotest
 
-The PicoTest documentation was generated from its source code using the great
-Doxygen tool:
+The documentation site was built using these great tools:
 
-http://www.stack.nl/~dimitri/doxygen/
+- [Doxygen] extracts the documentation from the source code as both HTML and XML
+  formats (the raw HTML output is available [here][htmldocs])
+- [seaborg] converts the XML files to Markdown (full disclosure: I'm the author
+  of this tool!)
+- [docsify] generates the documentation site from the Markdown files
 
-You can rebuild the documentation from scratch using the provided `Doxyfile`
-file.
+To rebuild the documentation you'll need the following tools:
+
+- [Doxygen] to process the provided `Doxyfile` and parse the source code
+- [Node.js] to run the build scripts:
+
+```sh
+npm run docs
+```
+
+If you want to serve the documentation locally you can use the provided script:
+
+```sh
+npm run docsify
+```
 
 ## Examples
 
@@ -143,3 +158,10 @@ context of unit testing: in our case, `longjmp()` is only called when an
 assertion fails, a situation where the actual process state is no longer
 reliable anyway. Moreover, they constitute the only standard exception handling
 mechanism for plain C code.
+
+[docs]: https://fredericbonnet.github.io/picotest
+[htmldocs]: https://fredericbonnet.github.io/picotest/html/index.html
+[doxygen]: http://www.stack.nl/~dimitri/doxygen/
+[seaborg]: https://github.com/fredericbonnet/seaborg
+[docsify]: https://docsify.js.org/
+[node.js]: https://nodejs.org/
