@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="group__test__suites" kind="group">
     <compoundname>test_suites</compoundname>
     <title>Test Suites</title>
@@ -56,7 +56,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1393" column="9" bodyfile="include/picotest.h" bodystart="1393" bodyend="-1"/>
+        <location file="include/picotest.h" line="1386" column="9" bodyfile="include/picotest.h" bodystart="1386" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
@@ -111,7 +111,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1475" column="1" bodyfile="include/picotest.h" bodystart="1475" bodyend="-1"/>
+        <location file="include/picotest.h" line="1468" column="9" bodyfile="include/picotest.h" bodystart="1468" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="group__test__suites_1gabc6f39019f0cde9f04812785aceaab09" prot="public" static="no">
         <type>void()</type>
@@ -168,7 +168,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1523" column="1" bodyfile="include/picotest.h" bodystart="1523" bodyend="-1"/>
+        <location file="include/picotest.h" line="1516" column="9" bodyfile="include/picotest.h" bodystart="1516" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="group__test__suites_1gade4d2a7d8a611ca76c675607529a3edb" prot="public" static="no">
         <type>void()</type>
@@ -243,7 +243,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1577" column="1" bodyfile="include/picotest.h" bodystart="1577" bodyend="-1"/>
+        <location file="include/picotest.h" line="1570" column="9" bodyfile="include/picotest.h" bodystart="1570" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="group__test__suites_1ga80efec0204108859c9ececa3921f6f76" prot="public" static="no">
         <type>void()</type>
@@ -326,7 +326,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1634" column="1" bodyfile="include/picotest.h" bodystart="1634" bodyend="-1"/>
+        <location file="include/picotest.h" line="1627" column="9" bodyfile="include/picotest.h" bodystart="1627" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__test__suites_1ga50f13419afbe35f17150bacd7a906838" prot="public" static="no">
         <name>PICOTEST_SUITE_ENTER_DEFAULT</name>
@@ -345,7 +345,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1483" column="9" bodyfile="include/picotest.h" bodystart="1483" bodyend="-1"/>
+        <location file="include/picotest.h" line="1476" column="9" bodyfile="include/picotest.h" bodystart="1476" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__test__suites_1gae569b3a4f05ebefc297411072e505fd3" prot="public" static="no">
         <name>PICOTEST_SUITE_ENTER</name>
@@ -381,7 +381,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1505" column="9" bodyfile="include/picotest.h" bodystart="1505" bodyend="-1"/>
+        <location file="include/picotest.h" line="1498" column="9" bodyfile="include/picotest.h" bodystart="1498" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__test__suites_1gaf24c1f7c243e1990463aea4fbd4d5324" prot="public" static="no">
         <name>PICOTEST_SUITE_LEAVE_DEFAULT</name>
@@ -401,7 +401,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1531" column="9" bodyfile="include/picotest.h" bodystart="1531" bodyend="-1"/>
+        <location file="include/picotest.h" line="1524" column="9" bodyfile="include/picotest.h" bodystart="1524" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c" prot="public" static="no">
         <name>PICOTEST_SUITE_LEAVE</name>
@@ -438,7 +438,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1555" column="9" bodyfile="include/picotest.h" bodystart="1555" bodyend="-1"/>
+        <location file="include/picotest.h" line="1548" column="9" bodyfile="include/picotest.h" bodystart="1548" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__test__suites_1gab5b747836950016e04544e29879f3da3" prot="public" static="no">
         <name>PICOTEST_SUITE_BEFORE_SUBTEST_DEFAULT</name>
@@ -460,7 +460,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1588" column="9" bodyfile="include/picotest.h" bodystart="1587" bodyend="-1"/>
+        <location file="include/picotest.h" line="1581" column="9" bodyfile="include/picotest.h" bodystart="1580" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464" prot="public" static="no">
         <name>PICOTEST_SUITE_BEFORE_SUBTEST</name>
@@ -497,7 +497,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1610" column="9" bodyfile="include/picotest.h" bodystart="1610" bodyend="-1"/>
+        <location file="include/picotest.h" line="1603" column="9" bodyfile="include/picotest.h" bodystart="1603" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__test__suites_1ga0aa7b03502294fee8f3e5b4951027145" prot="public" static="no">
         <name>PICOTEST_SUITE_AFTER_SUBTEST_DEFAULT</name>
@@ -520,7 +520,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1645" column="9" bodyfile="include/picotest.h" bodystart="1644" bodyend="-1"/>
+        <location file="include/picotest.h" line="1638" column="9" bodyfile="include/picotest.h" bodystart="1637" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24" prot="public" static="no">
         <name>PICOTEST_SUITE_AFTER_SUBTEST</name>
@@ -557,7 +557,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="1667" column="9" bodyfile="include/picotest.h" bodystart="1667" bodyend="-1"/>
+        <location file="include/picotest.h" line="1660" column="9" bodyfile="include/picotest.h" bodystart="1660" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

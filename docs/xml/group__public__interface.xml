@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
   <compounddef id="group__public__interface" kind="group">
     <compoundname>public_interface</compoundname>
     <title>Public interface</title>
@@ -87,7 +87,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="104" column="1" bodyfile="include/picotest.h" bodystart="104" bodyend="-1"/>
+        <location file="include/picotest.h" line="104" column="9" bodyfile="include/picotest.h" bodystart="104" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__public__interface_1ga88033e8fb73d885670773cfc8ad1d024" prot="public" static="no">
         <name>PICOTEST_EXTERN</name>
@@ -268,7 +268,41 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="215" column="1" bodyfile="include/picotest.h" bodystart="215" bodyend="-1"/>
+        <location file="include/picotest.h" line="215" column="9" bodyfile="include/picotest.h" bodystart="215" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__public__interface_1gace2d0b7428d63b90190fe65b619a8680" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref></type>
+        <definition>static PicoTestFilterResult _picoTest_filterByName</definition>
+        <argsstring>(PicoTestProc *test, const char *testName, const char *cond)</argsstring>
+        <name>_picoTest_filterByName</name>
+        <param>
+          <type><ref refid="group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a" kindref="member">PicoTestProc</ref> *</type>
+          <declname>test</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>testName</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>cond</declname>
+        </param>
+        <briefdescription>
+<para>Implementation of default test filter function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does a simple string equality test between <bold>testName</bold> and <bold>cond</bold>, and propagates to subtests if it doesn&apos;t match.</para>
+<para><simplesect kind="see"><para><ref refid="group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb" kindref="member">PicoTestFailureLoggerProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48" kindref="member">PICOTEST_FAILURE_LOGGER</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1gaf08fabb517d01d11ce72614d1df51687" kindref="member">PICOTEST_FAILURE_LOGGER_DEFAULT</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="229" column="29" bodyfile="include/picotest.h" bodystart="229" bodyend="234"/>
       </memberdef>
       <memberdef kind="define" id="group__public__interface_1ga7dccbea985fb578ba6b7639fb66fc3ea" prot="public" static="no">
         <name>PICOTEST_FILTER_DEFAULT</name>
@@ -285,7 +319,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="246" column="9" bodyfile="include/picotest.h" bodystart="246" bodyend="-1"/>
+        <location file="include/picotest.h" line="245" column="9" bodyfile="include/picotest.h" bodystart="245" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__public__interface_1gabd82de0bec174d972151cd122a0a03ff" prot="public" static="no">
         <name>PICOTEST_FILTER</name>
@@ -323,7 +357,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="272" column="9" bodyfile="include/picotest.h" bodystart="272" bodyend="-1"/>
+        <location file="include/picotest.h" line="271" column="9" bodyfile="include/picotest.h" bodystart="271" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
@@ -363,7 +397,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="349" column="1" bodyfile="include/picotest.h" bodystart="349" bodyend="355"/>
+        <location file="include/picotest.h" line="347" column="1" bodyfile="include/picotest.h" bodystart="347" bodyend="353"/>
       </memberdef>
       <memberdef kind="typedef" id="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" prot="public" static="no">
         <type>void()</type>
@@ -415,7 +449,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="300" column="1" bodyfile="include/picotest.h" bodystart="300" bodyend="-1"/>
+        <location file="include/picotest.h" line="299" column="9" bodyfile="include/picotest.h" bodystart="299" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="group__public__interface_1ga1ae925d603c838714097a508a19be99b" prot="public" static="no">
         <type>void()</type>
@@ -452,7 +486,99 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="368" column="1" bodyfile="include/picotest.h" bodystart="368" bodyend="-1"/>
+        <location file="include/picotest.h" line="366" column="9" bodyfile="include/picotest.h" bodystart="366" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__public__interface_1gaacd9c37695afbb5b3bb8c5373c527641" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void _picoTest_traverse</definition>
+        <argsstring>(const PicoTestMetadata *metadata, PicoTestTraverseProc *proc)</argsstring>
+        <name>_picoTest_traverse</name>
+        <param>
+          <type>const <ref refid="struct_pico_test_metadata" kindref="compound">PicoTestMetadata</ref> *</type>
+          <declname>metadata</declname>
+        </param>
+        <param>
+          <type><ref refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kindref="member">PicoTestTraverseProc</ref> *</type>
+          <declname>proc</declname>
+        </param>
+        <briefdescription>
+<para>Perform test traversal. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>metadata</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Metadata of test to traverse. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>proc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test traversal proc.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kindref="member">PicoTestTraverseProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="struct_pico_test_metadata" kindref="compound">PicoTestMetadata</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" kindref="member">PICOTEST_TRAVERSE</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="330" column="13" bodyfile="include/picotest.h" bodystart="330" bodyend="339"/>
+      </memberdef>
+      <memberdef kind="function" id="group__public__interface_1ga114c577e2b5e238b8545c80be5783fea" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void _picoTest_visit</definition>
+        <argsstring>(const PicoTestMetadata *metadata, PicoTestVisitProc *proc)</argsstring>
+        <name>_picoTest_visit</name>
+        <param>
+          <type>const <ref refid="struct_pico_test_metadata" kindref="compound">PicoTestMetadata</ref> *</type>
+          <declname>metadata</declname>
+        </param>
+        <param>
+          <type><ref refid="group__public__interface_1ga1ae925d603c838714097a508a19be99b" kindref="member">PicoTestVisitProc</ref> *</type>
+          <declname>proc</declname>
+        </param>
+        <briefdescription>
+<para>Perform test visit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>metadata</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Metadata of test to visit. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>proc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test visit proc.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga1ae925d603c838714097a508a19be99b" kindref="member">PicoTestVisitProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="struct_pico_test_metadata" kindref="compound">PicoTestMetadata</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" kindref="member">PICOTEST_VISIT</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="396" column="13" bodyfile="include/picotest.h" bodystart="396" bodyend="406"/>
       </memberdef>
       <memberdef kind="define" id="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" prot="public" static="no">
         <name>PICOTEST_TRAVERSE</name>
@@ -491,7 +617,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="318" column="9" bodyfile="include/picotest.h" bodystart="318" bodyend="-1"/>
+        <location file="include/picotest.h" line="317" column="9" bodyfile="include/picotest.h" bodystart="317" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" prot="public" static="no">
         <name>PICOTEST_VISIT</name>
@@ -527,7 +653,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="385" column="9" bodyfile="include/picotest.h" bodystart="385" bodyend="-1"/>
+        <location file="include/picotest.h" line="383" column="9" bodyfile="include/picotest.h" bodystart="383" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
@@ -629,7 +755,53 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="441" column="1" bodyfile="include/picotest.h" bodystart="441" bodyend="-1"/>
+        <location file="include/picotest.h" line="438" column="9" bodyfile="include/picotest.h" bodystart="438" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__public__interface_1gae3c669f4ae731be32a25df3d3a97b599" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void _picoTest_logFailure</definition>
+        <argsstring>(const char *file, int line, const char *type, const char *test, const char *msg, va_list args)</argsstring>
+        <name>_picoTest_logFailure</name>
+        <param>
+          <type>const char *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>line</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>test</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>msg</declname>
+        </param>
+        <param>
+          <type>va_list</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>Implementation of default test failure log handler. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does nothing.</para>
+<para><simplesect kind="see"><para><ref refid="group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb" kindref="member">PicoTestFailureLoggerProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48" kindref="member">PICOTEST_FAILURE_LOGGER</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1gaf08fabb517d01d11ce72614d1df51687" kindref="member">PICOTEST_FAILURE_LOGGER_DEFAULT</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="449" column="13" bodyfile="include/picotest.h" bodystart="449" bodyend="451"/>
       </memberdef>
       <memberdef kind="define" id="group__public__interface_1gaf08fabb517d01d11ce72614d1df51687" prot="public" static="no">
         <name>PICOTEST_FAILURE_LOGGER_DEFAULT</name>
@@ -646,7 +818,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="463" column="9" bodyfile="include/picotest.h" bodystart="463" bodyend="-1"/>
+        <location file="include/picotest.h" line="459" column="9" bodyfile="include/picotest.h" bodystart="459" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48" prot="public" static="no">
         <name>PICOTEST_FAILURE_LOGGER</name>
@@ -695,7 +867,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="484" column="9" bodyfile="include/picotest.h" bodystart="484" bodyend="-1"/>
+        <location file="include/picotest.h" line="480" column="9" bodyfile="include/picotest.h" bodystart="480" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

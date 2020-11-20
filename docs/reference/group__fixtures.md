@@ -50,9 +50,8 @@ PICOTEST_FIXTURE_CONTEXT(fixtureWithContext) {
 
 **Examples**:
 
-[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. 
-
- [fixtures.c](fixtures_8c.md#fixtures_8c) Demonstrates test fixture call sequences.
+[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. <br/>
+ [fixtures.c](fixtures_8c.md#fixtures_8c) Demonstrates test fixture call sequences. <br/>
 
 
 
@@ -158,9 +157,8 @@ PICOTEST_CASE(testCase5, fixtureWithOptionalContext) {
 
 **Examples**:
 
-[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. 
-
- [fixtures.c](fixtures_8c.md#fixtures_8c) Demonstrates test fixture call sequences.
+[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. <br/>
+ [fixtures.c](fixtures_8c.md#fixtures_8c) Demonstrates test fixture call sequences. <br/>
 
 
 
@@ -266,9 +264,8 @@ PICOTEST_CASE(testCase5, fixtureWithOptionalContext) {
 
 **Examples**:
 
-[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. 
-
- [fixtures.c](fixtures_8c.md#fixtures_8c) Demonstrates test fixture call sequences.
+[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. <br/>
+ [fixtures.c](fixtures_8c.md#fixtures_8c) Demonstrates test fixture call sequences. <br/>
 
 
 
@@ -287,7 +284,7 @@ PicoTest provides a way for client code to intercept test fixture events. This c
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1171)
+**Definition**: `include/picotest.h` (line 1164)
 
 ```cpp
 typedef void() PicoTestFixtureBeforeSetupProc(const char *fixtureName, const char *testName)
@@ -326,7 +323,7 @@ void beforeSetup(const char *fixtureName, const char *testName) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -341,7 +338,7 @@ void beforeSetup(const char *fixtureName, const char *testName) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1220)
+**Definition**: `include/picotest.h` (line 1213)
 
 ```cpp
 typedef void() PicoTestFixtureAfterSetupProc(const char *fixtureName, const char *testName)
@@ -380,7 +377,7 @@ void afterSetup(const char *fixtureName, const char *testName) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -395,7 +392,7 @@ void afterSetup(const char *fixtureName, const char *testName) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1270)
+**Definition**: `include/picotest.h` (line 1263)
 
 ```cpp
 typedef void() PicoTestFixtureBeforeTeardownProc(const char *fixtureName, const char *testName, int fail)
@@ -435,7 +432,7 @@ void beforeTeardown(const char *fixtureName, const char *testName, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -450,7 +447,7 @@ void beforeTeardown(const char *fixtureName, const char *testName, int fail) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1321)
+**Definition**: `include/picotest.h` (line 1314)
 
 ```cpp
 typedef void() PicoTestFixtureAfterTeardownProc(const char *fixtureName, const char *testName, int fail)
@@ -490,7 +487,7 @@ void afterTeardown(const char *fixtureName, const char *testName, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -563,7 +560,7 @@ void beforeSetup(const char *fixtureName, const char *testName) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -636,7 +633,7 @@ void afterSetup(const char *fixtureName, const char *testName) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -709,7 +706,7 @@ void beforeTeardown(const char *fixtureName, const char *testName, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -782,7 +779,7 @@ void afterTeardown(const char *fixtureName, const char *testName, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -792,6 +789,8 @@ void afterTeardown(const char *fixtureName, const char *testName, int fail) {
 
 
 
-[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
+[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
+[private]: https://img.shields.io/badge/-private-red (private)
+[static]: https://img.shields.io/badge/-static-lightgrey (static)

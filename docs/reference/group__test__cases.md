@@ -83,7 +83,7 @@ PICOTEST_CASE(testCase5, fixtureWithOptionalContext) {
 
 **Examples**:
 
-[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite.
+[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. <br/>
 
 
 
@@ -101,7 +101,7 @@ PicoTest provides a way for client code to intercept test case events. This can 
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 636)
+**Definition**: `include/picotest.h` (line 632)
 
 ```cpp
 typedef void() PicoTestCaseEnterProc(const char *testName)
@@ -139,7 +139,7 @@ void enterTestCase(const char *testName) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -154,7 +154,7 @@ void enterTestCase(const char *testName) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 684)
+**Definition**: `include/picotest.h` (line 680)
 
 ```cpp
 typedef void() PicoTestCaseLeaveProc(const char *testName, int fail)
@@ -193,7 +193,7 @@ void leaveTestCase(const char *testName, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -266,7 +266,7 @@ void enterTestCase(const char *testName) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -339,7 +339,7 @@ void leaveTestCase(const char *testName, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -349,6 +349,8 @@ void leaveTestCase(const char *testName, int fail) {
 
 
 
-[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
+[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
+[private]: https://img.shields.io/badge/-private-red (private)
+[static]: https://img.shields.io/badge/-static-lightgrey (static)

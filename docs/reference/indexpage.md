@@ -3,7 +3,8 @@
 
 
 
-PicoTest is a single-file unit testing framework for C programs that follows the xUnit principles:
+<a id="index_1md_README"></a>
+ PicoTest is a single-file unit testing framework for C programs that follows the xUnit principles:
 
 
 
@@ -20,8 +21,6 @@ PicoTest is a single-file unit testing framework for C programs that follows the
 
 
 
-
-
 PicoTest is released under the terms of the The 3-Clause BSD License:
 
 
@@ -33,10 +32,7 @@ PicoTest is released under the terms of the The 3-Clause BSD License:
 
 
 
-
 ## Installation
-
-
 
 
 
@@ -46,10 +42,7 @@ PicoTest is a single-file package, everything is defined in the header file <cod
 
 
 
-
 ## Usage
-
-
 
 
 
@@ -67,10 +60,7 @@ Simply include the file in your source file, then start writing your tests!
 
 
 
-
 ## Documentation
-
-
 
 
 
@@ -144,10 +134,7 @@ npm run docsify
 
 
 
-
 ## Examples
-
-
 
 
 
@@ -169,10 +156,7 @@ Building the examples requires the CMake build tool along with your favorite too
 
 
 
-
 ## Tests
-
-
 
 
 
@@ -231,10 +215,7 @@ You can also run the suite executable <code>test_picotest</code> directly from t
 
 
 
-
 ## Integration with CMake
-
-
 
 
 
@@ -322,10 +303,7 @@ picotest_discover_tests(my_test_runner
 
 
 
-
 ## Development
-
-
 
 
 
@@ -359,6 +337,8 @@ It should work with any reasonably modern C compiler that supports variadic macr
 
 The assertion mechanism relies on <code>setjmp()</code> / <code>longjmp()</code>. While these functions are discouraged for production code, their usage is acceptable in the context of unit testing: in our case, <code>longjmp()</code> is only called when an assertion fails, a situation where the actual process state is no longer reliable anyway. Moreover, they constitute the only standard exception handling mechanism for plain C code.
 
-[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
+[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
+[private]: https://img.shields.io/badge/-private-red (private)
+[static]: https://img.shields.io/badge/-static-lightgrey (static)

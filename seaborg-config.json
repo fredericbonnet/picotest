@@ -1,3 +1,4 @@
 {
-  "ignorePrefix": "PICOTEST_|picoTest_|PicoTest(?=\\w)"
+  "ignorePrefix": "PICOTEST_|picoTest_|PicoTest(?=\\w)",
+  "excludeProtectionLevels": ["private"]
 }

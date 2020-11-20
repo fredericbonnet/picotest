@@ -193,9 +193,8 @@ Result of test filter functions.
 
 **Examples**:
 
-[filter.c](filter_8c.md#filter_8c) Example of PicoTest test filter, allows custom filtering of test functions. 
-
- [tags.c](tags_8c.md#tags_8c) Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering.
+[filter.c](filter_8c.md#filter_8c) Example of PicoTest test filter, allows custom filtering of test functions. <br/>
+ [tags.c](tags_8c.md#tags_8c) Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering. <br/>
 
 
 
@@ -283,9 +282,8 @@ PicoTestFilterResult matchSubstring(PicoTestProc *test, const char *testName, co
 
 **Examples**:
 
-[filter.c](filter_8c.md#filter_8c) Example of PicoTest test filter, allows custom filtering of test functions. 
-
- [tags.c](tags_8c.md#tags_8c) Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering.
+[filter.c](filter_8c.md#filter_8c) Example of PicoTest test filter, allows custom filtering of test functions. <br/>
+ [tags.c](tags_8c.md#tags_8c) Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering. <br/>
 
 
 
@@ -297,6 +295,40 @@ PicoTestFilterResult matchSubstring(PicoTestProc *test, const char *testName, co
 
 
 **Return type**: [PicoTestFilterResult](picotest_8h.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc)()
+
+<a id="group__public__interface_1gace2d0b7428d63b90190fe65b619a8680"></a>
+### Function \_picoTest\_filterByName
+
+![][private]
+![][static]
+
+```cpp
+static PicoTestFilterResult _picoTest_filterByName(PicoTestProc *test, const char *testName, const char *cond)
+```
+
+Implementation of default test filter function.
+
+Does a simple string equality test between **testName** and **cond**, and propagates to subtests if it doesn't match.
+
+
+
+
+
+
+
+
+
+**See also**: [PicoTestFailureLoggerProc](picotest_8h.md#group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb), [PICOTEST\_FAILURE\_LOGGER](picotest_8h.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48), [PICOTEST\_FAILURE\_LOGGER\_DEFAULT](picotest_8h.md#group__public__interface_1gaf08fabb517d01d11ce72614d1df51687)
+
+
+
+**Parameters**:
+
+* [PicoTestProc](picotest_8h.md#group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a) * **test**
+* const char * **testName**
+* const char * **cond**
+
+**Return type**: [PicoTestFilterResult](picotest_8h.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc)
 
 <a id="group__public__interface_1ga7dccbea985fb578ba6b7639fb66fc3ea"></a>
 ### Macro PICOTEST\_FILTER\_DEFAULT
@@ -369,9 +401,8 @@ PicoTestFilterResult matchSubstring(PicoTestProc *test, const char *testName, co
 
 **Examples**:
 
-[filter.c](filter_8c.md#filter_8c) Example of PicoTest test filter, allows custom filtering of test functions. 
-
- [tags.c](tags_8c.md#tags_8c) Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering.
+[filter.c](filter_8c.md#filter_8c) Example of PicoTest test filter, allows custom filtering of test functions. <br/>
+ [tags.c](tags_8c.md#tags_8c) Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering. <br/>
 
 
 
@@ -389,7 +420,7 @@ Tests can form hierarchies of test suites and test cases. PicoTest provides two 
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 349)
+**Definition**: `include/picotest.h` (line 347)
 
 ```cpp
 enum PicoTestVisitStep {
@@ -423,7 +454,7 @@ Leave the test.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 300)
+**Definition**: `include/picotest.h` (line 299)
 
 ```cpp
 typedef void() PicoTestTraverseProc(const char *name, int nb)
@@ -458,7 +489,7 @@ void printTestName(const char *name, int nb) {
 
 **Examples**:
 
-[traverse.c](traverse_8c.md#traverse_8c) Example of PicoTest hierarchy traversal, prints traversed tests to stdout.
+[traverse.c](traverse_8c.md#traverse_8c) Example of PicoTest hierarchy traversal, prints traversed tests to stdout. <br/>
 
 
 
@@ -473,7 +504,7 @@ void printTestName(const char *name, int nb) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 368)
+**Definition**: `include/picotest.h` (line 366)
 
 ```cpp
 typedef void() PicoTestVisitProc(const PicoTestMetadata *metadata, PicoTestVisitStep step)
@@ -502,6 +533,70 @@ Proc is called once for each value of [PicoTestVisitStep](picotest_8h.md#group__
 
 **Return type**: void()
 
+<a id="group__public__interface_1gaacd9c37695afbb5b3bb8c5373c527641"></a>
+### Function \_picoTest\_traverse
+
+![][private]
+![][static]
+
+```cpp
+static void _picoTest_traverse(const PicoTestMetadata *metadata, PicoTestTraverseProc *proc)
+```
+
+Perform test traversal.
+
+**Parameters**:
+
+* **metadata**: Metadata of test to traverse.
+* **proc**: Test traversal proc.
+
+
+
+
+
+**See also**: [PicoTestTraverseProc](picotest_8h.md#group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b), [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata), [PICOTEST\_TRAVERSE](picotest_8h.md#group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63)
+
+
+
+**Parameters**:
+
+* const [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata) * **metadata**
+* [PicoTestTraverseProc](picotest_8h.md#group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b) * **proc**
+
+**Return type**: void
+
+<a id="group__public__interface_1ga114c577e2b5e238b8545c80be5783fea"></a>
+### Function \_picoTest\_visit
+
+![][private]
+![][static]
+
+```cpp
+static void _picoTest_visit(const PicoTestMetadata *metadata, PicoTestVisitProc *proc)
+```
+
+Perform test visit.
+
+**Parameters**:
+
+* **metadata**: Metadata of test to visit.
+* **proc**: Test visit proc.
+
+
+
+
+
+**See also**: [PicoTestVisitProc](picotest_8h.md#group__public__interface_1ga1ae925d603c838714097a508a19be99b), [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata), [PICOTEST\_VISIT](picotest_8h.md#group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f)
+
+
+
+**Parameters**:
+
+* const [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata) * **metadata**
+* [PicoTestVisitProc](picotest_8h.md#group__public__interface_1ga1ae925d603c838714097a508a19be99b) * **proc**
+
+**Return type**: void
+
 <a id="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63"></a>
 ### Macro PICOTEST\_TRAVERSE
 
@@ -528,7 +623,7 @@ This feature covers simple use cases such as getting the flat list of all test n
 
 **Examples**:
 
-[traverse.c](traverse_8c.md#traverse_8c) Example of PicoTest hierarchy traversal, prints traversed tests to stdout.
+[traverse.c](traverse_8c.md#traverse_8c) Example of PicoTest hierarchy traversal, prints traversed tests to stdout. <br/>
 
 
 
@@ -576,7 +671,7 @@ PicoTest provides a way for client code to intercept test failure events. This c
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 441)
+**Definition**: `include/picotest.h` (line 438)
 
 ```cpp
 typedef void() PicoTestFailureLoggerProc(const char *file, int line, const char *type, const char *test, const char *msg, va_list args)
@@ -629,7 +724,7 @@ void logFailure(const char *file, int line, const char *type, const char *test, 
 
 **Examples**:
 
-[logger.c](logger_8c.md#logger_8c) Example of PicoTest error logging, prints location and info of failed assertions to stdout.
+[logger.c](logger_8c.md#logger_8c) Example of PicoTest error logging, prints location and info of failed assertions to stdout. <br/>
 
 
 
@@ -638,6 +733,43 @@ void logFailure(const char *file, int line, const char *type, const char *test, 
 
 
 **Return type**: void()
+
+<a id="group__public__interface_1gae3c669f4ae731be32a25df3d3a97b599"></a>
+### Function \_picoTest\_logFailure
+
+![][private]
+![][static]
+
+```cpp
+static void _picoTest_logFailure(const char *file, int line, const char *type, const char *test, const char *msg, va_list args)
+```
+
+Implementation of default test failure log handler.
+
+Does nothing.
+
+
+
+
+
+
+
+
+
+**See also**: [PicoTestFailureLoggerProc](picotest_8h.md#group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb), [PICOTEST\_FAILURE\_LOGGER](picotest_8h.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48), [PICOTEST\_FAILURE\_LOGGER\_DEFAULT](picotest_8h.md#group__public__interface_1gaf08fabb517d01d11ce72614d1df51687)
+
+
+
+**Parameters**:
+
+* const char * **file**
+* int **line**
+* const char * **type**
+* const char * **test**
+* const char * **msg**
+* va_list **args**
+
+**Return type**: void
 
 <a id="group__public__interface_1gaf08fabb517d01d11ce72614d1df51687"></a>
 ### Macro PICOTEST\_FAILURE\_LOGGER\_DEFAULT
@@ -722,7 +854,7 @@ void logFailure(const char *file, int line, const char *type, const char *test, 
 
 **Examples**:
 
-[logger.c](logger_8c.md#logger_8c) Example of PicoTest error logging, prints location and info of failed assertions to stdout.
+[logger.c](logger_8c.md#logger_8c) Example of PicoTest error logging, prints location and info of failed assertions to stdout. <br/>
 
 
 
@@ -731,6 +863,8 @@ void logFailure(const char *file, int line, const char *type, const char *test, 
 
 
 
-[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
+[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
+[private]: https://img.shields.io/badge/-private-red (private)
+[static]: https://img.shields.io/badge/-static-lightgrey (static)

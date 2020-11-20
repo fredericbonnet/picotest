@@ -67,17 +67,17 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 ```mermaid
 graph LR
-16["stdarg.h"]
+3["stdarg.h"]
 
-15["setjmp.h"]
+2["setjmp.h"]
 
-14["include/picotest.h"]
-click 14 "picotest_8h.md#picotest_8h"
-14 --> 15
-14 --> 16
-14 --> 17
+1["include/picotest.h"]
+click 1 "picotest_8h.md#picotest_8h"
+1 --> 2
+1 --> 3
+1 --> 4
 
-17["string.h"]
+4["string.h"]
 
 ```
 
@@ -313,9 +313,8 @@ PicoTestFilterResult matchSubstring(PicoTestProc *test, const char *testName, co
 
 **Examples**:
 
-[filter.c](filter_8c.md#filter_8c) Example of PicoTest test filter, allows custom filtering of test functions. 
-
- [tags.c](tags_8c.md#tags_8c) Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering.
+[filter.c](filter_8c.md#filter_8c) Example of PicoTest test filter, allows custom filtering of test functions. <br/>
+ [tags.c](tags_8c.md#tags_8c) Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering. <br/>
 
 
 
@@ -344,9 +343,8 @@ Result of test filter functions.
 
 **Examples**:
 
-[filter.c](filter_8c.md#filter_8c) Example of PicoTest test filter, allows custom filtering of test functions. 
-
- [tags.c](tags_8c.md#tags_8c) Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering.
+[filter.c](filter_8c.md#filter_8c) Example of PicoTest test filter, allows custom filtering of test functions. <br/>
+ [tags.c](tags_8c.md#tags_8c) Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering. <br/>
 
 
 
@@ -434,9 +432,8 @@ PicoTestFilterResult matchSubstring(PicoTestProc *test, const char *testName, co
 
 **Examples**:
 
-[filter.c](filter_8c.md#filter_8c) Example of PicoTest test filter, allows custom filtering of test functions. 
-
- [tags.c](tags_8c.md#tags_8c) Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering.
+[filter.c](filter_8c.md#filter_8c) Example of PicoTest test filter, allows custom filtering of test functions. <br/>
+ [tags.c](tags_8c.md#tags_8c) Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering. <br/>
 
 
 
@@ -448,6 +445,40 @@ PicoTestFilterResult matchSubstring(PicoTestProc *test, const char *testName, co
 
 
 **Return type**: [PicoTestFilterResult](picotest_8h.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc)()
+
+<a id="group__public__interface_1gace2d0b7428d63b90190fe65b619a8680"></a>
+### Function \_picoTest\_filterByName
+
+![][private]
+![][static]
+
+```cpp
+static PicoTestFilterResult _picoTest_filterByName(PicoTestProc *test, const char *testName, const char *cond)
+```
+
+Implementation of default test filter function.
+
+Does a simple string equality test between **testName** and **cond**, and propagates to subtests if it doesn't match.
+
+
+
+
+
+
+
+
+
+**See also**: [PicoTestFailureLoggerProc](picotest_8h.md#group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb), [PICOTEST\_FAILURE\_LOGGER](picotest_8h.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48), [PICOTEST\_FAILURE\_LOGGER\_DEFAULT](picotest_8h.md#group__public__interface_1gaf08fabb517d01d11ce72614d1df51687)
+
+
+
+**Parameters**:
+
+* [PicoTestProc](picotest_8h.md#group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a) * **test**
+* const char * **testName**
+* const char * **cond**
+
+**Return type**: [PicoTestFilterResult](picotest_8h.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc)
 
 ## Test hierarchy traversal
 
@@ -479,7 +510,7 @@ This feature covers simple use cases such as getting the flat list of all test n
 
 **Examples**:
 
-[traverse.c](traverse_8c.md#traverse_8c) Example of PicoTest hierarchy traversal, prints traversed tests to stdout.
+[traverse.c](traverse_8c.md#traverse_8c) Example of PicoTest hierarchy traversal, prints traversed tests to stdout. <br/>
 
 
 
@@ -523,7 +554,7 @@ This feature covers more advanced use cases than [PICOTEST\_TRAVERSE](picotest_8
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 349)
+**Definition**: `include/picotest.h` (line 347)
 
 ```cpp
 enum PicoTestVisitStep {
@@ -557,7 +588,7 @@ Leave the test.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 300)
+**Definition**: `include/picotest.h` (line 299)
 
 ```cpp
 typedef void() PicoTestTraverseProc(const char *name, int nb)
@@ -592,7 +623,7 @@ void printTestName(const char *name, int nb) {
 
 **Examples**:
 
-[traverse.c](traverse_8c.md#traverse_8c) Example of PicoTest hierarchy traversal, prints traversed tests to stdout.
+[traverse.c](traverse_8c.md#traverse_8c) Example of PicoTest hierarchy traversal, prints traversed tests to stdout. <br/>
 
 
 
@@ -607,7 +638,7 @@ void printTestName(const char *name, int nb) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 368)
+**Definition**: `include/picotest.h` (line 366)
 
 ```cpp
 typedef void() PicoTestVisitProc(const PicoTestMetadata *metadata, PicoTestVisitStep step)
@@ -635,6 +666,70 @@ Proc is called once for each value of [PicoTestVisitStep](picotest_8h.md#group__
 
 
 **Return type**: void()
+
+<a id="group__public__interface_1gaacd9c37695afbb5b3bb8c5373c527641"></a>
+### Function \_picoTest\_traverse
+
+![][private]
+![][static]
+
+```cpp
+static void _picoTest_traverse(const PicoTestMetadata *metadata, PicoTestTraverseProc *proc)
+```
+
+Perform test traversal.
+
+**Parameters**:
+
+* **metadata**: Metadata of test to traverse.
+* **proc**: Test traversal proc.
+
+
+
+
+
+**See also**: [PicoTestTraverseProc](picotest_8h.md#group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b), [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata), [PICOTEST\_TRAVERSE](picotest_8h.md#group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63)
+
+
+
+**Parameters**:
+
+* const [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata) * **metadata**
+* [PicoTestTraverseProc](picotest_8h.md#group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b) * **proc**
+
+**Return type**: void
+
+<a id="group__public__interface_1ga114c577e2b5e238b8545c80be5783fea"></a>
+### Function \_picoTest\_visit
+
+![][private]
+![][static]
+
+```cpp
+static void _picoTest_visit(const PicoTestMetadata *metadata, PicoTestVisitProc *proc)
+```
+
+Perform test visit.
+
+**Parameters**:
+
+* **metadata**: Metadata of test to visit.
+* **proc**: Test visit proc.
+
+
+
+
+
+**See also**: [PicoTestVisitProc](picotest_8h.md#group__public__interface_1ga1ae925d603c838714097a508a19be99b), [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata), [PICOTEST\_VISIT](picotest_8h.md#group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f)
+
+
+
+**Parameters**:
+
+* const [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata) * **metadata**
+* [PicoTestVisitProc](picotest_8h.md#group__public__interface_1ga1ae925d603c838714097a508a19be99b) * **proc**
+
+**Return type**: void
 
 ## Logging
 
@@ -723,7 +818,7 @@ void logFailure(const char *file, int line, const char *type, const char *test, 
 
 **Examples**:
 
-[logger.c](logger_8c.md#logger_8c) Example of PicoTest error logging, prints location and info of failed assertions to stdout.
+[logger.c](logger_8c.md#logger_8c) Example of PicoTest error logging, prints location and info of failed assertions to stdout. <br/>
 
 
 
@@ -737,7 +832,7 @@ void logFailure(const char *file, int line, const char *type, const char *test, 
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 441)
+**Definition**: `include/picotest.h` (line 438)
 
 ```cpp
 typedef void() PicoTestFailureLoggerProc(const char *file, int line, const char *type, const char *test, const char *msg, va_list args)
@@ -790,7 +885,7 @@ void logFailure(const char *file, int line, const char *type, const char *test, 
 
 **Examples**:
 
-[logger.c](logger_8c.md#logger_8c) Example of PicoTest error logging, prints location and info of failed assertions to stdout.
+[logger.c](logger_8c.md#logger_8c) Example of PicoTest error logging, prints location and info of failed assertions to stdout. <br/>
 
 
 
@@ -799,6 +894,43 @@ void logFailure(const char *file, int line, const char *type, const char *test, 
 
 
 **Return type**: void()
+
+<a id="group__public__interface_1gae3c669f4ae731be32a25df3d3a97b599"></a>
+### Function \_picoTest\_logFailure
+
+![][private]
+![][static]
+
+```cpp
+static void _picoTest_logFailure(const char *file, int line, const char *type, const char *test, const char *msg, va_list args)
+```
+
+Implementation of default test failure log handler.
+
+Does nothing.
+
+
+
+
+
+
+
+
+
+**See also**: [PicoTestFailureLoggerProc](picotest_8h.md#group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb), [PICOTEST\_FAILURE\_LOGGER](picotest_8h.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48), [PICOTEST\_FAILURE\_LOGGER\_DEFAULT](picotest_8h.md#group__public__interface_1gaf08fabb517d01d11ce72614d1df51687)
+
+
+
+**Parameters**:
+
+* const char * **file**
+* int **line**
+* const char * **type**
+* const char * **test**
+* const char * **msg**
+* va_list **args**
+
+**Return type**: void
 
 ## Test Case Definitions
 
@@ -878,7 +1010,7 @@ PICOTEST_CASE(testCase5, fixtureWithOptionalContext) {
 
 **Examples**:
 
-[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite.
+[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. <br/>
 
 
 
@@ -954,7 +1086,7 @@ void enterTestCase(const char *testName) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -1027,7 +1159,7 @@ void leaveTestCase(const char *testName, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -1042,7 +1174,7 @@ void leaveTestCase(const char *testName, int fail) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 636)
+**Definition**: `include/picotest.h` (line 632)
 
 ```cpp
 typedef void() PicoTestCaseEnterProc(const char *testName)
@@ -1080,7 +1212,7 @@ void enterTestCase(const char *testName) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -1095,7 +1227,7 @@ void enterTestCase(const char *testName) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 684)
+**Definition**: `include/picotest.h` (line 680)
 
 ```cpp
 typedef void() PicoTestCaseLeaveProc(const char *testName, int fail)
@@ -1134,7 +1266,7 @@ void leaveTestCase(const char *testName, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -1182,7 +1314,7 @@ Logs an error if the given value is false, then stops the test with [PICOTEST\_A
 
 **Examples**:
 
-[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite.
+[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. <br/>
 
 
 
@@ -1228,7 +1360,7 @@ Logs an error if the given value is false, but let the test continue.
 
 **Examples**:
 
-[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite.
+[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. <br/>
 
 
 
@@ -1292,6 +1424,87 @@ This can be used to implement custom testing logic.
 **See also**: [PICOTEST\_CASE](picotest_8h.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
 
 
+
+<a id="group__assertions_1ga8d7eb92ca21dfb7fe46fc2472e11f496"></a>
+### Variable \_picoTest\_fail
+
+![][private]
+![][static]
+
+**Definition**: `include/picotest.h` (line 830)
+
+```cpp
+int _picoTest_fail
+```
+
+Internal failure counter.
+
+**See also**: [PICOTEST\_FAILURE](picotest_8h.md#group__assertions_1ga89a35f18021df570967bb707a8537f3b)
+
+
+
+**Type**: int
+
+<a id="group__assertions_1ga2fdb4a73b6a0abc186a27065a36db6ed"></a>
+### Variable \_picoTest\_failureEnv
+
+![][private]
+![][static]
+
+**Definition**: `include/picotest.h` (line 838)
+
+```cpp
+jmp_buf* _picoTest_failureEnv
+```
+
+Tag used by **setjmp()** and **longjmp()** to jump out of failed tests.
+
+**See also**: [PICOTEST\_ABORT](picotest_8h.md#group__assertions_1ga62031fa5f6f86e517565b77a1fa37f59), [PICOTEST\_CASE](picotest_8h.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
+
+
+
+**Type**: jmp_buf *
+
+<a id="group__assertions_1gadd80bff454009ce1077d81f1f5552f34"></a>
+### Function \_picoTest\_assertFailed
+
+![][private]
+![][static]
+
+```cpp
+static void _picoTest_assertFailed(PicoTestFailureLoggerProc *proc, const char *file, int line, const char *type, int count, const char *test,...)
+```
+
+Called when an assertion fails.
+
+**Parameters**:
+
+* **proc**: Test failure log handler.
+* **file**: File name where the test was defined.
+* **line**: Location of test in file.
+* **type**: Type of test that failed (e.g. "ASSERT").
+* **count**: Number of arguments after **test**.
+* **test**: Tested expression.
+* **...**: Optional message format string and parameters.
+
+
+
+
+**See also**: [PICOTEST\_ASSERT](picotest_8h.md#group__assertions_1gad71b76cf1173654acc95df79d1c7040b), [PICOTEST\_VERIFY](picotest_8h.md#group__assertions_1gacd07b017f38d1e3ad784f369345357a2)
+
+
+
+**Parameters**:
+
+* [PicoTestFailureLoggerProc](picotest_8h.md#group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb) * **proc**
+* const char * **file**
+* int **line**
+* const char * **type**
+* int **count**
+* const char * **test**
+* ...
+
+**Return type**: void
 
 ## Assertion Hooks
 
@@ -1360,7 +1573,7 @@ void beforeAssert(const char *type, const char *test) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -1433,7 +1646,7 @@ void afterAssert(const char *type, const char *test, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -1448,7 +1661,7 @@ void afterAssert(const char *type, const char *test, int fail) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 911)
+**Definition**: `include/picotest.h` (line 904)
 
 ```cpp
 typedef void() PicoTestAssertBeforeProc(const char *type, const char *test)
@@ -1487,7 +1700,7 @@ void beforeAssert(const char *type, const char *test) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -1502,7 +1715,7 @@ void beforeAssert(const char *type, const char *test) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 960)
+**Definition**: `include/picotest.h` (line 953)
 
 ```cpp
 typedef void() PicoTestAssertAfterProc(const char *type, const char *test, int fail)
@@ -1542,7 +1755,7 @@ void afterAssert(const char *type, const char *test, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -1591,9 +1804,8 @@ PICOTEST_FIXTURE_CONTEXT(fixtureWithContext) {
 
 **Examples**:
 
-[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. 
-
- [fixtures.c](fixtures_8c.md#fixtures_8c) Demonstrates test fixture call sequences.
+[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. <br/>
+ [fixtures.c](fixtures_8c.md#fixtures_8c) Demonstrates test fixture call sequences. <br/>
 
 
 
@@ -1699,9 +1911,8 @@ PICOTEST_CASE(testCase5, fixtureWithOptionalContext) {
 
 **Examples**:
 
-[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. 
-
- [fixtures.c](fixtures_8c.md#fixtures_8c) Demonstrates test fixture call sequences.
+[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. <br/>
+ [fixtures.c](fixtures_8c.md#fixtures_8c) Demonstrates test fixture call sequences. <br/>
 
 
 
@@ -1807,9 +2018,8 @@ PICOTEST_CASE(testCase5, fixtureWithOptionalContext) {
 
 **Examples**:
 
-[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. 
-
- [fixtures.c](fixtures_8c.md#fixtures_8c) Demonstrates test fixture call sequences.
+[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. <br/>
+ [fixtures.c](fixtures_8c.md#fixtures_8c) Demonstrates test fixture call sequences. <br/>
 
 
 
@@ -1886,7 +2096,7 @@ void beforeSetup(const char *fixtureName, const char *testName) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -1959,7 +2169,7 @@ void afterSetup(const char *fixtureName, const char *testName) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -2032,7 +2242,7 @@ void beforeTeardown(const char *fixtureName, const char *testName, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -2105,7 +2315,7 @@ void afterTeardown(const char *fixtureName, const char *testName, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -2120,7 +2330,7 @@ void afterTeardown(const char *fixtureName, const char *testName, int fail) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1171)
+**Definition**: `include/picotest.h` (line 1164)
 
 ```cpp
 typedef void() PicoTestFixtureBeforeSetupProc(const char *fixtureName, const char *testName)
@@ -2159,7 +2369,7 @@ void beforeSetup(const char *fixtureName, const char *testName) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -2174,7 +2384,7 @@ void beforeSetup(const char *fixtureName, const char *testName) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1220)
+**Definition**: `include/picotest.h` (line 1213)
 
 ```cpp
 typedef void() PicoTestFixtureAfterSetupProc(const char *fixtureName, const char *testName)
@@ -2213,7 +2423,7 @@ void afterSetup(const char *fixtureName, const char *testName) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -2228,7 +2438,7 @@ void afterSetup(const char *fixtureName, const char *testName) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1270)
+**Definition**: `include/picotest.h` (line 1263)
 
 ```cpp
 typedef void() PicoTestFixtureBeforeTeardownProc(const char *fixtureName, const char *testName, int fail)
@@ -2268,7 +2478,7 @@ void beforeTeardown(const char *fixtureName, const char *testName, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -2283,7 +2493,7 @@ void beforeTeardown(const char *fixtureName, const char *testName, int fail) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1321)
+**Definition**: `include/picotest.h` (line 1314)
 
 ```cpp
 typedef void() PicoTestFixtureAfterTeardownProc(const char *fixtureName, const char *testName, int fail)
@@ -2323,7 +2533,7 @@ void afterTeardown(const char *fixtureName, const char *testName, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -2389,7 +2599,7 @@ PICOTEST_SUITE(subSuite,
 
 **Examples**:
 
-[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite.
+[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. <br/>
 
 
 **See also**: [PicoTestProc](picotest_8h.md#group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a), [PICOTEST\_CASE](picotest_8h.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
@@ -2463,7 +2673,7 @@ void enterTestSuite(const char *suiteName, int nb) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -2542,7 +2752,7 @@ void leaveTestSuite(const char *suiteName, int nb, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -2616,7 +2826,7 @@ void beforeSubtest(const char *suiteName, int nb, int fail, int index,
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -2690,7 +2900,7 @@ void afterSubtest(const char *suiteName, int nb, int fail, int index,
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -2705,7 +2915,7 @@ void afterSubtest(const char *suiteName, int nb, int fail, int index,
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1475)
+**Definition**: `include/picotest.h` (line 1468)
 
 ```cpp
 typedef void() PicoTestSuiteEnterProc(const char *suiteName, int nb)
@@ -2744,7 +2954,7 @@ void enterTestSuite(const char *suiteName, int nb) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -2759,7 +2969,7 @@ void enterTestSuite(const char *suiteName, int nb) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1523)
+**Definition**: `include/picotest.h` (line 1516)
 
 ```cpp
 typedef void() PicoTestSuiteLeaveProc(const char *suiteName, int nb, int fail)
@@ -2792,7 +3002,7 @@ void leaveTestSuite(const char *suiteName, int nb, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -2807,7 +3017,7 @@ void leaveTestSuite(const char *suiteName, int nb, int fail) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1577)
+**Definition**: `include/picotest.h` (line 1570)
 
 ```cpp
 typedef void() PicoTestSuiteBeforeSubtestProc(const char *suiteName, int nb, int fail, int index, const char *testName)
@@ -2850,7 +3060,7 @@ void beforeSubtest(const char *suiteName, int nb, int fail, int index,
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -2865,7 +3075,7 @@ void beforeSubtest(const char *suiteName, int nb, int fail, int index,
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1634)
+**Definition**: `include/picotest.h` (line 1627)
 
 ```cpp
 typedef void() PicoTestSuiteAfterSubtestProc(const char *suiteName, int nb, int fail, int index, const char *testName, int sfail)
@@ -2909,7 +3119,7 @@ void afterSubtest(const char *suiteName, int nb, int fail, int index,
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -2989,6 +3199,7 @@ static PicoTestFilterResult _picoTest_filterByName(PicoTestProc *test,
     return (strcmp(testName, cond) == 0 ? PICOTEST_FILTER_PASS
                                         : PICOTEST_FILTER_SKIP_PROPAGATE);
 }
+
 #define PICOTEST_FILTER_DEFAULT _picoTest_filterByName
 
 #define PICOTEST_FILTER PICOTEST_FILTER_DEFAULT
@@ -3008,6 +3219,7 @@ static void _picoTest_traverse(const PicoTestMetadata *metadata,
         }
     }
 }
+
 typedef enum PicoTestVisitStep {
     PICOTEST_VISIT_ENTER = 0,
 
@@ -3031,6 +3243,7 @@ static void _picoTest_visit(const PicoTestMetadata *metadata,
     }
     proc(metadata, PICOTEST_VISIT_LEAVE);
 }
+
 typedef void(PicoTestFailureLoggerProc)(const char *file, int line,
                                         const char *type, const char *test,
                                         const char *msg, va_list args);
@@ -3038,6 +3251,7 @@ typedef void(PicoTestFailureLoggerProc)(const char *file, int line,
 static void _picoTest_logFailure(const char *file, int line, const char *type,
                                  const char *test, const char *msg,
                                  va_list args) {}
+
 #define PICOTEST_FAILURE_LOGGER_DEFAULT _picoTest_logFailure
 
 #define PICOTEST_FAILURE_LOGGER PICOTEST_FAILURE_LOGGER_DEFAULT
@@ -3178,6 +3392,7 @@ typedef void(PicoTestCaseLeaveProc)(const char *testName, int fail);
 static int _picoTest_fail = 0;
 
 static jmp_buf *_picoTest_failureEnv = NULL;
+
 #define PICOTEST_ABORT() longjmp(*_picoTest_failureEnv, 1)
 
 static void _picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
@@ -3194,6 +3409,7 @@ static void _picoTest_assertFailed(PicoTestFailureLoggerProc *proc,
         proc(file, line, type, test, NULL, NULL);
     }
 }
+
 typedef void(PicoTestAssertBeforeProc)(const char *type, const char *test);
 
 #define PICOTEST_ASSERT_BEFORE_DEFAULT(type, test)
@@ -3674,5 +3890,8 @@ typedef void(PicoTestSuiteAfterSubtestProc)(const char *suiteName, int nb,
 #endif /* _PICOTEST */
 ```
 
-[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
+[public]: https://img.shields.io/badge/-public-brightgreen (public)
+[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
+[private]: https://img.shields.io/badge/-private-red (private)
+[static]: https://img.shields.io/badge/-static-lightgrey (static)

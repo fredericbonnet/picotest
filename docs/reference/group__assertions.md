@@ -7,6 +7,87 @@ Assertions are the basic building blocks of test cases.
 
 ## Assertion Definitions
 
+<a id="group__assertions_1ga8d7eb92ca21dfb7fe46fc2472e11f496"></a>
+### Variable \_picoTest\_fail
+
+![][private]
+![][static]
+
+**Definition**: `include/picotest.h` (line 830)
+
+```cpp
+int _picoTest_fail
+```
+
+Internal failure counter.
+
+**See also**: [PICOTEST\_FAILURE](picotest_8h.md#group__assertions_1ga89a35f18021df570967bb707a8537f3b)
+
+
+
+**Type**: int
+
+<a id="group__assertions_1ga2fdb4a73b6a0abc186a27065a36db6ed"></a>
+### Variable \_picoTest\_failureEnv
+
+![][private]
+![][static]
+
+**Definition**: `include/picotest.h` (line 838)
+
+```cpp
+jmp_buf* _picoTest_failureEnv
+```
+
+Tag used by **setjmp()** and **longjmp()** to jump out of failed tests.
+
+**See also**: [PICOTEST\_ABORT](picotest_8h.md#group__assertions_1ga62031fa5f6f86e517565b77a1fa37f59), [PICOTEST\_CASE](picotest_8h.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
+
+
+
+**Type**: jmp_buf *
+
+<a id="group__assertions_1gadd80bff454009ce1077d81f1f5552f34"></a>
+### Function \_picoTest\_assertFailed
+
+![][private]
+![][static]
+
+```cpp
+static void _picoTest_assertFailed(PicoTestFailureLoggerProc *proc, const char *file, int line, const char *type, int count, const char *test,...)
+```
+
+Called when an assertion fails.
+
+**Parameters**:
+
+* **proc**: Test failure log handler.
+* **file**: File name where the test was defined.
+* **line**: Location of test in file.
+* **type**: Type of test that failed (e.g. "ASSERT").
+* **count**: Number of arguments after **test**.
+* **test**: Tested expression.
+* **...**: Optional message format string and parameters.
+
+
+
+
+**See also**: [PICOTEST\_ASSERT](picotest_8h.md#group__assertions_1gad71b76cf1173654acc95df79d1c7040b), [PICOTEST\_VERIFY](picotest_8h.md#group__assertions_1gacd07b017f38d1e3ad784f369345357a2)
+
+
+
+**Parameters**:
+
+* [PicoTestFailureLoggerProc](picotest_8h.md#group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb) * **proc**
+* const char * **file**
+* int **line**
+* const char * **type**
+* int **count**
+* const char * **test**
+* ...
+
+**Return type**: void
+
 <a id="group__assertions_1gad71b76cf1173654acc95df79d1c7040b"></a>
 ### Macro PICOTEST\_ASSERT
 
@@ -43,7 +124,7 @@ Logs an error if the given value is false, then stops the test with [PICOTEST\_A
 
 **Examples**:
 
-[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite.
+[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. <br/>
 
 
 
@@ -89,7 +170,7 @@ Logs an error if the given value is false, but let the test continue.
 
 **Examples**:
 
-[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite.
+[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. <br/>
 
 
 
@@ -163,7 +244,7 @@ PicoTest provides a way for client code to intercept assertions events. This can
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 911)
+**Definition**: `include/picotest.h` (line 904)
 
 ```cpp
 typedef void() PicoTestAssertBeforeProc(const char *type, const char *test)
@@ -202,7 +283,7 @@ void beforeAssert(const char *type, const char *test) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -217,7 +298,7 @@ void beforeAssert(const char *type, const char *test) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 960)
+**Definition**: `include/picotest.h` (line 953)
 
 ```cpp
 typedef void() PicoTestAssertAfterProc(const char *type, const char *test, int fail)
@@ -257,7 +338,7 @@ void afterAssert(const char *type, const char *test, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -330,7 +411,7 @@ void beforeAssert(const char *type, const char *test) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -403,7 +484,7 @@ void afterAssert(const char *type, const char *test, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -413,6 +494,8 @@ void afterAssert(const char *type, const char *test, int fail) {
 
 
 
-[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
+[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
+[private]: https://img.shields.io/badge/-private-red (private)
+[static]: https://img.shields.io/badge/-static-lightgrey (static)

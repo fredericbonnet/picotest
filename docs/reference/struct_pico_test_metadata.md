@@ -135,5 +135,5 @@ Subtests (NULL-terminated array for test suites, NULL pointer for test cases).
 
 **Type**: const struct [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata) **
 
-[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
+[public]: https://img.shields.io/badge/-public-brightgreen (public)

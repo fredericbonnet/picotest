@@ -61,7 +61,7 @@ PICOTEST_SUITE(subSuite,
 
 **Examples**:
 
-[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite.
+[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. <br/>
 
 
 **See also**: [PicoTestProc](picotest_8h.md#group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a), [PICOTEST\_CASE](picotest_8h.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
@@ -77,7 +77,7 @@ PicoTest provides a way for client code to intercept test execution events on te
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1475)
+**Definition**: `include/picotest.h` (line 1468)
 
 ```cpp
 typedef void() PicoTestSuiteEnterProc(const char *suiteName, int nb)
@@ -116,7 +116,7 @@ void enterTestSuite(const char *suiteName, int nb) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -131,7 +131,7 @@ void enterTestSuite(const char *suiteName, int nb) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1523)
+**Definition**: `include/picotest.h` (line 1516)
 
 ```cpp
 typedef void() PicoTestSuiteLeaveProc(const char *suiteName, int nb, int fail)
@@ -164,7 +164,7 @@ void leaveTestSuite(const char *suiteName, int nb, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -179,7 +179,7 @@ void leaveTestSuite(const char *suiteName, int nb, int fail) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1577)
+**Definition**: `include/picotest.h` (line 1570)
 
 ```cpp
 typedef void() PicoTestSuiteBeforeSubtestProc(const char *suiteName, int nb, int fail, int index, const char *testName)
@@ -222,7 +222,7 @@ void beforeSubtest(const char *suiteName, int nb, int fail, int index,
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -237,7 +237,7 @@ void beforeSubtest(const char *suiteName, int nb, int fail, int index,
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1634)
+**Definition**: `include/picotest.h` (line 1627)
 
 ```cpp
 typedef void() PicoTestSuiteAfterSubtestProc(const char *suiteName, int nb, int fail, int index, const char *testName, int sfail)
@@ -281,7 +281,7 @@ void afterSubtest(const char *suiteName, int nb, int fail, int index,
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -354,7 +354,7 @@ void enterTestSuite(const char *suiteName, int nb) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -433,7 +433,7 @@ void leaveTestSuite(const char *suiteName, int nb, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -507,7 +507,7 @@ void beforeSubtest(const char *suiteName, int nb, int fail, int index,
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -581,7 +581,7 @@ void afterSubtest(const char *suiteName, int nb, int fail, int index,
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout.
+[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
 
 
 
@@ -591,6 +591,8 @@ void afterSubtest(const char *suiteName, int nb, int fail, int index,
 
 
 
-[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
+[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
+[private]: https://img.shields.io/badge/-private-red (private)
+[static]: https://img.shields.io/badge/-static-lightgrey (static)
