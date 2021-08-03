@@ -542,6 +542,7 @@ static void _picoTest_logFailure(const char *file, int line, const char *type,
         case PICOTEST_FILTER_PASS_PROPAGATE:                                   \
             fail += _testName##_testCaseRunner();                              \
             break;                                                             \
+        default:;                                                              \
         }                                                                      \
         return fail;                                                           \
     }
