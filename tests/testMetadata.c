@@ -6,19 +6,14 @@
  * Test utilities
  */
 
-PICOTEST_SUITE(doMetadataSuite, doMetadataCase1, doMetadataSubsuite,
-               doMetadataCase2);
-static int doMetadataSuiteLine = __LINE__ - 1;
-PICOTEST_SUITE(doMetadataSubsuite, doMetadataSubcase1, doMetadataSubcase2);
-static int doMetadataSubsuiteLine = __LINE__ - 1;
-PICOTEST_CASE(doMetadataCase1) {}
-static int doMetadataCase1Line = __LINE__ - 1;
-PICOTEST_CASE(doMetadataCase2) {}
-static int doMetadataCase2Line = __LINE__ - 1;
-PICOTEST_CASE(doMetadataSubcase1) {}
-static int doMetadataSubcase1Line = __LINE__ - 1;
-PICOTEST_CASE(doMetadataSubcase2) {}
-static int doMetadataSubcase2Line = __LINE__ - 1;
+// clang-format off
+PICOTEST_SUITE(doMetadataSuite, doMetadataCase1, doMetadataSubsuite, doMetadataCase2); static int doMetadataSuiteLine = __LINE__;
+PICOTEST_SUITE(doMetadataSubsuite, doMetadataSubcase1, doMetadataSubcase2); static int doMetadataSubsuiteLine = __LINE__;
+PICOTEST_CASE(doMetadataCase1) {}; static int doMetadataCase1Line = __LINE__;
+PICOTEST_CASE(doMetadataCase2) {}; static int doMetadataCase2Line = __LINE__;
+PICOTEST_CASE(doMetadataSubcase1) {}; static int doMetadataSubcase1Line = __LINE__;
+PICOTEST_CASE(doMetadataSubcase2) {}; static int doMetadataSubcase2Line = __LINE__;
+// clang-format on
 
 /*
  * Test suite for test metadata
