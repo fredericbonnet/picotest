@@ -3,16 +3,19 @@
 
 #include <picotest.h>
 
+/* Initialize hooks */
+void initHooks(int json);
+
 /* Test failure log handler */
-PicoTestFailureLoggerProc logFailure;
+extern PicoTestFailureLoggerProc *logFailure;
 #undef PICOTEST_FAILURE_LOGGER
 #define PICOTEST_FAILURE_LOGGER logFailure
 
 /* Test suite tracing hooks */
-PicoTestSuiteEnterProc enterTestSuite;
-PicoTestSuiteLeaveProc leaveTestSuite;
-PicoTestSuiteBeforeSubtestProc beforeSubtest;
-PicoTestSuiteAfterSubtestProc afterSubtest;
+extern PicoTestSuiteEnterProc *enterTestSuite;
+extern PicoTestSuiteLeaveProc *leaveTestSuite;
+extern PicoTestSuiteBeforeSubtestProc *beforeSubtest;
+extern PicoTestSuiteAfterSubtestProc *afterSubtest;
 #undef PICOTEST_SUITE_ENTER
 #undef PICOTEST_SUITE_LEAVE
 #undef PICOTEST_SUITE_BEFORE_SUBTEST
@@ -23,8 +26,8 @@ PicoTestSuiteAfterSubtestProc afterSubtest;
 #define PICOTEST_SUITE_AFTER_SUBTEST afterSubtest
 
 /* Test case tracing hooks */
-PicoTestCaseEnterProc enterTestCase;
-PicoTestCaseLeaveProc leaveTestCase;
+extern PicoTestCaseEnterProc *enterTestCase;
+extern PicoTestCaseLeaveProc *leaveTestCase;
 #undef PICOTEST_CASE_ENTER
 #undef PICOTEST_CASE_LEAVE
 #define PICOTEST_CASE_ENTER enterTestCase

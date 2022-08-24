@@ -10,6 +10,7 @@ add_executable(test_picotest)
 target_sources(test_picotest
     PRIVATE
         main.c
+        json.c
         traverse.c
         hooks.c
         testAssertions.c

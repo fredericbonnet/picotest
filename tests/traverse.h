@@ -6,5 +6,7 @@
 /* Traversal functions */
 PicoTestTraverseProc printTestCase;
 PicoTestTraverseProc printTestName;
+PicoTestVisitProc printTestHierarchy;
+PicoTestVisitProc printTestSuiteJson;
 
 #endif /* _TRAVERSE_H_ */
