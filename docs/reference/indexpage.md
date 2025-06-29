@@ -3,8 +3,14 @@
 
 
 
-<a id="index_1md_README"></a>
- PicoTest is a single-file unit testing framework for C programs that follows the xUnit principles:
+<a id="index_1md__r_e_a_d_m_e"></a>
+
+
+
+
+
+
+PicoTest is a single-file unit testing framework for C programs that follows the xUnit principles:
 
 
 
@@ -18,10 +24,7 @@
 
 ## License
 
-
-
-
-PicoTest is released under the terms of the The 3-Clause BSD License:
+PicoTest is released under the terms of the 3-Clause BSD License:
 
 
 
@@ -34,18 +37,12 @@ PicoTest is released under the terms of the The 3-Clause BSD License:
 
 ## Installation
 
-
-
-
 PicoTest is a single-file package, everything is defined in the header file <code>[picotest.h](picotest_8h.md#picotest_8h)</code>. So you can either install this file in a standard location, or copy it within your project source tree.
 
 
 
 
 ## Usage
-
-
-
 
 Simply include the file in your source file, then start writing your tests!
 
@@ -61,9 +58,6 @@ Simply include the file in your source file, then start writing your tests!
 
 
 ## Documentation
-
-
-
 
 The complete documentation is available here:
 
@@ -136,9 +130,6 @@ npm run docsify
 
 ## Examples
 
-
-
-
 The <code>examples</code> subdirectory contains several example source files that demonstrate the various features of PicoTest. These examples are also integrated in the documentation.
 
 
@@ -157,9 +148,6 @@ Building the examples requires the CMake build tool along with your favorite too
 
 
 ## Tests
-
-
-
 
 PicoTest is self-tested and comes with a complete test suite that covers all aspects of the framework. This guarantees that PicoTest is production-ready.
 
@@ -216,9 +204,6 @@ You can also run the suite executable <code>test_picotest</code> directly from t
 
 
 ## Integration with CMake
-
-
-
 
 PicoTest provides a CMake module definition for easier integration with other CMake projects. In particular, it comes with an auto-discovery script for CTest that makes use of the test traversal features of PicoTest.
 
@@ -305,9 +290,6 @@ picotest_discover_tests(my_test_runner
 
 ## Development
 
-
-
-
 PicoTest was developed on Windows 10 and Linux Ubuntu 16.04 using the following tools:
 
 
@@ -337,8 +319,12 @@ It should work with any reasonably modern C compiler that supports variadic macr
 
 The assertion mechanism relies on <code>setjmp()</code> / <code>longjmp()</code>. While these functions are discouraged for production code, their usage is acceptable in the context of unit testing: in our case, <code>longjmp()</code> is only called when an assertion fails, a situation where the actual process state is no longer reliable anyway. Moreover, they constitute the only standard exception handling mechanism for plain C code.
 
+**TODO**:
+
+* location {"type":"element","name":"location","attributes":{"file":"README.md"},"children":[]}
+
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
-[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
 [private]: https://img.shields.io/badge/-private-red (private)
 [static]: https://img.shields.io/badge/-static-lightgrey (static)
+[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)

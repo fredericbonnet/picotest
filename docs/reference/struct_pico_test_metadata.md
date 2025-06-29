@@ -40,6 +40,10 @@ Test name.
 
 **Type**: const char *
 
+**TODO**:
+
+* qualifiedname {"type":"element","name":"qualifiedname","attributes":{},"children":[{"type":"text","text":"PicoTestMetadata::name"}]}
+
 <a id="struct_pico_test_metadata_1a1e57db62ee1f5581d0f0bca333e21304"></a>
 ### Variable file
 
@@ -58,6 +62,10 @@ Test file location.
 
 
 **Type**: const char *
+
+**TODO**:
+
+* qualifiedname {"type":"element","name":"qualifiedname","attributes":{},"children":[{"type":"text","text":"PicoTestMetadata::file"}]}
 
 <a id="struct_pico_test_metadata_1a98c9bcbb6844cf75dd8005110b03887d"></a>
 ### Variable line
@@ -78,6 +86,10 @@ Test line location.
 
 **Type**: int
 
+**TODO**:
+
+* qualifiedname {"type":"element","name":"qualifiedname","attributes":{},"children":[{"type":"text","text":"PicoTestMetadata::line"}]}
+
 <a id="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388"></a>
 ### Variable test
 
@@ -95,7 +107,11 @@ Test function.
 
 
 
-**Type**: [PicoTestProc](picotest_8h.md#group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a) *const
+**Type**: [PicoTestProc](picotest_8h.md#group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9) *const
+
+**TODO**:
+
+* qualifiedname {"type":"element","name":"qualifiedname","attributes":{},"children":[{"type":"text","text":"PicoTestMetadata::test"}]}
 
 <a id="struct_pico_test_metadata_1a7dd93cc6b50428b9594d171c28a563c1"></a>
 ### Variable nbSubtests
@@ -116,6 +132,10 @@ Number of subtests.
 
 **Type**: int
 
+**TODO**:
+
+* qualifiedname {"type":"element","name":"qualifiedname","attributes":{},"children":[{"type":"text","text":"PicoTestMetadata::nbSubtests"}]}
+
 <a id="struct_pico_test_metadata_1a543874ce98d5f3516e4e5bda6f4e61a3"></a>
 ### Variable subtests
 
@@ -134,6 +154,10 @@ Subtests (NULL-terminated array for test suites, NULL pointer for test cases).
 
 
 **Type**: const struct [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata) **
+
+**TODO**:
+
+* qualifiedname {"type":"element","name":"qualifiedname","attributes":{},"children":[{"type":"text","text":"PicoTestMetadata::subtests"}]}
 
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)

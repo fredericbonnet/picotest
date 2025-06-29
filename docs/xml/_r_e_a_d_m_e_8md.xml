@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
   <compounddef id="_r_e_a_d_m_e_8md" kind="file" language="Markdown">
     <compoundname>README.md</compoundname>
     <briefdescription>
@@ -16,7 +16,7 @@
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>License</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">PicoTest<sp/>is<sp/>released<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>The<sp/>3-Clause<sp/>BSD<sp/>License:</highlight></codeline>
+<codeline><highlight class="normal">PicoTest<sp/>is<sp/>released<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>3-Clause<sp/>BSD<sp/>License:</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">https://opensource.org/licenses/BSD-3-Clause</highlight></codeline>
 <codeline></codeline>

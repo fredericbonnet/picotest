@@ -1,9 +1,215 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
   <compounddef id="group__test__cases" kind="group">
     <compoundname>test_cases</compoundname>
     <title>Test Cases</title>
-      <sectiondef kind="user-defined">
+    <sectiondef kind="user-defined">
+      <header>Test Case Hooks</header>
+      <description><para>PicoTest provides a way for client code to intercept test case events. This can be used for e.g. logging purpose or reporting. </para>
+</description>
+      <memberdef kind="typedef" id="group__test__cases_1ga2148fa53887bde18878299c0941d9844" prot="public" static="no">
+        <type>void</type>
+        <definition>typedef void PicoTestCaseEnterProc(const char *testName)</definition>
+        <argsstring>(const char *testName)</argsstring>
+        <name>PicoTestCaseEnterProc</name>
+        <briefdescription>
+<para>Function signature of test case enter hooks. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Called before running the test case.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>testName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test case name.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__cases_1ga2148fa53887bde18878299c0941d9844" kindref="member">PicoTestCaseEnterProc</ref><sp/>enterTestCase;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_CASE_ENTER</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_CASE_ENTER<sp/>enterTestCase</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>enterTestCase(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;running<sp/>test<sp/>case<sp/>%s...\n&quot;</highlight><highlight class="normal">,<sp/>testName);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref>   Example of PicoTest hooks, prints all events to stdout.    <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__cases_1gad1f702ab6600b04f66731d35bf38fc67" kindref="member">PICOTEST_CASE_ENTER</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="633" column="9" bodyfile="include/picotest.h" bodystart="633" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__test__cases_1ga2649b7563a8a3c14c93f310cb6699185" prot="public" static="no">
+        <type>void</type>
+        <definition>typedef void PicoTestCaseLeaveProc(const char *testName, int fail)</definition>
+        <argsstring>(const char *testName, int fail)</argsstring>
+        <name>PicoTestCaseLeaveProc</name>
+        <briefdescription>
+<para>Function signature of test case leave hooks. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Called after running the test case.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>testName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test case name. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fail</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Failed tests (including its subtests if any).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__cases_1ga2649b7563a8a3c14c93f310cb6699185" kindref="member">PicoTestCaseLeaveProc</ref><sp/>leaveTestCase;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_CASE_LEAVE</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_CASE_LEAVE<sp/>leaveTestCase</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>leaveTestCase(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;test<sp/>case<sp/>%s<sp/>done<sp/>(%d<sp/>failures)\n&quot;</highlight><highlight class="normal">,<sp/>testName,<sp/>fail);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref>   Example of PicoTest hooks, prints all events to stdout.    <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a" kindref="member">PICOTEST_CASE_LEAVE</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="681" column="9" bodyfile="include/picotest.h" bodystart="681" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__test__cases_1ga4a4a1356f85b26cd29f2f7ae4c09cf91" prot="public" static="no">
+        <name>PICOTEST_CASE_ENTER_DEFAULT</name>
+        <param><defname>testName</defname></param>
+        <briefdescription>
+<para>Default test case enter hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does nothing.</para>
+<para><simplesect kind="see"><para><ref refid="group__test__cases_1ga2148fa53887bde18878299c0941d9844" kindref="member">PicoTestCaseEnterProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__cases_1gad1f702ab6600b04f66731d35bf38fc67" kindref="member">PICOTEST_CASE_ENTER</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="641" column="9" bodyfile="include/picotest.h" bodystart="641" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__test__cases_1gad1f702ab6600b04f66731d35bf38fc67" prot="public" static="no">
+        <name>PICOTEST_CASE_ENTER</name>
+        <briefdescription>
+<para>Define the test case enter hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The default hook does nothing. Redefine this macro to use a custom hook, which must follow the <ref refid="group__test__cases_1ga2148fa53887bde18878299c0941d9844" kindref="member">PicoTestCaseEnterProc</ref> signature.</para>
+<para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
+</simplesect>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__cases_1ga2148fa53887bde18878299c0941d9844" kindref="member">PicoTestCaseEnterProc</ref><sp/>enterTestCase;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_CASE_ENTER</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_CASE_ENTER<sp/>enterTestCase</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>enterTestCase(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;running<sp/>test<sp/>case<sp/>%s...\n&quot;</highlight><highlight class="normal">,<sp/>testName);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref>   Example of PicoTest hooks, prints all events to stdout.    <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__cases_1ga2148fa53887bde18878299c0941d9844" kindref="member">PicoTestCaseEnterProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__cases_1ga4a4a1356f85b26cd29f2f7ae4c09cf91" kindref="member">PICOTEST_CASE_ENTER_DEFAULT</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a" kindref="member">PICOTEST_CASE_LEAVE</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="663" column="9" bodyfile="include/picotest.h" bodystart="663" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__test__cases_1ga5ff2295c5a324991c72a81bcfb949522" prot="public" static="no">
+        <name>PICOTEST_CASE_LEAVE_DEFAULT</name>
+        <param><defname>testName</defname></param>
+        <param><defname>fail</defname></param>
+        <briefdescription>
+<para>Default test case enter hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does nothing.</para>
+<para><simplesect kind="see"><para><ref refid="group__test__cases_1ga2649b7563a8a3c14c93f310cb6699185" kindref="member">PicoTestCaseLeaveProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a" kindref="member">PICOTEST_CASE_LEAVE</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="689" column="9" bodyfile="include/picotest.h" bodystart="689" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a" prot="public" static="no">
+        <name>PICOTEST_CASE_LEAVE</name>
+        <briefdescription>
+<para>Define the test case leave hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The default hook does nothing. Redefine this macro to use a custom hook, which must follow the <ref refid="group__test__cases_1ga2649b7563a8a3c14c93f310cb6699185" kindref="member">PicoTestCaseLeaveProc</ref> signature.</para>
+<para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
+</simplesect>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__cases_1ga2649b7563a8a3c14c93f310cb6699185" kindref="member">PicoTestCaseLeaveProc</ref><sp/>leaveTestCase;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_CASE_LEAVE</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_CASE_LEAVE<sp/>leaveTestCase</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>leaveTestCase(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;test<sp/>case<sp/>%s<sp/>done<sp/>(%d<sp/>failures)\n&quot;</highlight><highlight class="normal">,<sp/>testName,<sp/>fail);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref>   Example of PicoTest hooks, prints all events to stdout.    <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__cases_1ga2649b7563a8a3c14c93f310cb6699185" kindref="member">PicoTestCaseLeaveProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__cases_1ga5ff2295c5a324991c72a81bcfb949522" kindref="member">PICOTEST_CASE_LEAVE_DEFAULT</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__cases_1gad1f702ab6600b04f66731d35bf38fc67" kindref="member">PICOTEST_CASE_ENTER</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="711" column="9" bodyfile="include/picotest.h" bodystart="711" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
       <header>Test Case Definitions</header>
       <memberdef kind="define" id="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" prot="public" static="no">
         <name>PICOTEST_CASE</name>
@@ -12,7 +218,7 @@
 <para>Test case declaration. </para>
         </briefdescription>
         <detaileddescription>
-<para>This macro defines a <ref refid="group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a" kindref="member">PicoTestProc</ref> of the given name that can be called directly.</para>
+<para>This macro defines a <ref refid="group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9" kindref="member">PicoTestProc</ref> of the given name that can be called directly.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>_testName</parametername>
@@ -40,7 +246,7 @@
 </parameterlist>
 <simplesect kind="return"><para>Number of failed tests.</para>
 </simplesect>
-<simplesect kind="par"><title>Usage</title><para><programlisting filename="mainSuite.inc"><codeline><highlight class="preprocessor">#define<sp/>FAILS<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="mainSuite.inc"><codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FAILS<sp/>0</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PASSES<sp/>1</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Simple<sp/>test<sp/>with<sp/>no<sp/>fixture<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -58,14 +264,15 @@
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Test<sp/>with<sp/>fixture<sp/>and<sp/>context.<sp/>Tests<sp/>belonging<sp/>to<sp/>the<sp/>same<sp/>suite<sp/>don&apos;t<sp/>have</highlight></codeline>
-<codeline><highlight class="comment"><sp/>*<sp/>to<sp/>share<sp/>the<sp/>same<sp/>suite.<sp/>*/</highlight></codeline>
+<codeline><highlight class="comment"><sp/>*<sp/>to<sp/>share<sp/>the<sp/>same<sp/>suite.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><ref refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kindref="member">PICOTEST_CASE</ref>(testCase3,<sp/>fixtureWithContext,<sp/>context)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" kindref="member">PICOTEST_ASSERT</ref>(staticVar<sp/>==<sp/>2);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" kindref="member">PICOTEST_ASSERT</ref>(context-&gt;var1<sp/>==<sp/>1);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gacd07b017f38d1e3ad784f369345357a2" kindref="member">PICOTEST_VERIFY</ref>(context-&gt;var2<sp/>==<sp/>NULL);<sp/></highlight><highlight class="comment">/*<sp/>Logs<sp/>error<sp/>and<sp/>continue<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" kindref="member">PICOTEST_ASSERT</ref>(context-&gt;var3<sp/>==<sp/>NULL);<sp/></highlight><highlight class="comment">/*<sp/>Logs<sp/>error<sp/>and<sp/>abort<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Another<sp/>test<sp/>using<sp/>**simpleFixture**.<sp/>Tests<sp/>need<sp/>not<sp/>belong<sp/>to<sp/>the<sp/>same<sp/>suite</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Another<sp/>test<sp/>using<sp/>**simpleFixture**.<sp/>Tests<sp/>need<sp/>not<sp/>belong<sp/>to<sp/>the<sp/>same<sp/>suite</highlight></codeline>
 <codeline><highlight class="comment"><sp/>*<sp/>to<sp/>share<sp/>a<sp/>fixture.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><ref refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kindref="member">PICOTEST_CASE</ref>(testCase4,<sp/>simpleFixture)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gacd07b017f38d1e3ad784f369345357a2" kindref="member">PICOTEST_VERIFY</ref>(staticVar<sp/>==<sp/>1);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -73,17 +280,18 @@
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>This<sp/>test<sp/>uses<sp/>a<sp/>fixture<sp/>that<sp/>requires<sp/>a<sp/>context.<sp/>In<sp/>this<sp/>case<sp/>the<sp/>context</highlight></codeline>
-<codeline><highlight class="comment"><sp/>*<sp/>passed<sp/>to<sp/>the<sp/>fixture<sp/>setup<sp/>and<sp/>teardown<sp/>functions<sp/>is<sp/>NULL.<sp/>*/</highlight></codeline>
+<codeline><highlight class="comment"><sp/>*<sp/>passed<sp/>to<sp/>the<sp/>fixture<sp/>setup<sp/>and<sp/>teardown<sp/>functions<sp/>is<sp/>NULL.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><ref refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kindref="member">PICOTEST_CASE</ref>(testCase5,<sp/>fixtureWithOptionalContext)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gacd07b017f38d1e3ad784f369345357a2" kindref="member">PICOTEST_VERIFY</ref>(staticVar<sp/>==<sp/>3);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" kindref="member">PICOTEST_ASSERT</ref>(PASSES);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> </para>
+<codeline><highlight class="normal"></highlight></codeline>
+</programlisting></para>
 </simplesect>
-<simplesect kind="par"><title>Examples</title><para><ref refid="main_suite_8inc" kindref="compound">mainSuite.inc</ref> Example of a simple PicoTest suite. <linebreak/>
+<simplesect kind="par"><title>Examples</title><para><ref refid="main_suite_8inc" kindref="compound">mainSuite.inc</ref>   Example of a simple PicoTest suite.    <linebreak/>
  </para>
 </simplesect>
-<simplesect kind="see"><para><ref refid="group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a" kindref="member">PicoTestProc</ref> </para>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9" kindref="member">PicoTestProc</ref> </para>
 </simplesect>
 <simplesect kind="see"><para><ref refid="group__fixtures_1ga983cffc937dca4baa55f59afad404f03" kindref="member">PICOTEST_FIXTURE_CONTEXT</ref> </para>
 </simplesect>
@@ -91,215 +299,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="524" column="10" bodyfile="include/picotest.h" bodystart="524" bodyend="-1"/>
+        <location file="include/picotest.h" line="524" column="10" bodyfile="include/picotest.h" bodystart="524" bodyend="526"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="user-defined">
-      <header>Test Case Hooks</header>
-      <description><para>PicoTest provides a way for client code to intercept test case events. This can be used for e.g. logging purpose or reporting. </para>
-</description>
-      <memberdef kind="typedef" id="group__test__cases_1ga0af0a0ec6d2bbee706b56fea6f60126e" prot="public" static="no">
-        <type>void()</type>
-        <definition>typedef void() PicoTestCaseEnterProc(const char *testName)</definition>
-        <argsstring>(const char *testName)</argsstring>
-        <name>PicoTestCaseEnterProc</name>
-        <briefdescription>
-<para>Function signature of test case enter hooks. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>Called before running the test case.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>testName</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Test case name.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__test__cases_1ga0af0a0ec6d2bbee706b56fea6f60126e" kindref="member">PicoTestCaseEnterProc</ref><sp/>enterTestCase;</highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_CASE_ENTER</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_CASE_ENTER<sp/>enterTestCase</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>enterTestCase(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;running<sp/>test<sp/>case<sp/>%s...\n&quot;</highlight><highlight class="normal">,<sp/>testName);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> </para>
-</simplesect>
-<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
- </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__test__cases_1gad1f702ab6600b04f66731d35bf38fc67" kindref="member">PICOTEST_CASE_ENTER</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="632" column="9" bodyfile="include/picotest.h" bodystart="632" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="typedef" id="group__test__cases_1gacce6ae69ea5064e39e3c56915978609e" prot="public" static="no">
-        <type>void()</type>
-        <definition>typedef void() PicoTestCaseLeaveProc(const char *testName, int fail)</definition>
-        <argsstring>(const char *testName, int fail)</argsstring>
-        <name>PicoTestCaseLeaveProc</name>
-        <briefdescription>
-<para>Function signature of test case leave hooks. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>Called after running the test case.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>testName</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Test case name. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>fail</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Failed tests (including its subtests if any).</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__test__cases_1gacce6ae69ea5064e39e3c56915978609e" kindref="member">PicoTestCaseLeaveProc</ref><sp/>leaveTestCase;</highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_CASE_LEAVE</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_CASE_LEAVE<sp/>leaveTestCase</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>leaveTestCase(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;test<sp/>case<sp/>%s<sp/>done<sp/>(%d<sp/>failures)\n&quot;</highlight><highlight class="normal">,<sp/>testName,<sp/>fail);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> </para>
-</simplesect>
-<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
- </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a" kindref="member">PICOTEST_CASE_LEAVE</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="680" column="9" bodyfile="include/picotest.h" bodystart="680" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="define" id="group__test__cases_1ga4a4a1356f85b26cd29f2f7ae4c09cf91" prot="public" static="no">
-        <name>PICOTEST_CASE_ENTER_DEFAULT</name>
-        <param><defname>testName</defname></param>
-        <briefdescription>
-<para>Default test case enter hook. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>Does nothing.</para>
-<para><simplesect kind="see"><para><ref refid="group__test__cases_1ga0af0a0ec6d2bbee706b56fea6f60126e" kindref="member">PicoTestCaseEnterProc</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__test__cases_1gad1f702ab6600b04f66731d35bf38fc67" kindref="member">PICOTEST_CASE_ENTER</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="640" column="9" bodyfile="include/picotest.h" bodystart="640" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="define" id="group__test__cases_1gad1f702ab6600b04f66731d35bf38fc67" prot="public" static="no">
-        <name>PICOTEST_CASE_ENTER</name>
-        <briefdescription>
-<para>Define the test case enter hook. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>The default hook does nothing. Redefine this macro to use a custom hook, which must follow the <ref refid="group__test__cases_1ga0af0a0ec6d2bbee706b56fea6f60126e" kindref="member">PicoTestCaseEnterProc</ref> signature.</para>
-<para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
-</simplesect>
-<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__test__cases_1ga0af0a0ec6d2bbee706b56fea6f60126e" kindref="member">PicoTestCaseEnterProc</ref><sp/>enterTestCase;</highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_CASE_ENTER</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_CASE_ENTER<sp/>enterTestCase</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>enterTestCase(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;running<sp/>test<sp/>case<sp/>%s...\n&quot;</highlight><highlight class="normal">,<sp/>testName);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> </para>
-</simplesect>
-<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
- </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__test__cases_1ga0af0a0ec6d2bbee706b56fea6f60126e" kindref="member">PicoTestCaseEnterProc</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__test__cases_1ga4a4a1356f85b26cd29f2f7ae4c09cf91" kindref="member">PICOTEST_CASE_ENTER_DEFAULT</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a" kindref="member">PICOTEST_CASE_LEAVE</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="662" column="9" bodyfile="include/picotest.h" bodystart="662" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="define" id="group__test__cases_1ga5ff2295c5a324991c72a81bcfb949522" prot="public" static="no">
-        <name>PICOTEST_CASE_LEAVE_DEFAULT</name>
-        <param><defname>testName</defname></param>
-        <param><defname>fail</defname></param>
-        <briefdescription>
-<para>Default test case enter hook. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>Does nothing.</para>
-<para><simplesect kind="see"><para><ref refid="group__test__cases_1gacce6ae69ea5064e39e3c56915978609e" kindref="member">PicoTestCaseLeaveProc</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a" kindref="member">PICOTEST_CASE_LEAVE</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="688" column="9" bodyfile="include/picotest.h" bodystart="688" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="define" id="group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a" prot="public" static="no">
-        <name>PICOTEST_CASE_LEAVE</name>
-        <briefdescription>
-<para>Define the test case leave hook. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>The default hook does nothing. Redefine this macro to use a custom hook, which must follow the <ref refid="group__test__cases_1gacce6ae69ea5064e39e3c56915978609e" kindref="member">PicoTestCaseLeaveProc</ref> signature.</para>
-<para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
-</simplesect>
-<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__test__cases_1gacce6ae69ea5064e39e3c56915978609e" kindref="member">PicoTestCaseLeaveProc</ref><sp/>leaveTestCase;</highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_CASE_LEAVE</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_CASE_LEAVE<sp/>leaveTestCase</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>leaveTestCase(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;test<sp/>case<sp/>%s<sp/>done<sp/>(%d<sp/>failures)\n&quot;</highlight><highlight class="normal">,<sp/>testName,<sp/>fail);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> </para>
-</simplesect>
-<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
- </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__test__cases_1gacce6ae69ea5064e39e3c56915978609e" kindref="member">PicoTestCaseLeaveProc</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__test__cases_1ga5ff2295c5a324991c72a81bcfb949522" kindref="member">PICOTEST_CASE_LEAVE_DEFAULT</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__test__cases_1gad1f702ab6600b04f66731d35bf38fc67" kindref="member">PICOTEST_CASE_ENTER</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="710" column="9" bodyfile="include/picotest.h" bodystart="710" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

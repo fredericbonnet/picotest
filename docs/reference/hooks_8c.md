@@ -31,6 +31,8 @@ void enterTestSuite(const char *suiteName, int nb) {
     indent(level++);
     printf("running test suite %s (%d subtests)...\n", suiteName, nb);
 }
+
+
 /* Hook declarations. */
 PicoTestSuiteLeaveProc leaveTestSuite;
 #undef PICOTEST_SUITE_LEAVE
@@ -41,6 +43,8 @@ void leaveTestSuite(const char *suiteName, int nb, int fail) {
     indent(--level);
     printf("test suite %s done (%d failures)\n", suiteName, fail);
 }
+
+
 /* Hook declarations. */
 PicoTestSuiteBeforeSubtestProc beforeSubtest;
 #undef PICOTEST_SUITE_BEFORE_SUBTEST
@@ -52,6 +56,8 @@ void beforeSubtest(const char *suiteName, int nb, int fail, int index,
     indent(level++);
     printf("subtest %s (%d out of %d)...\n", testName, index+1, nb);
 }
+
+
 /* Hook declarations. */
 PicoTestSuiteAfterSubtestProc afterSubtest;
 #undef PICOTEST_SUITE_AFTER_SUBTEST
@@ -63,6 +69,8 @@ void afterSubtest(const char *suiteName, int nb, int fail, int index,
     indent(--level);
     printf("=> subtest %s done (%d failed)...\n", testName, sfail);
 }
+
+
 /*
  * Test fixture hooks.
  */
@@ -77,6 +85,8 @@ void beforeSetup(const char *fixtureName, const char *testName) {
     indent(level++);
     printf("fixture %s setup...", fixtureName);
 }
+
+
 /* Hook declarations. */
 PicoTestFixtureAfterSetupProc afterSetup;
 #undef PICOTEST_FIXTURE_AFTER_SETUP
@@ -87,6 +97,8 @@ void afterSetup(const char *fixtureName, const char *testName) {
     printf(" done\n");
     --level;
 }
+
+
 /* Hook declarations. */
 PicoTestFixtureBeforeTeardownProc beforeTeardown;
 #undef PICOTEST_FIXTURE_BEFORE_TEARDOWN
@@ -97,6 +109,8 @@ void beforeTeardown(const char *fixtureName, const char *testName, int fail) {
     indent(level++);
     printf("fixture %s teardown...", fixtureName);
 }
+
+
 /* Hook declarations. */
 PicoTestFixtureAfterTeardownProc afterTeardown;
 #undef PICOTEST_FIXTURE_AFTER_TEARDOWN
@@ -107,6 +121,8 @@ void afterTeardown(const char *fixtureName, const char *testName, int fail) {
     printf(" done\n");
     --level;
 }
+
+
 /*
  * Test case hooks.
  */
@@ -121,6 +137,8 @@ void enterTestCase(const char *testName) {
     indent(level++);
     printf("running test case %s...\n", testName);
 }
+
+
 /* Hook declarations. */
 PicoTestCaseLeaveProc leaveTestCase;
 #undef PICOTEST_CASE_LEAVE
@@ -131,6 +149,8 @@ void leaveTestCase(const char *testName, int fail) {
     indent(--level);
     printf("test case %s done (%d failures)\n", testName, fail);
 }
+
+
 /*
  * Assertion hooks.
  */
@@ -145,6 +165,8 @@ void beforeAssert(const char *type, const char *test) {
     indent(level++);
     printf("before assertion %s(%s)...\n", type, test);
 }
+
+
 /* Hook declarations. */
 PicoTestAssertAfterProc afterAssert;
 #undef PICOTEST_ASSERT_AFTER
@@ -155,6 +177,8 @@ void afterAssert(const char *type, const char *test, int fail) {
     indent(--level);
     printf("after assertion %s(%s) => %s\n", type, test, fail ? "fails" : "passes");
 }
+
+
 /* Main test suite */
 #include "mainSuite.inc"
 
@@ -189,6 +213,8 @@ void enterTestSuite(const char *suiteName, int nb) {
     indent(level++);
     printf("running test suite %s (%d subtests)...\n", suiteName, nb);
 }
+
+
 /* Hook declarations. */
 PicoTestSuiteLeaveProc leaveTestSuite;
 #undef PICOTEST_SUITE_LEAVE
@@ -199,6 +225,8 @@ void leaveTestSuite(const char *suiteName, int nb, int fail) {
     indent(--level);
     printf("test suite %s done (%d failures)\n", suiteName, fail);
 }
+
+
 /* Hook declarations. */
 PicoTestSuiteBeforeSubtestProc beforeSubtest;
 #undef PICOTEST_SUITE_BEFORE_SUBTEST
@@ -210,6 +238,8 @@ void beforeSubtest(const char *suiteName, int nb, int fail, int index,
     indent(level++);
     printf("subtest %s (%d out of %d)...\n", testName, index+1, nb);
 }
+
+
 /* Hook declarations. */
 PicoTestSuiteAfterSubtestProc afterSubtest;
 #undef PICOTEST_SUITE_AFTER_SUBTEST
@@ -221,6 +251,8 @@ void afterSubtest(const char *suiteName, int nb, int fail, int index,
     indent(--level);
     printf("=> subtest %s done (%d failed)...\n", testName, sfail);
 }
+
+
 /*
  * Test fixture hooks.
  */
@@ -235,6 +267,8 @@ void beforeSetup(const char *fixtureName, const char *testName) {
     indent(level++);
     printf("fixture %s setup...", fixtureName);
 }
+
+
 /* Hook declarations. */
 PicoTestFixtureAfterSetupProc afterSetup;
 #undef PICOTEST_FIXTURE_AFTER_SETUP
@@ -245,6 +279,8 @@ void afterSetup(const char *fixtureName, const char *testName) {
     printf(" done\n");
     --level;
 }
+
+
 /* Hook declarations. */
 PicoTestFixtureBeforeTeardownProc beforeTeardown;
 #undef PICOTEST_FIXTURE_BEFORE_TEARDOWN
@@ -255,6 +291,8 @@ void beforeTeardown(const char *fixtureName, const char *testName, int fail) {
     indent(level++);
     printf("fixture %s teardown...", fixtureName);
 }
+
+
 /* Hook declarations. */
 PicoTestFixtureAfterTeardownProc afterTeardown;
 #undef PICOTEST_FIXTURE_AFTER_TEARDOWN
@@ -265,6 +303,8 @@ void afterTeardown(const char *fixtureName, const char *testName, int fail) {
     printf(" done\n");
     --level;
 }
+
+
 /*
  * Test case hooks.
  */
@@ -279,6 +319,8 @@ void enterTestCase(const char *testName) {
     indent(level++);
     printf("running test case %s...\n", testName);
 }
+
+
 /* Hook declarations. */
 PicoTestCaseLeaveProc leaveTestCase;
 #undef PICOTEST_CASE_LEAVE
@@ -289,6 +331,8 @@ void leaveTestCase(const char *testName, int fail) {
     indent(--level);
     printf("test case %s done (%d failures)\n", testName, fail);
 }
+
+
 /*
  * Assertion hooks.
  */
@@ -303,6 +347,8 @@ void beforeAssert(const char *type, const char *test) {
     indent(level++);
     printf("before assertion %s(%s)...\n", type, test);
 }
+
+
 /* Hook declarations. */
 PicoTestAssertAfterProc afterAssert;
 #undef PICOTEST_ASSERT_AFTER
@@ -313,6 +359,8 @@ void afterAssert(const char *type, const char *test, int fail) {
     indent(--level);
     printf("after assertion %s(%s) => %s\n", type, test, fail ? "fails" : "passes");
 }
+
+
 /* Main test suite */
 #include "mainSuite.inc"
 

@@ -1,20 +1,20 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
   <compounddef id="fixtures_8c" kind="file" language="C++">
     <compoundname>fixtures.c</compoundname>
     <briefdescription>
 <para>Demonstrates test fixture call sequences. </para>
     </briefdescription>
     <detaileddescription>
-<para><programlisting filename="fixtures.c"><codeline></codeline>
-<codeline><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<para><programlisting filename="fixtures.c"><codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="picotest_8h" kindref="compound">picotest.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hooks<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__test__cases_1ga0af0a0ec6d2bbee706b56fea6f60126e" kindref="member">PicoTestCaseEnterProc</ref><sp/>logCaseEnter;</highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__test__cases_1gacce6ae69ea5064e39e3c56915978609e" kindref="member">PicoTestCaseLeaveProc</ref><sp/>logCaseLeave;</highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__fixtures_1ga78ede622d468ebbe0bcc47698146ead9" kindref="member">PicoTestFixtureBeforeSetupProc</ref><sp/>logSetup;</highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__fixtures_1ga154395391c0e95f5b08acaf38d2ef296" kindref="member">PicoTestFixtureBeforeTeardownProc</ref><sp/>logTeardown;</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__cases_1ga2148fa53887bde18878299c0941d9844" kindref="member">PicoTestCaseEnterProc</ref><sp/>logCaseEnter;</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__cases_1ga2649b7563a8a3c14c93f310cb6699185" kindref="member">PicoTestCaseLeaveProc</ref><sp/>logCaseLeave;</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga8aa61845d5a3f09e8d6df140a31c36d7" kindref="member">PicoTestFixtureBeforeSetupProc</ref><sp/>logSetup;</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1gaf69eeeb219ed143a9a978d49850cb072" kindref="member">PicoTestFixtureBeforeTeardownProc</ref><sp/>logTeardown;</highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_CASE_ENTER</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_CASE_LEAVE</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FIXTURE_BEFORE_SETUP</highlight><highlight class="normal"></highlight></codeline>
@@ -62,15 +62,15 @@
 </programlisting> </para>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"></codeline>
-<codeline lineno="9"><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="picotest_8h" kindref="compound">picotest.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hooks<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><ref refid="group__test__cases_1ga0af0a0ec6d2bbee706b56fea6f60126e" kindref="member">PicoTestCaseEnterProc</ref><sp/>logCaseEnter;</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><ref refid="group__test__cases_1gacce6ae69ea5064e39e3c56915978609e" kindref="member">PicoTestCaseLeaveProc</ref><sp/>logCaseLeave;</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><ref refid="group__fixtures_1ga78ede622d468ebbe0bcc47698146ead9" kindref="member">PicoTestFixtureBeforeSetupProc</ref><sp/>logSetup;</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><ref refid="group__fixtures_1ga154395391c0e95f5b08acaf38d2ef296" kindref="member">PicoTestFixtureBeforeTeardownProc</ref><sp/>logTeardown;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><ref refid="group__test__cases_1ga2148fa53887bde18878299c0941d9844" kindref="member">PicoTestCaseEnterProc</ref><sp/>logCaseEnter;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><ref refid="group__test__cases_1ga2649b7563a8a3c14c93f310cb6699185" kindref="member">PicoTestCaseLeaveProc</ref><sp/>logCaseLeave;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><ref refid="group__fixtures_1ga8aa61845d5a3f09e8d6df140a31c36d7" kindref="member">PicoTestFixtureBeforeSetupProc</ref><sp/>logSetup;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><ref refid="group__fixtures_1gaf69eeeb219ed143a9a978d49850cb072" kindref="member">PicoTestFixtureBeforeTeardownProc</ref><sp/>logTeardown;</highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_CASE_ENTER</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_CASE_LEAVE</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FIXTURE_BEFORE_SETUP</highlight><highlight class="normal"></highlight></codeline>

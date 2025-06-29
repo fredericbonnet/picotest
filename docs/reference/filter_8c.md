@@ -24,6 +24,7 @@ PicoTestFilterResult matchSubstring(PicoTestProc *test, const char *testName, co
         ? PICOTEST_FILTER_SKIP_PROPAGATE 
         : PICOTEST_FILTER_PASS_PROPAGATE);
 }
+
 /* Hooks */
 PicoTestCaseEnterProc logCaseEnter;
 PicoTestCaseLeaveProc logCaseLeave;
@@ -110,6 +111,7 @@ PicoTestFilterResult matchSubstring(PicoTestProc *test, const char *testName, co
         ? PICOTEST_FILTER_SKIP_PROPAGATE 
         : PICOTEST_FILTER_PASS_PROPAGATE);
 }
+
 /* Hooks */
 PicoTestCaseEnterProc logCaseEnter;
 PicoTestCaseLeaveProc logCaseLeave;
@@ -178,4 +180,3 @@ void main() {
 ```
 
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
-[public]: https://img.shields.io/badge/-public-brightgreen (public)

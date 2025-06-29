@@ -1,31 +1,28 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
   <compounddef id="indexpage" kind="page">
     <compoundname>index</compoundname>
     <title>PicoTest: A minimalist unit testing framework for C programs</title>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para><anchor id="index_1md_README"/> PicoTest is a single-file unit testing framework for C programs that follows the xUnit principles:</para>
+<para><anchor id="index_1md__r_e_a_d_m_e"/></para>
+<para>PicoTest is a single-file unit testing framework for C programs that follows the xUnit principles:</para>
 <para><ulink url="https://en.wikipedia.org/wiki/XUnit">https://en.wikipedia.org/wiki/XUnit</ulink></para>
 <sect1 id="index_1autotoc_md1">
-<title>License</title>
-<para>PicoTest is released under the terms of the The 3-Clause BSD License:</para>
+<title>License</title><para>PicoTest is released under the terms of the 3-Clause BSD License:</para>
 <para><ulink url="https://opensource.org/licenses/BSD-3-Clause">https://opensource.org/licenses/BSD-3-Clause</ulink></para>
 </sect1>
 <sect1 id="index_1autotoc_md2">
-<title>Installation</title>
-<para>PicoTest is a single-file package, everything is defined in the header file <computeroutput><ref refid="picotest_8h" kindref="compound">picotest.h</ref></computeroutput>. So you can either install this file in a standard location, or copy it within your project source tree.</para>
+<title>Installation</title><para>PicoTest is a single-file package, everything is defined in the header file <computeroutput><ref refid="picotest_8h" kindref="compound">picotest.h</ref></computeroutput>. So you can either install this file in a standard location, or copy it within your project source tree.</para>
 </sect1>
 <sect1 id="index_1autotoc_md3">
-<title>Usage</title>
-<para>Simply include the file in your source file, then start writing your tests!</para>
+<title>Usage</title><para>Simply include the file in your source file, then start writing your tests!</para>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#include<sp/>&lt;<ref refid="picotest_8h" kindref="compound">picotest.h</ref>&gt;</highlight></codeline>
 </programlisting></para>
 </sect1>
 <sect1 id="index_1autotoc_md4">
-<title>Documentation</title>
-<para>The complete documentation is available here:</para>
+<title>Documentation</title><para>The complete documentation is available here:</para>
 <para><ulink url="https://fredericbonnet.github.io/picotest">https://fredericbonnet.github.io/picotest</ulink></para>
 <para>The documentation site was built using these great tools:</para>
 <para><itemizedlist>
@@ -47,14 +44,12 @@
 </programlisting></para>
 </sect1>
 <sect1 id="index_1autotoc_md5">
-<title>Examples</title>
-<para>The <computeroutput>examples</computeroutput> subdirectory contains several example source files that demonstrate the various features of PicoTest. These examples are also integrated in the documentation.</para>
+<title>Examples</title><para>The <computeroutput>examples</computeroutput> subdirectory contains several example source files that demonstrate the various features of PicoTest. These examples are also integrated in the documentation.</para>
 <para>Building the examples requires the CMake build tool along with your favorite toolchain:</para>
 <para><ulink url="https://cmake.org/">https://cmake.org/</ulink></para>
 </sect1>
 <sect1 id="index_1autotoc_md6">
-<title>Tests</title>
-<para>PicoTest is self-tested and comes with a complete test suite that covers all aspects of the framework. This guarantees that PicoTest is production-ready.</para>
+<title>Tests</title><para>PicoTest is self-tested and comes with a complete test suite that covers all aspects of the framework. This guarantees that PicoTest is production-ready.</para>
 <para>The test suite itself is a good real-world example of PicoTest in action.</para>
 <para>Building and running the test suite requires CMake (see next section for more information). To build the suite:</para>
 <para><programlisting filename=".sh"><codeline><highlight class="normal">cd<sp/>tests</highlight></codeline>
@@ -69,8 +64,7 @@
 <para>You can also run the suite executable <computeroutput>test_picotest</computeroutput> directly from the CMake output directory.</para>
 </sect1>
 <sect1 id="index_1autotoc_md7">
-<title>Integration with CMake</title>
-<para>PicoTest provides a CMake module definition for easier integration with other CMake projects. In particular, it comes with an auto-discovery script for CTest that makes use of the test traversal features of PicoTest.</para>
+<title>Integration with CMake</title><para>PicoTest provides a CMake module definition for easier integration with other CMake projects. In particular, it comes with an auto-discovery script for CTest that makes use of the test traversal features of PicoTest.</para>
 <para>The file <computeroutput>FindPicoTest.cmake</computeroutput> is the module definition. Add this file to your <computeroutput>CMAKE_MODULE_PATH</computeroutput>, and add the following line to your CMake project:</para>
 <para><programlisting filename=".cmake"><codeline><highlight class="normal">find_package(PicoTest)</highlight></codeline>
 </programlisting></para>
@@ -100,8 +94,7 @@
 </programlisting></para>
 </sect1>
 <sect1 id="index_1autotoc_md8">
-<title>Development</title>
-<para>PicoTest was developed on Windows 10 and Linux Ubuntu 16.04 using the following tools:</para>
+<title>Development</title><para>PicoTest was developed on Windows 10 and Linux Ubuntu 16.04 using the following tools:</para>
 <para><itemizedlist>
 <listitem><para>IDE: Visual Studio Code</para>
 </listitem><listitem><para>Build tool: CMake 3.15.2</para>
@@ -113,5 +106,6 @@
 <para>The assertion mechanism relies on <computeroutput>setjmp()</computeroutput> / <computeroutput>longjmp()</computeroutput>. While these functions are discouraged for production code, their usage is acceptable in the context of unit testing: in our case, <computeroutput>longjmp()</computeroutput> is only called when an assertion fails, a situation where the actual process state is no longer reliable anyway. Moreover, they constitute the only standard exception handling mechanism for plain C code. </para>
 </sect1>
     </detaileddescription>
+    <location file="README.md"/>
   </compounddef>
 </doxygen>

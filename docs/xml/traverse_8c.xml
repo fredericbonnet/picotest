@@ -1,18 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
   <compounddef id="traverse_8c" kind="file" language="C++">
     <compoundname>traverse.c</compoundname>
     <briefdescription>
 <para>Example of PicoTest hierarchy traversal, prints traversed tests to stdout. </para>
     </briefdescription>
     <detaileddescription>
-<para><programlisting filename="traverse.c"><codeline></codeline>
-<codeline><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<para><programlisting filename="traverse.c"><codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="picotest_8h" kindref="compound">picotest.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Test<sp/>traversal<sp/>function<sp/>declaration.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kindref="member">PicoTestTraverseProc</ref><sp/>printTestCase;</highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kindref="member">PicoTestTraverseProc</ref><sp/>printTestName;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Test<sp/>traversal<sp/>function<sp/>declaration.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__public__interface_1ga403413d76b48c48740171b3a234af5c5" kindref="member">PicoTestTraverseProc</ref><sp/>printTestCase;</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__public__interface_1ga403413d76b48c48740171b3a234af5c5" kindref="member">PicoTestTraverseProc</ref><sp/>printTestName;</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Traversal<sp/>function,<sp/>will<sp/>print<sp/>test<sp/>cases<sp/>only.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printTestCase(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb)<sp/>{</highlight></codeline>
@@ -23,7 +23,8 @@
 <codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printTestName(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s\n&quot;</highlight><highlight class="normal">,<sp/>name);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Main<sp/>test<sp/>suite<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Main<sp/>test<sp/>suite<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="main_suite_8inc" kindref="compound">mainSuite.inc</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>main()<sp/>{</highlight></codeline>
@@ -79,13 +80,13 @@
 </programlisting> </para>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"></codeline>
-<codeline lineno="9"><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="picotest_8h" kindref="compound">picotest.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="comment">/*<sp/>Test<sp/>traversal<sp/>function<sp/>declaration.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><ref refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kindref="member">PicoTestTraverseProc</ref><sp/>printTestCase;</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><ref refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kindref="member">PicoTestTraverseProc</ref><sp/>printTestName;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Test<sp/>traversal<sp/>function<sp/>declaration.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><ref refid="group__public__interface_1ga403413d76b48c48740171b3a234af5c5" kindref="member">PicoTestTraverseProc</ref><sp/>printTestCase;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><ref refid="group__public__interface_1ga403413d76b48c48740171b3a234af5c5" kindref="member">PicoTestTraverseProc</ref><sp/>printTestName;</highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Traversal<sp/>function,<sp/>will<sp/>print<sp/>test<sp/>cases<sp/>only.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printTestCase(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb)<sp/>{</highlight></codeline>
@@ -96,7 +97,8 @@
 <codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printTestName(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb)<sp/>{</highlight></codeline>
 <codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s\n&quot;</highlight><highlight class="normal">,<sp/>name);</highlight></codeline>
 <codeline lineno="25"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="28"><highlight class="comment">/*<sp/>Main<sp/>test<sp/>suite<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Main<sp/>test<sp/>suite<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="main_suite_8inc" kindref="compound">mainSuite.inc</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>main()<sp/>{</highlight></codeline>

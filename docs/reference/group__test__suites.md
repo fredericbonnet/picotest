@@ -5,82 +5,19 @@
 
 A test suite is a set of subtests in no special order. These subtests can themselves be test suites or test cases.
 
-## Test Suite Definitions
-
-<a id="group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f"></a>
-### Macro PICOTEST\_SUITE
-
-![][public]
-
-```cpp
-#define PICOTEST_SUITE( _suiteName ,... )
-```
-
-Test suite declaration.
-
-A test suite is a test function that is made of one or several subtests.
-
-
-
-
-
-This macro defines a [PicoTestProc](picotest_8h.md#group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a) of the given name that can be called directly.
-
-
-
-
-
-
-**Parameters**:
-
-* **_suiteName**: Name of the test suite.
-* **...**: Names of the subtests in the suite.
-
-
-**Returns**:
-
-Number of failed tests.
-
-
-
-
-**Usage**:
-
-```cpp
-/* Main test suite */
-PICOTEST_SUITE(mainSuite, 
-    testCase1, testCase2, subSuite, testCase3
-)
-
-/* Sub-suite */
-PICOTEST_SUITE(subSuite, 
-    testCase4, testCase5
-)
-```
-
-
-**Examples**:
-
-[mainSuite.inc](main_suite_8inc.md#main_suite_8inc) Example of a simple PicoTest suite. <br/>
-
-
-**See also**: [PicoTestProc](picotest_8h.md#group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a), [PICOTEST\_CASE](picotest_8h.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
-
-
-
 ## Test Suite Hooks
 
 PicoTest provides a way for client code to intercept test execution events on test suites and their subtests. This can be used for e.g. logging purpose or reporting.
 
-<a id="group__test__suites_1ga881ee23cced7bc4df9427409dcb55254"></a>
+<a id="group__test__suites_1ga4e09d95df5430205a201b5a02b522f25"></a>
 ### Typedef PicoTestSuiteEnterProc
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1468)
+**Definition**: `include/picotest.h` (line 1469)
 
 ```cpp
-typedef void() PicoTestSuiteEnterProc(const char *suiteName, int nb)
+typedef void PicoTestSuiteEnterProc(const char *suiteName, int nb)
 ```
 
 Function signature of test suite enter hooks.
@@ -116,7 +53,7 @@ void enterTestSuite(const char *suiteName, int nb) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
+[hooks.c](hooks_8c.md#hooks_8c)   Example of PicoTest hooks, prints all events to stdout.    <br/>
 
 
 
@@ -124,17 +61,17 @@ void enterTestSuite(const char *suiteName, int nb) {
 
 
 
-**Return type**: void()
+**Return type**: void
 
-<a id="group__test__suites_1gabc6f39019f0cde9f04812785aceaab09"></a>
+<a id="group__test__suites_1ga5d8415df8755804fe1479ff21d17ed90"></a>
 ### Typedef PicoTestSuiteLeaveProc
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1516)
+**Definition**: `include/picotest.h` (line 1517)
 
 ```cpp
-typedef void() PicoTestSuiteLeaveProc(const char *suiteName, int nb, int fail)
+typedef void PicoTestSuiteLeaveProc(const char *suiteName, int nb, int fail)
 ```
 
 Function signature of test suite leave hooks.
@@ -164,7 +101,7 @@ void leaveTestSuite(const char *suiteName, int nb, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
+[hooks.c](hooks_8c.md#hooks_8c)   Example of PicoTest hooks, prints all events to stdout.    <br/>
 
 
 
@@ -172,17 +109,17 @@ void leaveTestSuite(const char *suiteName, int nb, int fail) {
 
 
 
-**Return type**: void()
+**Return type**: void
 
-<a id="group__test__suites_1gade4d2a7d8a611ca76c675607529a3edb"></a>
+<a id="group__test__suites_1ga7547327d267d2bad9362c7adcc96bb24"></a>
 ### Typedef PicoTestSuiteBeforeSubtestProc
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1570)
+**Definition**: `include/picotest.h` (line 1571)
 
 ```cpp
-typedef void() PicoTestSuiteBeforeSubtestProc(const char *suiteName, int nb, int fail, int index, const char *testName)
+typedef void PicoTestSuiteBeforeSubtestProc(const char *suiteName, int nb, int fail, int index, const char *testName)
 ```
 
 Function signature of test suite before subtest hooks.
@@ -222,7 +159,7 @@ void beforeSubtest(const char *suiteName, int nb, int fail, int index,
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
+[hooks.c](hooks_8c.md#hooks_8c)   Example of PicoTest hooks, prints all events to stdout.    <br/>
 
 
 
@@ -230,17 +167,17 @@ void beforeSubtest(const char *suiteName, int nb, int fail, int index,
 
 
 
-**Return type**: void()
+**Return type**: void
 
-<a id="group__test__suites_1ga80efec0204108859c9ececa3921f6f76"></a>
+<a id="group__test__suites_1gabce697eb4326140f89b0546d773da31c"></a>
 ### Typedef PicoTestSuiteAfterSubtestProc
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1627)
+**Definition**: `include/picotest.h` (line 1628)
 
 ```cpp
-typedef void() PicoTestSuiteAfterSubtestProc(const char *suiteName, int nb, int fail, int index, const char *testName, int sfail)
+typedef void PicoTestSuiteAfterSubtestProc(const char *suiteName, int nb, int fail, int index, const char *testName, int sfail)
 ```
 
 Function signature of test suite after subtest hooks.
@@ -281,7 +218,7 @@ void afterSubtest(const char *suiteName, int nb, int fail, int index,
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
+[hooks.c](hooks_8c.md#hooks_8c)   Example of PicoTest hooks, prints all events to stdout.    <br/>
 
 
 
@@ -289,7 +226,7 @@ void afterSubtest(const char *suiteName, int nb, int fail, int index,
 
 
 
-**Return type**: void()
+**Return type**: void
 
 <a id="group__test__suites_1ga50f13419afbe35f17150bacd7a906838"></a>
 ### Macro PICOTEST\_SUITE\_ENTER\_DEFAULT
@@ -311,7 +248,7 @@ Does nothing.
 
 
 
-**See also**: [PicoTestSuiteEnterProc](picotest_8h.md#group__test__suites_1ga881ee23cced7bc4df9427409dcb55254), [PICOTEST\_SUITE\_ENTER](picotest_8h.md#group__test__suites_1gae569b3a4f05ebefc297411072e505fd3)
+**See also**: [PicoTestSuiteEnterProc](picotest_8h.md#group__test__suites_1ga4e09d95df5430205a201b5a02b522f25), [PICOTEST\_SUITE\_ENTER](picotest_8h.md#group__test__suites_1gae569b3a4f05ebefc297411072e505fd3)
 
 
 
@@ -326,7 +263,7 @@ Does nothing.
 
 Define the test suite enter hook.
 
-The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestSuiteEnterProc](picotest_8h.md#group__test__suites_1ga881ee23cced7bc4df9427409dcb55254) signature.
+The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestSuiteEnterProc](picotest_8h.md#group__test__suites_1ga4e09d95df5430205a201b5a02b522f25) signature.
 
 
 
@@ -354,13 +291,13 @@ void enterTestSuite(const char *suiteName, int nb) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
+[hooks.c](hooks_8c.md#hooks_8c)   Example of PicoTest hooks, prints all events to stdout.    <br/>
 
 
 
 
 
-**See also**: [PicoTestSuiteEnterProc](picotest_8h.md#group__test__suites_1ga881ee23cced7bc4df9427409dcb55254), [PICOTEST\_SUITE\_ENTER\_DEFAULT](picotest_8h.md#group__test__suites_1ga50f13419afbe35f17150bacd7a906838), [PICOTEST\_SUITE\_LEAVE](picotest_8h.md#group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c)
+**See also**: [PicoTestSuiteEnterProc](picotest_8h.md#group__test__suites_1ga4e09d95df5430205a201b5a02b522f25), [PICOTEST\_SUITE\_ENTER\_DEFAULT](picotest_8h.md#group__test__suites_1ga50f13419afbe35f17150bacd7a906838), [PICOTEST\_SUITE\_LEAVE](picotest_8h.md#group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c)
 
 
 
@@ -384,7 +321,7 @@ Does nothing.
 
 
 
-**See also**: [PicoTestSuiteLeaveProc](picotest_8h.md#group__test__suites_1gabc6f39019f0cde9f04812785aceaab09), [PICOTEST\_SUITE\_LEAVE](picotest_8h.md#group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c)
+**See also**: [PicoTestSuiteLeaveProc](picotest_8h.md#group__test__suites_1ga5d8415df8755804fe1479ff21d17ed90), [PICOTEST\_SUITE\_LEAVE](picotest_8h.md#group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c)
 
 
 
@@ -405,7 +342,7 @@ Called after running all subtests.
 
 
 
-The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestSuiteLeaveProc](picotest_8h.md#group__test__suites_1gabc6f39019f0cde9f04812785aceaab09) signature.
+The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestSuiteLeaveProc](picotest_8h.md#group__test__suites_1ga5d8415df8755804fe1479ff21d17ed90) signature.
 
 
 
@@ -433,13 +370,13 @@ void leaveTestSuite(const char *suiteName, int nb, int fail) {
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
+[hooks.c](hooks_8c.md#hooks_8c)   Example of PicoTest hooks, prints all events to stdout.    <br/>
 
 
 
 
 
-**See also**: [PicoTestSuiteLeaveProc](picotest_8h.md#group__test__suites_1gabc6f39019f0cde9f04812785aceaab09), [PICOTEST\_SUITE\_LEAVE\_DEFAULT](picotest_8h.md#group__test__suites_1gaf24c1f7c243e1990463aea4fbd4d5324), [PICOTEST\_SUITE\_ENTER](picotest_8h.md#group__test__suites_1gae569b3a4f05ebefc297411072e505fd3)
+**See also**: [PicoTestSuiteLeaveProc](picotest_8h.md#group__test__suites_1ga5d8415df8755804fe1479ff21d17ed90), [PICOTEST\_SUITE\_LEAVE\_DEFAULT](picotest_8h.md#group__test__suites_1gaf24c1f7c243e1990463aea4fbd4d5324), [PICOTEST\_SUITE\_ENTER](picotest_8h.md#group__test__suites_1gae569b3a4f05ebefc297411072e505fd3)
 
 
 
@@ -463,7 +400,7 @@ Does nothing.
 
 
 
-**See also**: [PicoTestSuiteBeforeSubtestProc](picotest_8h.md#group__test__suites_1gade4d2a7d8a611ca76c675607529a3edb), [PICOTEST\_SUITE\_BEFORE\_SUBTEST](picotest_8h.md#group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464)
+**See also**: [PicoTestSuiteBeforeSubtestProc](picotest_8h.md#group__test__suites_1ga7547327d267d2bad9362c7adcc96bb24), [PICOTEST\_SUITE\_BEFORE\_SUBTEST](picotest_8h.md#group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464)
 
 
 
@@ -478,7 +415,7 @@ Does nothing.
 
 Define the test suite before subset hook.
 
-The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestSuiteBeforeSubtestProc](picotest_8h.md#group__test__suites_1gade4d2a7d8a611ca76c675607529a3edb) signature.
+The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestSuiteBeforeSubtestProc](picotest_8h.md#group__test__suites_1ga7547327d267d2bad9362c7adcc96bb24) signature.
 
 
 
@@ -507,13 +444,13 @@ void beforeSubtest(const char *suiteName, int nb, int fail, int index,
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
+[hooks.c](hooks_8c.md#hooks_8c)   Example of PicoTest hooks, prints all events to stdout.    <br/>
 
 
 
 
 
-**See also**: [PicoTestSuiteBeforeSubtestProc](picotest_8h.md#group__test__suites_1gade4d2a7d8a611ca76c675607529a3edb), [PICOTEST\_SUITE\_BEFORE\_SUBTEST\_DEFAULT](picotest_8h.md#group__test__suites_1gab5b747836950016e04544e29879f3da3), [PICOTEST\_SUITE\_AFTER\_SUBTEST](picotest_8h.md#group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24)
+**See also**: [PicoTestSuiteBeforeSubtestProc](picotest_8h.md#group__test__suites_1ga7547327d267d2bad9362c7adcc96bb24), [PICOTEST\_SUITE\_BEFORE\_SUBTEST\_DEFAULT](picotest_8h.md#group__test__suites_1gab5b747836950016e04544e29879f3da3), [PICOTEST\_SUITE\_AFTER\_SUBTEST](picotest_8h.md#group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24)
 
 
 
@@ -537,7 +474,7 @@ Does nothing.
 
 
 
-**See also**: [PicoTestSuiteAfterSubtestProc](picotest_8h.md#group__test__suites_1ga80efec0204108859c9ececa3921f6f76), [PICOTEST\_SUITE\_AFTER\_SUBTEST](picotest_8h.md#group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24)
+**See also**: [PicoTestSuiteAfterSubtestProc](picotest_8h.md#group__test__suites_1gabce697eb4326140f89b0546d773da31c), [PICOTEST\_SUITE\_AFTER\_SUBTEST](picotest_8h.md#group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24)
 
 
 
@@ -552,7 +489,7 @@ Does nothing.
 
 Define the test suite after subset hook.
 
-The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestSuiteAfterSubtestProc](picotest_8h.md#group__test__suites_1ga80efec0204108859c9ececa3921f6f76) signature.
+The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestSuiteAfterSubtestProc](picotest_8h.md#group__test__suites_1gabce697eb4326140f89b0546d773da31c) signature.
 
 
 
@@ -581,18 +518,81 @@ void afterSubtest(const char *suiteName, int nb, int fail, int index,
 
 **Examples**:
 
-[hooks.c](hooks_8c.md#hooks_8c) Example of PicoTest hooks, prints all events to stdout. <br/>
+[hooks.c](hooks_8c.md#hooks_8c)   Example of PicoTest hooks, prints all events to stdout.    <br/>
 
 
 
 
 
-**See also**: [PicoTestSuiteAfterSubtestProc](picotest_8h.md#group__test__suites_1ga80efec0204108859c9ececa3921f6f76), [PICOTEST\_SUITE\_AFTER\_SUBTEST\_DEFAULT](picotest_8h.md#group__test__suites_1ga0aa7b03502294fee8f3e5b4951027145), [PICOTEST\_SUITE\_BEFORE\_SUBTEST](picotest_8h.md#group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464)
+**See also**: [PicoTestSuiteAfterSubtestProc](picotest_8h.md#group__test__suites_1gabce697eb4326140f89b0546d773da31c), [PICOTEST\_SUITE\_AFTER\_SUBTEST\_DEFAULT](picotest_8h.md#group__test__suites_1ga0aa7b03502294fee8f3e5b4951027145), [PICOTEST\_SUITE\_BEFORE\_SUBTEST](picotest_8h.md#group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464)
+
+
+
+## Test Suite Definitions
+
+<a id="group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f"></a>
+### Macro PICOTEST\_SUITE
+
+![][public]
+
+```cpp
+#define PICOTEST_SUITE( _suiteName ,... )
+```
+
+Test suite declaration.
+
+A test suite is a test function that is made of one or several subtests.
+
+
+
+
+
+This macro defines a [PicoTestProc](picotest_8h.md#group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9) of the given name that can be called directly.
+
+
+
+
+
+
+**Parameters**:
+
+* **_suiteName**: Name of the test suite.
+* **...**: Names of the subtests in the suite.
+
+
+**Returns**:
+
+Number of failed tests.
+
+
+
+
+**Usage**:
+
+```cpp
+/* Main test suite */
+PICOTEST_SUITE(mainSuite, 
+    testCase1, testCase2, subSuite, testCase3
+)
+
+/* Sub-suite */
+PICOTEST_SUITE(subSuite, 
+    testCase4, testCase5
+)
+```
+
+
+**Examples**:
+
+[mainSuite.inc](main_suite_8inc.md#main_suite_8inc)   Example of a simple PicoTest suite.    <br/>
+
+
+**See also**: [PicoTestProc](picotest_8h.md#group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9), [PICOTEST\_CASE](picotest_8h.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
 
 
 
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
-[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
 [private]: https://img.shields.io/badge/-private-red (private)
 [static]: https://img.shields.io/badge/-static-lightgrey (static)
+[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)

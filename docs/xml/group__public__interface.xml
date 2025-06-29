@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
   <compounddef id="group__public__interface" kind="group">
     <compoundname>public_interface</compoundname>
     <title>Public interface</title>
@@ -8,57 +8,525 @@
     <innergroup refid="group__assertions">Assertions</innergroup>
     <innergroup refid="group__fixtures">Test Fixtures</innergroup>
     <innergroup refid="group__test__suites">Test Suites</innergroup>
-      <sectiondef kind="user-defined">
-      <header>Version</header>
-      <description><para>PicoTest follows the Semantic Versioning Specification (SemVer) 2.0.0:</para>
-<para><ulink url="https://semver.org/spec/v2.0.0.html">https://semver.org/spec/v2.0.0.html</ulink> </para>
+    <sectiondef kind="user-defined">
+      <header>Test Filters</header>
+      <description><para>PicoTest provides a way for client code to select tests to be run using custom filter functions. </para>
 </description>
-      <memberdef kind="define" id="group__public__interface_1ga1402f3301dff3f468aac77622f877f2d" prot="public" static="no">
-        <name>PICOTEST_VERSION</name>
+      <memberdef kind="enum" id="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" prot="public" static="no" strong="no">
+        <type></type>
+        <name>PicoTestFilterResult</name>
+        <enumvalue id="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca0ee37a1cf8a2347fb3c42636dfb80b1c" prot="public">
+          <name>PICOTEST_FILTER_SKIP</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para>Test does not match the condition, skip this test and all its subtests. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca35508816a12c32e7ce536786e5ffc8d9" prot="public">
+          <name>PICOTEST_FILTER_PASS</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>Test matches the condition, run this test and all its subtests. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca487de7ecca4099ee737bd41a8d75ba75" prot="public">
+          <name>PICOTEST_FILTER_SKIP_PROPAGATE</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+<para>Test does not match the condition, skip this test but filter its subtests. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fcaf2aa19fa3a0a1bc56585df626aa8e188" prot="public">
+          <name>PICOTEST_FILTER_PASS_PROPAGATE</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+<para>Test matches the condition, run this test but filter its subtests. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
         <briefdescription>
+<para>Result of test filter functions. </para>
         </briefdescription>
         <detaileddescription>
+<para><simplesect kind="par"><title>Examples</title><para><ref refid="filter_8c" kindref="compound">filter.c</ref>   Example of PicoTest test filter, allows custom filtering of test functions.    <linebreak/>
+ <ref refid="tags_8c" kindref="compound">tags.c</ref>   Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering.    <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga6d5c4a903f131bbed4913008d9e3b212" kindref="member">PicoTestFilterProc</ref> </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="78" column="9" bodyfile="include/picotest.h" bodystart="78" bodyend="-1"/>
+        <location file="include/picotest.h" line="175" column="1" bodyfile="include/picotest.h" bodystart="175" bodyend="189"/>
       </memberdef>
-      <memberdef kind="define" id="group__public__interface_1ga9ea29549254cbe44f25ef974d0458e57" prot="public" static="no">
-        <name>PICOTEST_VERSION_MAJOR</name>
+      <memberdef kind="typedef" id="group__public__interface_1ga6d5c4a903f131bbed4913008d9e3b212" prot="public" static="no">
+        <type><ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref></type>
+        <definition>typedef PicoTestFilterResult PicoTestFilterProc(PicoTestProc *test, const char *testName, const char *cond)</definition>
+        <argsstring>(PicoTestProc *test, const char *testName, const char *cond)</argsstring>
+        <name>PicoTestFilterProc</name>
         <briefdescription>
+<para>Signature of test filter functions. </para>
         </briefdescription>
         <detaileddescription>
+<para>A test called with a non- <bold>NULL</bold> condition must match this condition to be run. The test filter is set using the <ref refid="group__public__interface_1gabd82de0bec174d972151cd122a0a03ff" kindref="member">PICOTEST_FILTER</ref> macro.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>test</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test function to filter. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>testName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of test to filter. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cond</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test filtering condition.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a <ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref> value</para>
+</simplesect>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="filter.c"><codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Custom<sp/>test<sp/>filter<sp/>declaration.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__public__interface_1ga6d5c4a903f131bbed4913008d9e3b212" kindref="member">PicoTestFilterProc</ref><sp/>matchSubstring;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FILTER</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FILTER<sp/>matchSubstring</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Test<sp/>filter<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref><sp/>matchSubstring(<ref refid="group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9" kindref="member">PicoTestProc</ref><sp/>*test,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*cond)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Match<sp/>tests<sp/>containing<sp/>**cond**<sp/>substring.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(strstr(testName,<sp/>cond)<sp/>==<sp/>NULL<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>?<sp/><ref refid="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca487de7ecca4099ee737bd41a8d75ba75" kindref="member">PICOTEST_FILTER_SKIP_PROPAGATE</ref><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fcaf2aa19fa3a0a1bc56585df626aa8e188" kindref="member">PICOTEST_FILTER_PASS_PROPAGATE</ref>);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="filter_8c" kindref="compound">filter.c</ref>   Example of PicoTest test filter, allows custom filtering of test functions.    <linebreak/>
+ <ref refid="tags_8c" kindref="compound">tags.c</ref>   Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering.    <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f" kindref="member">PICOTEST_SUITE</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kindref="member">PICOTEST_CASE</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1gabd82de0bec174d972151cd122a0a03ff" kindref="member">PICOTEST_FILTER</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref> </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="79" column="9" bodyfile="include/picotest.h" bodystart="79" bodyend="-1"/>
+        <location file="include/picotest.h" line="215" column="9" bodyfile="include/picotest.h" bodystart="215" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="define" id="group__public__interface_1ga6488c76f8a06a1a8222c2309b170bd1d" prot="public" static="no">
-        <name>PICOTEST_VERSION_MINOR</name>
+      <memberdef kind="function" id="group__public__interface_1gace2d0b7428d63b90190fe65b619a8680" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref></type>
+        <definition>static PicoTestFilterResult _picoTest_filterByName</definition>
+        <argsstring>(PicoTestProc *test, const char *testName, const char *cond)</argsstring>
+        <name>_picoTest_filterByName</name>
+        <param>
+          <type><ref refid="group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9" kindref="member">PicoTestProc</ref> *</type>
+          <declname>test</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>testName</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>cond</declname>
+        </param>
         <briefdescription>
+<para>Implementation of default test filter function. </para>
         </briefdescription>
         <detaileddescription>
+<para>Does a simple string equality test between <bold>testName</bold> and <bold>cond</bold>, and propagates to subtests if it doesn&apos;t match.</para>
+<para><simplesect kind="see"><para><ref refid="group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00" kindref="member">PicoTestFailureLoggerProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48" kindref="member">PICOTEST_FAILURE_LOGGER</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1gaf08fabb517d01d11ce72614d1df51687" kindref="member">PICOTEST_FAILURE_LOGGER_DEFAULT</ref> </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="80" column="9" bodyfile="include/picotest.h" bodystart="80" bodyend="-1"/>
+        <location file="include/picotest.h" line="229" column="29" bodyfile="include/picotest.h" bodystart="229" bodyend="234"/>
       </memberdef>
-      <memberdef kind="define" id="group__public__interface_1gafc9d1ab6d8cced95f3560c3a006d8005" prot="public" static="no">
-        <name>PICOTEST_VERSION_PATCH</name>
+      <memberdef kind="define" id="group__public__interface_1ga7dccbea985fb578ba6b7639fb66fc3ea" prot="public" static="no">
+        <name>PICOTEST_FILTER_DEFAULT</name>
         <briefdescription>
+<para>Default test filter function. </para>
         </briefdescription>
         <detaileddescription>
+<para>Does a simple string equality test between <bold>testName</bold> and <bold>cond</bold>, and propagates to subtests if it doesn&apos;t match.</para>
+<para><simplesect kind="see"><para><ref refid="group__public__interface_1ga6d5c4a903f131bbed4913008d9e3b212" kindref="member">PicoTestFilterProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1gabd82de0bec174d972151cd122a0a03ff" kindref="member">PICOTEST_FILTER</ref> </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="81" column="9" bodyfile="include/picotest.h" bodystart="81" bodyend="-1"/>
+        <location file="include/picotest.h" line="245" column="9" bodyfile="include/picotest.h" bodystart="245" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="user-defined">
+      <memberdef kind="define" id="group__public__interface_1gabd82de0bec174d972151cd122a0a03ff" prot="public" static="no">
+        <name>PICOTEST_FILTER</name>
+        <briefdescription>
+<para>Define the test filter function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Called before calling a test with a non- <bold>NULL</bold> condition.</para>
+<para>The default filter does a simple string equality test between its <bold>testName</bold> and <bold>cond</bold> arguments, and propagates to subtests if it doesn&apos;t match. Redefine this macro to use a custom filter function, which must follow the <ref refid="group__public__interface_1ga6d5c4a903f131bbed4913008d9e3b212" kindref="member">PicoTestFilterProc</ref> signature.</para>
+<para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
+</simplesect>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="filter.c"><codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Custom<sp/>test<sp/>filter<sp/>declaration.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__public__interface_1ga6d5c4a903f131bbed4913008d9e3b212" kindref="member">PicoTestFilterProc</ref><sp/>matchSubstring;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FILTER</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FILTER<sp/>matchSubstring</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Test<sp/>filter<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref><sp/>matchSubstring(<ref refid="group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9" kindref="member">PicoTestProc</ref><sp/>*test,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*cond)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Match<sp/>tests<sp/>containing<sp/>**cond**<sp/>substring.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(strstr(testName,<sp/>cond)<sp/>==<sp/>NULL<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>?<sp/><ref refid="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca487de7ecca4099ee737bd41a8d75ba75" kindref="member">PICOTEST_FILTER_SKIP_PROPAGATE</ref><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fcaf2aa19fa3a0a1bc56585df626aa8e188" kindref="member">PICOTEST_FILTER_PASS_PROPAGATE</ref>);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="filter_8c" kindref="compound">filter.c</ref>   Example of PicoTest test filter, allows custom filtering of test functions.    <linebreak/>
+ <ref refid="tags_8c" kindref="compound">tags.c</ref>   Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering.    <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga6d5c4a903f131bbed4913008d9e3b212" kindref="member">PicoTestFilterProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga7dccbea985fb578ba6b7639fb66fc3ea" kindref="member">PICOTEST_FILTER_DEFAULT</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="271" column="9" bodyfile="include/picotest.h" bodystart="271" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>Test hierarchy traversal</header>
+      <description><para>Tests can form hierarchies of test suites and test cases. PicoTest provides two ways to traverse such hierarchies with a simple visitor pattern. This can be used for e.g. test list discovery in build systems. </para>
+</description>
+      <memberdef kind="enum" id="group__public__interface_1gad78162429011bb689a76e91530ac7a22" prot="public" static="no" strong="no">
+        <type></type>
+        <name>PicoTestVisitStep</name>
+        <enumvalue id="group__public__interface_1ggad78162429011bb689a76e91530ac7a22a2590077bf6aceab607a23c349140af25" prot="public">
+          <name>PICOTEST_VISIT_ENTER</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para>Enter the test. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__public__interface_1ggad78162429011bb689a76e91530ac7a22a70b432be5fb3de15623c7cb1562544d0" prot="public">
+          <name>PICOTEST_VISIT_LEAVE</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>Leave the test. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Test visit step. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="group__public__interface_1ga2b14de2e8f56c8e7efb8e883069abb34" kindref="member">PicoTestVisitProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" kindref="member">PICOTEST_VISIT</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="347" column="1" bodyfile="include/picotest.h" bodystart="347" bodyend="353"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__public__interface_1ga403413d76b48c48740171b3a234af5c5" prot="public" static="no">
+        <type>void</type>
+        <definition>typedef void PicoTestTraverseProc(const char *name, int nb)</definition>
+        <argsstring>(const char *name, int nb)</argsstring>
+        <name>PicoTestTraverseProc</name>
+        <briefdescription>
+<para>Function signature of test traversal proc. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of traversed test. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of subtests (zero for simple test cases, at least one for test suites).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="traverse.c"><codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Test<sp/>traversal<sp/>function<sp/>declaration.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__public__interface_1ga403413d76b48c48740171b3a234af5c5" kindref="member">PicoTestTraverseProc</ref><sp/>printTestCase;</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__public__interface_1ga403413d76b48c48740171b3a234af5c5" kindref="member">PicoTestTraverseProc</ref><sp/>printTestName;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Traversal<sp/>function,<sp/>will<sp/>print<sp/>test<sp/>cases<sp/>only.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printTestCase(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nb<sp/>==<sp/>0)<sp/>printf(</highlight><highlight class="stringliteral">&quot;%s\n&quot;</highlight><highlight class="normal">,<sp/>name);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Traversal<sp/>function,<sp/>will<sp/>print<sp/>all<sp/>tests.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printTestName(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s\n&quot;</highlight><highlight class="normal">,<sp/>name);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="traverse_8c" kindref="compound">traverse.c</ref>   Example of PicoTest hierarchy traversal, prints traversed tests to stdout.    <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" kindref="member">PICOTEST_TRAVERSE</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="299" column="9" bodyfile="include/picotest.h" bodystart="299" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__public__interface_1ga2b14de2e8f56c8e7efb8e883069abb34" prot="public" static="no">
+        <type>void</type>
+        <definition>typedef void PicoTestVisitProc(const PicoTestMetadata *metadata, PicoTestVisitStep step)</definition>
+        <argsstring>(const PicoTestMetadata *metadata, PicoTestVisitStep step)</argsstring>
+        <name>PicoTestVisitProc</name>
+        <briefdescription>
+<para>Function signature of test visit proc. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Proc is called once for each value of <ref refid="group__public__interface_1gad78162429011bb689a76e91530ac7a22" kindref="member">PicoTestVisitStep</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>metadata</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Metadata of the visited test. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>step</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Visit step.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" kindref="member">PICOTEST_VISIT</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1gad78162429011bb689a76e91530ac7a22" kindref="member">PicoTestVisitStep</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="366" column="9" bodyfile="include/picotest.h" bodystart="366" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__public__interface_1gaacd9c37695afbb5b3bb8c5373c527641" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void _picoTest_traverse</definition>
+        <argsstring>(const PicoTestMetadata *metadata, PicoTestTraverseProc *proc)</argsstring>
+        <name>_picoTest_traverse</name>
+        <param>
+          <type>const <ref refid="struct_pico_test_metadata" kindref="compound">PicoTestMetadata</ref> *</type>
+          <declname>metadata</declname>
+        </param>
+        <param>
+          <type><ref refid="group__public__interface_1ga403413d76b48c48740171b3a234af5c5" kindref="member">PicoTestTraverseProc</ref> *</type>
+          <declname>proc</declname>
+        </param>
+        <briefdescription>
+<para>Perform test traversal. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>metadata</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Metadata of test to traverse. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>proc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test traversal proc.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga403413d76b48c48740171b3a234af5c5" kindref="member">PicoTestTraverseProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="struct_pico_test_metadata" kindref="compound">PicoTestMetadata</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" kindref="member">PICOTEST_TRAVERSE</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="330" column="13" bodyfile="include/picotest.h" bodystart="330" bodyend="339"/>
+      </memberdef>
+      <memberdef kind="function" id="group__public__interface_1ga114c577e2b5e238b8545c80be5783fea" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void _picoTest_visit</definition>
+        <argsstring>(const PicoTestMetadata *metadata, PicoTestVisitProc *proc)</argsstring>
+        <name>_picoTest_visit</name>
+        <param>
+          <type>const <ref refid="struct_pico_test_metadata" kindref="compound">PicoTestMetadata</ref> *</type>
+          <declname>metadata</declname>
+        </param>
+        <param>
+          <type><ref refid="group__public__interface_1ga2b14de2e8f56c8e7efb8e883069abb34" kindref="member">PicoTestVisitProc</ref> *</type>
+          <declname>proc</declname>
+        </param>
+        <briefdescription>
+<para>Perform test visit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>metadata</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Metadata of test to visit. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>proc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test visit proc.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga2b14de2e8f56c8e7efb8e883069abb34" kindref="member">PicoTestVisitProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="struct_pico_test_metadata" kindref="compound">PicoTestMetadata</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" kindref="member">PICOTEST_VISIT</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="396" column="13" bodyfile="include/picotest.h" bodystart="396" bodyend="406"/>
+      </memberdef>
+      <memberdef kind="define" id="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" prot="public" static="no">
+        <name>PICOTEST_TRAVERSE</name>
+        <param><defname>_testName</defname></param>
+        <param><defname>_proc</defname></param>
+        <briefdescription>
+<para>Traverse a test hierarchy depth-first. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This feature covers simple use cases such as getting the flat list of all test names. For more advanced usage, see <ref refid="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" kindref="member">PICOTEST_VISIT</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_testName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the traversed test. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_proc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test traversal proc. Must follow the <ref refid="group__public__interface_1ga403413d76b48c48740171b3a234af5c5" kindref="member">PicoTestTraverseProc</ref> signature.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>Examples</title><para><ref refid="traverse_8c" kindref="compound">traverse.c</ref>   Example of PicoTest hierarchy traversal, prints traversed tests to stdout.    <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga403413d76b48c48740171b3a234af5c5" kindref="member">PicoTestTraverseProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" kindref="member">PICOTEST_VISIT</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="317" column="9" bodyfile="include/picotest.h" bodystart="317" bodyend="318"/>
+      </memberdef>
+      <memberdef kind="define" id="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" prot="public" static="no">
+        <name>PICOTEST_VISIT</name>
+        <param><defname>_testName</defname></param>
+        <param><defname>_proc</defname></param>
+        <briefdescription>
+<para>Visit a test hierarchy depth-first. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This feature covers more advanced use cases than <ref refid="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" kindref="member">PICOTEST_TRAVERSE</ref>, such as exporting the test hierarchy as a structured format such as XML or JSON, or accessing test metadata.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_testName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the visited test. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_proc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test visit proc. Must follow the <ref refid="group__public__interface_1ga2b14de2e8f56c8e7efb8e883069abb34" kindref="member">PicoTestVisitProc</ref> signature.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para><ref refid="group__public__interface_1ga2b14de2e8f56c8e7efb8e883069abb34" kindref="member">PicoTestVisitProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" kindref="member">PICOTEST_TRAVERSE</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="383" column="9" bodyfile="include/picotest.h" bodystart="383" bodyend="384"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
       <header>Test Functions</header>
-      <memberdef kind="typedef" id="group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a" prot="public" static="no">
-        <type>int()</type>
-        <definition>typedef int() PicoTestProc(const char *cond)</definition>
+      <memberdef kind="typedef" id="group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9" prot="public" static="no">
+        <type>int</type>
+        <definition>typedef int PicoTestProc(const char *cond)</definition>
         <argsstring>(const char *cond)</argsstring>
         <name>PicoTestProc</name>
         <briefdescription>
@@ -111,7 +579,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="127" column="9" bodyfile="include/picotest.h" bodystart="127" bodyend="-1"/>
+        <location file="include/picotest.h" line="127" column="9" bodyfile="include/picotest.h" bodystart="127" bodyend="129"/>
       </memberdef>
       <memberdef kind="define" id="group__public__interface_1gaa7f907387dd96cac614ad0dfe4cbb858" prot="public" static="no">
         <name>PICOTEST_METADATA</name>
@@ -141,528 +609,14 @@
         </inbodydescription>
         <location file="include/picotest.h" line="141" column="9" bodyfile="include/picotest.h" bodystart="141" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="user-defined">
-      <header>Test Filters</header>
-      <description><para>PicoTest provides a way for client code to select tests to be run using custom filter functions. </para>
-</description>
-      <memberdef kind="enum" id="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" prot="public" static="no" strong="no">
-        <type></type>
-        <name>PicoTestFilterResult</name>
-        <enumvalue id="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca0ee37a1cf8a2347fb3c42636dfb80b1c" prot="public">
-          <name>PICOTEST_FILTER_SKIP</name>
-          <initializer>= 0</initializer>
-          <briefdescription>
-<para>Test does not match the condition, skip this test and all its subtests. </para>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca35508816a12c32e7ce536786e5ffc8d9" prot="public">
-          <name>PICOTEST_FILTER_PASS</name>
-          <initializer>= 1</initializer>
-          <briefdescription>
-<para>Test matches the condition, run this test and all its subtests. </para>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca487de7ecca4099ee737bd41a8d75ba75" prot="public">
-          <name>PICOTEST_FILTER_SKIP_PROPAGATE</name>
-          <initializer>= 2</initializer>
-          <briefdescription>
-<para>Test does not match the condition, skip this test but filter its subtests. </para>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fcaf2aa19fa3a0a1bc56585df626aa8e188" prot="public">
-          <name>PICOTEST_FILTER_PASS_PROPAGATE</name>
-          <initializer>= 3</initializer>
-          <briefdescription>
-<para>Test matches the condition, run this test but filter its subtests. </para>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <briefdescription>
-<para>Result of test filter functions. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="par"><title>Examples</title><para><ref refid="filter_8c" kindref="compound">filter.c</ref> Example of PicoTest test filter, allows custom filtering of test functions. <linebreak/>
- <ref refid="tags_8c" kindref="compound">tags.c</ref> Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering. <linebreak/>
- </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__public__interface_1gafc743c5aa3870900472bc701b3ad35a4" kindref="member">PicoTestFilterProc</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="175" column="1" bodyfile="include/picotest.h" bodystart="175" bodyend="189"/>
-      </memberdef>
-      <memberdef kind="typedef" id="group__public__interface_1gafc743c5aa3870900472bc701b3ad35a4" prot="public" static="no">
-        <type><ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref>()</type>
-        <definition>typedef PicoTestFilterResult() PicoTestFilterProc(PicoTestProc *test, const char *testName, const char *cond)</definition>
-        <argsstring>(PicoTestProc *test, const char *testName, const char *cond)</argsstring>
-        <name>PicoTestFilterProc</name>
-        <briefdescription>
-<para>Signature of test filter functions. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>A test called with a non- <bold>NULL</bold> condition must match this condition to be run. The test filter is set using the <ref refid="group__public__interface_1gabd82de0bec174d972151cd122a0a03ff" kindref="member">PICOTEST_FILTER</ref> macro.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>test</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Test function to filter. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>testName</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Name of test to filter. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>cond</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Test filtering condition.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>a <ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref> value</para>
-</simplesect>
-<simplesect kind="par"><title>Usage</title><para><programlisting filename="filter.c"><codeline><highlight class="comment">/*<sp/>Custom<sp/>test<sp/>filter<sp/>declaration.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__public__interface_1gafc743c5aa3870900472bc701b3ad35a4" kindref="member">PicoTestFilterProc</ref><sp/>matchSubstring;</highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FILTER</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FILTER<sp/>matchSubstring</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Test<sp/>filter<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref><sp/>matchSubstring(<ref refid="group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a" kindref="member">PicoTestProc</ref><sp/>*<ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*cond)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Match<sp/>tests<sp/>containing<sp/>**cond**<sp/>substring.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(strstr(testName,<sp/>cond)<sp/>==<sp/>NULL<sp/></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>?<sp/><ref refid="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca487de7ecca4099ee737bd41a8d75ba75" kindref="member">PICOTEST_FILTER_SKIP_PROPAGATE</ref><sp/></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fcaf2aa19fa3a0a1bc56585df626aa8e188" kindref="member">PICOTEST_FILTER_PASS_PROPAGATE</ref>);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> </para>
-</simplesect>
-<simplesect kind="par"><title>Examples</title><para><ref refid="filter_8c" kindref="compound">filter.c</ref> Example of PicoTest test filter, allows custom filtering of test functions. <linebreak/>
- <ref refid="tags_8c" kindref="compound">tags.c</ref> Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering. <linebreak/>
- </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f" kindref="member">PICOTEST_SUITE</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kindref="member">PICOTEST_CASE</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__public__interface_1gabd82de0bec174d972151cd122a0a03ff" kindref="member">PICOTEST_FILTER</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="215" column="9" bodyfile="include/picotest.h" bodystart="215" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="function" id="group__public__interface_1gace2d0b7428d63b90190fe65b619a8680" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref></type>
-        <definition>static PicoTestFilterResult _picoTest_filterByName</definition>
-        <argsstring>(PicoTestProc *test, const char *testName, const char *cond)</argsstring>
-        <name>_picoTest_filterByName</name>
-        <param>
-          <type><ref refid="group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a" kindref="member">PicoTestProc</ref> *</type>
-          <declname>test</declname>
-        </param>
-        <param>
-          <type>const char *</type>
-          <declname>testName</declname>
-        </param>
-        <param>
-          <type>const char *</type>
-          <declname>cond</declname>
-        </param>
-        <briefdescription>
-<para>Implementation of default test filter function. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>Does a simple string equality test between <bold>testName</bold> and <bold>cond</bold>, and propagates to subtests if it doesn&apos;t match.</para>
-<para><simplesect kind="see"><para><ref refid="group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb" kindref="member">PicoTestFailureLoggerProc</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48" kindref="member">PICOTEST_FAILURE_LOGGER</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__public__interface_1gaf08fabb517d01d11ce72614d1df51687" kindref="member">PICOTEST_FAILURE_LOGGER_DEFAULT</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="229" column="29" bodyfile="include/picotest.h" bodystart="229" bodyend="234"/>
-      </memberdef>
-      <memberdef kind="define" id="group__public__interface_1ga7dccbea985fb578ba6b7639fb66fc3ea" prot="public" static="no">
-        <name>PICOTEST_FILTER_DEFAULT</name>
-        <briefdescription>
-<para>Default test filter function. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>Does a simple string equality test between <bold>testName</bold> and <bold>cond</bold>, and propagates to subtests if it doesn&apos;t match.</para>
-<para><simplesect kind="see"><para><ref refid="group__public__interface_1gafc743c5aa3870900472bc701b3ad35a4" kindref="member">PicoTestFilterProc</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__public__interface_1gabd82de0bec174d972151cd122a0a03ff" kindref="member">PICOTEST_FILTER</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="245" column="9" bodyfile="include/picotest.h" bodystart="245" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="define" id="group__public__interface_1gabd82de0bec174d972151cd122a0a03ff" prot="public" static="no">
-        <name>PICOTEST_FILTER</name>
-        <briefdescription>
-<para>Define the test filter function. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>Called before calling a test with a non- <bold>NULL</bold> condition.</para>
-<para>The default filter does a simple string equality test between its <bold>testName</bold> and <bold>cond</bold> arguments, and propagates to subtests if it doesn&apos;t match. Redefine this macro to use a custom filter function, which must follow the <ref refid="group__public__interface_1gafc743c5aa3870900472bc701b3ad35a4" kindref="member">PicoTestFilterProc</ref> signature.</para>
-<para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
-</simplesect>
-<simplesect kind="par"><title>Usage</title><para><programlisting filename="filter.c"><codeline><highlight class="comment">/*<sp/>Custom<sp/>test<sp/>filter<sp/>declaration.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__public__interface_1gafc743c5aa3870900472bc701b3ad35a4" kindref="member">PicoTestFilterProc</ref><sp/>matchSubstring;</highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FILTER</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FILTER<sp/>matchSubstring</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Test<sp/>filter<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc" kindref="member">PicoTestFilterResult</ref><sp/>matchSubstring(<ref refid="group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a" kindref="member">PicoTestProc</ref><sp/>*<ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*testName,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*cond)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Match<sp/>tests<sp/>containing<sp/>**cond**<sp/>substring.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(strstr(testName,<sp/>cond)<sp/>==<sp/>NULL<sp/></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>?<sp/><ref refid="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca487de7ecca4099ee737bd41a8d75ba75" kindref="member">PICOTEST_FILTER_SKIP_PROPAGATE</ref><sp/></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fcaf2aa19fa3a0a1bc56585df626aa8e188" kindref="member">PICOTEST_FILTER_PASS_PROPAGATE</ref>);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> </para>
-</simplesect>
-<simplesect kind="par"><title>Examples</title><para><ref refid="filter_8c" kindref="compound">filter.c</ref> Example of PicoTest test filter, allows custom filtering of test functions. <linebreak/>
- <ref refid="tags_8c" kindref="compound">tags.c</ref> Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering. <linebreak/>
- </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__public__interface_1gafc743c5aa3870900472bc701b3ad35a4" kindref="member">PicoTestFilterProc</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__public__interface_1ga7dccbea985fb578ba6b7639fb66fc3ea" kindref="member">PICOTEST_FILTER_DEFAULT</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="271" column="9" bodyfile="include/picotest.h" bodystart="271" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="user-defined">
-      <header>Test hierarchy traversal</header>
-      <description><para>Tests can form hierarchies of test suites and test cases. PicoTest provides two ways to traverse such hierarchies with a simple visitor pattern. This can be used for e.g. test list discovery in build systems. </para>
-</description>
-      <memberdef kind="enum" id="group__public__interface_1gad78162429011bb689a76e91530ac7a22" prot="public" static="no" strong="no">
-        <type></type>
-        <name>PicoTestVisitStep</name>
-        <enumvalue id="group__public__interface_1ggad78162429011bb689a76e91530ac7a22a2590077bf6aceab607a23c349140af25" prot="public">
-          <name>PICOTEST_VISIT_ENTER</name>
-          <initializer>= 0</initializer>
-          <briefdescription>
-<para>Enter the test. </para>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <enumvalue id="group__public__interface_1ggad78162429011bb689a76e91530ac7a22a70b432be5fb3de15623c7cb1562544d0" prot="public">
-          <name>PICOTEST_VISIT_LEAVE</name>
-          <initializer>= 1</initializer>
-          <briefdescription>
-<para>Leave the test. </para>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
-        <briefdescription>
-<para>Test visit step. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="see"><para><ref refid="group__public__interface_1ga1ae925d603c838714097a508a19be99b" kindref="member">PicoTestVisitProc</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" kindref="member">PICOTEST_VISIT</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="347" column="1" bodyfile="include/picotest.h" bodystart="347" bodyend="353"/>
-      </memberdef>
-      <memberdef kind="typedef" id="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" prot="public" static="no">
-        <type>void()</type>
-        <definition>typedef void() PicoTestTraverseProc(const char *name, int nb)</definition>
-        <argsstring>(const char *name, int nb)</argsstring>
-        <name>PicoTestTraverseProc</name>
-        <briefdescription>
-<para>Function signature of test traversal proc. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>name</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Name of traversed test. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>nb</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Number of subtests (zero for simple test cases, at least one for test suites).</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="par"><title>Usage</title><para><programlisting filename="traverse.c"><codeline><highlight class="comment">/*<sp/>Test<sp/>traversal<sp/>function<sp/>declaration.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kindref="member">PicoTestTraverseProc</ref><sp/>printTestCase;</highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kindref="member">PicoTestTraverseProc</ref><sp/>printTestName;</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Traversal<sp/>function,<sp/>will<sp/>print<sp/>test<sp/>cases<sp/>only.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printTestCase(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a253651ce46bc33b206c12787e8ccb166" kindref="member">name</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nb<sp/>==<sp/>0)<sp/>printf(</highlight><highlight class="stringliteral">&quot;%s\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="struct_pico_test_metadata_1a253651ce46bc33b206c12787e8ccb166" kindref="member">name</ref>);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Traversal<sp/>function,<sp/>will<sp/>print<sp/>all<sp/>tests.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>printTestName(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a253651ce46bc33b206c12787e8ccb166" kindref="member">name</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="struct_pico_test_metadata_1a253651ce46bc33b206c12787e8ccb166" kindref="member">name</ref>);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> </para>
-</simplesect>
-<simplesect kind="par"><title>Examples</title><para><ref refid="traverse_8c" kindref="compound">traverse.c</ref> Example of PicoTest hierarchy traversal, prints traversed tests to stdout. <linebreak/>
- </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" kindref="member">PICOTEST_TRAVERSE</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="299" column="9" bodyfile="include/picotest.h" bodystart="299" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="typedef" id="group__public__interface_1ga1ae925d603c838714097a508a19be99b" prot="public" static="no">
-        <type>void()</type>
-        <definition>typedef void() PicoTestVisitProc(const PicoTestMetadata *metadata, PicoTestVisitStep step)</definition>
-        <argsstring>(const PicoTestMetadata *metadata, PicoTestVisitStep step)</argsstring>
-        <name>PicoTestVisitProc</name>
-        <briefdescription>
-<para>Function signature of test visit proc. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>Proc is called once for each value of <ref refid="group__public__interface_1gad78162429011bb689a76e91530ac7a22" kindref="member">PicoTestVisitStep</ref>.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>metadata</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Metadata of the visited test. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>step</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Visit step.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="see"><para><ref refid="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" kindref="member">PICOTEST_VISIT</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__public__interface_1gad78162429011bb689a76e91530ac7a22" kindref="member">PicoTestVisitStep</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="366" column="9" bodyfile="include/picotest.h" bodystart="366" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="function" id="group__public__interface_1gaacd9c37695afbb5b3bb8c5373c527641" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>static void _picoTest_traverse</definition>
-        <argsstring>(const PicoTestMetadata *metadata, PicoTestTraverseProc *proc)</argsstring>
-        <name>_picoTest_traverse</name>
-        <param>
-          <type>const <ref refid="struct_pico_test_metadata" kindref="compound">PicoTestMetadata</ref> *</type>
-          <declname>metadata</declname>
-        </param>
-        <param>
-          <type><ref refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kindref="member">PicoTestTraverseProc</ref> *</type>
-          <declname>proc</declname>
-        </param>
-        <briefdescription>
-<para>Perform test traversal. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>metadata</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Metadata of test to traverse. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>proc</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Test traversal proc.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="see"><para><ref refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kindref="member">PicoTestTraverseProc</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="struct_pico_test_metadata" kindref="compound">PicoTestMetadata</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" kindref="member">PICOTEST_TRAVERSE</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="330" column="13" bodyfile="include/picotest.h" bodystart="330" bodyend="339"/>
-      </memberdef>
-      <memberdef kind="function" id="group__public__interface_1ga114c577e2b5e238b8545c80be5783fea" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>static void _picoTest_visit</definition>
-        <argsstring>(const PicoTestMetadata *metadata, PicoTestVisitProc *proc)</argsstring>
-        <name>_picoTest_visit</name>
-        <param>
-          <type>const <ref refid="struct_pico_test_metadata" kindref="compound">PicoTestMetadata</ref> *</type>
-          <declname>metadata</declname>
-        </param>
-        <param>
-          <type><ref refid="group__public__interface_1ga1ae925d603c838714097a508a19be99b" kindref="member">PicoTestVisitProc</ref> *</type>
-          <declname>proc</declname>
-        </param>
-        <briefdescription>
-<para>Perform test visit. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>metadata</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Metadata of test to visit. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>proc</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Test visit proc.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="see"><para><ref refid="group__public__interface_1ga1ae925d603c838714097a508a19be99b" kindref="member">PicoTestVisitProc</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="struct_pico_test_metadata" kindref="compound">PicoTestMetadata</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" kindref="member">PICOTEST_VISIT</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="396" column="13" bodyfile="include/picotest.h" bodystart="396" bodyend="406"/>
-      </memberdef>
-      <memberdef kind="define" id="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" prot="public" static="no">
-        <name>PICOTEST_TRAVERSE</name>
-        <param><defname>_testName</defname></param>
-        <param><defname>_proc</defname></param>
-        <briefdescription>
-<para>Traverse a test hierarchy depth-first. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>This feature covers simple use cases such as getting the flat list of all test names. For more advanced usage, see <ref refid="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" kindref="member">PICOTEST_VISIT</ref>.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>_testName</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Name of the traversed test. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>_proc</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Test traversal proc. Must follow the <ref refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kindref="member">PicoTestTraverseProc</ref> signature.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="par"><title>Examples</title><para><ref refid="traverse_8c" kindref="compound">traverse.c</ref> Example of PicoTest hierarchy traversal, prints traversed tests to stdout. <linebreak/>
- </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__public__interface_1ga0b6b1fbb66a2062b823d28026399d27b" kindref="member">PicoTestTraverseProc</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" kindref="member">PICOTEST_VISIT</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="317" column="9" bodyfile="include/picotest.h" bodystart="317" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="define" id="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f" prot="public" static="no">
-        <name>PICOTEST_VISIT</name>
-        <param><defname>_testName</defname></param>
-        <param><defname>_proc</defname></param>
-        <briefdescription>
-<para>Visit a test hierarchy depth-first. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>This feature covers more advanced use cases than <ref refid="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" kindref="member">PICOTEST_TRAVERSE</ref>, such as exporting the test hierarchy as a structured format such as XML or JSON, or accessing test metadata.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>_testName</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Name of the visited test. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>_proc</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Test visit proc. Must follow the <ref refid="group__public__interface_1ga1ae925d603c838714097a508a19be99b" kindref="member">PicoTestVisitProc</ref> signature.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="see"><para><ref refid="group__public__interface_1ga1ae925d603c838714097a508a19be99b" kindref="member">PicoTestVisitProc</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63" kindref="member">PICOTEST_TRAVERSE</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="383" column="9" bodyfile="include/picotest.h" bodystart="383" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="user-defined">
+    </sectiondef>
+    <sectiondef kind="user-defined">
       <header>Logging</header>
       <description><para>PicoTest provides a way for client code to intercept test failure events. This can be used for e.g. logging purpose or reporting. </para>
 </description>
-      <memberdef kind="typedef" id="group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb" prot="public" static="no">
-        <type>void()</type>
-        <definition>typedef void() PicoTestFailureLoggerProc(const char *file, int line, const char *type, const char *test, const char *msg, va_list args)</definition>
+      <memberdef kind="typedef" id="group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00" prot="public" static="no">
+        <type>void</type>
+        <definition>typedef void PicoTestFailureLoggerProc(const char *file, int line, const char *type, const char *test, const char *msg, va_list args)</definition>
         <argsstring>(const char *file, int line, const char *type, const char *test, const char *msg, va_list args)</argsstring>
         <name>PicoTestFailureLoggerProc</name>
         <briefdescription>
@@ -720,21 +674,21 @@
 </parameterlist>
 <simplesect kind="note"><para><bold>msg</bold> and <bold>args</bold> are suitable arguments to <bold>vprintf()</bold>.</para>
 </simplesect>
-<simplesect kind="par"><title>Usage</title><para><programlisting filename="logger.c"><codeline><highlight class="comment">/*<sp/>Test<sp/>failure<sp/>logger<sp/>declaration.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb" kindref="member">PicoTestFailureLoggerProc</ref><sp/>logFailure;</highlight></codeline>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="logger.c"><codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Test<sp/>failure<sp/>logger<sp/>declaration.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00" kindref="member">PicoTestFailureLoggerProc</ref><sp/>logFailure;</highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FAILURE_LOGGER</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FAILURE_LOGGER<sp/>logFailure</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Test<sp/>failure<sp/>logger<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>logFailure(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a1e57db62ee1f5581d0f0bca333e21304" kindref="member">file</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_pico_test_metadata_1a98c9bcbb6844cf75dd8005110b03887d" kindref="member">line</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*msg,<sp/>va_list<sp/>args)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>logFailure(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*file,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>line,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*test,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*msg,<sp/>va_list<sp/>args)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Error<sp/>type.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;[%s]<sp/>&quot;</highlight><highlight class="normal">,<sp/>type);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Location<sp/>in<sp/>source<sp/>code.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s(%d)<sp/>:<sp/>&quot;</highlight><highlight class="normal">,<sp/><ref refid="struct_pico_test_metadata_1a1e57db62ee1f5581d0f0bca333e21304" kindref="member">file</ref>,<sp/><ref refid="struct_pico_test_metadata_1a98c9bcbb6844cf75dd8005110b03887d" kindref="member">line</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s(%d)<sp/>:<sp/>&quot;</highlight><highlight class="normal">,<sp/>file,<sp/>line);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Failed<sp/>expression.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s&quot;</highlight><highlight class="normal">,<sp/><ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s&quot;</highlight><highlight class="normal">,<sp/>test);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Optional<sp/>message.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(msg)<sp/>{</highlight></codeline>
@@ -744,9 +698,9 @@
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> </para>
+</programlisting></para>
 </simplesect>
-<simplesect kind="par"><title>Examples</title><para><ref refid="logger_8c" kindref="compound">logger.c</ref> Example of PicoTest error logging, prints location and info of failed assertions to stdout. <linebreak/>
+<simplesect kind="par"><title>Examples</title><para><ref refid="logger_8c" kindref="compound">logger.c</ref>   Example of PicoTest error logging, prints location and info of failed assertions to stdout.    <linebreak/>
  </para>
 </simplesect>
 <simplesect kind="see"><para><ref refid="group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48" kindref="member">PICOTEST_FAILURE_LOGGER</ref> </para>
@@ -791,7 +745,7 @@
         </briefdescription>
         <detaileddescription>
 <para>Does nothing.</para>
-<para><simplesect kind="see"><para><ref refid="group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb" kindref="member">PicoTestFailureLoggerProc</ref> </para>
+<para><simplesect kind="see"><para><ref refid="group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00" kindref="member">PicoTestFailureLoggerProc</ref> </para>
 </simplesect>
 <simplesect kind="see"><para><ref refid="group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48" kindref="member">PICOTEST_FAILURE_LOGGER</ref> </para>
 </simplesect>
@@ -810,7 +764,7 @@
         </briefdescription>
         <detaileddescription>
 <para>Does nothing.</para>
-<para><simplesect kind="see"><para><ref refid="group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb" kindref="member">PicoTestFailureLoggerProc</ref> </para>
+<para><simplesect kind="see"><para><ref refid="group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00" kindref="member">PicoTestFailureLoggerProc</ref> </para>
 </simplesect>
 <simplesect kind="see"><para><ref refid="group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48" kindref="member">PICOTEST_FAILURE_LOGGER</ref> </para>
 </simplesect>
@@ -827,24 +781,24 @@
         </briefdescription>
         <detaileddescription>
 <para>Called when a test fails.</para>
-<para>The default handler does nothing. Redefine this macro to use a custom handler, which must follow the <ref refid="group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb" kindref="member">PicoTestFailureLoggerProc</ref> signature.</para>
+<para>The default handler does nothing. Redefine this macro to use a custom handler, which must follow the <ref refid="group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00" kindref="member">PicoTestFailureLoggerProc</ref> signature.</para>
 <para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
 </simplesect>
-<simplesect kind="par"><title>Usage</title><para><programlisting filename="logger.c"><codeline><highlight class="comment">/*<sp/>Test<sp/>failure<sp/>logger<sp/>declaration.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb" kindref="member">PicoTestFailureLoggerProc</ref><sp/>logFailure;</highlight></codeline>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="logger.c"><codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Test<sp/>failure<sp/>logger<sp/>declaration.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00" kindref="member">PicoTestFailureLoggerProc</ref><sp/>logFailure;</highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FAILURE_LOGGER</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FAILURE_LOGGER<sp/>logFailure</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Test<sp/>failure<sp/>logger<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>logFailure(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a1e57db62ee1f5581d0f0bca333e21304" kindref="member">file</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_pico_test_metadata_1a98c9bcbb6844cf75dd8005110b03887d" kindref="member">line</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*msg,<sp/>va_list<sp/>args)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>logFailure(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*file,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>line,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*test,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*msg,<sp/>va_list<sp/>args)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Error<sp/>type.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;[%s]<sp/>&quot;</highlight><highlight class="normal">,<sp/>type);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Location<sp/>in<sp/>source<sp/>code.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s(%d)<sp/>:<sp/>&quot;</highlight><highlight class="normal">,<sp/><ref refid="struct_pico_test_metadata_1a1e57db62ee1f5581d0f0bca333e21304" kindref="member">file</ref>,<sp/><ref refid="struct_pico_test_metadata_1a98c9bcbb6844cf75dd8005110b03887d" kindref="member">line</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s(%d)<sp/>:<sp/>&quot;</highlight><highlight class="normal">,<sp/>file,<sp/>line);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Failed<sp/>expression.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s&quot;</highlight><highlight class="normal">,<sp/><ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s&quot;</highlight><highlight class="normal">,<sp/>test);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Optional<sp/>message.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(msg)<sp/>{</highlight></codeline>
@@ -854,12 +808,12 @@
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> </para>
+</programlisting></para>
 </simplesect>
-<simplesect kind="par"><title>Examples</title><para><ref refid="logger_8c" kindref="compound">logger.c</ref> Example of PicoTest error logging, prints location and info of failed assertions to stdout. <linebreak/>
+<simplesect kind="par"><title>Examples</title><para><ref refid="logger_8c" kindref="compound">logger.c</ref>   Example of PicoTest error logging, prints location and info of failed assertions to stdout.    <linebreak/>
  </para>
 </simplesect>
-<simplesect kind="see"><para><ref refid="group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb" kindref="member">PicoTestFailureLoggerProc</ref> </para>
+<simplesect kind="see"><para><ref refid="group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00" kindref="member">PicoTestFailureLoggerProc</ref> </para>
 </simplesect>
 <simplesect kind="see"><para><ref refid="group__public__interface_1gaf08fabb517d01d11ce72614d1df51687" kindref="member">PICOTEST_FAILURE_LOGGER_DEFAULT</ref> </para>
 </simplesect>
@@ -869,7 +823,53 @@
         </inbodydescription>
         <location file="include/picotest.h" line="480" column="9" bodyfile="include/picotest.h" bodystart="480" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>Version</header>
+      <description><para>PicoTest follows the Semantic Versioning Specification (SemVer) 2.0.0:</para>
+<para><ulink url="https://semver.org/spec/v2.0.0.html">https://semver.org/spec/v2.0.0.html</ulink> </para>
+</description>
+      <memberdef kind="define" id="group__public__interface_1ga1402f3301dff3f468aac77622f877f2d" prot="public" static="no">
+        <name>PICOTEST_VERSION</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="78" column="9" bodyfile="include/picotest.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__public__interface_1ga9ea29549254cbe44f25ef974d0458e57" prot="public" static="no">
+        <name>PICOTEST_VERSION_MAJOR</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="79" column="9" bodyfile="include/picotest.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__public__interface_1ga6488c76f8a06a1a8222c2309b170bd1d" prot="public" static="no">
+        <name>PICOTEST_VERSION_MINOR</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="80" column="9" bodyfile="include/picotest.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__public__interface_1gafc9d1ab6d8cced95f3560c3a006d8005" prot="public" static="no">
+        <name>PICOTEST_VERSION_PATCH</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="81" column="9" bodyfile="include/picotest.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

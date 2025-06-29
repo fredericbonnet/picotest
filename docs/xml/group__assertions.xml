@@ -1,9 +1,233 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
   <compounddef id="group__assertions" kind="group">
     <compoundname>assertions</compoundname>
     <title>Assertions</title>
-      <sectiondef kind="user-defined">
+    <sectiondef kind="user-defined">
+      <header>Assertion Hooks</header>
+      <description><para>PicoTest provides a way for client code to intercept assertions events. This can be used for e.g. logging purpose or reporting. </para>
+</description>
+      <memberdef kind="typedef" id="group__assertions_1ga507d93a48b3c01ec9c43499d129d6db0" prot="public" static="no">
+        <type>void</type>
+        <definition>typedef void PicoTestAssertBeforeProc(const char *type, const char *test)</definition>
+        <argsstring>(const char *type, const char *test)</argsstring>
+        <name>PicoTestAssertBeforeProc</name>
+        <briefdescription>
+<para>Function signature of assert before hooks. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Called before running an assertion.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of test (e.g. &quot;ASSERT&quot;). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>test</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__assertions_1ga507d93a48b3c01ec9c43499d129d6db0" kindref="member">PicoTestAssertBeforeProc</ref><sp/>beforeAssert;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_ASSERT_BEFORE</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_ASSERT_BEFORE<sp/>beforeAssert</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>beforeAssert(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*test)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;before<sp/>assertion<sp/>%s(%s)...\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/>test);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref>   Example of PicoTest hooks, prints all events to stdout.    <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb" kindref="member">PICOTEST_ASSERT_BEFORE</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="905" column="9" bodyfile="include/picotest.h" bodystart="905" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__assertions_1ga8f5650aa00db35bc50511fa2a01a45e7" prot="public" static="no">
+        <type>void</type>
+        <definition>typedef void PicoTestAssertAfterProc(const char *type, const char *test, int fail)</definition>
+        <argsstring>(const char *type, const char *test, int fail)</argsstring>
+        <name>PicoTestAssertAfterProc</name>
+        <briefdescription>
+<para>Function signature of assert after hooks. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Called after running an assertion.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of test (e.g. &quot;ASSERT&quot;). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>test</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fail</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Test result: zero for success, non-zero for failure.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__assertions_1ga8f5650aa00db35bc50511fa2a01a45e7" kindref="member">PicoTestAssertAfterProc</ref><sp/>afterAssert;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_ASSERT_AFTER</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_ASSERT_AFTER<sp/>afterAssert</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>afterAssert(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*test,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;after<sp/>assertion<sp/>%s(%s)<sp/>=&gt;<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/>test,<sp/>fail<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;fails&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;passes&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref>   Example of PicoTest hooks, prints all events to stdout.    <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934" kindref="member">PICOTEST_ASSERT_AFTER</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="954" column="9" bodyfile="include/picotest.h" bodystart="954" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__assertions_1ga331ef495337f7e2aae8be15cfd2a170a" prot="public" static="no">
+        <name>PICOTEST_ASSERT_BEFORE_DEFAULT</name>
+        <param><defname>type</defname></param>
+        <param><defname>test</defname></param>
+        <briefdescription>
+<para>Default assert before hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does nothing.</para>
+<para><simplesect kind="see"><para><ref refid="group__assertions_1ga507d93a48b3c01ec9c43499d129d6db0" kindref="member">PicoTestAssertBeforeProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb" kindref="member">PICOTEST_ASSERT_BEFORE</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="913" column="9" bodyfile="include/picotest.h" bodystart="913" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb" prot="public" static="no">
+        <name>PICOTEST_ASSERT_BEFORE</name>
+        <briefdescription>
+<para>Define the assert before hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The default hook does nothing. Redefine this macro to use a custom hook, which must follow the <ref refid="group__assertions_1ga507d93a48b3c01ec9c43499d129d6db0" kindref="member">PicoTestAssertBeforeProc</ref> signature.</para>
+<para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
+</simplesect>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__assertions_1ga507d93a48b3c01ec9c43499d129d6db0" kindref="member">PicoTestAssertBeforeProc</ref><sp/>beforeAssert;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_ASSERT_BEFORE</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_ASSERT_BEFORE<sp/>beforeAssert</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>beforeAssert(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*test)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;before<sp/>assertion<sp/>%s(%s)...\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/>test);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref>   Example of PicoTest hooks, prints all events to stdout.    <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__assertions_1ga507d93a48b3c01ec9c43499d129d6db0" kindref="member">PicoTestAssertBeforeProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__assertions_1ga331ef495337f7e2aae8be15cfd2a170a" kindref="member">PICOTEST_ASSERT_BEFORE_DEFAULT</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934" kindref="member">PICOTEST_ASSERT_AFTER</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="935" column="9" bodyfile="include/picotest.h" bodystart="935" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__assertions_1gab1f1711109e4a8443a61c228194a6825" prot="public" static="no">
+        <name>PICOTEST_ASSERT_AFTER_DEFAULT</name>
+        <param><defname>type</defname></param>
+        <param><defname>test</defname></param>
+        <param><defname>fail</defname></param>
+        <briefdescription>
+<para>Default assert after hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Does nothing.</para>
+<para><simplesect kind="see"><para><ref refid="group__assertions_1ga8f5650aa00db35bc50511fa2a01a45e7" kindref="member">PicoTestAssertAfterProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934" kindref="member">PICOTEST_ASSERT_AFTER</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="963" column="9" bodyfile="include/picotest.h" bodystart="963" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934" prot="public" static="no">
+        <name>PICOTEST_ASSERT_AFTER</name>
+        <briefdescription>
+<para>Define the assert after hook. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The default hook does nothing. Redefine this macro to use a custom hook, which must follow the <ref refid="group__assertions_1ga8f5650aa00db35bc50511fa2a01a45e7" kindref="member">PicoTestAssertAfterProc</ref> signature.</para>
+<para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
+</simplesect>
+<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__assertions_1ga8f5650aa00db35bc50511fa2a01a45e7" kindref="member">PicoTestAssertAfterProc</ref><sp/>afterAssert;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_ASSERT_AFTER</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_ASSERT_AFTER<sp/>afterAssert</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>afterAssert(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*test,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;after<sp/>assertion<sp/>%s(%s)<sp/>=&gt;<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/>test,<sp/>fail<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;fails&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;passes&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</simplesect>
+<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref>   Example of PicoTest hooks, prints all events to stdout.    <linebreak/>
+ </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__assertions_1ga8f5650aa00db35bc50511fa2a01a45e7" kindref="member">PicoTestAssertAfterProc</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__assertions_1gab1f1711109e4a8443a61c228194a6825" kindref="member">PICOTEST_ASSERT_AFTER_DEFAULT</ref> </para>
+</simplesect>
+<simplesect kind="see"><para><ref refid="group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb" kindref="member">PICOTEST_ASSERT_BEFORE</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/picotest.h" line="985" column="9" bodyfile="include/picotest.h" bodystart="985" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
       <header>Assertion Definitions</header>
       <memberdef kind="variable" id="group__assertions_1ga8d7eb92ca21dfb7fe46fc2472e11f496" prot="private" static="yes" mutable="no">
         <type>int</type>
@@ -20,7 +244,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="830" column="12" bodyfile="include/picotest.h" bodystart="830" bodyend="-1"/>
+        <location file="include/picotest.h" line="831" column="12" bodyfile="include/picotest.h" bodystart="831" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="group__assertions_1ga2fdb4a73b6a0abc186a27065a36db6ed" prot="private" static="yes" mutable="no">
         <type>jmp_buf *</type>
@@ -39,7 +263,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="838" column="16" bodyfile="include/picotest.h" bodystart="838" bodyend="-1"/>
+        <location file="include/picotest.h" line="839" column="16" bodyfile="include/picotest.h" bodystart="839" bodyend="-1"/>
       </memberdef>
       <memberdef kind="function" id="group__assertions_1gadd80bff454009ce1077d81f1f5552f34" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -47,7 +271,7 @@
         <argsstring>(PicoTestFailureLoggerProc *proc, const char *file, int line, const char *type, int count, const char *test,...)</argsstring>
         <name>_picoTest_assertFailed</name>
         <param>
-          <type><ref refid="group__public__interface_1ga407922fa95d91c28651b93fbafe1d1bb" kindref="member">PicoTestFailureLoggerProc</ref> *</type>
+          <type><ref refid="group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00" kindref="member">PicoTestFailureLoggerProc</ref> *</type>
           <declname>proc</declname>
         </param>
         <param>
@@ -142,7 +366,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="863" column="13" bodyfile="include/picotest.h" bodystart="863" bodyend="876"/>
+        <location file="include/picotest.h" line="864" column="13" bodyfile="include/picotest.h" bodystart="864" bodyend="877"/>
       </memberdef>
       <memberdef kind="define" id="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" prot="public" static="no">
         <name>PICOTEST_ASSERT</name>
@@ -181,7 +405,7 @@
 </parameterlist>
 <simplesect kind="note"><para><bold>msg</bold> and following arguments arguments are suitable arguments to <bold>printf()</bold>.</para>
 </simplesect>
-<simplesect kind="par"><title>Examples</title><para><ref refid="main_suite_8inc" kindref="compound">mainSuite.inc</ref> Example of a simple PicoTest suite. <linebreak/>
+<simplesect kind="par"><title>Examples</title><para><ref refid="main_suite_8inc" kindref="compound">mainSuite.inc</ref>   Example of a simple PicoTest suite.    <linebreak/>
  </para>
 </simplesect>
 <simplesect kind="see"><para><ref refid="group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48" kindref="member">PICOTEST_FAILURE_LOGGER</ref> </para>
@@ -194,7 +418,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="750" column="9" bodyfile="include/picotest.h" bodystart="750" bodyend="-1"/>
+        <location file="include/picotest.h" line="751" column="9" bodyfile="include/picotest.h" bodystart="751" bodyend="752"/>
       </memberdef>
       <memberdef kind="define" id="group__assertions_1gacd07b017f38d1e3ad784f369345357a2" prot="public" static="no">
         <name>PICOTEST_VERIFY</name>
@@ -233,7 +457,7 @@
 </parameterlist>
 <simplesect kind="note"><para><bold>msg</bold> and following arguments arguments are suitable arguments to <bold>printf()</bold>.</para>
 </simplesect>
-<simplesect kind="par"><title>Examples</title><para><ref refid="main_suite_8inc" kindref="compound">mainSuite.inc</ref> Example of a simple PicoTest suite. <linebreak/>
+<simplesect kind="par"><title>Examples</title><para><ref refid="main_suite_8inc" kindref="compound">mainSuite.inc</ref>   Example of a simple PicoTest suite.    <linebreak/>
  </para>
 </simplesect>
 <simplesect kind="see"><para><ref refid="group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48" kindref="member">PICOTEST_FAILURE_LOGGER</ref> </para>
@@ -244,7 +468,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="787" column="9" bodyfile="include/picotest.h" bodystart="787" bodyend="-1"/>
+        <location file="include/picotest.h" line="788" column="9" bodyfile="include/picotest.h" bodystart="788" bodyend="789"/>
       </memberdef>
       <memberdef kind="define" id="group__assertions_1ga89a35f18021df570967bb707a8537f3b" prot="public" static="no">
         <name>PICOTEST_FAILURE</name>
@@ -294,7 +518,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="815" column="9" bodyfile="include/picotest.h" bodystart="815" bodyend="-1"/>
+        <location file="include/picotest.h" line="816" column="9" bodyfile="include/picotest.h" bodystart="816" bodyend="817"/>
       </memberdef>
       <memberdef kind="define" id="group__assertions_1ga62031fa5f6f86e517565b77a1fa37f59" prot="public" static="no">
         <name>PICOTEST_ABORT</name>
@@ -310,233 +534,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/picotest.h" line="847" column="9" bodyfile="include/picotest.h" bodystart="847" bodyend="-1"/>
+        <location file="include/picotest.h" line="848" column="9" bodyfile="include/picotest.h" bodystart="848" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="user-defined">
-      <header>Assertion Hooks</header>
-      <description><para>PicoTest provides a way for client code to intercept assertions events. This can be used for e.g. logging purpose or reporting. </para>
-</description>
-      <memberdef kind="typedef" id="group__assertions_1ga2011048ceed2457e95498573d0730eaf" prot="public" static="no">
-        <type>void()</type>
-        <definition>typedef void() PicoTestAssertBeforeProc(const char *type, const char *test)</definition>
-        <argsstring>(const char *type, const char *test)</argsstring>
-        <name>PicoTestAssertBeforeProc</name>
-        <briefdescription>
-<para>Function signature of assert before hooks. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>Called before running an assertion.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Type of test (e.g. &quot;ASSERT&quot;). </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>test</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Test.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__assertions_1ga2011048ceed2457e95498573d0730eaf" kindref="member">PicoTestAssertBeforeProc</ref><sp/>beforeAssert;</highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_ASSERT_BEFORE</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_ASSERT_BEFORE<sp/>beforeAssert</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>beforeAssert(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;before<sp/>assertion<sp/>%s(%s)...\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/><ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> </para>
-</simplesect>
-<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
- </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb" kindref="member">PICOTEST_ASSERT_BEFORE</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="904" column="9" bodyfile="include/picotest.h" bodystart="904" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="typedef" id="group__assertions_1ga9502bbfe9927766f12e8de83aa37b706" prot="public" static="no">
-        <type>void()</type>
-        <definition>typedef void() PicoTestAssertAfterProc(const char *type, const char *test, int fail)</definition>
-        <argsstring>(const char *type, const char *test, int fail)</argsstring>
-        <name>PicoTestAssertAfterProc</name>
-        <briefdescription>
-<para>Function signature of assert after hooks. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>Called after running an assertion.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>type</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Type of test (e.g. &quot;ASSERT&quot;). </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>test</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Test. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>fail</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Test result: zero for success, non-zero for failure.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__assertions_1ga9502bbfe9927766f12e8de83aa37b706" kindref="member">PicoTestAssertAfterProc</ref><sp/>afterAssert;</highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_ASSERT_AFTER</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_ASSERT_AFTER<sp/>afterAssert</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>afterAssert(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;after<sp/>assertion<sp/>%s(%s)<sp/>=&gt;<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/><ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>,<sp/>fail<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;fails&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;passes&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> </para>
-</simplesect>
-<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
- </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934" kindref="member">PICOTEST_ASSERT_AFTER</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="953" column="9" bodyfile="include/picotest.h" bodystart="953" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="define" id="group__assertions_1ga331ef495337f7e2aae8be15cfd2a170a" prot="public" static="no">
-        <name>PICOTEST_ASSERT_BEFORE_DEFAULT</name>
-        <param><defname>type</defname></param>
-        <param><defname>test</defname></param>
-        <briefdescription>
-<para>Default assert before hook. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>Does nothing.</para>
-<para><simplesect kind="see"><para><ref refid="group__assertions_1ga2011048ceed2457e95498573d0730eaf" kindref="member">PicoTestAssertBeforeProc</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb" kindref="member">PICOTEST_ASSERT_BEFORE</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="912" column="9" bodyfile="include/picotest.h" bodystart="912" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="define" id="group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb" prot="public" static="no">
-        <name>PICOTEST_ASSERT_BEFORE</name>
-        <briefdescription>
-<para>Define the assert before hook. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>The default hook does nothing. Redefine this macro to use a custom hook, which must follow the <ref refid="group__assertions_1ga2011048ceed2457e95498573d0730eaf" kindref="member">PicoTestAssertBeforeProc</ref> signature.</para>
-<para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
-</simplesect>
-<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__assertions_1ga2011048ceed2457e95498573d0730eaf" kindref="member">PicoTestAssertBeforeProc</ref><sp/>beforeAssert;</highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_ASSERT_BEFORE</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_ASSERT_BEFORE<sp/>beforeAssert</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>beforeAssert(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;before<sp/>assertion<sp/>%s(%s)...\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/><ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> </para>
-</simplesect>
-<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
- </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__assertions_1ga2011048ceed2457e95498573d0730eaf" kindref="member">PicoTestAssertBeforeProc</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__assertions_1ga331ef495337f7e2aae8be15cfd2a170a" kindref="member">PICOTEST_ASSERT_BEFORE_DEFAULT</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934" kindref="member">PICOTEST_ASSERT_AFTER</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="934" column="9" bodyfile="include/picotest.h" bodystart="934" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="define" id="group__assertions_1gab1f1711109e4a8443a61c228194a6825" prot="public" static="no">
-        <name>PICOTEST_ASSERT_AFTER_DEFAULT</name>
-        <param><defname>type</defname></param>
-        <param><defname>test</defname></param>
-        <param><defname>fail</defname></param>
-        <briefdescription>
-<para>Default assert after hook. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>Does nothing.</para>
-<para><simplesect kind="see"><para><ref refid="group__assertions_1ga9502bbfe9927766f12e8de83aa37b706" kindref="member">PicoTestAssertAfterProc</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934" kindref="member">PICOTEST_ASSERT_AFTER</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="962" column="9" bodyfile="include/picotest.h" bodystart="962" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="define" id="group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934" prot="public" static="no">
-        <name>PICOTEST_ASSERT_AFTER</name>
-        <briefdescription>
-<para>Define the assert after hook. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>The default hook does nothing. Redefine this macro to use a custom hook, which must follow the <ref refid="group__assertions_1ga9502bbfe9927766f12e8de83aa37b706" kindref="member">PicoTestAssertAfterProc</ref> signature.</para>
-<para><simplesect kind="note"><para>Custom functions only apply to the tests defined after the macro redefinition. As macros can be redefined several times, this means that different functions may apply for the same source.</para>
-</simplesect>
-<simplesect kind="par"><title>Usage</title><para><programlisting filename="hooks.c"><codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__assertions_1ga9502bbfe9927766f12e8de83aa37b706" kindref="member">PicoTestAssertAfterProc</ref><sp/>afterAssert;</highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_ASSERT_AFTER</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_ASSERT_AFTER<sp/>afterAssert</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>function.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>afterAssert(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*type,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fail)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;after<sp/>assertion<sp/>%s(%s)<sp/>=&gt;<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/><ref refid="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" kindref="member">test</ref>,<sp/>fail<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;fails&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;passes&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> </para>
-</simplesect>
-<simplesect kind="par"><title>Examples</title><para><ref refid="hooks_8c" kindref="compound">hooks.c</ref> Example of PicoTest hooks, prints all events to stdout. <linebreak/>
- </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__assertions_1ga9502bbfe9927766f12e8de83aa37b706" kindref="member">PicoTestAssertAfterProc</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__assertions_1gab1f1711109e4a8443a61c228194a6825" kindref="member">PICOTEST_ASSERT_AFTER_DEFAULT</ref> </para>
-</simplesect>
-<simplesect kind="see"><para><ref refid="group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb" kindref="member">PICOTEST_ASSERT_BEFORE</ref> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/picotest.h" line="984" column="9" bodyfile="include/picotest.h" bodystart="984" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

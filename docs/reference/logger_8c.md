@@ -36,6 +36,7 @@ void logFailure(const char *file, int line, const char *type, const char *test, 
 
     printf("\n");
 }
+
 /* Hooks */
 PicoTestCaseEnterProc logEnter;
 PicoTestCaseLeaveProc logLeave;
@@ -99,6 +100,7 @@ void logFailure(const char *file, int line, const char *type, const char *test, 
 
     printf("\n");
 }
+
 /* Hooks */
 PicoTestCaseEnterProc logEnter;
 PicoTestCaseLeaveProc logLeave;

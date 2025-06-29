@@ -33,6 +33,8 @@ PICOTEST_SUITE(mainSuite,
 PICOTEST_SUITE(subSuite, 
     testCase4, testCase5
 )
+
+
 /*
  * Test fixtures.
  */
@@ -51,12 +53,14 @@ PICOTEST_FIXTURE_TEARDOWN(simpleFixture) {
     staticVar = 0;
     srand(clock());
 }
+
 /* Fixture context */
 PICOTEST_FIXTURE_CONTEXT(fixtureWithContext) {
     int var1;
     const char *var2;
     void *var3;
 };
+
 /* Fixture setup */
 PICOTEST_FIXTURE_SETUP(fixtureWithContext, context) {
     /* Initialize static stuff */
@@ -76,6 +80,7 @@ PICOTEST_FIXTURE_TEARDOWN(fixtureWithContext, context) {
     /* Cleanup fixture context */
     free(context->var3);
 }
+
 /* Fixture context */
 PICOTEST_FIXTURE_CONTEXT(fixtureWithOptionalContext) {
     void *buffer;
@@ -103,6 +108,8 @@ PICOTEST_FIXTURE_TEARDOWN(fixtureWithOptionalContext, context) {
         free(context->buffer);
     }
 }
+
+
 /*
  * Test cases.
  */
@@ -132,6 +139,7 @@ PICOTEST_CASE(testCase3, fixtureWithContext, context) {
     PICOTEST_VERIFY(context->var2 == NULL); /* Logs error and continue */
     PICOTEST_ASSERT(context->var3 == NULL); /* Logs error and abort */
 }
+
 /* Another test using **simpleFixture**. Tests need not belong to the same suite
  * to share a fixture. */
 PICOTEST_CASE(testCase4, simpleFixture) {
@@ -145,6 +153,8 @@ PICOTEST_CASE(testCase5, fixtureWithOptionalContext) {
     PICOTEST_VERIFY(staticVar == 3);    /* Passes */
     PICOTEST_ASSERT(PASSES);            /* Passes */
 }
+
+
 ```
 
 ## Source
@@ -169,6 +179,8 @@ PICOTEST_SUITE(mainSuite,
 PICOTEST_SUITE(subSuite, 
     testCase4, testCase5
 )
+
+
 /*
  * Test fixtures.
  */
@@ -187,12 +199,14 @@ PICOTEST_FIXTURE_TEARDOWN(simpleFixture) {
     staticVar = 0;
     srand(clock());
 }
+
 /* Fixture context */
 PICOTEST_FIXTURE_CONTEXT(fixtureWithContext) {
     int var1;
     const char *var2;
     void *var3;
 };
+
 /* Fixture setup */
 PICOTEST_FIXTURE_SETUP(fixtureWithContext, context) {
     /* Initialize static stuff */
@@ -212,6 +226,7 @@ PICOTEST_FIXTURE_TEARDOWN(fixtureWithContext, context) {
     /* Cleanup fixture context */
     free(context->var3);
 }
+
 /* Fixture context */
 PICOTEST_FIXTURE_CONTEXT(fixtureWithOptionalContext) {
     void *buffer;
@@ -239,6 +254,8 @@ PICOTEST_FIXTURE_TEARDOWN(fixtureWithOptionalContext, context) {
         free(context->buffer);
     }
 }
+
+
 /*
  * Test cases.
  */
@@ -268,6 +285,7 @@ PICOTEST_CASE(testCase3, fixtureWithContext, context) {
     PICOTEST_VERIFY(context->var2 == NULL); /* Logs error and continue */
     PICOTEST_ASSERT(context->var3 == NULL); /* Logs error and abort */
 }
+
 /* Another test using **simpleFixture**. Tests need not belong to the same suite
  * to share a fixture. */
 PICOTEST_CASE(testCase4, simpleFixture) {
@@ -281,6 +299,8 @@ PICOTEST_CASE(testCase5, fixtureWithOptionalContext) {
     PICOTEST_VERIFY(staticVar == 3);    /* Passes */
     PICOTEST_ASSERT(PASSES);            /* Passes */
 }
+
+
 ```
 
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)

@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
   <compounddef id="struct_pico_test_metadata" kind="struct" language="C++" prot="public">
     <compoundname>PicoTestMetadata</compoundname>
     <includes refid="picotest_8h" local="no">picotest.h</includes>
-      <sectiondef kind="public-attrib">
+    <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="struct_pico_test_metadata_1a253651ce46bc33b206c12787e8ccb166" prot="public" static="no" mutable="no">
         <type>const char *</type>
         <definition>const char* PicoTestMetadata::name</definition>
         <argsstring></argsstring>
         <name>name</name>
+        <qualifiedname>PicoTestMetadata::name</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -23,6 +24,7 @@
         <definition>const char* PicoTestMetadata::file</definition>
         <argsstring></argsstring>
         <name>file</name>
+        <qualifiedname>PicoTestMetadata::file</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -37,6 +39,7 @@
         <definition>int PicoTestMetadata::line</definition>
         <argsstring></argsstring>
         <name>line</name>
+        <qualifiedname>PicoTestMetadata::line</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -47,10 +50,11 @@
         <location file="include/picotest.h" line="112" column="9" bodyfile="include/picotest.h" bodystart="112" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388" prot="public" static="no" mutable="no">
-        <type><ref refid="group__public__interface_1ga824e8707dfbd1726aa15beb5f27b957a" kindref="member">PicoTestProc</ref> *const</type>
+        <type><ref refid="group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9" kindref="member">PicoTestProc</ref> *const</type>
         <definition>PicoTestProc* const PicoTestMetadata::test</definition>
         <argsstring></argsstring>
         <name>test</name>
+        <qualifiedname>PicoTestMetadata::test</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -65,6 +69,7 @@
         <definition>int PicoTestMetadata::nbSubtests</definition>
         <argsstring></argsstring>
         <name>nbSubtests</name>
+        <qualifiedname>PicoTestMetadata::nbSubtests</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -79,6 +84,7 @@
         <definition>const struct PicoTestMetadata* * PicoTestMetadata::subtests</definition>
         <argsstring></argsstring>
         <name>subtests</name>
+        <qualifiedname>PicoTestMetadata::subtests</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -88,7 +94,7 @@
         </inbodydescription>
         <location file="include/picotest.h" line="116" column="9" bodyfile="include/picotest.h" bodystart="115" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>Test metadata. </para>
     </briefdescription>

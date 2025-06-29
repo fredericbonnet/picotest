@@ -25,6 +25,7 @@ void printTestCase(const char *name, int nb) {
 void printTestName(const char *name, int nb) {
     printf("%s\n", name);
 }
+
 /* Main test suite */
 #include "mainSuite.inc"
 
@@ -100,6 +101,7 @@ void printTestCase(const char *name, int nb) {
 void printTestName(const char *name, int nb) {
     printf("%s\n", name);
 }
+
 /* Main test suite */
 #include "mainSuite.inc"
 

@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
   <compounddef id="hooks_8c" kind="file" language="C++">
     <compoundname>hooks.c</compoundname>
     <briefdescription>
 <para>Example of PicoTest hooks, prints all events to stdout. </para>
     </briefdescription>
     <detaileddescription>
-<para><programlisting filename="hooks.c"><codeline></codeline>
-<codeline><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<para><programlisting filename="hooks.c"><codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="picotest_8h" kindref="compound">picotest.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>level<sp/>=<sp/>0;</highlight></codeline>
@@ -19,8 +19,8 @@
 <codeline><highlight class="comment"><sp/>*<sp/>Test<sp/>suite<sp/>hooks.</highlight></codeline>
 <codeline><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__test__suites_1ga881ee23cced7bc4df9427409dcb55254" kindref="member">PicoTestSuiteEnterProc</ref><sp/>enterTestSuite;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__suites_1ga4e09d95df5430205a201b5a02b522f25" kindref="member">PicoTestSuiteEnterProc</ref><sp/>enterTestSuite;</highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_SUITE_ENTER</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_SUITE_ENTER<sp/>enterTestSuite</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
@@ -29,8 +29,10 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;running<sp/>test<sp/>suite<sp/>%s<sp/>(%d<sp/>subtests)...\n&quot;</highlight><highlight class="normal">,<sp/>suiteName,<sp/>nb);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__test__suites_1gabc6f39019f0cde9f04812785aceaab09" kindref="member">PicoTestSuiteLeaveProc</ref><sp/>leaveTestSuite;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__suites_1ga5d8415df8755804fe1479ff21d17ed90" kindref="member">PicoTestSuiteLeaveProc</ref><sp/>leaveTestSuite;</highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_SUITE_LEAVE</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_SUITE_LEAVE<sp/>leaveTestSuite</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
@@ -39,8 +41,10 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;test<sp/>suite<sp/>%s<sp/>done<sp/>(%d<sp/>failures)\n&quot;</highlight><highlight class="normal">,<sp/>suiteName,<sp/>fail);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__test__suites_1gade4d2a7d8a611ca76c675607529a3edb" kindref="member">PicoTestSuiteBeforeSubtestProc</ref><sp/>beforeSubtest;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__suites_1ga7547327d267d2bad9362c7adcc96bb24" kindref="member">PicoTestSuiteBeforeSubtestProc</ref><sp/>beforeSubtest;</highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_SUITE_BEFORE_SUBTEST</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_SUITE_BEFORE_SUBTEST<sp/>beforeSubtest</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
@@ -50,8 +54,10 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;subtest<sp/>%s<sp/>(%d<sp/>out<sp/>of<sp/>%d)...\n&quot;</highlight><highlight class="normal">,<sp/>testName,<sp/>index+1,<sp/>nb);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__test__suites_1ga80efec0204108859c9ececa3921f6f76" kindref="member">PicoTestSuiteAfterSubtestProc</ref><sp/>afterSubtest;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__suites_1gabce697eb4326140f89b0546d773da31c" kindref="member">PicoTestSuiteAfterSubtestProc</ref><sp/>afterSubtest;</highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_SUITE_AFTER_SUBTEST</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_SUITE_AFTER_SUBTEST<sp/>afterSubtest</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
@@ -61,12 +67,14 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;=&gt;<sp/>subtest<sp/>%s<sp/>done<sp/>(%d<sp/>failed)...\n&quot;</highlight><highlight class="normal">,<sp/>testName,<sp/>sfail);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="comment">/*</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline><highlight class="comment"><sp/>*<sp/>Test<sp/>fixture<sp/>hooks.</highlight></codeline>
 <codeline><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__fixtures_1ga78ede622d468ebbe0bcc47698146ead9" kindref="member">PicoTestFixtureBeforeSetupProc</ref><sp/>beforeSetup;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga8aa61845d5a3f09e8d6df140a31c36d7" kindref="member">PicoTestFixtureBeforeSetupProc</ref><sp/>beforeSetup;</highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FIXTURE_BEFORE_SETUP</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FIXTURE_BEFORE_SETUP<sp/>beforeSetup</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
@@ -75,8 +83,10 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;fixture<sp/>%s<sp/>setup...&quot;</highlight><highlight class="normal">,<sp/>fixtureName);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__fixtures_1gae75749e42f2c93cfedae9220ad149e00" kindref="member">PicoTestFixtureAfterSetupProc</ref><sp/>afterSetup;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1ga0e4c1719160ac09c22d3b4ce06704962" kindref="member">PicoTestFixtureAfterSetupProc</ref><sp/>afterSetup;</highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FIXTURE_AFTER_SETUP</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FIXTURE_AFTER_SETUP<sp/>afterSetup</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
@@ -85,8 +95,10 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/>done\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>--level;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__fixtures_1ga154395391c0e95f5b08acaf38d2ef296" kindref="member">PicoTestFixtureBeforeTeardownProc</ref><sp/>beforeTeardown;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1gaf69eeeb219ed143a9a978d49850cb072" kindref="member">PicoTestFixtureBeforeTeardownProc</ref><sp/>beforeTeardown;</highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FIXTURE_BEFORE_TEARDOWN</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FIXTURE_BEFORE_TEARDOWN<sp/>beforeTeardown</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
@@ -95,8 +107,10 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;fixture<sp/>%s<sp/>teardown...&quot;</highlight><highlight class="normal">,<sp/>fixtureName);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__fixtures_1gad1e2073b337cd5697af642ce44c98db4" kindref="member">PicoTestFixtureAfterTeardownProc</ref><sp/>afterTeardown;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__fixtures_1gaf955a2ec76f0278eac70de7315ecb844" kindref="member">PicoTestFixtureAfterTeardownProc</ref><sp/>afterTeardown;</highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FIXTURE_AFTER_TEARDOWN</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FIXTURE_AFTER_TEARDOWN<sp/>afterTeardown</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
@@ -105,12 +119,14 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/>done\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>--level;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="comment">/*</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline><highlight class="comment"><sp/>*<sp/>Test<sp/>case<sp/>hooks.</highlight></codeline>
 <codeline><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__test__cases_1ga0af0a0ec6d2bbee706b56fea6f60126e" kindref="member">PicoTestCaseEnterProc</ref><sp/>enterTestCase;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__cases_1ga2148fa53887bde18878299c0941d9844" kindref="member">PicoTestCaseEnterProc</ref><sp/>enterTestCase;</highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_CASE_ENTER</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_CASE_ENTER<sp/>enterTestCase</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
@@ -119,8 +135,10 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;running<sp/>test<sp/>case<sp/>%s...\n&quot;</highlight><highlight class="normal">,<sp/>testName);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__test__cases_1gacce6ae69ea5064e39e3c56915978609e" kindref="member">PicoTestCaseLeaveProc</ref><sp/>leaveTestCase;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__test__cases_1ga2649b7563a8a3c14c93f310cb6699185" kindref="member">PicoTestCaseLeaveProc</ref><sp/>leaveTestCase;</highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_CASE_LEAVE</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_CASE_LEAVE<sp/>leaveTestCase</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
@@ -129,12 +147,14 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;test<sp/>case<sp/>%s<sp/>done<sp/>(%d<sp/>failures)\n&quot;</highlight><highlight class="normal">,<sp/>testName,<sp/>fail);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="comment">/*</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline><highlight class="comment"><sp/>*<sp/>Assertion<sp/>hooks.</highlight></codeline>
 <codeline><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__assertions_1ga2011048ceed2457e95498573d0730eaf" kindref="member">PicoTestAssertBeforeProc</ref><sp/>beforeAssert;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__assertions_1ga507d93a48b3c01ec9c43499d129d6db0" kindref="member">PicoTestAssertBeforeProc</ref><sp/>beforeAssert;</highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_ASSERT_BEFORE</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_ASSERT_BEFORE<sp/>beforeAssert</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
@@ -143,8 +163,10 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;before<sp/>assertion<sp/>%s(%s)...\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/>test);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="group__assertions_1ga9502bbfe9927766f12e8de83aa37b706" kindref="member">PicoTestAssertAfterProc</ref><sp/>afterAssert;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__assertions_1ga8f5650aa00db35bc50511fa2a01a45e7" kindref="member">PicoTestAssertAfterProc</ref><sp/>afterAssert;</highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_ASSERT_AFTER</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_ASSERT_AFTER<sp/>afterAssert</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
@@ -153,7 +175,9 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;after<sp/>assertion<sp/>%s(%s)<sp/>=&gt;<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/>test,<sp/>fail<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;fails&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;passes&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Main<sp/>test<sp/>suite<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Main<sp/>test<sp/>suite<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="main_suite_8inc" kindref="compound">mainSuite.inc</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>main()<sp/>{</highlight></codeline>
@@ -162,8 +186,8 @@
 </programlisting> </para>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"></codeline>
-<codeline lineno="9"><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="picotest_8h" kindref="compound">picotest.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>level<sp/>=<sp/>0;</highlight></codeline>
@@ -175,8 +199,8 @@
 <codeline lineno="18"><highlight class="comment"><sp/>*<sp/>Test<sp/>suite<sp/>hooks.</highlight></codeline>
 <codeline lineno="19"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><ref refid="group__test__suites_1ga881ee23cced7bc4df9427409dcb55254" kindref="member">PicoTestSuiteEnterProc</ref><sp/>enterTestSuite;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><ref refid="group__test__suites_1ga4e09d95df5430205a201b5a02b522f25" kindref="member">PicoTestSuiteEnterProc</ref><sp/>enterTestSuite;</highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_SUITE_ENTER</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_SUITE_ENTER<sp/>enterTestSuite</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
@@ -185,8 +209,10 @@
 <codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;running<sp/>test<sp/>suite<sp/>%s<sp/>(%d<sp/>subtests)...\n&quot;</highlight><highlight class="normal">,<sp/>suiteName,<sp/>nb);</highlight></codeline>
 <codeline lineno="31"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="36"><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><ref refid="group__test__suites_1gabc6f39019f0cde9f04812785aceaab09" kindref="member">PicoTestSuiteLeaveProc</ref><sp/>leaveTestSuite;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><ref refid="group__test__suites_1ga5d8415df8755804fe1479ff21d17ed90" kindref="member">PicoTestSuiteLeaveProc</ref><sp/>leaveTestSuite;</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_SUITE_LEAVE</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_SUITE_LEAVE<sp/>leaveTestSuite</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
@@ -195,8 +221,10 @@
 <codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;test<sp/>suite<sp/>%s<sp/>done<sp/>(%d<sp/>failures)\n&quot;</highlight><highlight class="normal">,<sp/>suiteName,<sp/>fail);</highlight></codeline>
 <codeline lineno="45"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="50"><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><ref refid="group__test__suites_1gade4d2a7d8a611ca76c675607529a3edb" kindref="member">PicoTestSuiteBeforeSubtestProc</ref><sp/>beforeSubtest;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><ref refid="group__test__suites_1ga7547327d267d2bad9362c7adcc96bb24" kindref="member">PicoTestSuiteBeforeSubtestProc</ref><sp/>beforeSubtest;</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_SUITE_BEFORE_SUBTEST</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_SUITE_BEFORE_SUBTEST<sp/>beforeSubtest</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="54"><highlight class="normal"></highlight></codeline>
@@ -206,8 +234,10 @@
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;subtest<sp/>%s<sp/>(%d<sp/>out<sp/>of<sp/>%d)...\n&quot;</highlight><highlight class="normal">,<sp/>testName,<sp/>index+1,<sp/>nb);</highlight></codeline>
 <codeline lineno="60"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="65"><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><ref refid="group__test__suites_1ga80efec0204108859c9ececa3921f6f76" kindref="member">PicoTestSuiteAfterSubtestProc</ref><sp/>afterSubtest;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><ref refid="group__test__suites_1gabce697eb4326140f89b0546d773da31c" kindref="member">PicoTestSuiteAfterSubtestProc</ref><sp/>afterSubtest;</highlight></codeline>
 <codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_SUITE_AFTER_SUBTEST</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_SUITE_AFTER_SUBTEST<sp/>afterSubtest</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="69"><highlight class="normal"></highlight></codeline>
@@ -217,12 +247,14 @@
 <codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;=&gt;<sp/>subtest<sp/>%s<sp/>done<sp/>(%d<sp/>failed)...\n&quot;</highlight><highlight class="normal">,<sp/>testName,<sp/>sfail);</highlight></codeline>
 <codeline lineno="75"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="79"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline lineno="80"><highlight class="comment"><sp/>*<sp/>Test<sp/>fixture<sp/>hooks.</highlight></codeline>
 <codeline lineno="81"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="82"><highlight class="normal"></highlight></codeline>
-<codeline lineno="84"><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><ref refid="group__fixtures_1ga78ede622d468ebbe0bcc47698146ead9" kindref="member">PicoTestFixtureBeforeSetupProc</ref><sp/>beforeSetup;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><ref refid="group__fixtures_1ga8aa61845d5a3f09e8d6df140a31c36d7" kindref="member">PicoTestFixtureBeforeSetupProc</ref><sp/>beforeSetup;</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FIXTURE_BEFORE_SETUP</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="87"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FIXTURE_BEFORE_SETUP<sp/>beforeSetup</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="88"><highlight class="normal"></highlight></codeline>
@@ -231,8 +263,10 @@
 <codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
 <codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;fixture<sp/>%s<sp/>setup...&quot;</highlight><highlight class="normal">,<sp/>fixtureName);</highlight></codeline>
 <codeline lineno="93"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="98"><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><ref refid="group__fixtures_1gae75749e42f2c93cfedae9220ad149e00" kindref="member">PicoTestFixtureAfterSetupProc</ref><sp/>afterSetup;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><ref refid="group__fixtures_1ga0e4c1719160ac09c22d3b4ce06704962" kindref="member">PicoTestFixtureAfterSetupProc</ref><sp/>afterSetup;</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FIXTURE_AFTER_SETUP</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="101"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FIXTURE_AFTER_SETUP<sp/>afterSetup</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="102"><highlight class="normal"></highlight></codeline>
@@ -241,8 +275,10 @@
 <codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/>done\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>--level;</highlight></codeline>
 <codeline lineno="107"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="112"><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><ref refid="group__fixtures_1ga154395391c0e95f5b08acaf38d2ef296" kindref="member">PicoTestFixtureBeforeTeardownProc</ref><sp/>beforeTeardown;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><ref refid="group__fixtures_1gaf69eeeb219ed143a9a978d49850cb072" kindref="member">PicoTestFixtureBeforeTeardownProc</ref><sp/>beforeTeardown;</highlight></codeline>
 <codeline lineno="114"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FIXTURE_BEFORE_TEARDOWN</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="115"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FIXTURE_BEFORE_TEARDOWN<sp/>beforeTeardown</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="116"><highlight class="normal"></highlight></codeline>
@@ -251,8 +287,10 @@
 <codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
 <codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;fixture<sp/>%s<sp/>teardown...&quot;</highlight><highlight class="normal">,<sp/>fixtureName);</highlight></codeline>
 <codeline lineno="121"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="126"><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><ref refid="group__fixtures_1gad1e2073b337cd5697af642ce44c98db4" kindref="member">PicoTestFixtureAfterTeardownProc</ref><sp/>afterTeardown;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><ref refid="group__fixtures_1gaf955a2ec76f0278eac70de7315ecb844" kindref="member">PicoTestFixtureAfterTeardownProc</ref><sp/>afterTeardown;</highlight></codeline>
 <codeline lineno="128"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_FIXTURE_AFTER_TEARDOWN</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="129"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_FIXTURE_AFTER_TEARDOWN<sp/>afterTeardown</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="130"><highlight class="normal"></highlight></codeline>
@@ -261,12 +299,14 @@
 <codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/>done\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>--level;</highlight></codeline>
 <codeline lineno="135"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="139"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline lineno="140"><highlight class="comment"><sp/>*<sp/>Test<sp/>case<sp/>hooks.</highlight></codeline>
 <codeline lineno="141"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="142"><highlight class="normal"></highlight></codeline>
-<codeline lineno="144"><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="145"><highlight class="normal"><ref refid="group__test__cases_1ga0af0a0ec6d2bbee706b56fea6f60126e" kindref="member">PicoTestCaseEnterProc</ref><sp/>enterTestCase;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><ref refid="group__test__cases_1ga2148fa53887bde18878299c0941d9844" kindref="member">PicoTestCaseEnterProc</ref><sp/>enterTestCase;</highlight></codeline>
 <codeline lineno="146"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_CASE_ENTER</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="147"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_CASE_ENTER<sp/>enterTestCase</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="148"><highlight class="normal"></highlight></codeline>
@@ -275,8 +315,10 @@
 <codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
 <codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;running<sp/>test<sp/>case<sp/>%s...\n&quot;</highlight><highlight class="normal">,<sp/>testName);</highlight></codeline>
 <codeline lineno="153"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="158"><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="159"><highlight class="normal"><ref refid="group__test__cases_1gacce6ae69ea5064e39e3c56915978609e" kindref="member">PicoTestCaseLeaveProc</ref><sp/>leaveTestCase;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><ref refid="group__test__cases_1ga2649b7563a8a3c14c93f310cb6699185" kindref="member">PicoTestCaseLeaveProc</ref><sp/>leaveTestCase;</highlight></codeline>
 <codeline lineno="160"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_CASE_LEAVE</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="161"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_CASE_LEAVE<sp/>leaveTestCase</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="162"><highlight class="normal"></highlight></codeline>
@@ -285,12 +327,14 @@
 <codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
 <codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;test<sp/>case<sp/>%s<sp/>done<sp/>(%d<sp/>failures)\n&quot;</highlight><highlight class="normal">,<sp/>testName,<sp/>fail);</highlight></codeline>
 <codeline lineno="167"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="171"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline lineno="172"><highlight class="comment"><sp/>*<sp/>Assertion<sp/>hooks.</highlight></codeline>
 <codeline lineno="173"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="174"><highlight class="normal"></highlight></codeline>
-<codeline lineno="176"><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="177"><highlight class="normal"><ref refid="group__assertions_1ga2011048ceed2457e95498573d0730eaf" kindref="member">PicoTestAssertBeforeProc</ref><sp/>beforeAssert;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><ref refid="group__assertions_1ga507d93a48b3c01ec9c43499d129d6db0" kindref="member">PicoTestAssertBeforeProc</ref><sp/>beforeAssert;</highlight></codeline>
 <codeline lineno="178"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_ASSERT_BEFORE</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="179"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_ASSERT_BEFORE<sp/>beforeAssert</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="180"><highlight class="normal"></highlight></codeline>
@@ -299,8 +343,10 @@
 <codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>indent(level++);</highlight></codeline>
 <codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;before<sp/>assertion<sp/>%s(%s)...\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/>test);</highlight></codeline>
 <codeline lineno="185"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="190"><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="191"><highlight class="normal"><ref refid="group__assertions_1ga9502bbfe9927766f12e8de83aa37b706" kindref="member">PicoTestAssertAfterProc</ref><sp/>afterAssert;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Hook<sp/>declarations.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><ref refid="group__assertions_1ga8f5650aa00db35bc50511fa2a01a45e7" kindref="member">PicoTestAssertAfterProc</ref><sp/>afterAssert;</highlight></codeline>
 <codeline lineno="192"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>PICOTEST_ASSERT_AFTER</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="193"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_ASSERT_AFTER<sp/>afterAssert</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="194"><highlight class="normal"></highlight></codeline>
@@ -309,7 +355,9 @@
 <codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>indent(--level);</highlight></codeline>
 <codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;after<sp/>assertion<sp/>%s(%s)<sp/>=&gt;<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>type,<sp/>test,<sp/>fail<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;fails&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;passes&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="199"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="203"><highlight class="comment">/*<sp/>Main<sp/>test<sp/>suite<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Main<sp/>test<sp/>suite<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="204"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="main_suite_8inc" kindref="compound">mainSuite.inc</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="205"><highlight class="normal"></highlight></codeline>
 <codeline lineno="206"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>main()<sp/>{</highlight></codeline>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
   <compounddef id="main_suite_8inc" kind="file" language="C++">
     <compoundname>mainSuite.inc</compoundname>
     <briefdescription>
@@ -7,8 +7,8 @@
     </briefdescription>
     <detaileddescription>
 <para>Included by other examples to demonstrate how the same suite can be integrated in a variety of situations.</para>
-<para><programlisting filename="mainSuite.inc"><codeline></codeline>
-<codeline><highlight class="preprocessor">#include<sp/>&lt;malloc.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<para><programlisting filename="mainSuite.inc"><codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;malloc.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;time.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="picotest_8h" kindref="compound">picotest.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -17,7 +17,7 @@
 <codeline><highlight class="comment"><sp/>*<sp/>Test<sp/>suites.</highlight></codeline>
 <codeline><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Main<sp/>test<sp/>suite<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Main<sp/>test<sp/>suite<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><ref refid="group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f" kindref="member">PICOTEST_SUITE</ref>(mainSuite,<sp/></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>testCase1,<sp/>testCase2,<sp/>subSuite,<sp/>testCase3</highlight></codeline>
 <codeline><highlight class="normal">)</highlight></codeline>
@@ -26,14 +26,16 @@
 <codeline><highlight class="normal"><ref refid="group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f" kindref="member">PICOTEST_SUITE</ref>(subSuite,<sp/></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>testCase4,<sp/>testCase5</highlight></codeline>
 <codeline><highlight class="normal">)</highlight></codeline>
-<codeline><highlight class="comment">/*</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline><highlight class="comment"><sp/>*<sp/>Test<sp/>fixtures.</highlight></codeline>
 <codeline><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Static<sp/>var<sp/>initialized<sp/>by<sp/>fixture<sp/>setup<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>staticVar<sp/>=<sp/>0;</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Simple<sp/>fixture<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Simple<sp/>fixture<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><ref refid="group__fixtures_1ga1e98cba23391e13521100528ee1a2181" kindref="member">PICOTEST_FIXTURE_SETUP</ref>(simpleFixture)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>static<sp/>stuff<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>1;</highlight></codeline>
@@ -44,13 +46,15 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>0;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>srand(clock());</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><ref refid="group__fixtures_1ga983cffc937dca4baa55f59afad404f03" kindref="member">PICOTEST_FIXTURE_CONTEXT</ref>(fixtureWithContext)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>var1;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*var2;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*var3;</highlight></codeline>
 <codeline><highlight class="normal">};</highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Fixture<sp/>setup<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Fixture<sp/>setup<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><ref refid="group__fixtures_1ga1e98cba23391e13521100528ee1a2181" kindref="member">PICOTEST_FIXTURE_SETUP</ref>(fixtureWithContext,<sp/>context)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>static<sp/>stuff<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>2;</highlight></codeline>
@@ -69,7 +73,8 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Cleanup<sp/>fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>free(context-&gt;var3);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><ref refid="group__fixtures_1ga983cffc937dca4baa55f59afad404f03" kindref="member">PICOTEST_FIXTURE_CONTEXT</ref>(fixtureWithOptionalContext)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*buffer;</highlight></codeline>
 <codeline><highlight class="normal">};</highlight></codeline>
@@ -96,11 +101,13 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(context-&gt;buffer);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="comment">/*</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline><highlight class="comment"><sp/>*<sp/>Test<sp/>cases.</highlight></codeline>
 <codeline><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="preprocessor">#define<sp/>FAILS<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FAILS<sp/>0</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PASSES<sp/>1</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Simple<sp/>test<sp/>with<sp/>no<sp/>fixture<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -118,14 +125,15 @@
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Test<sp/>with<sp/>fixture<sp/>and<sp/>context.<sp/>Tests<sp/>belonging<sp/>to<sp/>the<sp/>same<sp/>suite<sp/>don&apos;t<sp/>have</highlight></codeline>
-<codeline><highlight class="comment"><sp/>*<sp/>to<sp/>share<sp/>the<sp/>same<sp/>suite.<sp/>*/</highlight></codeline>
+<codeline><highlight class="comment"><sp/>*<sp/>to<sp/>share<sp/>the<sp/>same<sp/>suite.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><ref refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kindref="member">PICOTEST_CASE</ref>(testCase3,<sp/>fixtureWithContext,<sp/>context)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" kindref="member">PICOTEST_ASSERT</ref>(staticVar<sp/>==<sp/>2);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" kindref="member">PICOTEST_ASSERT</ref>(context-&gt;var1<sp/>==<sp/>1);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gacd07b017f38d1e3ad784f369345357a2" kindref="member">PICOTEST_VERIFY</ref>(context-&gt;var2<sp/>==<sp/>NULL);<sp/></highlight><highlight class="comment">/*<sp/>Logs<sp/>error<sp/>and<sp/>continue<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" kindref="member">PICOTEST_ASSERT</ref>(context-&gt;var3<sp/>==<sp/>NULL);<sp/></highlight><highlight class="comment">/*<sp/>Logs<sp/>error<sp/>and<sp/>abort<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="comment">/*<sp/>Another<sp/>test<sp/>using<sp/>**simpleFixture**.<sp/>Tests<sp/>need<sp/>not<sp/>belong<sp/>to<sp/>the<sp/>same<sp/>suite</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Another<sp/>test<sp/>using<sp/>**simpleFixture**.<sp/>Tests<sp/>need<sp/>not<sp/>belong<sp/>to<sp/>the<sp/>same<sp/>suite</highlight></codeline>
 <codeline><highlight class="comment"><sp/>*<sp/>to<sp/>share<sp/>a<sp/>fixture.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><ref refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kindref="member">PICOTEST_CASE</ref>(testCase4,<sp/>simpleFixture)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gacd07b017f38d1e3ad784f369345357a2" kindref="member">PICOTEST_VERIFY</ref>(staticVar<sp/>==<sp/>1);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -133,16 +141,18 @@
 <codeline><highlight class="normal">}</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>This<sp/>test<sp/>uses<sp/>a<sp/>fixture<sp/>that<sp/>requires<sp/>a<sp/>context.<sp/>In<sp/>this<sp/>case<sp/>the<sp/>context</highlight></codeline>
-<codeline><highlight class="comment"><sp/>*<sp/>passed<sp/>to<sp/>the<sp/>fixture<sp/>setup<sp/>and<sp/>teardown<sp/>functions<sp/>is<sp/>NULL.<sp/>*/</highlight></codeline>
+<codeline><highlight class="comment"><sp/>*<sp/>passed<sp/>to<sp/>the<sp/>fixture<sp/>setup<sp/>and<sp/>teardown<sp/>functions<sp/>is<sp/>NULL.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><ref refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kindref="member">PICOTEST_CASE</ref>(testCase5,<sp/>fixtureWithOptionalContext)<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gacd07b017f38d1e3ad784f369345357a2" kindref="member">PICOTEST_VERIFY</ref>(staticVar<sp/>==<sp/>3);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" kindref="member">PICOTEST_ASSERT</ref>(PASSES);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
 </programlisting> </para>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"></codeline>
-<codeline lineno="10"><highlight class="preprocessor">#include<sp/>&lt;malloc.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;malloc.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;time.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="picotest_8h" kindref="compound">picotest.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -151,7 +161,7 @@
 <codeline lineno="16"><highlight class="comment"><sp/>*<sp/>Test<sp/>suites.</highlight></codeline>
 <codeline lineno="17"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="comment">/*<sp/>Main<sp/>test<sp/>suite<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Main<sp/>test<sp/>suite<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"><ref refid="group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f" kindref="member">PICOTEST_SUITE</ref>(mainSuite,<sp/></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>testCase1,<sp/>testCase2,<sp/>subSuite,<sp/>testCase3</highlight></codeline>
 <codeline lineno="23"><highlight class="normal">)</highlight></codeline>
@@ -160,14 +170,16 @@
 <codeline lineno="26"><highlight class="normal"><ref refid="group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f" kindref="member">PICOTEST_SUITE</ref>(subSuite,<sp/></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>testCase4,<sp/>testCase5</highlight></codeline>
 <codeline lineno="28"><highlight class="normal">)</highlight></codeline>
-<codeline lineno="32"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline lineno="33"><highlight class="comment"><sp/>*<sp/>Test<sp/>fixtures.</highlight></codeline>
 <codeline lineno="34"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Static<sp/>var<sp/>initialized<sp/>by<sp/>fixture<sp/>setup<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>staticVar<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="comment">/*<sp/>Simple<sp/>fixture<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Simple<sp/>fixture<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><ref refid="group__fixtures_1ga1e98cba23391e13521100528ee1a2181" kindref="member">PICOTEST_FIXTURE_SETUP</ref>(simpleFixture)<sp/>{</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>static<sp/>stuff<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>1;</highlight></codeline>
@@ -178,13 +190,15 @@
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>srand(clock());</highlight></codeline>
 <codeline lineno="50"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="55"><highlight class="comment">/*<sp/>Fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="56"><highlight class="normal"><ref refid="group__fixtures_1ga983cffc937dca4baa55f59afad404f03" kindref="member">PICOTEST_FIXTURE_CONTEXT</ref>(fixtureWithContext)<sp/>{</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>var1;</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*var2;</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*var3;</highlight></codeline>
 <codeline lineno="60"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="63"><highlight class="comment">/*<sp/>Fixture<sp/>setup<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Fixture<sp/>setup<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><ref refid="group__fixtures_1ga1e98cba23391e13521100528ee1a2181" kindref="member">PICOTEST_FIXTURE_SETUP</ref>(fixtureWithContext,<sp/>context)<sp/>{</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>static<sp/>stuff<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>staticVar<sp/>=<sp/>2;</highlight></codeline>
@@ -203,7 +217,8 @@
 <codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Cleanup<sp/>fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>free(context-&gt;var3);</highlight></codeline>
 <codeline lineno="81"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="85"><highlight class="comment">/*<sp/>Fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Fixture<sp/>context<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="86"><highlight class="normal"><ref refid="group__fixtures_1ga983cffc937dca4baa55f59afad404f03" kindref="member">PICOTEST_FIXTURE_CONTEXT</ref>(fixtureWithOptionalContext)<sp/>{</highlight></codeline>
 <codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*buffer;</highlight></codeline>
 <codeline lineno="88"><highlight class="normal">};</highlight></codeline>
@@ -230,11 +245,13 @@
 <codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(context-&gt;buffer);</highlight></codeline>
 <codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="111"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="115"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline lineno="116"><highlight class="comment"><sp/>*<sp/>Test<sp/>cases.</highlight></codeline>
 <codeline lineno="117"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="118"><highlight class="normal"></highlight></codeline>
-<codeline lineno="120"><highlight class="preprocessor">#define<sp/>FAILS<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FAILS<sp/>0</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="121"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PASSES<sp/>1</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="122"><highlight class="normal"></highlight></codeline>
 <codeline lineno="123"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Simple<sp/>test<sp/>with<sp/>no<sp/>fixture<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -252,14 +269,15 @@
 <codeline lineno="135"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="136"><highlight class="normal"></highlight></codeline>
 <codeline lineno="137"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Test<sp/>with<sp/>fixture<sp/>and<sp/>context.<sp/>Tests<sp/>belonging<sp/>to<sp/>the<sp/>same<sp/>suite<sp/>don&apos;t<sp/>have</highlight></codeline>
-<codeline lineno="138"><highlight class="comment"><sp/>*<sp/>to<sp/>share<sp/>the<sp/>same<sp/>suite.<sp/>*/</highlight></codeline>
+<codeline lineno="138"><highlight class="comment"><sp/>*<sp/>to<sp/>share<sp/>the<sp/>same<sp/>suite.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="140"><highlight class="normal"><ref refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kindref="member">PICOTEST_CASE</ref>(testCase3,<sp/>fixtureWithContext,<sp/>context)<sp/>{</highlight></codeline>
 <codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" kindref="member">PICOTEST_ASSERT</ref>(staticVar<sp/>==<sp/>2);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" kindref="member">PICOTEST_ASSERT</ref>(context-&gt;var1<sp/>==<sp/>1);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gacd07b017f38d1e3ad784f369345357a2" kindref="member">PICOTEST_VERIFY</ref>(context-&gt;var2<sp/>==<sp/>NULL);<sp/></highlight><highlight class="comment">/*<sp/>Logs<sp/>error<sp/>and<sp/>continue<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" kindref="member">PICOTEST_ASSERT</ref>(context-&gt;var3<sp/>==<sp/>NULL);<sp/></highlight><highlight class="comment">/*<sp/>Logs<sp/>error<sp/>and<sp/>abort<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="145"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="148"><highlight class="comment">/*<sp/>Another<sp/>test<sp/>using<sp/>**simpleFixture**.<sp/>Tests<sp/>need<sp/>not<sp/>belong<sp/>to<sp/>the<sp/>same<sp/>suite</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Another<sp/>test<sp/>using<sp/>**simpleFixture**.<sp/>Tests<sp/>need<sp/>not<sp/>belong<sp/>to<sp/>the<sp/>same<sp/>suite</highlight></codeline>
 <codeline lineno="149"><highlight class="comment"><sp/>*<sp/>to<sp/>share<sp/>a<sp/>fixture.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="150"><highlight class="normal"><ref refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kindref="member">PICOTEST_CASE</ref>(testCase4,<sp/>simpleFixture)<sp/>{</highlight></codeline>
 <codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gacd07b017f38d1e3ad784f369345357a2" kindref="member">PICOTEST_VERIFY</ref>(staticVar<sp/>==<sp/>1);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
@@ -267,11 +285,13 @@
 <codeline lineno="153"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="154"><highlight class="normal"></highlight></codeline>
 <codeline lineno="155"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>This<sp/>test<sp/>uses<sp/>a<sp/>fixture<sp/>that<sp/>requires<sp/>a<sp/>context.<sp/>In<sp/>this<sp/>case<sp/>the<sp/>context</highlight></codeline>
-<codeline lineno="156"><highlight class="comment"><sp/>*<sp/>passed<sp/>to<sp/>the<sp/>fixture<sp/>setup<sp/>and<sp/>teardown<sp/>functions<sp/>is<sp/>NULL.<sp/>*/</highlight></codeline>
+<codeline lineno="156"><highlight class="comment"><sp/>*<sp/>passed<sp/>to<sp/>the<sp/>fixture<sp/>setup<sp/>and<sp/>teardown<sp/>functions<sp/>is<sp/>NULL.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="158"><highlight class="normal"><ref refid="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5" kindref="member">PICOTEST_CASE</ref>(testCase5,<sp/>fixtureWithOptionalContext)<sp/>{</highlight></codeline>
 <codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gacd07b017f38d1e3ad784f369345357a2" kindref="member">PICOTEST_VERIFY</ref>(staticVar<sp/>==<sp/>3);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__assertions_1gad71b76cf1173654acc95df79d1c7040b" kindref="member">PICOTEST_ASSERT</ref>(PASSES);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Passes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="161"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="examples/mainSuite.inc"/>
   </compounddef>

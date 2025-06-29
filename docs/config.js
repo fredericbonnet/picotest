@@ -9,17 +9,25 @@ mermaid.initialize({
 });
 function renderMermaid(code, link) {
   // Generate Mermaid SVG into container
+  const divId = "mermaid-" + mermaidId;
+  const svgId = "mermaid-svg-" + mermaidId;
+  mermaidId++;
   const div = document.createElement("div");
+  div.id = divId;
   div.className = "mermaid";
-  div.innerHTML = mermaid.render("mermaid-svg-" + mermaidId++, code);
+  div.innerHTML = "Rendering...";
+  mermaid.render(svgId, code).then((rendered) => {
+    const div = document.getElementById(divId);
+    div.innerHTML = rendered.svg;
 
-  // Convert SVG links to docsify format
-  const div2 = document.createElement("div");
-  div.querySelectorAll("a.clickable").forEach((a) => {
-    div2.innerHTML = link(a.getAttribute("href"));
-    a.setAttribute("href", div2.firstChild.getAttribute("href"));
+    // Convert SVG links to docsify format
+    const div2 = document.createElement("div");
+    div.querySelectorAll("a .clickable").forEach((clickable) => {
+      const a = clickable.parentElement;
+      div2.innerHTML = link(a.getAttribute("xlink:href"));
+      a.setAttribute("xlink:href", div2.firstChild.getAttribute("href"));
+    });
   });
-
   return div.outerHTML;
 }
 window.$docsify = {

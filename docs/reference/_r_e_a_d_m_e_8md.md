@@ -21,7 +21,7 @@ https://en.wikipedia.org/wiki/XUnit
 
 ## License
 
-PicoTest is released under the terms of the The 3-Clause BSD License:
+PicoTest is released under the terms of the 3-Clause BSD License:
 
 https://opensource.org/licenses/BSD-3-Clause
 
@@ -183,4 +183,6 @@ mechanism for plain C code.
 
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[private]: https://img.shields.io/badge/-private-red (private)
+[static]: https://img.shields.io/badge/-static-lightgrey (static)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
