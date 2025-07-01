@@ -94,11 +94,111 @@ ctest
 You can also run the suite executable `test_picotest` directly from the CMake
 output directory.
 
+## Package Management with Conan
+
+The easiest way to use PicoTest in your projects is through [Conan](https://conan.io/) package management.
+
+### Using PicoTest as a Dependency
+
+Create a `conanfile.txt` in your project:
+
+```ini
+[requires]
+picotest/1.4.1
+
+[generators]
+CMakeDeps
+CMakeToolchain
+```
+
+Then in your `CMakeLists.txt`:
+
+```cmake
+cmake_minimum_required(VERSION 3.15)
+project(my_tests LANGUAGES C)
+
+find_package(PicoTest REQUIRED)
+
+add_executable(my_test_runner test.c)
+target_link_libraries(my_test_runner PRIVATE PicoTest::PicoTest)
+
+# Optional: Enable automatic test discovery
+enable_testing()
+picotest_discover_tests(my_test_runner TEST_LIST_OPTION "-l")
+```
+
+Your `test.c`:
+
+```c
+#include <picotest.h>
+
+PICOTEST_CASE(testExample) {
+    PICOTEST_ASSERT(1 + 1 == 2, "Math should work");
+}
+
+PICOTEST_SUITE(testExample);
+
+int main() {
+    return picotest_main();
+}
+```
+
+Build and run:
+
+```bash
+conan install . --build=missing
+cmake --preset conan-release
+cmake --build . --config Release
+cd build/Release && ctest  # Or run your executable directly
+```
+
+### Local Development
+
+For PicoTest development and local packaging:
+
+```bash
+# Create local package
+conan create . --build=missing
+
+# For development iteration
+conan install . --build=missing
+cmake --preset conan-release
+cmake --build . --config Release
+```
+
+### Publishing
+
+To publish PicoTest to a Conan registry:
+
+```bash
+# Upload to your registry
+conan upload picotest/1.4.1 --all -r=your-registry
+```
+
+### Troubleshooting
+
+**Issue**: `picotest_discover_tests function not found`
+```bash
+# Solution: Ensure you're using find_package(PicoTest) and linking PicoTest::PicoTest
+find_package(PicoTest REQUIRED)
+target_link_libraries(your_target PRIVATE PicoTest::PicoTest)
+```
+
+**Issue**: `Cannot find package picotest/1.4.1`
+```bash
+# Solution: Create local package first
+conan create . --build=missing
+```
+
+**Issue**: `Traditional CMake setup not working`
+```bash
+# Solution: Use CMAKE_PREFIX_PATH (not CMAKE_MODULE_PATH)
+cmake -S . -B build -DCMAKE_PREFIX_PATH=/path/to/picotest
+```
+
 ## Integration with CMake
 
-PicoTest provides a modern CMake configuration for easier integration with
-other CMake projects. In particular, it comes with an auto-discovery script for
-CTest that makes use of the test traversal features of PicoTest.
+PicoTest also supports traditional CMake integration for manual setups.
 
 Add PicoTest to your `CMAKE_PREFIX_PATH`, and add the following line to your CMake project:
 
