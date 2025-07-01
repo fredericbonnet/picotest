@@ -104,7 +104,7 @@ Create a `conanfile.txt` in your project:
 
 ```ini
 [requires]
-picotest/1.4.1
+picotest/1.4.2
 
 [generators]
 CMakeDeps
@@ -172,7 +172,7 @@ To publish PicoTest to a Conan registry:
 
 ```bash
 # Upload to your registry
-conan upload picotest/1.4.1 --all -r=your-registry
+conan upload picotest/1.4.2 --all -r=your-registry
 ```
 
 ### Troubleshooting
@@ -184,7 +184,7 @@ find_package(PicoTest REQUIRED)
 target_link_libraries(your_target PRIVATE PicoTest::PicoTest)
 ```
 
-**Issue**: `Cannot find package picotest/1.4.1`
+**Issue**: `Cannot find package picotest/1.4.2`
 ```bash
 # Solution: Create local package first
 conan create . --build=missing
@@ -204,6 +204,13 @@ Add PicoTest to your `CMAKE_PREFIX_PATH`, and add the following line to your CMa
 
 ```cmake
 find_package(PicoTest)
+```
+
+To build with manual setup:
+
+```sh
+cmake -S . -B build -DCMAKE_PREFIX_PATH=/path/to/picotest
+cmake --build build --config Release
 ```
 
 You can then add the `PicoTest::PicoTest` dependency to your targets, e.g.:
