@@ -1,6 +1,6 @@
 from conan import ConanFile
 from conan.tools.cmake import cmake_layout
-from conan.tools.files import copy, save
+from conan.tools.files import copy
 import os
 
 
@@ -59,40 +59,8 @@ class PicoTestConan(ConanFile):
         copy(self, "PicoTestAddTests.cmake", src=self.source_folder, 
              dst=cmake_dir)
         copy(self, "FindPicoTest.cmake", src=self.source_folder, dst=cmake_dir)
-        
-        # Create PicoTestConfig.cmake for modern CMake
-        config_content = '''# PicoTest CMake configuration file
-include(CMakeFindDependencyMacro)
-
-# Set the path for PicoTestAddTests.cmake
-set(_PICOTEST_DISCOVER_TESTS_SCRIPT 
-    "${CMAKE_CURRENT_LIST_DIR}/PicoTestAddTests.cmake")
-
-# Include the CMake functions
-include("${CMAKE_CURRENT_LIST_DIR}/PicoTest.cmake")
-
-# Create the target
-if(NOT TARGET PicoTest::PicoTest)
-    add_library(PicoTest::PicoTest INTERFACE IMPORTED)
-    set_target_properties(PicoTest::PicoTest PROPERTIES
-        INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_LIST_DIR}/../include"
-    )
-endif()
-
-# Set variables for compatibility
-set(PicoTest_FOUND TRUE)
-set(PicoTest_INCLUDE_DIRS "${CMAKE_CURRENT_LIST_DIR}/../include")
-
-# Also create legacy PicoTest target (without namespace) for compatibility
-if(NOT TARGET PicoTest)
-    add_library(PicoTest INTERFACE IMPORTED)
-    set_target_properties(PicoTest PROPERTIES
-        INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_LIST_DIR}/../include"
-    )
-endif()
-'''
-        save(self, os.path.join(cmake_dir, "PicoTestConfig.cmake"), 
-             config_content)
+        copy(self, "PicoTestConfig.cmake", src=self.source_folder, 
+             dst=cmake_dir)
 
     def package_id(self):
         # Header-only package - no dependency on settings
