@@ -96,23 +96,22 @@ output directory.
 
 ## Integration with CMake
 
-PicoTest provides a CMake module definition for easier integration with
+PicoTest provides a modern CMake configuration for easier integration with
 other CMake projects. In particular, it comes with an auto-discovery script for
 CTest that makes use of the test traversal features of PicoTest.
 
-The file `FindPicoTest.cmake` is the module definition. Add this file to your
-`CMAKE_MODULE_PATH`, and add the following line to your CMake project:
+Add PicoTest to your `CMAKE_PREFIX_PATH`, and add the following line to your CMake project:
 
 ```cmake
 find_package(PicoTest)
 ```
 
-You can then add the `PicoTest` dependency to your targets, e.g.:
+You can then add the `PicoTest::PicoTest` dependency to your targets, e.g.:
 
 ```cmake
 add_executable(my_test_runner)
 target_link_libraries(my_test_runner
-    PRIVATE PicoTest
+    PRIVATE PicoTest::PicoTest
 )
 ```
 

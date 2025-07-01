@@ -58,7 +58,6 @@ class PicoTestConan(ConanFile):
         copy(self, "PicoTest.cmake", src=self.source_folder, dst=cmake_dir)
         copy(self, "PicoTestAddTests.cmake", src=self.source_folder, 
              dst=cmake_dir)
-        copy(self, "FindPicoTest.cmake", src=self.source_folder, dst=cmake_dir)
         copy(self, "PicoTestConfig.cmake", src=self.source_folder, 
              dst=cmake_dir)
 
