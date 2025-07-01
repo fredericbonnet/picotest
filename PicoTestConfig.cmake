@@ -16,11 +16,6 @@ if(NOT TARGET PicoTest::PicoTest)
     )
 endif()
 
-# Also create legacy PicoTest target (without namespace) for compatibility
-if(NOT TARGET PicoTest)
-    add_library(PicoTest ALIAS PicoTest::PicoTest)
-endif()
-
-# Set variables for compatibility
+# Set standard package variables
 set(PicoTest_FOUND TRUE)
 set(PicoTest_INCLUDE_DIRS "${CMAKE_CURRENT_LIST_DIR}/../include") 
