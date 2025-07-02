@@ -146,10 +146,27 @@ int main() {
 Build and run:
 
 ```bash
-conan install . --build=missing
-cmake --preset conan-release
-cmake --build . --config Release
-cd build/Release && ctest  # Or run your executable directly
+# Install dependencies
+conan install . --output-folder=build --build=missing
+
+# Configure and build
+cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=build/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
+cmake --build build --config Release
+
+# Run tests
+cd build && ctest  # Or run your executable directly
+```
+
+### Modern Conan 2.x Workflow
+
+For the cleanest experience with Conan 2.x, use the `--output-folder` flag to keep your project root clean:
+
+```bash
+# Clean build directory approach (recommended)
+mkdir build
+conan install . --output-folder=build --build=missing
+cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=build/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
+cmake --build build --config Release
 ```
 
 ### Local Development
@@ -161,9 +178,9 @@ For PicoTest development and local packaging:
 conan create . --build=missing
 
 # For development iteration
-conan install . --build=missing
-cmake --preset conan-release
-cmake --build . --config Release
+conan install . --output-folder=build --build=missing
+cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=build/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
+cmake --build build --config Release
 ```
 
 ### Publishing
@@ -194,6 +211,18 @@ conan create . --build=missing
 ```bash
 # Solution: Use CMAKE_PREFIX_PATH (not CMAKE_MODULE_PATH)
 cmake -S . -B build -DCMAKE_PREFIX_PATH=/path/to/picotest
+```
+
+**Issue**: `Conan-generated files cluttering project root`
+```bash
+# Solution: Use --output-folder flag (Conan 2.x)
+conan install . --output-folder=build --build=missing
+```
+
+**Issue**: `CMake can't find conan_toolchain.cmake`
+```bash
+# Solution: Ensure you're pointing to the correct toolchain file in build directory
+cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=build/conan_toolchain.cmake
 ```
 
 ## Integration with CMake

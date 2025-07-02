@@ -40,6 +40,7 @@ class PicoTestConan(ConanFile):
         self.cpp_info.set_property("cmake_module_file_name", "PicoTest")
         self.cpp_info.set_property("cmake_file_name", "PicoTest")
         self.cpp_info.set_property("cmake_target_name", "PicoTest::PicoTest")
+        self.cpp_info.set_property("cmake_build_modules", ["cmake/PicoTest.cmake"])
         
         # CMake build directories
         self.cpp_info.builddirs = ["cmake"]
