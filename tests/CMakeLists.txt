@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.11)
 
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/..)
+set(CMAKE_PREFIX_PATH ${CMAKE_CURRENT_SOURCE_DIR}/..)
 
 project(picotest_examples LANGUAGES C)
 
@@ -27,7 +27,7 @@ target_sources(test_picotest
 )
 target_link_libraries(test_picotest
     PRIVATE
-        PicoTest
+        PicoTest::PicoTest
 )
 enable_testing()
 picotest_discover_tests(test_picotest
