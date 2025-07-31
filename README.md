@@ -140,6 +140,22 @@ picotest_discover_tests(my_test_runner
 )
 ```
 
+## Integration with Conan
+
+PicoTest provides a Conan 2 recipe for easier dependency management. To create
+the PicoTest package locally:
+
+```sh
+conan create . --build=missing
+```
+
+You can then add it to your project requirements (`conanfile.txt`):
+
+```
+[requires]
+picotest/1.4.2
+```
+
 ## Development
 
 PicoTest was developed on Windows 10 and Linux Ubuntu 16.04 using the following
@@ -166,3 +182,7 @@ mechanism for plain C code.
 [seaborg]: https://github.com/fredericbonnet/seaborg
 [docsify]: https://docsify.js.org/
 [node.js]: https://nodejs.org/
+
+```
+
+```
