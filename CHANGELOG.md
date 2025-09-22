@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## Fixed
+
+- Fix MSVC `__VA_ARGS__` handling with newest compiler versions
+
 ## [1.4.3] - 2025-07-31
 
 ### Added

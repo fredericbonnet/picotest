@@ -52,12 +52,13 @@
 #include <stdarg.h>
 #include <string.h>
 
-#if defined(_MSC_VER)
+#if !defined(_MSVC_TRADITIONAL) || _MSVC_TRADITIONAL
 /** \internal
- * MSVC is buggy wrt. (__VA_ARGS__) syntax. The workaround involves the use of a
- * dummy macro before the parentheses. See the following for an alternate
- * solution:
- *      http://www.gamedev.net/community/forums/topic.asp?topic_id=567686
+ * Old MSVC preprocessor is buggy wrt. (__VA_ARGS__) syntax. The workaround
+ * involves the use of a dummy macro before the parentheses.
+ *
+ * See:
+ *      https://learn.microsoft.com/en-us/cpp/preprocessor/preprocessor-experimental-overview?view=msvc-170
  */
 #define _PICOTEST_PARENS
 #endif /* defined(_MSC_VER) */
