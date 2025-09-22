@@ -6,7 +6,7 @@ import os
 
 class PicoTestConan(ConanFile):
     name = "picotest"
-    version = "1.4.3"
+    version = "1.4.4"
     description = ("PicoTest is a single-file unit testing framework for C "
                    "programs that follows the xUnit principles")
     license = "BSD-3-Clause"

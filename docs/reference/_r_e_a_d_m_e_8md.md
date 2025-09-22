@@ -204,6 +204,6 @@ mechanism for plain C code.
 ```
 
 
-[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)

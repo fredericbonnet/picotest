@@ -7,24 +7,13 @@
   * [test](struct_pico_test_metadata.md#struct_pico_test_metadata_1a3f209675beb238cc9a2caf31996c3388) Variable
   * [nbSubtests](struct_pico_test_metadata.md#struct_pico_test_metadata_1a7dd93cc6b50428b9594d171c28a563c1) Variable
   * [subtests](struct_pico_test_metadata.md#struct_pico_test_metadata_1a543874ce98d5f3516e4e5bda6f4e61a3) Variable
+* [logger.c](logger_8c.md#logger_8c) File
 * [fixtures.c](fixtures_8c.md#fixtures_8c) File
 * [filter.c](filter_8c.md#filter_8c) File
 * [hooks.c](hooks_8c.md#hooks_8c) File
-* [logger.c](logger_8c.md#logger_8c) File
-* [mainSuite.inc](main_suite_8inc.md#main_suite_8inc) File
-* [tags.c](tags_8c.md#tags_8c) File
 * [traverse.c](traverse_8c.md#traverse_8c) File
-* [Assertions](group__assertions.md#group__assertions) Module
-  * [PicoTestAssertBeforeProc](group__assertions.md#group__assertions_1ga507d93a48b3c01ec9c43499d129d6db0) Typedef
-  * [PicoTestAssertAfterProc](group__assertions.md#group__assertions_1ga8f5650aa00db35bc50511fa2a01a45e7) Typedef
-  * [PICOTEST\_ASSERT\_BEFORE\_DEFAULT](group__assertions.md#group__assertions_1ga331ef495337f7e2aae8be15cfd2a170a) Macro
-  * [PICOTEST\_ASSERT\_BEFORE](group__assertions.md#group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb) Macro
-  * [PICOTEST\_ASSERT\_AFTER\_DEFAULT](group__assertions.md#group__assertions_1gab1f1711109e4a8443a61c228194a6825) Macro
-  * [PICOTEST\_ASSERT\_AFTER](group__assertions.md#group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934) Macro
-  * [PICOTEST\_ASSERT](group__assertions.md#group__assertions_1gad71b76cf1173654acc95df79d1c7040b) Macro
-  * [PICOTEST\_VERIFY](group__assertions.md#group__assertions_1gacd07b017f38d1e3ad784f369345357a2) Macro
-  * [PICOTEST\_FAILURE](group__assertions.md#group__assertions_1ga89a35f18021df570967bb707a8537f3b) Macro
-  * [PICOTEST\_ABORT](group__assertions.md#group__assertions_1ga62031fa5f6f86e517565b77a1fa37f59) Macro
+* [mainSuite.inc](main_suite_8inc.md#main_suite_8inc) File
+* [README.md](_r_e_a_d_m_e_8md.md#_r_e_a_d_m_e_8md) File
 * [Public interface](group__public__interface.md#group__public__interface) Module
   * [PicoTestFilterResult](group__public__interface.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc) Enumeration type
   * [PICOTEST\_FILTER\_SKIP](group__public__interface.md#group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca0ee37a1cf8a2347fb3c42636dfb80b1c) Enumerator
@@ -51,7 +40,18 @@
   * [PICOTEST\_VERSION\_MAJOR](group__public__interface.md#group__public__interface_1ga9ea29549254cbe44f25ef974d0458e57) Macro
   * [PICOTEST\_VERSION\_MINOR](group__public__interface.md#group__public__interface_1ga6488c76f8a06a1a8222c2309b170bd1d) Macro
   * [PICOTEST\_VERSION\_PATCH](group__public__interface.md#group__public__interface_1gafc9d1ab6d8cced95f3560c3a006d8005) Macro
-* [README.md](_r_e_a_d_m_e_8md.md#_r_e_a_d_m_e_8md) File
+* [tags.c](tags_8c.md#tags_8c) File
+* [Assertions](group__assertions.md#group__assertions) Module
+  * [PicoTestAssertBeforeProc](group__assertions.md#group__assertions_1ga507d93a48b3c01ec9c43499d129d6db0) Typedef
+  * [PicoTestAssertAfterProc](group__assertions.md#group__assertions_1ga8f5650aa00db35bc50511fa2a01a45e7) Typedef
+  * [PICOTEST\_ASSERT\_BEFORE\_DEFAULT](group__assertions.md#group__assertions_1ga331ef495337f7e2aae8be15cfd2a170a) Macro
+  * [PICOTEST\_ASSERT\_BEFORE](group__assertions.md#group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb) Macro
+  * [PICOTEST\_ASSERT\_AFTER\_DEFAULT](group__assertions.md#group__assertions_1gab1f1711109e4a8443a61c228194a6825) Macro
+  * [PICOTEST\_ASSERT\_AFTER](group__assertions.md#group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934) Macro
+  * [PICOTEST\_ASSERT](group__assertions.md#group__assertions_1gad71b76cf1173654acc95df79d1c7040b) Macro
+  * [PICOTEST\_VERIFY](group__assertions.md#group__assertions_1gacd07b017f38d1e3ad784f369345357a2) Macro
+  * [PICOTEST\_FAILURE](group__assertions.md#group__assertions_1ga89a35f18021df570967bb707a8537f3b) Macro
+  * [PICOTEST\_ABORT](group__assertions.md#group__assertions_1ga62031fa5f6f86e517565b77a1fa37f59) Macro
 * [Test Cases](group__test__cases.md#group__test__cases) Module
   * [PicoTestCaseEnterProc](group__test__cases.md#group__test__cases_1ga2148fa53887bde18878299c0941d9844) Typedef
   * [PicoTestCaseLeaveProc](group__test__cases.md#group__test__cases_1ga2649b7563a8a3c14c93f310cb6699185) Typedef
@@ -60,6 +60,7 @@
   * [PICOTEST\_CASE\_LEAVE\_DEFAULT](group__test__cases.md#group__test__cases_1ga5ff2295c5a324991c72a81bcfb949522) Macro
   * [PICOTEST\_CASE\_LEAVE](group__test__cases.md#group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a) Macro
   * [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5) Macro
+* [examples](dir_d28a4824dc47e487b107a5db32ef43c4.md#dir_d28a4824dc47e487b107a5db32ef43c4) Directory
 * [Test Fixtures](group__fixtures.md#group__fixtures) Module
   * [PicoTestFixtureBeforeSetupProc](group__fixtures.md#group__fixtures_1ga8aa61845d5a3f09e8d6df140a31c36d7) Typedef
   * [PicoTestFixtureAfterSetupProc](group__fixtures.md#group__fixtures_1ga0e4c1719160ac09c22d3b4ce06704962) Typedef
@@ -163,6 +164,5 @@
   * [PICOTEST\_SUITE\_AFTER\_SUBTEST\_DEFAULT](picotest_8h.md#group__test__suites_1ga0aa7b03502294fee8f3e5b4951027145) Macro
   * [PICOTEST\_SUITE\_AFTER\_SUBTEST](picotest_8h.md#group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24) Macro
   * [PICOTEST\_SUITE](picotest_8h.md#group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f) Macro
-* [examples](dir_d28a4824dc47e487b107a5db32ef43c4.md#dir_d28a4824dc47e487b107a5db32ef43c4) Directory
 * [include](dir_d44c64559bbebec7f509842c48db8b23.md#dir_d44c64559bbebec7f509842c48db8b23) Directory
 * [PicoTest: A minimalist unit testing framework for C programs](indexpage.md#indexpage) Page

@@ -664,10 +664,10 @@ PicoTest provides a way for client code to intercept test execution events on te
 
 
 
-#define PICOTEST_VERSION "1.4.3"
+#define PICOTEST_VERSION "1.4.4"
 #define PICOTEST_VERSION_MAJOR 1
 #define PICOTEST_VERSION_MINOR 4
-#define PICOTEST_VERSION_PATCH 3
+#define PICOTEST_VERSION_PATCH 4
 
 
 
@@ -1457,8 +1457,8 @@ typedef void(PicoTestSuiteAfterSubtestProc)(const char *suiteName, int nb,
 ```
 
 
-[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
 [private]: https://img.shields.io/badge/-private-red (private)
 [static]: https://img.shields.io/badge/-static-lightgrey (static)

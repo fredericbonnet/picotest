@@ -76,10 +76,10 @@
  * \{
  */
 
-#define PICOTEST_VERSION "1.4.3"
+#define PICOTEST_VERSION "1.4.4"
 #define PICOTEST_VERSION_MAJOR 1
 #define PICOTEST_VERSION_MINOR 4
-#define PICOTEST_VERSION_PATCH 3
+#define PICOTEST_VERSION_PATCH 4
 
 /*! \} End of Version */
 

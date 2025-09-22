@@ -201,10 +201,10 @@ PicoTest is released under the terms of the The 3-Clause BSD License:</para>
 <codeline lineno="65"><highlight class="normal"></highlight></codeline>
 <codeline lineno="70"><highlight class="normal"></highlight></codeline>
 <codeline lineno="78"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_VERSION<sp/>&quot;1.4.3&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_VERSION<sp/>&quot;1.4.4&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="80"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_VERSION_MAJOR<sp/>1</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="81"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_VERSION_MINOR<sp/>4</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="82"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_VERSION_PATCH<sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_VERSION_PATCH<sp/>4</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="83"><highlight class="normal"></highlight></codeline>
 <codeline lineno="85"><highlight class="normal"></highlight></codeline>
 <codeline lineno="90"><highlight class="normal"></highlight></codeline>

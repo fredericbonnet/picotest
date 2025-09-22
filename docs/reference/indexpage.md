@@ -378,8 +378,8 @@ The assertion mechanism relies on <code>setjmp()</code> / <code>longjmp()</code>
 
 * location {"type":"element","name":"location","attributes":{"file":"README.md"},"children":[]}
 
-[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
 [private]: https://img.shields.io/badge/-private-red (private)
 [static]: https://img.shields.io/badge/-static-lightgrey (static)
