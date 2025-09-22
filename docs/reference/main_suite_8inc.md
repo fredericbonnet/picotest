@@ -13,6 +13,7 @@ Included by other examples to demonstrate how the same suite can be integrated i
 
 
 
+
 ```cpp
 
 #include <malloc.h>
@@ -159,6 +160,7 @@ PICOTEST_CASE(testCase5, fixtureWithOptionalContext) {
 
 ## Source
 
+
 ```cpp
 
 #include <malloc.h>
@@ -302,6 +304,7 @@ PICOTEST_CASE(testCase5, fixtureWithOptionalContext) {
 
 
 ```
+
 
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)

@@ -4,7 +4,7 @@
 ![][C++]
 ![][public]
 
-**Definition**: `include/picotest.h` (line 109)
+**Definition**: `include/picotest.h` (line 110)
 
 Test metadata.
 
@@ -26,11 +26,13 @@ Test metadata.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 110)
+**Definition**: `include/picotest.h` (line 111)
+
 
 ```cpp
 const char* PicoTestMetadata::name
 ```
+
 
 
 
@@ -49,11 +51,13 @@ Test name.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 111)
+**Definition**: `include/picotest.h` (line 112)
+
 
 ```cpp
 const char* PicoTestMetadata::file
 ```
+
 
 
 
@@ -72,11 +76,13 @@ Test file location.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 112)
+**Definition**: `include/picotest.h` (line 113)
+
 
 ```cpp
 int PicoTestMetadata::line
 ```
+
 
 
 
@@ -95,7 +101,8 @@ Test line location.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 113)
+**Definition**: `include/picotest.h` (line 114)
+
 
 ```cpp
 PicoTestProc* const PicoTestMetadata::test
@@ -103,11 +110,12 @@ PicoTestProc* const PicoTestMetadata::test
 
 
 
+
 Test function.
 
 
 
-**Type**: [PicoTestProc](picotest_8h.md#group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9) *const
+**Type**: [PicoTestProc](group__public__interface.md#group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9) *const
 
 **TODO**:
 
@@ -118,11 +126,13 @@ Test function.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 114)
+**Definition**: `include/picotest.h` (line 115)
+
 
 ```cpp
 int PicoTestMetadata::nbSubtests
 ```
+
 
 
 
@@ -141,11 +151,13 @@ Number of subtests.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 116)
+**Definition**: `include/picotest.h` (line 117)
+
 
 ```cpp
 const struct PicoTestMetadata* * PicoTestMetadata::subtests
 ```
+
 
 
 

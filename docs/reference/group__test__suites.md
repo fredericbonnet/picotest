@@ -14,11 +14,13 @@ PicoTest provides a way for client code to intercept test execution events on te
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1469)
+**Definition**: `include/picotest.h` (line 1474)
+
 
 ```cpp
 typedef void PicoTestSuiteEnterProc(const char *suiteName, int nb)
 ```
+
 
 Function signature of test suite enter hooks.
 
@@ -36,6 +38,7 @@ Called before running the first subtest.
 
 
 **Usage**:
+
 
 ```cpp
 /* Hook declarations. */
@@ -68,11 +71,13 @@ void enterTestSuite(const char *suiteName, int nb) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1517)
+**Definition**: `include/picotest.h` (line 1522)
+
 
 ```cpp
 typedef void PicoTestSuiteLeaveProc(const char *suiteName, int nb, int fail)
 ```
+
 
 Function signature of test suite leave hooks.
 
@@ -84,6 +89,7 @@ Function signature of test suite leave hooks.
 
 
 **Usage**:
+
 
 ```cpp
 /* Hook declarations. */
@@ -116,11 +122,13 @@ void leaveTestSuite(const char *suiteName, int nb, int fail) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1571)
+**Definition**: `include/picotest.h` (line 1576)
+
 
 ```cpp
 typedef void PicoTestSuiteBeforeSubtestProc(const char *suiteName, int nb, int fail, int index, const char *testName)
 ```
+
 
 Function signature of test suite before subtest hooks.
 
@@ -141,6 +149,7 @@ Called before running each subtest.
 
 
 **Usage**:
+
 
 ```cpp
 /* Hook declarations. */
@@ -174,11 +183,13 @@ void beforeSubtest(const char *suiteName, int nb, int fail, int index,
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1628)
+**Definition**: `include/picotest.h` (line 1633)
+
 
 ```cpp
 typedef void PicoTestSuiteAfterSubtestProc(const char *suiteName, int nb, int fail, int index, const char *testName, int sfail)
 ```
+
 
 Function signature of test suite after subtest hooks.
 
@@ -200,6 +211,7 @@ Called before running each subtest.
 
 
 **Usage**:
+
 
 ```cpp
 /* Hook declarations. */
@@ -233,9 +245,11 @@ void afterSubtest(const char *suiteName, int nb, int fail, int index,
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_SUITE_ENTER_DEFAULT( suiteName ,nb )
 ```
+
 
 Default test suite enter hook.
 
@@ -257,9 +271,11 @@ Does nothing.
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_SUITE_ENTER
 ```
+
 
 Define the test suite enter hook.
 
@@ -274,6 +290,7 @@ The default hook does nothing. Redefine this macro to use a custom hook, which m
 
 
 **Usage**:
+
 
 ```cpp
 /* Hook declarations. */
@@ -306,9 +323,11 @@ void enterTestSuite(const char *suiteName, int nb) {
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_SUITE_LEAVE_DEFAULT( suiteName ,nb ,fail )
 ```
+
 
 Default test suite leave hook.
 
@@ -330,9 +349,11 @@ Does nothing.
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_SUITE_LEAVE
 ```
+
 
 Define the test suite leave hook.
 
@@ -353,6 +374,7 @@ The default hook does nothing. Redefine this macro to use a custom hook, which m
 
 
 **Usage**:
+
 
 ```cpp
 /* Hook declarations. */
@@ -385,9 +407,11 @@ void leaveTestSuite(const char *suiteName, int nb, int fail) {
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_SUITE_BEFORE_SUBTEST_DEFAULT( suiteName ,nb ,fail ,index ,testName )
 ```
+
 
 Default test suite before subtest hook.
 
@@ -409,9 +433,11 @@ Does nothing.
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_SUITE_BEFORE_SUBTEST
 ```
+
 
 Define the test suite before subset hook.
 
@@ -426,6 +452,7 @@ The default hook does nothing. Redefine this macro to use a custom hook, which m
 
 
 **Usage**:
+
 
 ```cpp
 /* Hook declarations. */
@@ -459,9 +486,11 @@ void beforeSubtest(const char *suiteName, int nb, int fail, int index,
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_SUITE_AFTER_SUBTEST_DEFAULT( suiteName ,nb ,fail ,index ,testName ,sfail )
 ```
+
 
 Default test suite after subtest hook.
 
@@ -483,9 +512,11 @@ Does nothing.
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_SUITE_AFTER_SUBTEST
 ```
+
 
 Define the test suite after subset hook.
 
@@ -500,6 +531,7 @@ The default hook does nothing. Redefine this macro to use a custom hook, which m
 
 
 **Usage**:
+
 
 ```cpp
 /* Hook declarations. */
@@ -535,9 +567,11 @@ void afterSubtest(const char *suiteName, int nb, int fail, int index,
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_SUITE( _suiteName ,... )
 ```
+
 
 Test suite declaration.
 
@@ -547,7 +581,7 @@ A test suite is a test function that is made of one or several subtests.
 
 
 
-This macro defines a [PicoTestProc](picotest_8h.md#group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9) of the given name that can be called directly.
+This macro defines a [PicoTestProc](group__public__interface.md#group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9) of the given name that can be called directly.
 
 
 
@@ -569,6 +603,7 @@ Number of failed tests.
 
 **Usage**:
 
+
 ```cpp
 /* Main test suite */
 PICOTEST_SUITE(mainSuite, 
@@ -587,12 +622,12 @@ PICOTEST_SUITE(subSuite,
 [mainSuite.inc](main_suite_8inc.md#main_suite_8inc)   Example of a simple PicoTest suite.    <br/>
 
 
-**See also**: [PicoTestProc](picotest_8h.md#group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9), [PICOTEST\_CASE](picotest_8h.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
+**See also**: [PicoTestProc](group__public__interface.md#group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9), [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
 
 
 
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
 [private]: https://img.shields.io/badge/-private-red (private)
 [static]: https://img.shields.io/badge/-static-lightgrey (static)
-[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)

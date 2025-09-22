@@ -14,11 +14,13 @@ PicoTest provides a way for client code to intercept assertions events. This can
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 905)
+**Definition**: `include/picotest.h` (line 910)
+
 
 ```cpp
 typedef void PicoTestAssertBeforeProc(const char *type, const char *test)
 ```
+
 
 Function signature of assert before hooks.
 
@@ -36,6 +38,7 @@ Called before running an assertion.
 
 
 **Usage**:
+
 
 ```cpp
 /* Hook declarations. */
@@ -57,7 +60,7 @@ void beforeAssert(const char *type, const char *test) {
 
 
 
-**See also**: [PICOTEST\_ASSERT\_BEFORE](picotest_8h.md#group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb)
+**See also**: [PICOTEST\_ASSERT\_BEFORE](group__assertions.md#group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb)
 
 
 
@@ -68,11 +71,13 @@ void beforeAssert(const char *type, const char *test) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 954)
+**Definition**: `include/picotest.h` (line 959)
+
 
 ```cpp
 typedef void PicoTestAssertAfterProc(const char *type, const char *test, int fail)
 ```
+
 
 Function signature of assert after hooks.
 
@@ -92,6 +97,7 @@ Called after running an assertion.
 
 **Usage**:
 
+
 ```cpp
 /* Hook declarations. */
 PicoTestAssertAfterProc afterAssert;
@@ -112,7 +118,7 @@ void afterAssert(const char *type, const char *test, int fail) {
 
 
 
-**See also**: [PICOTEST\_ASSERT\_AFTER](picotest_8h.md#group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934)
+**See also**: [PICOTEST\_ASSERT\_AFTER](group__assertions.md#group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934)
 
 
 
@@ -123,9 +129,11 @@ void afterAssert(const char *type, const char *test, int fail) {
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_ASSERT_BEFORE_DEFAULT( type ,test )
 ```
+
 
 Default assert before hook.
 
@@ -138,7 +146,7 @@ Does nothing.
 
 
 
-**See also**: [PicoTestAssertBeforeProc](picotest_8h.md#group__assertions_1ga507d93a48b3c01ec9c43499d129d6db0), [PICOTEST\_ASSERT\_BEFORE](picotest_8h.md#group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb)
+**See also**: [PicoTestAssertBeforeProc](group__assertions.md#group__assertions_1ga507d93a48b3c01ec9c43499d129d6db0), [PICOTEST\_ASSERT\_BEFORE](group__assertions.md#group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb)
 
 
 
@@ -147,13 +155,15 @@ Does nothing.
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_ASSERT_BEFORE
 ```
 
+
 Define the assert before hook.
 
-The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestAssertBeforeProc](picotest_8h.md#group__assertions_1ga507d93a48b3c01ec9c43499d129d6db0) signature.
+The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestAssertBeforeProc](group__assertions.md#group__assertions_1ga507d93a48b3c01ec9c43499d129d6db0) signature.
 
 
 
@@ -164,6 +174,7 @@ The default hook does nothing. Redefine this macro to use a custom hook, which m
 
 
 **Usage**:
+
 
 ```cpp
 /* Hook declarations. */
@@ -187,7 +198,7 @@ void beforeAssert(const char *type, const char *test) {
 
 
 
-**See also**: [PicoTestAssertBeforeProc](picotest_8h.md#group__assertions_1ga507d93a48b3c01ec9c43499d129d6db0), [PICOTEST\_ASSERT\_BEFORE\_DEFAULT](picotest_8h.md#group__assertions_1ga331ef495337f7e2aae8be15cfd2a170a), [PICOTEST\_ASSERT\_AFTER](picotest_8h.md#group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934)
+**See also**: [PicoTestAssertBeforeProc](group__assertions.md#group__assertions_1ga507d93a48b3c01ec9c43499d129d6db0), [PICOTEST\_ASSERT\_BEFORE\_DEFAULT](group__assertions.md#group__assertions_1ga331ef495337f7e2aae8be15cfd2a170a), [PICOTEST\_ASSERT\_AFTER](group__assertions.md#group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934)
 
 
 
@@ -196,9 +207,11 @@ void beforeAssert(const char *type, const char *test) {
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_ASSERT_AFTER_DEFAULT( type ,test ,fail )
 ```
+
 
 Default assert after hook.
 
@@ -211,7 +224,7 @@ Does nothing.
 
 
 
-**See also**: [PicoTestAssertAfterProc](picotest_8h.md#group__assertions_1ga8f5650aa00db35bc50511fa2a01a45e7), [PICOTEST\_ASSERT\_AFTER](picotest_8h.md#group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934)
+**See also**: [PicoTestAssertAfterProc](group__assertions.md#group__assertions_1ga8f5650aa00db35bc50511fa2a01a45e7), [PICOTEST\_ASSERT\_AFTER](group__assertions.md#group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934)
 
 
 
@@ -220,13 +233,15 @@ Does nothing.
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_ASSERT_AFTER
 ```
 
+
 Define the assert after hook.
 
-The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestAssertAfterProc](picotest_8h.md#group__assertions_1ga8f5650aa00db35bc50511fa2a01a45e7) signature.
+The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestAssertAfterProc](group__assertions.md#group__assertions_1ga8f5650aa00db35bc50511fa2a01a45e7) signature.
 
 
 
@@ -237,6 +252,7 @@ The default hook does nothing. Redefine this macro to use a custom hook, which m
 
 
 **Usage**:
+
 
 ```cpp
 /* Hook declarations. */
@@ -260,7 +276,7 @@ void afterAssert(const char *type, const char *test, int fail) {
 
 
 
-**See also**: [PicoTestAssertAfterProc](picotest_8h.md#group__assertions_1ga8f5650aa00db35bc50511fa2a01a45e7), [PICOTEST\_ASSERT\_AFTER\_DEFAULT](picotest_8h.md#group__assertions_1gab1f1711109e4a8443a61c228194a6825), [PICOTEST\_ASSERT\_BEFORE](picotest_8h.md#group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb)
+**See also**: [PicoTestAssertAfterProc](group__assertions.md#group__assertions_1ga8f5650aa00db35bc50511fa2a01a45e7), [PICOTEST\_ASSERT\_AFTER\_DEFAULT](group__assertions.md#group__assertions_1gab1f1711109e4a8443a61c228194a6825), [PICOTEST\_ASSERT\_BEFORE](group__assertions.md#group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb)
 
 
 
@@ -272,15 +288,17 @@ void afterAssert(const char *type, const char *test, int fail) {
 ![][private]
 ![][static]
 
-**Definition**: `include/picotest.h` (line 831)
+**Definition**: `include/picotest.h` (line 836)
+
 
 ```cpp
 int _picoTest_fail
 ```
 
+
 Internal failure counter.
 
-**See also**: [PICOTEST\_FAILURE](picotest_8h.md#group__assertions_1ga89a35f18021df570967bb707a8537f3b)
+**See also**: [PICOTEST\_FAILURE](group__assertions.md#group__assertions_1ga89a35f18021df570967bb707a8537f3b)
 
 
 
@@ -292,15 +310,17 @@ Internal failure counter.
 ![][private]
 ![][static]
 
-**Definition**: `include/picotest.h` (line 839)
+**Definition**: `include/picotest.h` (line 844)
+
 
 ```cpp
 jmp_buf* _picoTest_failureEnv
 ```
 
+
 Tag used by **setjmp()** and **longjmp()** to jump out of failed tests.
 
-**See also**: [PICOTEST\_ABORT](picotest_8h.md#group__assertions_1ga62031fa5f6f86e517565b77a1fa37f59), [PICOTEST\_CASE](picotest_8h.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
+**See also**: [PICOTEST\_ABORT](group__assertions.md#group__assertions_1ga62031fa5f6f86e517565b77a1fa37f59), [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
 
 
 
@@ -312,9 +332,11 @@ Tag used by **setjmp()** and **longjmp()** to jump out of failed tests.
 ![][private]
 ![][static]
 
+
 ```cpp
 static void _picoTest_assertFailed(PicoTestFailureLoggerProc *proc, const char *file, int line, const char *type, int count, const char *test,...)
 ```
+
 
 Called when an assertion fails.
 
@@ -331,13 +353,13 @@ Called when an assertion fails.
 
 
 
-**See also**: [PICOTEST\_ASSERT](picotest_8h.md#group__assertions_1gad71b76cf1173654acc95df79d1c7040b), [PICOTEST\_VERIFY](picotest_8h.md#group__assertions_1gacd07b017f38d1e3ad784f369345357a2)
+**See also**: [PICOTEST\_ASSERT](group__assertions.md#group__assertions_1gad71b76cf1173654acc95df79d1c7040b), [PICOTEST\_VERIFY](group__assertions.md#group__assertions_1gacd07b017f38d1e3ad784f369345357a2)
 
 
 
 **Parameters**:
 
-* [PicoTestFailureLoggerProc](picotest_8h.md#group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00) * **proc**
+* [PicoTestFailureLoggerProc](group__public__interface.md#group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00) * **proc**
 * const char * **file**
 * int **line**
 * const char * **type**
@@ -352,19 +374,21 @@ Called when an assertion fails.
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_ASSERT( x ,... )
 ```
 
+
 Hard assertion.
 
-Logs an error if the given value is false, then stops the test with [PICOTEST\_ABORT()](picotest_8h.md#group__assertions_1ga62031fa5f6f86e517565b77a1fa37f59).
+Logs an error if the given value is false, then stops the test with [PICOTEST\_ABORT()](group__assertions.md#group__assertions_1ga62031fa5f6f86e517565b77a1fa37f59).
 
 
 
 
 
-[PICOTEST\_FAILURE\_LOGGER()](picotest_8h.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48) is called with the **type** argument set to <code>"ASSERT"</code>.
+[PICOTEST\_FAILURE\_LOGGER()](group__public__interface.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48) is called with the **type** argument set to <code>"ASSERT"</code>.
 
 
 
@@ -389,7 +413,7 @@ Logs an error if the given value is false, then stops the test with [PICOTEST\_A
 
 
 
-**See also**: [PICOTEST\_FAILURE\_LOGGER](picotest_8h.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48), [PICOTEST\_ABORT](picotest_8h.md#group__assertions_1ga62031fa5f6f86e517565b77a1fa37f59), [PICOTEST\_VERIFY](picotest_8h.md#group__assertions_1gacd07b017f38d1e3ad784f369345357a2)
+**See also**: [PICOTEST\_FAILURE\_LOGGER](group__public__interface.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48), [PICOTEST\_ABORT](group__assertions.md#group__assertions_1ga62031fa5f6f86e517565b77a1fa37f59), [PICOTEST\_VERIFY](group__assertions.md#group__assertions_1gacd07b017f38d1e3ad784f369345357a2)
 
 
 
@@ -398,9 +422,11 @@ Logs an error if the given value is false, then stops the test with [PICOTEST\_A
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_VERIFY( x ,... )
 ```
+
 
 Soft assertion.
 
@@ -410,7 +436,7 @@ Logs an error if the given value is false, but let the test continue.
 
 
 
-[PICOTEST\_FAILURE\_LOGGER()](picotest_8h.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48) is called with the **type** argument set to <code>"VERIFY"</code>.
+[PICOTEST\_FAILURE\_LOGGER()](group__public__interface.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48) is called with the **type** argument set to <code>"VERIFY"</code>.
 
 
 
@@ -434,7 +460,7 @@ Logs an error if the given value is false, but let the test continue.
 
 
 
-**See also**: [PICOTEST\_FAILURE\_LOGGER](picotest_8h.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48), [PICOTEST\_ASSERT](picotest_8h.md#group__assertions_1gad71b76cf1173654acc95df79d1c7040b)
+**See also**: [PICOTEST\_FAILURE\_LOGGER](group__public__interface.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48), [PICOTEST\_ASSERT](group__assertions.md#group__assertions_1gad71b76cf1173654acc95df79d1c7040b)
 
 
 
@@ -443,13 +469,15 @@ Logs an error if the given value is false, but let the test continue.
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_FAILURE( type ,test ,... )
 ```
 
+
 Generic failure.
 
-[PICOTEST\_FAILURE\_LOGGER()](picotest_8h.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48) is called with the provided **type**, **test** and **msg** arguments.
+[PICOTEST\_FAILURE\_LOGGER()](group__public__interface.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48) is called with the provided **type**, **test** and **msg** arguments.
 
 
 
@@ -476,9 +504,11 @@ This can be used to implement custom testing logic.
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_ABORT(  )
 ```
+
 
 Abort a test case.
 
@@ -490,12 +520,12 @@ This can be used to implement custom testing logic.
 
 
 
-**See also**: [PICOTEST\_CASE](picotest_8h.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
+**See also**: [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
 
 
 
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
 [private]: https://img.shields.io/badge/-private-red (private)
 [static]: https://img.shields.io/badge/-static-lightgrey (static)
-[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)

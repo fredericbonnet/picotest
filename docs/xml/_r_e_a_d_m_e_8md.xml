@@ -105,23 +105,24 @@
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Integration<sp/>with<sp/>CMake</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">PicoTest<sp/>provides<sp/>a<sp/>CMake<sp/>module<sp/>definition<sp/>for<sp/>easier<sp/>integration<sp/>with</highlight></codeline>
+<codeline><highlight class="normal">PicoTest<sp/>provides<sp/>a<sp/>CMake<sp/>package<sp/>definition<sp/>for<sp/>easier<sp/>integration<sp/>with</highlight></codeline>
 <codeline><highlight class="normal">other<sp/>CMake<sp/>projects.<sp/>In<sp/>particular,<sp/>it<sp/>comes<sp/>with<sp/>an<sp/>auto-discovery<sp/>script<sp/>for</highlight></codeline>
 <codeline><highlight class="normal">CTest<sp/>that<sp/>makes<sp/>use<sp/>of<sp/>the<sp/>test<sp/>traversal<sp/>features<sp/>of<sp/>PicoTest.</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">The<sp/>file<sp/>`FindPicoTest.cmake`<sp/>is<sp/>the<sp/>module<sp/>definition.<sp/>Add<sp/>this<sp/>file<sp/>to<sp/>your</highlight></codeline>
-<codeline><highlight class="normal">`CMAKE_MODULE_PATH`,<sp/>and<sp/>add<sp/>the<sp/>following<sp/>line<sp/>to<sp/>your<sp/>CMake<sp/>project:</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>file<sp/>`PicoTestConfig.cmake`<sp/>is<sp/>the<sp/>package<sp/>config<sp/>file<sp/>at<sp/>the<sp/>root<sp/>of<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">source<sp/>repository.<sp/>Add<sp/>its<sp/>path<sp/>to<sp/>your<sp/>`CMAKE_PREFIX_PATH`,<sp/>and<sp/>add<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">following<sp/>line<sp/>to<sp/>your<sp/>CMake<sp/>project:</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">```cmake</highlight></codeline>
 <codeline><highlight class="normal">find_package(PicoTest)</highlight></codeline>
 <codeline><highlight class="normal">```</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">You<sp/>can<sp/>then<sp/>add<sp/>the<sp/>`PicoTest`<sp/>dependency<sp/>to<sp/>your<sp/>targets,<sp/>e.g.:</highlight></codeline>
+<codeline><highlight class="normal">You<sp/>can<sp/>then<sp/>add<sp/>the<sp/>`PicoTest::PicoTest`<sp/>dependency<sp/>to<sp/>your<sp/>targets,<sp/>e.g.:</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">```cmake</highlight></codeline>
 <codeline><highlight class="normal">add_executable(my_test_runner)</highlight></codeline>
 <codeline><highlight class="normal">target_link_libraries(my_test_runner</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>PRIVATE<sp/>PicoTest</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>PRIVATE<sp/>PicoTest::PicoTest</highlight></codeline>
 <codeline><highlight class="normal">)</highlight></codeline>
 <codeline><highlight class="normal">```</highlight></codeline>
 <codeline></codeline>
@@ -146,6 +147,22 @@
 <codeline><highlight class="normal">picotest_discover_tests(my_test_runner</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TEST_LIST_OPTION<sp/>&quot;-l&quot;</highlight></codeline>
 <codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Integration<sp/>with<sp/>Conan</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">PicoTest<sp/>provides<sp/>a<sp/>Conan<sp/>2<sp/>recipe<sp/>for<sp/>easier<sp/>dependency<sp/>management.<sp/>To<sp/>create</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>PicoTest<sp/>package<sp/>locally:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```sh</highlight></codeline>
+<codeline><highlight class="normal">conan<sp/>create<sp/>.<sp/>--build=missing</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">You<sp/>can<sp/>then<sp/>add<sp/>it<sp/>to<sp/>your<sp/>project<sp/>requirements<sp/>(`conanfile.txt`):</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">[requires]</highlight></codeline>
+<codeline><highlight class="normal">picotest/1.4.3</highlight></codeline>
 <codeline><highlight class="normal">```</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Development</highlight></codeline>
@@ -174,6 +191,10 @@
 <codeline><highlight class="normal">[seaborg]:<sp/>https://github.com/fredericbonnet/seaborg</highlight></codeline>
 <codeline><highlight class="normal">[docsify]:<sp/>https://docsify.js.org/</highlight></codeline>
 <codeline><highlight class="normal">[node.js]:<sp/>https://nodejs.org/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
     </programlisting>
     <location file="README.md"/>
   </compounddef>

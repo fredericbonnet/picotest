@@ -20,7 +20,7 @@
   },
   "homepage": "https://fredericbonnet.github.io/picotest",
   "devDependencies": {
-    "@seaborg/cli": "^0.6.0",
+    "@seaborg/cli": "^0.6.3",
     "copyfiles": "^2.4.0",
     "docsify": "^4.13.1",
     "docsify-cli": "^4.4.4",

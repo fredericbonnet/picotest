@@ -145,13 +145,13 @@ Tests</h1>
 </div><!-- fragment --><p>You can also run the suite executable <span class="tt">test_picotest</span> directly from the CMake output directory.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
 Integration with CMake</h1>
-<p>PicoTest provides a CMake module definition for easier integration with other CMake projects. In particular, it comes with an auto-discovery script for CTest that makes use of the test traversal features of PicoTest.</p>
-<p>The file <span class="tt">FindPicoTest.cmake</span> is the module definition. Add this file to your <span class="tt">CMAKE_MODULE_PATH</span>, and add the following line to your CMake project:</p>
+<p>PicoTest provides a CMake package definition for easier integration with other CMake projects. In particular, it comes with an auto-discovery script for CTest that makes use of the test traversal features of PicoTest.</p>
+<p>The file <span class="tt">PicoTestConfig.cmake</span> is the package config file at the root of the source repository. Add its path to your <span class="tt">CMAKE_PREFIX_PATH</span>, and add the following line to your CMake project:</p>
 <div class="fragment"><div class="line">find_package(PicoTest)</div>
-</div><!-- fragment --><p>You can then add the <span class="tt">PicoTest</span> dependency to your targets, e.g.:</p>
+</div><!-- fragment --><p>You can then add the <span class="tt">PicoTest::PicoTest</span> dependency to your targets, e.g.:</p>
 <div class="fragment"><div class="line">add_executable(my_test_runner)</div>
 <div class="line">target_link_libraries(my_test_runner</div>
-<div class="line">    PRIVATE PicoTest</div>
+<div class="line">    PRIVATE PicoTest::PicoTest</div>
 <div class="line">)</div>
 </div><!-- fragment --><p>If you also use CTest for test automation with <span class="tt">enable_testing()</span>, you can also call the provided <span class="tt">picotest_discover_tests</span> macro to integrate PicoTest test cases in your build process automatically. For example, assuming that the <span class="tt">my_test_runner</span> executable:</p>
 <ul>
@@ -169,6 +169,13 @@ Integration with CMake</h1>
 <div class="line">    TEST_LIST_OPTION &quot;-l&quot;</div>
 <div class="line">)</div>
 </div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+Integration with Conan</h1>
+<p>PicoTest provides a Conan 2 recipe for easier dependency management. To create the PicoTest package locally:</p>
+<div class="fragment"><div class="line">conan create . --build=missing</div>
+</div><!-- fragment --><p>You can then add it to your project requirements (<span class="tt">conanfile.txt</span>):</p>
+<div class="fragment"><div class="line">[requires]</div>
+<div class="line">picotest/1.4.3</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
 Development</h1>
 <p>PicoTest was developed on Windows 10 and Linux Ubuntu 16.04 using the following tools:</p>
 <ul>
@@ -178,8 +185,8 @@ Development</h1>
 <li>Linux toolchain: GCC 5.4.0</li>
 </ul>
 <p>It should work with any reasonably modern C compiler that supports variadic macros.</p>
-<p>The assertion mechanism relies on <span class="tt">setjmp()</span> / <span class="tt">longjmp()</span>. While these functions are discouraged for production code, their usage is acceptable in the context of unit testing: in our case, <span class="tt">longjmp()</span> is only called when an assertion fails, a situation where the actual process state is no longer reliable anyway. Moreover, they constitute the only standard exception handling mechanism for plain C code. </p>
-</div></div><!-- PageDoc -->
+<p>The assertion mechanism relies on <span class="tt">setjmp()</span> / <span class="tt">longjmp()</span>. While these functions are discouraged for production code, their usage is acceptable in the context of unit testing: in our case, <span class="tt">longjmp()</span> is only called when an assertion fails, a situation where the actual process state is no longer reliable anyway. Moreover, they constitute the only standard exception handling mechanism for plain C code.</p>
+<div class="fragment"></div><!-- fragment --> </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
 </div><!-- doc-content -->

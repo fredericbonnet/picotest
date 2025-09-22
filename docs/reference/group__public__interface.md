@@ -21,7 +21,8 @@ PicoTest provides a way for client code to select tests to be run using custom f
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 175)
+**Definition**: `include/picotest.h` (line 176)
+
 
 ```cpp
 enum PicoTestFilterResult {
@@ -32,6 +33,7 @@ enum PicoTestFilterResult {
 }
 ```
 
+
 Result of test filter functions.
 
 **Examples**:
@@ -41,7 +43,7 @@ Result of test filter functions.
 
 
 
-**See also**: [PicoTestFilterProc](picotest_8h.md#group__public__interface_1ga6d5c4a903f131bbed4913008d9e3b212)
+**See also**: [PicoTestFilterProc](group__public__interface.md#group__public__interface_1ga6d5c4a903f131bbed4913008d9e3b212)
 
 
 
@@ -78,15 +80,17 @@ Test matches the condition, run this test but filter its subtests.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 215)
+**Definition**: `include/picotest.h` (line 216)
+
 
 ```cpp
 typedef PicoTestFilterResult PicoTestFilterProc(PicoTestProc *test, const char *testName, const char *cond)
 ```
 
+
 Signature of test filter functions.
 
-A test called with a non- **NULL** condition must match this condition to be run. The test filter is set using the [PICOTEST\_FILTER](picotest_8h.md#group__public__interface_1gabd82de0bec174d972151cd122a0a03ff) macro.
+A test called with a non- **NULL** condition must match this condition to be run. The test filter is set using the [PICOTEST\_FILTER](group__public__interface.md#group__public__interface_1gabd82de0bec174d972151cd122a0a03ff) macro.
 
 
 
@@ -102,10 +106,11 @@ A test called with a non- **NULL** condition must match this condition to be run
 
 **Returns**:
 
-a [PicoTestFilterResult](picotest_8h.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc) value
+a [PicoTestFilterResult](group__public__interface.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc) value
 
 
 **Usage**:
+
 
 ```cpp
 /* Custom test filter declaration. */
@@ -133,11 +138,11 @@ PicoTestFilterResult matchSubstring(PicoTestProc *test, const char *testName, co
 
 
 
-**See also**: [PICOTEST\_SUITE](picotest_8h.md#group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f), [PICOTEST\_CASE](picotest_8h.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5), [PICOTEST\_FILTER](picotest_8h.md#group__public__interface_1gabd82de0bec174d972151cd122a0a03ff), [PicoTestFilterResult](picotest_8h.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc)
+**See also**: [PICOTEST\_SUITE](picotest_8h.md#group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f), [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5), [PICOTEST\_FILTER](group__public__interface.md#group__public__interface_1gabd82de0bec174d972151cd122a0a03ff), [PicoTestFilterResult](group__public__interface.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc)
 
 
 
-**Return type**: [PicoTestFilterResult](picotest_8h.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc)
+**Return type**: [PicoTestFilterResult](group__public__interface.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc)
 
 <a id="group__public__interface_1gace2d0b7428d63b90190fe65b619a8680"></a>
 ### Function \_picoTest\_filterByName
@@ -145,9 +150,11 @@ PicoTestFilterResult matchSubstring(PicoTestProc *test, const char *testName, co
 ![][private]
 ![][static]
 
+
 ```cpp
 static PicoTestFilterResult _picoTest_filterByName(PicoTestProc *test, const char *testName, const char *cond)
 ```
+
 
 Implementation of default test filter function.
 
@@ -161,26 +168,28 @@ Does a simple string equality test between **testName** and **cond**, and propag
 
 
 
-**See also**: [PicoTestFailureLoggerProc](picotest_8h.md#group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00), [PICOTEST\_FAILURE\_LOGGER](picotest_8h.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48), [PICOTEST\_FAILURE\_LOGGER\_DEFAULT](picotest_8h.md#group__public__interface_1gaf08fabb517d01d11ce72614d1df51687)
+**See also**: [PicoTestFailureLoggerProc](group__public__interface.md#group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00), [PICOTEST\_FAILURE\_LOGGER](group__public__interface.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48), [PICOTEST\_FAILURE\_LOGGER\_DEFAULT](group__public__interface.md#group__public__interface_1gaf08fabb517d01d11ce72614d1df51687)
 
 
 
 **Parameters**:
 
-* [PicoTestProc](picotest_8h.md#group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9) * **test**
+* [PicoTestProc](group__public__interface.md#group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9) * **test**
 * const char * **testName**
 * const char * **cond**
 
-**Return type**: [PicoTestFilterResult](picotest_8h.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc)
+**Return type**: [PicoTestFilterResult](group__public__interface.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc)
 
 <a id="group__public__interface_1ga7dccbea985fb578ba6b7639fb66fc3ea"></a>
 ### Macro PICOTEST\_FILTER\_DEFAULT
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_FILTER_DEFAULT
 ```
+
 
 Default test filter function.
 
@@ -193,7 +202,7 @@ Does a simple string equality test between **testName** and **cond**, and propag
 
 
 
-**See also**: [PicoTestFilterProc](picotest_8h.md#group__public__interface_1ga6d5c4a903f131bbed4913008d9e3b212), [PICOTEST\_FILTER](picotest_8h.md#group__public__interface_1gabd82de0bec174d972151cd122a0a03ff)
+**See also**: [PicoTestFilterProc](group__public__interface.md#group__public__interface_1ga6d5c4a903f131bbed4913008d9e3b212), [PICOTEST\_FILTER](group__public__interface.md#group__public__interface_1gabd82de0bec174d972151cd122a0a03ff)
 
 
 
@@ -202,9 +211,11 @@ Does a simple string equality test between **testName** and **cond**, and propag
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_FILTER
 ```
+
 
 Define the test filter function.
 
@@ -214,7 +225,7 @@ Called before calling a test with a non- **NULL** condition.
 
 
 
-The default filter does a simple string equality test between its **testName** and **cond** arguments, and propagates to subtests if it doesn't match. Redefine this macro to use a custom filter function, which must follow the [PicoTestFilterProc](picotest_8h.md#group__public__interface_1ga6d5c4a903f131bbed4913008d9e3b212) signature.
+The default filter does a simple string equality test between its **testName** and **cond** arguments, and propagates to subtests if it doesn't match. Redefine this macro to use a custom filter function, which must follow the [PicoTestFilterProc](group__public__interface.md#group__public__interface_1ga6d5c4a903f131bbed4913008d9e3b212) signature.
 
 
 
@@ -225,6 +236,7 @@ The default filter does a simple string equality test between its **testName** a
 
 
 **Usage**:
+
 
 ```cpp
 /* Custom test filter declaration. */
@@ -250,7 +262,7 @@ PicoTestFilterResult matchSubstring(PicoTestProc *test, const char *testName, co
 
 
 
-**See also**: [PicoTestFilterProc](picotest_8h.md#group__public__interface_1ga6d5c4a903f131bbed4913008d9e3b212), [PICOTEST\_FILTER\_DEFAULT](picotest_8h.md#group__public__interface_1ga7dccbea985fb578ba6b7639fb66fc3ea)
+**See also**: [PicoTestFilterProc](group__public__interface.md#group__public__interface_1ga6d5c4a903f131bbed4913008d9e3b212), [PICOTEST\_FILTER\_DEFAULT](group__public__interface.md#group__public__interface_1ga7dccbea985fb578ba6b7639fb66fc3ea)
 
 
 
@@ -263,7 +275,8 @@ Tests can form hierarchies of test suites and test cases. PicoTest provides two 
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 347)
+**Definition**: `include/picotest.h` (line 348)
+
 
 ```cpp
 enum PicoTestVisitStep {
@@ -272,9 +285,10 @@ enum PicoTestVisitStep {
 }
 ```
 
+
 Test visit step.
 
-**See also**: [PicoTestVisitProc](picotest_8h.md#group__public__interface_1ga2b14de2e8f56c8e7efb8e883069abb34), [PICOTEST\_VISIT](picotest_8h.md#group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f)
+**See also**: [PicoTestVisitProc](group__public__interface.md#group__public__interface_1ga2b14de2e8f56c8e7efb8e883069abb34), [PICOTEST\_VISIT](group__public__interface.md#group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f)
 
 
 
@@ -297,11 +311,13 @@ Leave the test.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 299)
+**Definition**: `include/picotest.h` (line 300)
+
 
 ```cpp
 typedef void PicoTestTraverseProc(const char *name, int nb)
 ```
+
 
 Function signature of test traversal proc.
 
@@ -312,6 +328,7 @@ Function signature of test traversal proc.
 
 
 **Usage**:
+
 
 ```cpp
 /* Test traversal function declaration. */
@@ -336,7 +353,7 @@ void printTestName(const char *name, int nb) {
 
 
 
-**See also**: [PICOTEST\_TRAVERSE](picotest_8h.md#group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63)
+**See also**: [PICOTEST\_TRAVERSE](group__public__interface.md#group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63)
 
 
 
@@ -347,15 +364,17 @@ void printTestName(const char *name, int nb) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 366)
+**Definition**: `include/picotest.h` (line 367)
+
 
 ```cpp
 typedef void PicoTestVisitProc(const PicoTestMetadata *metadata, PicoTestVisitStep step)
 ```
 
+
 Function signature of test visit proc.
 
-Proc is called once for each value of [PicoTestVisitStep](picotest_8h.md#group__public__interface_1gad78162429011bb689a76e91530ac7a22).
+Proc is called once for each value of [PicoTestVisitStep](group__public__interface.md#group__public__interface_1gad78162429011bb689a76e91530ac7a22).
 
 
 
@@ -370,7 +389,7 @@ Proc is called once for each value of [PicoTestVisitStep](picotest_8h.md#group__
 
 
 
-**See also**: [PICOTEST\_VISIT](picotest_8h.md#group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f), [PicoTestVisitStep](picotest_8h.md#group__public__interface_1gad78162429011bb689a76e91530ac7a22)
+**See also**: [PICOTEST\_VISIT](group__public__interface.md#group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f), [PicoTestVisitStep](group__public__interface.md#group__public__interface_1gad78162429011bb689a76e91530ac7a22)
 
 
 
@@ -382,9 +401,11 @@ Proc is called once for each value of [PicoTestVisitStep](picotest_8h.md#group__
 ![][private]
 ![][static]
 
+
 ```cpp
 static void _picoTest_traverse(const PicoTestMetadata *metadata, PicoTestTraverseProc *proc)
 ```
+
 
 Perform test traversal.
 
@@ -397,14 +418,14 @@ Perform test traversal.
 
 
 
-**See also**: [PicoTestTraverseProc](picotest_8h.md#group__public__interface_1ga403413d76b48c48740171b3a234af5c5), [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata), [PICOTEST\_TRAVERSE](picotest_8h.md#group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63)
+**See also**: [PicoTestTraverseProc](group__public__interface.md#group__public__interface_1ga403413d76b48c48740171b3a234af5c5), [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata), [PICOTEST\_TRAVERSE](group__public__interface.md#group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63)
 
 
 
 **Parameters**:
 
 * const [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata) * **metadata**
-* [PicoTestTraverseProc](picotest_8h.md#group__public__interface_1ga403413d76b48c48740171b3a234af5c5) * **proc**
+* [PicoTestTraverseProc](group__public__interface.md#group__public__interface_1ga403413d76b48c48740171b3a234af5c5) * **proc**
 
 **Return type**: void
 
@@ -414,9 +435,11 @@ Perform test traversal.
 ![][private]
 ![][static]
 
+
 ```cpp
 static void _picoTest_visit(const PicoTestMetadata *metadata, PicoTestVisitProc *proc)
 ```
+
 
 Perform test visit.
 
@@ -429,14 +452,14 @@ Perform test visit.
 
 
 
-**See also**: [PicoTestVisitProc](picotest_8h.md#group__public__interface_1ga2b14de2e8f56c8e7efb8e883069abb34), [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata), [PICOTEST\_VISIT](picotest_8h.md#group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f)
+**See also**: [PicoTestVisitProc](group__public__interface.md#group__public__interface_1ga2b14de2e8f56c8e7efb8e883069abb34), [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata), [PICOTEST\_VISIT](group__public__interface.md#group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f)
 
 
 
 **Parameters**:
 
 * const [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata) * **metadata**
-* [PicoTestVisitProc](picotest_8h.md#group__public__interface_1ga2b14de2e8f56c8e7efb8e883069abb34) * **proc**
+* [PicoTestVisitProc](group__public__interface.md#group__public__interface_1ga2b14de2e8f56c8e7efb8e883069abb34) * **proc**
 
 **Return type**: void
 
@@ -445,13 +468,15 @@ Perform test visit.
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_TRAVERSE( _testName ,_proc )
 ```
 
+
 Traverse a test hierarchy depth-first.
 
-This feature covers simple use cases such as getting the flat list of all test names. For more advanced usage, see [PICOTEST\_VISIT](picotest_8h.md#group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f).
+This feature covers simple use cases such as getting the flat list of all test names. For more advanced usage, see [PICOTEST\_VISIT](group__public__interface.md#group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f).
 
 
 
@@ -461,7 +486,7 @@ This feature covers simple use cases such as getting the flat list of all test n
 **Parameters**:
 
 * **_testName**: Name of the traversed test.
-* **_proc**: Test traversal proc. Must follow the [PicoTestTraverseProc](picotest_8h.md#group__public__interface_1ga403413d76b48c48740171b3a234af5c5) signature.
+* **_proc**: Test traversal proc. Must follow the [PicoTestTraverseProc](group__public__interface.md#group__public__interface_1ga403413d76b48c48740171b3a234af5c5) signature.
 
 
 **Examples**:
@@ -471,7 +496,7 @@ This feature covers simple use cases such as getting the flat list of all test n
 
 
 
-**See also**: [PicoTestTraverseProc](picotest_8h.md#group__public__interface_1ga403413d76b48c48740171b3a234af5c5), [PICOTEST\_VISIT](picotest_8h.md#group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f)
+**See also**: [PicoTestTraverseProc](group__public__interface.md#group__public__interface_1ga403413d76b48c48740171b3a234af5c5), [PICOTEST\_VISIT](group__public__interface.md#group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f)
 
 
 
@@ -480,13 +505,15 @@ This feature covers simple use cases such as getting the flat list of all test n
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_VISIT( _testName ,_proc )
 ```
 
+
 Visit a test hierarchy depth-first.
 
-This feature covers more advanced use cases than [PICOTEST\_TRAVERSE](picotest_8h.md#group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63), such as exporting the test hierarchy as a structured format such as XML or JSON, or accessing test metadata.
+This feature covers more advanced use cases than [PICOTEST\_TRAVERSE](group__public__interface.md#group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63), such as exporting the test hierarchy as a structured format such as XML or JSON, or accessing test metadata.
 
 
 
@@ -496,12 +523,12 @@ This feature covers more advanced use cases than [PICOTEST\_TRAVERSE](picotest_8
 **Parameters**:
 
 * **_testName**: Name of the visited test.
-* **_proc**: Test visit proc. Must follow the [PicoTestVisitProc](picotest_8h.md#group__public__interface_1ga2b14de2e8f56c8e7efb8e883069abb34) signature.
+* **_proc**: Test visit proc. Must follow the [PicoTestVisitProc](group__public__interface.md#group__public__interface_1ga2b14de2e8f56c8e7efb8e883069abb34) signature.
 
 
 
 
-**See also**: [PicoTestVisitProc](picotest_8h.md#group__public__interface_1ga2b14de2e8f56c8e7efb8e883069abb34), [PICOTEST\_TRAVERSE](picotest_8h.md#group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63)
+**See also**: [PicoTestVisitProc](group__public__interface.md#group__public__interface_1ga2b14de2e8f56c8e7efb8e883069abb34), [PICOTEST\_TRAVERSE](group__public__interface.md#group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63)
 
 
 
@@ -512,11 +539,13 @@ This feature covers more advanced use cases than [PICOTEST\_TRAVERSE](picotest_8
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 104)
+**Definition**: `include/picotest.h` (line 105)
+
 
 ```cpp
 typedef int PicoTestProc(const char *cond)
 ```
+
 
 Signature of test functions.
 
@@ -540,7 +569,7 @@ Number of failed tests.
 
 
 
-**See also**: [PICOTEST\_SUITE](picotest_8h.md#group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f), [PICOTEST\_CASE](picotest_8h.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5), [PICOTEST\_FILTER](picotest_8h.md#group__public__interface_1gabd82de0bec174d972151cd122a0a03ff)
+**See also**: [PICOTEST\_SUITE](picotest_8h.md#group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f), [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5), [PICOTEST\_FILTER](group__public__interface.md#group__public__interface_1gabd82de0bec174d972151cd122a0a03ff)
 
 
 
@@ -551,9 +580,11 @@ Number of failed tests.
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_EXTERN( _testName )
 ```
+
 
 Declare an extern test for metadata access.
 
@@ -563,7 +594,7 @@ Declare an extern test for metadata access.
 
 
 
-**See also**: [PICOTEST\_METADATA](picotest_8h.md#group__public__interface_1gaa7f907387dd96cac614ad0dfe4cbb858)
+**See also**: [PICOTEST\_METADATA](group__public__interface.md#group__public__interface_1gaa7f907387dd96cac614ad0dfe4cbb858)
 
 
 
@@ -572,9 +603,11 @@ Declare an extern test for metadata access.
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_METADATA( _testName )
 ```
+
 
 Get test metadata.
 
@@ -588,7 +621,7 @@ Get test metadata.
 
 
 
-**See also**: [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata), [PICOTEST\_EXTERN](picotest_8h.md#group__public__interface_1ga88033e8fb73d885670773cfc8ad1d024)
+**See also**: [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata), [PICOTEST\_EXTERN](group__public__interface.md#group__public__interface_1ga88033e8fb73d885670773cfc8ad1d024)
 
 
 
@@ -601,11 +634,13 @@ PicoTest provides a way for client code to intercept test failure events. This c
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 438)
+**Definition**: `include/picotest.h` (line 439)
+
 
 ```cpp
 typedef void PicoTestFailureLoggerProc(const char *file, int line, const char *type, const char *test, const char *msg, va_list args)
 ```
+
 
 Function signature of test failure log handlers.
 
@@ -623,6 +658,7 @@ Function signature of test failure log handlers.
 
 
 **Usage**:
+
 
 ```cpp
 /* Test failure logger declaration. */
@@ -658,7 +694,7 @@ void logFailure(const char *file, int line, const char *type, const char *test, 
 
 
 
-**See also**: [PICOTEST\_FAILURE\_LOGGER](picotest_8h.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48)
+**See also**: [PICOTEST\_FAILURE\_LOGGER](group__public__interface.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48)
 
 
 
@@ -670,9 +706,11 @@ void logFailure(const char *file, int line, const char *type, const char *test, 
 ![][private]
 ![][static]
 
+
 ```cpp
 static void _picoTest_logFailure(const char *file, int line, const char *type, const char *test, const char *msg, va_list args)
 ```
+
 
 Implementation of default test failure log handler.
 
@@ -686,7 +724,7 @@ Does nothing.
 
 
 
-**See also**: [PicoTestFailureLoggerProc](picotest_8h.md#group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00), [PICOTEST\_FAILURE\_LOGGER](picotest_8h.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48), [PICOTEST\_FAILURE\_LOGGER\_DEFAULT](picotest_8h.md#group__public__interface_1gaf08fabb517d01d11ce72614d1df51687)
+**See also**: [PicoTestFailureLoggerProc](group__public__interface.md#group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00), [PICOTEST\_FAILURE\_LOGGER](group__public__interface.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48), [PICOTEST\_FAILURE\_LOGGER\_DEFAULT](group__public__interface.md#group__public__interface_1gaf08fabb517d01d11ce72614d1df51687)
 
 
 
@@ -706,9 +744,11 @@ Does nothing.
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_FAILURE_LOGGER_DEFAULT
 ```
+
 
 Default test failure log handler.
 
@@ -721,7 +761,7 @@ Does nothing.
 
 
 
-**See also**: [PicoTestFailureLoggerProc](picotest_8h.md#group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00), [PICOTEST\_FAILURE\_LOGGER](picotest_8h.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48)
+**See also**: [PicoTestFailureLoggerProc](group__public__interface.md#group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00), [PICOTEST\_FAILURE\_LOGGER](group__public__interface.md#group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48)
 
 
 
@@ -730,9 +770,11 @@ Does nothing.
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_FAILURE_LOGGER
 ```
+
 
 Define the test failure log handler.
 
@@ -742,7 +784,7 @@ Called when a test fails.
 
 
 
-The default handler does nothing. Redefine this macro to use a custom handler, which must follow the [PicoTestFailureLoggerProc](picotest_8h.md#group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00) signature.
+The default handler does nothing. Redefine this macro to use a custom handler, which must follow the [PicoTestFailureLoggerProc](group__public__interface.md#group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00) signature.
 
 
 
@@ -753,6 +795,7 @@ The default handler does nothing. Redefine this macro to use a custom handler, w
 
 
 **Usage**:
+
 
 ```cpp
 /* Test failure logger declaration. */
@@ -789,7 +832,7 @@ void logFailure(const char *file, int line, const char *type, const char *test, 
 
 
 
-**See also**: [PicoTestFailureLoggerProc](picotest_8h.md#group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00), [PICOTEST\_FAILURE\_LOGGER\_DEFAULT](picotest_8h.md#group__public__interface_1gaf08fabb517d01d11ce72614d1df51687)
+**See also**: [PicoTestFailureLoggerProc](group__public__interface.md#group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00), [PICOTEST\_FAILURE\_LOGGER\_DEFAULT](group__public__interface.md#group__public__interface_1gaf08fabb517d01d11ce72614d1df51687)
 
 
 
@@ -808,9 +851,11 @@ PicoTest follows the Semantic Versioning Specification (SemVer) 2.0.0:
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_VERSION
 ```
+
 
 
 
@@ -823,9 +868,11 @@ PicoTest follows the Semantic Versioning Specification (SemVer) 2.0.0:
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_VERSION_MAJOR
 ```
+
 
 
 
@@ -838,9 +885,11 @@ PicoTest follows the Semantic Versioning Specification (SemVer) 2.0.0:
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_VERSION_MINOR
 ```
+
 
 
 
@@ -853,6 +902,7 @@ PicoTest follows the Semantic Versioning Specification (SemVer) 2.0.0:
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_VERSION_PATCH
 ```
@@ -863,7 +913,9 @@ PicoTest follows the Semantic Versioning Specification (SemVer) 2.0.0:
 
 
 
+
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
 [private]: https://img.shields.io/badge/-private-red (private)
 [static]: https://img.shields.io/badge/-static-lightgrey (static)

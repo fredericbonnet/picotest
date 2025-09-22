@@ -64,14 +64,14 @@
 <para>You can also run the suite executable <computeroutput>test_picotest</computeroutput> directly from the CMake output directory.</para>
 </sect1>
 <sect1 id="index_1autotoc_md7">
-<title>Integration with CMake</title><para>PicoTest provides a CMake module definition for easier integration with other CMake projects. In particular, it comes with an auto-discovery script for CTest that makes use of the test traversal features of PicoTest.</para>
-<para>The file <computeroutput>FindPicoTest.cmake</computeroutput> is the module definition. Add this file to your <computeroutput>CMAKE_MODULE_PATH</computeroutput>, and add the following line to your CMake project:</para>
+<title>Integration with CMake</title><para>PicoTest provides a CMake package definition for easier integration with other CMake projects. In particular, it comes with an auto-discovery script for CTest that makes use of the test traversal features of PicoTest.</para>
+<para>The file <computeroutput>PicoTestConfig.cmake</computeroutput> is the package config file at the root of the source repository. Add its path to your <computeroutput>CMAKE_PREFIX_PATH</computeroutput>, and add the following line to your CMake project:</para>
 <para><programlisting filename=".cmake"><codeline><highlight class="normal">find_package(PicoTest)</highlight></codeline>
 </programlisting></para>
-<para>You can then add the <computeroutput>PicoTest</computeroutput> dependency to your targets, e.g.:</para>
+<para>You can then add the <computeroutput>PicoTest::PicoTest</computeroutput> dependency to your targets, e.g.:</para>
 <para><programlisting filename=".cmake"><codeline><highlight class="normal">add_executable(my_test_runner)</highlight></codeline>
 <codeline><highlight class="normal">target_link_libraries(my_test_runner</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>PRIVATE<sp/>PicoTest</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>PRIVATE<sp/>PicoTest::PicoTest</highlight></codeline>
 <codeline><highlight class="normal">)</highlight></codeline>
 </programlisting></para>
 <para>If you also use CTest for test automation with <computeroutput>enable_testing()</computeroutput>, you can also call the provided <computeroutput>picotest_discover_tests</computeroutput> macro to integrate PicoTest test cases in your build process automatically. For example, assuming that the <computeroutput>my_test_runner</computeroutput> executable:</para>
@@ -94,6 +94,15 @@
 </programlisting></para>
 </sect1>
 <sect1 id="index_1autotoc_md8">
+<title>Integration with Conan</title><para>PicoTest provides a Conan 2 recipe for easier dependency management. To create the PicoTest package locally:</para>
+<para><programlisting filename=".sh"><codeline><highlight class="normal">conan<sp/>create<sp/>.<sp/>--build=missing</highlight></codeline>
+</programlisting></para>
+<para>You can then add it to your project requirements (<computeroutput>conanfile.txt</computeroutput>):</para>
+<para><programlisting><codeline><highlight class="normal">[requires]</highlight></codeline>
+<codeline><highlight class="normal">picotest/1.4.3</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="index_1autotoc_md9">
 <title>Development</title><para>PicoTest was developed on Windows 10 and Linux Ubuntu 16.04 using the following tools:</para>
 <para><itemizedlist>
 <listitem><para>IDE: Visual Studio Code</para>
@@ -103,7 +112,8 @@
 </listitem></itemizedlist>
 </para>
 <para>It should work with any reasonably modern C compiler that supports variadic macros.</para>
-<para>The assertion mechanism relies on <computeroutput>setjmp()</computeroutput> / <computeroutput>longjmp()</computeroutput>. While these functions are discouraged for production code, their usage is acceptable in the context of unit testing: in our case, <computeroutput>longjmp()</computeroutput> is only called when an assertion fails, a situation where the actual process state is no longer reliable anyway. Moreover, they constitute the only standard exception handling mechanism for plain C code. </para>
+<para>The assertion mechanism relies on <computeroutput>setjmp()</computeroutput> / <computeroutput>longjmp()</computeroutput>. While these functions are discouraged for production code, their usage is acceptable in the context of unit testing: in our case, <computeroutput>longjmp()</computeroutput> is only called when an assertion fails, a situation where the actual process state is no longer reliable anyway. Moreover, they constitute the only standard exception handling mechanism for plain C code.</para>
+<para><programlisting></programlisting> </para>
 </sect1>
     </detaileddescription>
     <location file="README.md"/>

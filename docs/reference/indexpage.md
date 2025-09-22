@@ -50,6 +50,7 @@ Simply include the file in your source file, then start writing your tests!
 
 
 
+
 ```
 #include <picotest.h>
 ```
@@ -107,6 +108,7 @@ To rebuild the documentation you'll need the following tools:
 
 
 
+
 ```
 npm run docs
 ```
@@ -115,7 +117,9 @@ npm run docs
 
 
 
+
 If you want to serve the documentation locally you can use the provided script:
+
 
 
 
@@ -167,11 +171,13 @@ Building and running the test suite requires CMake (see next section for more in
 
 
 
+
 ```
 cd tests
 cmake -S . -B build
 cmake --build build
 ```
+
 
 
 
@@ -189,10 +195,12 @@ To run the suite using CTest:
 
 
 
+
 ```
 cd tests/build
 ctest
 ```
+
 
 
 
@@ -205,13 +213,14 @@ You can also run the suite executable <code>test_picotest</code> directly from t
 
 ## Integration with CMake
 
-PicoTest provides a CMake module definition for easier integration with other CMake projects. In particular, it comes with an auto-discovery script for CTest that makes use of the test traversal features of PicoTest.
+PicoTest provides a CMake package definition for easier integration with other CMake projects. In particular, it comes with an auto-discovery script for CTest that makes use of the test traversal features of PicoTest.
 
 
 
 
 
-The file <code>FindPicoTest.cmake</code> is the module definition. Add this file to your <code>CMAKE_MODULE_PATH</code>, and add the following line to your CMake project:
+The file <code>PicoTestConfig.cmake</code> is the package config file at the root of the source repository. Add its path to your <code>CMAKE_PREFIX_PATH</code>, and add the following line to your CMake project:
+
 
 
 
@@ -225,7 +234,9 @@ find_package(PicoTest)
 
 
 
-You can then add the <code>PicoTest</code> dependency to your targets, e.g.:
+
+You can then add the <code>PicoTest::PicoTest</code> dependency to your targets, e.g.:
+
 
 
 
@@ -234,9 +245,10 @@ You can then add the <code>PicoTest</code> dependency to your targets, e.g.:
 ```
 add_executable(my_test_runner)
 target_link_libraries(my_test_runner
-    PRIVATE PicoTest
+    PRIVATE PicoTest::PicoTest
 )
 ```
+
 
 
 
@@ -278,11 +290,45 @@ Then the following lines will:
 
 
 
+
 ```
 enable_testing()
 picotest_discover_tests(my_test_runner
     TEST_LIST_OPTION "-l"
 )
+```
+
+
+
+
+## Integration with Conan
+
+PicoTest provides a Conan 2 recipe for easier dependency management. To create the PicoTest package locally:
+
+
+
+
+
+
+```
+conan create . --build=missing
+```
+
+
+
+
+
+
+You can then add it to your project requirements (<code>conanfile.txt</code>):
+
+
+
+
+
+
+```
+[requires]
+picotest/1.4.3
 ```
 
 
@@ -319,12 +365,21 @@ It should work with any reasonably modern C compiler that supports variadic macr
 
 The assertion mechanism relies on <code>setjmp()</code> / <code>longjmp()</code>. While these functions are discouraged for production code, their usage is acceptable in the context of unit testing: in our case, <code>longjmp()</code> is only called when an assertion fails, a situation where the actual process state is no longer reliable anyway. Moreover, they constitute the only standard exception handling mechanism for plain C code.
 
+
+
+
+
+
+```
+
+```
+
 **TODO**:
 
 * location {"type":"element","name":"location","attributes":{"file":"README.md"},"children":[]}
 
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
 [private]: https://img.shields.io/badge/-private-red (private)
 [static]: https://img.shields.io/badge/-static-lightgrey (static)
-[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)

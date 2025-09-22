@@ -2,8 +2,8 @@
 
 ## F
 
-* [filter.c](filter_8c.md#filter_8c): Example of PicoTest test filter, allows custom filtering of test functions.
 * [fixtures.c](fixtures_8c.md#fixtures_8c): Demonstrates test fixture call sequences.
+* [filter.c](filter_8c.md#filter_8c): Example of PicoTest test filter, allows custom filtering of test functions.
 
 ## H
 

@@ -14,11 +14,13 @@ PicoTest provides a way for client code to intercept test case events. This can 
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 633)
+**Definition**: `include/picotest.h` (line 634)
+
 
 ```cpp
 typedef void PicoTestCaseEnterProc(const char *testName)
 ```
+
 
 Function signature of test case enter hooks.
 
@@ -35,6 +37,7 @@ Called before running the test case.
 
 
 **Usage**:
+
 
 ```cpp
 /* Hook declarations. */
@@ -56,7 +59,7 @@ void enterTestCase(const char *testName) {
 
 
 
-**See also**: [PICOTEST\_CASE\_ENTER](picotest_8h.md#group__test__cases_1gad1f702ab6600b04f66731d35bf38fc67)
+**See also**: [PICOTEST\_CASE\_ENTER](group__test__cases.md#group__test__cases_1gad1f702ab6600b04f66731d35bf38fc67)
 
 
 
@@ -67,11 +70,13 @@ void enterTestCase(const char *testName) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 681)
+**Definition**: `include/picotest.h` (line 682)
+
 
 ```cpp
 typedef void PicoTestCaseLeaveProc(const char *testName, int fail)
 ```
+
 
 Function signature of test case leave hooks.
 
@@ -90,6 +95,7 @@ Called after running the test case.
 
 **Usage**:
 
+
 ```cpp
 /* Hook declarations. */
 PicoTestCaseLeaveProc leaveTestCase;
@@ -110,7 +116,7 @@ void leaveTestCase(const char *testName, int fail) {
 
 
 
-**See also**: [PICOTEST\_CASE\_LEAVE](picotest_8h.md#group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a)
+**See also**: [PICOTEST\_CASE\_LEAVE](group__test__cases.md#group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a)
 
 
 
@@ -121,9 +127,11 @@ void leaveTestCase(const char *testName, int fail) {
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_CASE_ENTER_DEFAULT( testName )
 ```
+
 
 Default test case enter hook.
 
@@ -136,7 +144,7 @@ Does nothing.
 
 
 
-**See also**: [PicoTestCaseEnterProc](picotest_8h.md#group__test__cases_1ga2148fa53887bde18878299c0941d9844), [PICOTEST\_CASE\_ENTER](picotest_8h.md#group__test__cases_1gad1f702ab6600b04f66731d35bf38fc67)
+**See also**: [PicoTestCaseEnterProc](group__test__cases.md#group__test__cases_1ga2148fa53887bde18878299c0941d9844), [PICOTEST\_CASE\_ENTER](group__test__cases.md#group__test__cases_1gad1f702ab6600b04f66731d35bf38fc67)
 
 
 
@@ -145,13 +153,15 @@ Does nothing.
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_CASE_ENTER
 ```
 
+
 Define the test case enter hook.
 
-The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestCaseEnterProc](picotest_8h.md#group__test__cases_1ga2148fa53887bde18878299c0941d9844) signature.
+The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestCaseEnterProc](group__test__cases.md#group__test__cases_1ga2148fa53887bde18878299c0941d9844) signature.
 
 
 
@@ -162,6 +172,7 @@ The default hook does nothing. Redefine this macro to use a custom hook, which m
 
 
 **Usage**:
+
 
 ```cpp
 /* Hook declarations. */
@@ -185,7 +196,7 @@ void enterTestCase(const char *testName) {
 
 
 
-**See also**: [PicoTestCaseEnterProc](picotest_8h.md#group__test__cases_1ga2148fa53887bde18878299c0941d9844), [PICOTEST\_CASE\_ENTER\_DEFAULT](picotest_8h.md#group__test__cases_1ga4a4a1356f85b26cd29f2f7ae4c09cf91), [PICOTEST\_CASE\_LEAVE](picotest_8h.md#group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a)
+**See also**: [PicoTestCaseEnterProc](group__test__cases.md#group__test__cases_1ga2148fa53887bde18878299c0941d9844), [PICOTEST\_CASE\_ENTER\_DEFAULT](group__test__cases.md#group__test__cases_1ga4a4a1356f85b26cd29f2f7ae4c09cf91), [PICOTEST\_CASE\_LEAVE](group__test__cases.md#group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a)
 
 
 
@@ -194,9 +205,11 @@ void enterTestCase(const char *testName) {
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_CASE_LEAVE_DEFAULT( testName ,fail )
 ```
+
 
 Default test case enter hook.
 
@@ -209,7 +222,7 @@ Does nothing.
 
 
 
-**See also**: [PicoTestCaseLeaveProc](picotest_8h.md#group__test__cases_1ga2649b7563a8a3c14c93f310cb6699185), [PICOTEST\_CASE\_LEAVE](picotest_8h.md#group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a)
+**See also**: [PicoTestCaseLeaveProc](group__test__cases.md#group__test__cases_1ga2649b7563a8a3c14c93f310cb6699185), [PICOTEST\_CASE\_LEAVE](group__test__cases.md#group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a)
 
 
 
@@ -218,13 +231,15 @@ Does nothing.
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_CASE_LEAVE
 ```
 
+
 Define the test case leave hook.
 
-The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestCaseLeaveProc](picotest_8h.md#group__test__cases_1ga2649b7563a8a3c14c93f310cb6699185) signature.
+The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestCaseLeaveProc](group__test__cases.md#group__test__cases_1ga2649b7563a8a3c14c93f310cb6699185) signature.
 
 
 
@@ -235,6 +250,7 @@ The default hook does nothing. Redefine this macro to use a custom hook, which m
 
 
 **Usage**:
+
 
 ```cpp
 /* Hook declarations. */
@@ -258,7 +274,7 @@ void leaveTestCase(const char *testName, int fail) {
 
 
 
-**See also**: [PicoTestCaseLeaveProc](picotest_8h.md#group__test__cases_1ga2649b7563a8a3c14c93f310cb6699185), [PICOTEST\_CASE\_LEAVE\_DEFAULT](picotest_8h.md#group__test__cases_1ga5ff2295c5a324991c72a81bcfb949522), [PICOTEST\_CASE\_ENTER](picotest_8h.md#group__test__cases_1gad1f702ab6600b04f66731d35bf38fc67)
+**See also**: [PicoTestCaseLeaveProc](group__test__cases.md#group__test__cases_1ga2649b7563a8a3c14c93f310cb6699185), [PICOTEST\_CASE\_LEAVE\_DEFAULT](group__test__cases.md#group__test__cases_1ga5ff2295c5a324991c72a81bcfb949522), [PICOTEST\_CASE\_ENTER](group__test__cases.md#group__test__cases_1gad1f702ab6600b04f66731d35bf38fc67)
 
 
 
@@ -269,13 +285,15 @@ void leaveTestCase(const char *testName, int fail) {
 
 ![][public]
 
+
 ```cpp
 #define PICOTEST_CASE( ... )
 ```
 
+
 Test case declaration.
 
-This macro defines a [PicoTestProc](picotest_8h.md#group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9) of the given name that can be called directly.
+This macro defines a [PicoTestProc](group__public__interface.md#group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9) of the given name that can be called directly.
 
 
 
@@ -286,7 +304,7 @@ This macro defines a [PicoTestProc](picotest_8h.md#group__public__interface_1ga5
 
 * **_testName**: Name of the test case.
 * **_fixtureName**: (optional) Name of the test fixture used by the test.
-* **_context**: (optional) Fixture context structure defined using [PICOTEST\_FIXTURE\_CONTEXT(\_fixtureName)](picotest_8h.md#group__fixtures_1ga983cffc937dca4baa55f59afad404f03).
+* **_context**: (optional) Fixture context structure defined using [PICOTEST\_FIXTURE\_CONTEXT(\_fixtureName)](group__fixtures.md#group__fixtures_1ga983cffc937dca4baa55f59afad404f03).
 
 
 **Returns**:
@@ -295,6 +313,7 @@ Number of failed tests.
 
 
 **Usage**:
+
 
 ```cpp
 #define FAILS 0
@@ -347,12 +366,12 @@ PICOTEST_CASE(testCase5, fixtureWithOptionalContext) {
 
 
 
-**See also**: [PicoTestProc](picotest_8h.md#group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9), [PICOTEST\_FIXTURE\_CONTEXT](picotest_8h.md#group__fixtures_1ga983cffc937dca4baa55f59afad404f03)
+**See also**: [PicoTestProc](group__public__interface.md#group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9), [PICOTEST\_FIXTURE\_CONTEXT](group__fixtures.md#group__fixtures_1ga983cffc937dca4baa55f59afad404f03)
 
 
 
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
 [private]: https://img.shields.io/badge/-private-red (private)
 [static]: https://img.shields.io/badge/-static-lightgrey (static)
-[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)

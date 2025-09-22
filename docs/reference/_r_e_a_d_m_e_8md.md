@@ -11,6 +11,7 @@
 
 ## Source
 
+
 ```markdown
 # PicoTest: A minimalist unit testing framework for C programs
 
@@ -110,23 +111,24 @@ output directory.
 
 ## Integration with CMake
 
-PicoTest provides a CMake module definition for easier integration with
+PicoTest provides a CMake package definition for easier integration with
 other CMake projects. In particular, it comes with an auto-discovery script for
 CTest that makes use of the test traversal features of PicoTest.
 
-The file `FindPicoTest.cmake` is the module definition. Add this file to your
-`CMAKE_MODULE_PATH`, and add the following line to your CMake project:
+The file `PicoTestConfig.cmake` is the package config file at the root of the
+source repository. Add its path to your `CMAKE_PREFIX_PATH`, and add the
+following line to your CMake project:
 
 ```cmake
 find_package(PicoTest)
 ```
 
-You can then add the `PicoTest` dependency to your targets, e.g.:
+You can then add the `PicoTest::PicoTest` dependency to your targets, e.g.:
 
 ```cmake
 add_executable(my_test_runner)
 target_link_libraries(my_test_runner
-    PRIVATE PicoTest
+    PRIVATE PicoTest::PicoTest
 )
 ```
 
@@ -151,6 +153,22 @@ enable_testing()
 picotest_discover_tests(my_test_runner
     TEST_LIST_OPTION "-l"
 )
+```
+
+## Integration with Conan
+
+PicoTest provides a Conan 2 recipe for easier dependency management. To create
+the PicoTest package locally:
+
+```sh
+conan create . --build=missing
+```
+
+You can then add it to your project requirements (`conanfile.txt`):
+
+```
+[requires]
+picotest/1.4.3
 ```
 
 ## Development
@@ -179,10 +197,13 @@ mechanism for plain C code.
 [seaborg]: https://github.com/fredericbonnet/seaborg
 [docsify]: https://docsify.js.org/
 [node.js]: https://nodejs.org/
+
 ```
+
+```
+```
+
 
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
-[private]: https://img.shields.io/badge/-private-red (private)
-[static]: https://img.shields.io/badge/-static-lightgrey (static)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)

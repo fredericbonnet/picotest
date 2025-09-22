@@ -65,6 +65,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 * <stdarg.h>
 * <string.h>
 
+
 ```mermaid
 graph LR
 1["include/picotest.h"]
@@ -81,6 +82,7 @@ click 1 "picotest_8h.md#picotest_8h"
 
 ```
 
+
 ## Version
 
 PicoTest follows the Semantic Versioning Specification (SemVer) 2.0.0:
@@ -94,46 +96,58 @@ PicoTest follows the Semantic Versioning Specification (SemVer) 2.0.0:
 <a id="group__public__interface_1ga1402f3301dff3f468aac77622f877f2d"></a>
 ### Macro PICOTEST\_VERSION
 
+
 ```cpp
 #define PICOTEST_VERSION
 ```
 
+
 <a id="group__public__interface_1ga9ea29549254cbe44f25ef974d0458e57"></a>
 ### Macro PICOTEST\_VERSION\_MAJOR
+
 
 ```cpp
 #define PICOTEST_VERSION_MAJOR
 ```
 
+
 <a id="group__public__interface_1ga6488c76f8a06a1a8222c2309b170bd1d"></a>
 ### Macro PICOTEST\_VERSION\_MINOR
+
 
 ```cpp
 #define PICOTEST_VERSION_MINOR
 ```
 
+
 <a id="group__public__interface_1gafc9d1ab6d8cced95f3560c3a006d8005"></a>
 ### Macro PICOTEST\_VERSION\_PATCH
+
 
 ```cpp
 #define PICOTEST_VERSION_PATCH
 ```
+
 
 ## Test Functions
 
 <a id="group__public__interface_1ga88033e8fb73d885670773cfc8ad1d024"></a>
 ### Macro PICOTEST\_EXTERN
 
+
 ```cpp
 #define PICOTEST_EXTERN
 ```
 
+
 <a id="group__public__interface_1gaa7f907387dd96cac614ad0dfe4cbb858"></a>
 ### Macro PICOTEST\_METADATA
+
 
 ```cpp
 #define PICOTEST_METADATA
 ```
+
 
 <a id="group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9"></a>
 ### Typedef PicoTestProc
@@ -145,23 +159,29 @@ PicoTest provides a way for client code to select tests to be run using custom f
 <a id="group__public__interface_1ga7dccbea985fb578ba6b7639fb66fc3ea"></a>
 ### Macro PICOTEST\_FILTER\_DEFAULT
 
+
 ```cpp
 #define PICOTEST_FILTER_DEFAULT
 ```
 
+
 <a id="group__public__interface_1gabd82de0bec174d972151cd122a0a03ff"></a>
 ### Macro PICOTEST\_FILTER
+
 
 ```cpp
 #define PICOTEST_FILTER
 ```
 
+
 <a id="group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc"></a>
 ### Enumeration type PicoTestFilterResult
+
 
 ```cpp
 enum PicoTestFilterResult { /* ... */ }
 ```
+
 
 <a id="group__public__interface_1ga6d5c4a903f131bbed4913008d9e3b212"></a>
 ### Typedef PicoTestFilterProc
@@ -176,23 +196,29 @@ Tests can form hierarchies of test suites and test cases. PicoTest provides two 
 <a id="group__public__interface_1gaee8202c2543c7fb59fa08aec75b6cc63"></a>
 ### Macro PICOTEST\_TRAVERSE
 
+
 ```cpp
 #define PICOTEST_TRAVERSE
 ```
 
+
 <a id="group__public__interface_1ga84b8e9060ee56ca5c5b64da168ee7f6f"></a>
 ### Macro PICOTEST\_VISIT
+
 
 ```cpp
 #define PICOTEST_VISIT
 ```
 
+
 <a id="group__public__interface_1gad78162429011bb689a76e91530ac7a22"></a>
 ### Enumeration type PicoTestVisitStep
+
 
 ```cpp
 enum PicoTestVisitStep { /* ... */ }
 ```
+
 
 <a id="group__public__interface_1ga403413d76b48c48740171b3a234af5c5"></a>
 ### Typedef PicoTestTraverseProc
@@ -213,16 +239,20 @@ PicoTest provides a way for client code to intercept test failure events. This c
 <a id="group__public__interface_1gaf08fabb517d01d11ce72614d1df51687"></a>
 ### Macro PICOTEST\_FAILURE\_LOGGER\_DEFAULT
 
+
 ```cpp
 #define PICOTEST_FAILURE_LOGGER_DEFAULT
 ```
 
+
 <a id="group__public__interface_1gae4b2f943bef59bd05fb7a328a6c39d48"></a>
 ### Macro PICOTEST\_FAILURE\_LOGGER
+
 
 ```cpp
 #define PICOTEST_FAILURE_LOGGER
 ```
+
 
 <a id="group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00"></a>
 ### Typedef PicoTestFailureLoggerProc
@@ -235,9 +265,11 @@ PicoTest provides a way for client code to intercept test failure events. This c
 <a id="group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5"></a>
 ### Macro PICOTEST\_CASE
 
+
 ```cpp
 #define PICOTEST_CASE
 ```
+
 
 ## Test Case Hooks
 
@@ -246,30 +278,38 @@ PicoTest provides a way for client code to intercept test case events. This can 
 <a id="group__test__cases_1ga4a4a1356f85b26cd29f2f7ae4c09cf91"></a>
 ### Macro PICOTEST\_CASE\_ENTER\_DEFAULT
 
+
 ```cpp
 #define PICOTEST_CASE_ENTER_DEFAULT
 ```
 
+
 <a id="group__test__cases_1gad1f702ab6600b04f66731d35bf38fc67"></a>
 ### Macro PICOTEST\_CASE\_ENTER
+
 
 ```cpp
 #define PICOTEST_CASE_ENTER
 ```
 
+
 <a id="group__test__cases_1ga5ff2295c5a324991c72a81bcfb949522"></a>
 ### Macro PICOTEST\_CASE\_LEAVE\_DEFAULT
+
 
 ```cpp
 #define PICOTEST_CASE_LEAVE_DEFAULT
 ```
 
+
 <a id="group__test__cases_1ga4fd71dfed1ce3733b0d670c86b8d523a"></a>
 ### Macro PICOTEST\_CASE\_LEAVE
+
 
 ```cpp
 #define PICOTEST_CASE_LEAVE
 ```
+
 
 <a id="group__test__cases_1ga2148fa53887bde18878299c0941d9844"></a>
 ### Typedef PicoTestCaseEnterProc
@@ -282,30 +322,38 @@ PicoTest provides a way for client code to intercept test case events. This can 
 <a id="group__assertions_1gad71b76cf1173654acc95df79d1c7040b"></a>
 ### Macro PICOTEST\_ASSERT
 
+
 ```cpp
 #define PICOTEST_ASSERT
 ```
 
+
 <a id="group__assertions_1gacd07b017f38d1e3ad784f369345357a2"></a>
 ### Macro PICOTEST\_VERIFY
+
 
 ```cpp
 #define PICOTEST_VERIFY
 ```
 
+
 <a id="group__assertions_1ga89a35f18021df570967bb707a8537f3b"></a>
 ### Macro PICOTEST\_FAILURE
+
 
 ```cpp
 #define PICOTEST_FAILURE
 ```
 
+
 <a id="group__assertions_1ga62031fa5f6f86e517565b77a1fa37f59"></a>
 ### Macro PICOTEST\_ABORT
+
 
 ```cpp
 #define PICOTEST_ABORT
 ```
+
 
 <a id="group__assertions_1ga8d7eb92ca21dfb7fe46fc2472e11f496"></a>
 ### Variable \_picoTest\_fail
@@ -323,30 +371,38 @@ PicoTest provides a way for client code to intercept assertions events. This can
 <a id="group__assertions_1ga331ef495337f7e2aae8be15cfd2a170a"></a>
 ### Macro PICOTEST\_ASSERT\_BEFORE\_DEFAULT
 
+
 ```cpp
 #define PICOTEST_ASSERT_BEFORE_DEFAULT
 ```
 
+
 <a id="group__assertions_1gaa38b1a0014fe2ab172a5466f9031aafb"></a>
 ### Macro PICOTEST\_ASSERT\_BEFORE
+
 
 ```cpp
 #define PICOTEST_ASSERT_BEFORE
 ```
 
+
 <a id="group__assertions_1gab1f1711109e4a8443a61c228194a6825"></a>
 ### Macro PICOTEST\_ASSERT\_AFTER\_DEFAULT
+
 
 ```cpp
 #define PICOTEST_ASSERT_AFTER_DEFAULT
 ```
 
+
 <a id="group__assertions_1gae6c0c62e54611c6d92a3a8b81545f934"></a>
 ### Macro PICOTEST\_ASSERT\_AFTER
+
 
 ```cpp
 #define PICOTEST_ASSERT_AFTER
 ```
+
 
 <a id="group__assertions_1ga507d93a48b3c01ec9c43499d129d6db0"></a>
 ### Typedef PicoTestAssertBeforeProc
@@ -359,23 +415,29 @@ PicoTest provides a way for client code to intercept assertions events. This can
 <a id="group__fixtures_1ga983cffc937dca4baa55f59afad404f03"></a>
 ### Macro PICOTEST\_FIXTURE\_CONTEXT
 
+
 ```cpp
 #define PICOTEST_FIXTURE_CONTEXT
 ```
 
+
 <a id="group__fixtures_1ga1e98cba23391e13521100528ee1a2181"></a>
 ### Macro PICOTEST\_FIXTURE\_SETUP
+
 
 ```cpp
 #define PICOTEST_FIXTURE_SETUP
 ```
 
+
 <a id="group__fixtures_1ga0d887bdb08e22489fc3cf9fb28a35fd1"></a>
 ### Macro PICOTEST\_FIXTURE\_TEARDOWN
+
 
 ```cpp
 #define PICOTEST_FIXTURE_TEARDOWN
 ```
+
 
 ## Test Fixture Hooks
 
@@ -384,58 +446,74 @@ PicoTest provides a way for client code to intercept test fixture events. This c
 <a id="group__fixtures_1ga503733d3013e81575c72a1100437ccf0"></a>
 ### Macro PICOTEST\_FIXTURE\_BEFORE\_SETUP\_DEFAULT
 
+
 ```cpp
 #define PICOTEST_FIXTURE_BEFORE_SETUP_DEFAULT
 ```
 
+
 <a id="group__fixtures_1gab6053367243af2ee7745bf35a3baaa4e"></a>
 ### Macro PICOTEST\_FIXTURE\_BEFORE\_SETUP
+
 
 ```cpp
 #define PICOTEST_FIXTURE_BEFORE_SETUP
 ```
 
+
 <a id="group__fixtures_1ga8bfe212f7c3bed6d83be102510086012"></a>
 ### Macro PICOTEST\_FIXTURE\_AFTER\_SETUP\_DEFAULT
+
 
 ```cpp
 #define PICOTEST_FIXTURE_AFTER_SETUP_DEFAULT
 ```
 
+
 <a id="group__fixtures_1ga679063021accc32a74c1e617ed68423f"></a>
 ### Macro PICOTEST\_FIXTURE\_AFTER\_SETUP
+
 
 ```cpp
 #define PICOTEST_FIXTURE_AFTER_SETUP
 ```
 
+
 <a id="group__fixtures_1ga11bbe6bcd529ac78264411add1275635"></a>
 ### Macro PICOTEST\_FIXTURE\_BEFORE\_TEARDOWN\_DEFAULT
+
 
 ```cpp
 #define PICOTEST_FIXTURE_BEFORE_TEARDOWN_DEFAULT
 ```
 
+
 <a id="group__fixtures_1gaf68cbda0bf19afd7994c2e0a15278f8d"></a>
 ### Macro PICOTEST\_FIXTURE\_BEFORE\_TEARDOWN
+
 
 ```cpp
 #define PICOTEST_FIXTURE_BEFORE_TEARDOWN
 ```
 
+
 <a id="group__fixtures_1ga667b954d1448d95e022451b8711e6abf"></a>
 ### Macro PICOTEST\_FIXTURE\_AFTER\_TEARDOWN\_DEFAULT
+
 
 ```cpp
 #define PICOTEST_FIXTURE_AFTER_TEARDOWN_DEFAULT
 ```
 
+
 <a id="group__fixtures_1ga1a910236e326a942bc3a5be5c6013520"></a>
 ### Macro PICOTEST\_FIXTURE\_AFTER\_TEARDOWN
+
 
 ```cpp
 #define PICOTEST_FIXTURE_AFTER_TEARDOWN
 ```
+
 
 <a id="group__fixtures_1ga8aa61845d5a3f09e8d6df140a31c36d7"></a>
 ### Typedef PicoTestFixtureBeforeSetupProc
@@ -454,9 +532,11 @@ PicoTest provides a way for client code to intercept test fixture events. This c
 <a id="group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f"></a>
 ### Macro PICOTEST\_SUITE
 
+
 ```cpp
 #define PICOTEST_SUITE
 ```
+
 
 ## Test Suite Hooks
 
@@ -465,58 +545,74 @@ PicoTest provides a way for client code to intercept test execution events on te
 <a id="group__test__suites_1ga50f13419afbe35f17150bacd7a906838"></a>
 ### Macro PICOTEST\_SUITE\_ENTER\_DEFAULT
 
+
 ```cpp
 #define PICOTEST_SUITE_ENTER_DEFAULT
 ```
 
+
 <a id="group__test__suites_1gae569b3a4f05ebefc297411072e505fd3"></a>
 ### Macro PICOTEST\_SUITE\_ENTER
+
 
 ```cpp
 #define PICOTEST_SUITE_ENTER
 ```
 
+
 <a id="group__test__suites_1gaf24c1f7c243e1990463aea4fbd4d5324"></a>
 ### Macro PICOTEST\_SUITE\_LEAVE\_DEFAULT
+
 
 ```cpp
 #define PICOTEST_SUITE_LEAVE_DEFAULT
 ```
 
+
 <a id="group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c"></a>
 ### Macro PICOTEST\_SUITE\_LEAVE
+
 
 ```cpp
 #define PICOTEST_SUITE_LEAVE
 ```
 
+
 <a id="group__test__suites_1gab5b747836950016e04544e29879f3da3"></a>
 ### Macro PICOTEST\_SUITE\_BEFORE\_SUBTEST\_DEFAULT
+
 
 ```cpp
 #define PICOTEST_SUITE_BEFORE_SUBTEST_DEFAULT
 ```
 
+
 <a id="group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464"></a>
 ### Macro PICOTEST\_SUITE\_BEFORE\_SUBTEST
+
 
 ```cpp
 #define PICOTEST_SUITE_BEFORE_SUBTEST
 ```
 
+
 <a id="group__test__suites_1ga0aa7b03502294fee8f3e5b4951027145"></a>
 ### Macro PICOTEST\_SUITE\_AFTER\_SUBTEST\_DEFAULT
+
 
 ```cpp
 #define PICOTEST_SUITE_AFTER_SUBTEST_DEFAULT
 ```
 
+
 <a id="group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24"></a>
 ### Macro PICOTEST\_SUITE\_AFTER\_SUBTEST
+
 
 ```cpp
 #define PICOTEST_SUITE_AFTER_SUBTEST
 ```
+
 
 <a id="group__test__suites_1ga4e09d95df5430205a201b5a02b522f25"></a>
 ### Typedef PicoTestSuiteEnterProc
@@ -530,7 +626,27 @@ PicoTest provides a way for client code to intercept test execution events on te
 <a id="group__test__suites_1gabce697eb4326140f89b0546d773da31c"></a>
 ### Typedef PicoTestSuiteAfterSubtestProc
 
+## Macros
+
+<a id="picotest_8h_1ab3f51c6e814dfdb310878e904dae18cd"></a>
+### Macro \_PICOTEST\_PARENS
+
+![][public]
+
+
+```cpp
+#define _PICOTEST_PARENS
+```
+
+
+
+
+
+
+
+
 ## Source
+
 
 ```cpp
 
@@ -542,16 +658,16 @@ PicoTest provides a way for client code to intercept test execution events on te
 #include <stdarg.h>
 #include <string.h>
 
-#if defined(_MSC_VER)
+#if !defined(_MSVC_TRADITIONAL) || _MSVC_TRADITIONAL
 #define _PICOTEST_PARENS
 #endif /* defined(_MSC_VER) */
 
 
 
-#define PICOTEST_VERSION "1.4.2"
+#define PICOTEST_VERSION "1.4.3"
 #define PICOTEST_VERSION_MAJOR 1
 #define PICOTEST_VERSION_MINOR 4
-#define PICOTEST_VERSION_PATCH 2
+#define PICOTEST_VERSION_PATCH 3
 
 
 
@@ -776,7 +892,9 @@ typedef void(PicoTestCaseLeaveProc)(const char *testName, int fail);
 
 
 #define PICOTEST_ASSERT(x, /* msg, */...)                                      \
-    { _PICOTEST_ASSERT(x, #x, ##__VA_ARGS__); }
+    {                                                                          \
+        _PICOTEST_ASSERT(x, #x, ##__VA_ARGS__);                                \
+    }
 
 #define _PICOTEST_ASSERT(x, ...)                                               \
     PICOTEST_ASSERT_BEFORE("ASSERT", #x);                                      \
@@ -790,7 +908,9 @@ typedef void(PicoTestCaseLeaveProc)(const char *testName, int fail);
     }
 
 #define PICOTEST_VERIFY(x, /* msg, */...)                                      \
-    { _PICOTEST_VERIFY(x, #x, ##__VA_ARGS__); }
+    {                                                                          \
+        _PICOTEST_VERIFY(x, #x, ##__VA_ARGS__);                                \
+    }
 
 #define _PICOTEST_VERIFY(x, ...)                                               \
     PICOTEST_ASSERT_BEFORE("VERIFY", #x);                                      \
@@ -1336,8 +1456,9 @@ typedef void(PicoTestSuiteAfterSubtestProc)(const char *suiteName, int nb,
 #endif /* _PICOTEST */
 ```
 
+
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
 [private]: https://img.shields.io/badge/-private-red (private)
 [static]: https://img.shields.io/badge/-static-lightgrey (static)
-[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
