@@ -10,6 +10,6 @@
 
 ## T
 
-* [Test Cases](group__test__cases.md#group__test__cases)
 * [Test Fixtures](group__fixtures.md#group__fixtures)
+* [Test Cases](group__test__cases.md#group__test__cases)
 * [Test Suites](group__test__suites.md#group__test__suites)

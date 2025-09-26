@@ -14,7 +14,7 @@ PicoTest provides a way for client code to intercept test case events. This can 
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 634)
+**Definition**: `include/picotest.h` (line 718)
 
 
 ```cpp
@@ -70,7 +70,7 @@ void enterTestCase(const char *testName) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 682)
+**Definition**: `include/picotest.h` (line 766)
 
 
 ```cpp
@@ -370,8 +370,5 @@ PICOTEST_CASE(testCase5, fixtureWithOptionalContext) {
 
 
 
-[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
-[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
-[private]: https://img.shields.io/badge/-private-red (private)
-[static]: https://img.shields.io/badge/-static-lightgrey (static)
+[public]: https://img.shields.io/badge/-public-brightgreen (public)

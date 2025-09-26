@@ -14,7 +14,7 @@ PicoTest provides a way for client code to intercept assertions events. This can
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 910)
+**Definition**: `include/picotest.h` (line 994)
 
 
 ```cpp
@@ -71,7 +71,7 @@ void beforeAssert(const char *type, const char *test) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 959)
+**Definition**: `include/picotest.h` (line 1043)
 
 
 ```cpp
@@ -288,7 +288,7 @@ void afterAssert(const char *type, const char *test, int fail) {
 ![][private]
 ![][static]
 
-**Definition**: `include/picotest.h` (line 836)
+**Definition**: `include/picotest.h` (line 920)
 
 
 ```cpp
@@ -310,7 +310,7 @@ Internal failure counter.
 ![][private]
 ![][static]
 
-**Definition**: `include/picotest.h` (line 844)
+**Definition**: `include/picotest.h` (line 928)
 
 
 ```cpp
@@ -524,8 +524,8 @@ This can be used to implement custom testing logic.
 
 
 
-[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
+[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
 [private]: https://img.shields.io/badge/-private-red (private)
 [static]: https://img.shields.io/badge/-static-lightgrey (static)

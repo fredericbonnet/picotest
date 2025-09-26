@@ -25,6 +25,7 @@
 ## E
 
 * [examples](dir_d28a4824dc47e487b107a5db32ef43c4.md#dir_d28a4824dc47e487b107a5db32ef43c4) Directory
+* [PICOTEST\_EXPORT](group__public__interface.md#group__public__interface_1gacaba613d5189a6fa6dc4be50a2e366d3) Macro
 * [PICOTEST\_EXTERN](group__public__interface.md#group__public__interface_1ga88033e8fb73d885670773cfc8ad1d024) Macro
 
 ## F
@@ -83,6 +84,8 @@
 
 * [name](struct_pico_test_metadata.md#struct_pico_test_metadata_1a253651ce46bc33b206c12787e8ccb166) Variable
 * [nbSubtests](struct_pico_test_metadata.md#struct_pico_test_metadata_1a7dd93cc6b50428b9594d171c28a563c1) Variable
+* [PICOTEST\_NAMESPACE](group__public__interface.md#group__public__interface_1gae82b43024340d2c047e29052f6b541cf) Macro
+* [PICOTEST\_NAMESPACE\_DELIMITER](group__public__interface.md#group__public__interface_1ga8f5ca8a0365eab9bb822126b61399dd0) Macro
 
 ## P
 
@@ -97,19 +100,19 @@
 
 ## S
 
-* [PICOTEST\_SUITE](picotest_8h.md#group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f) Macro
-* [PICOTEST\_SUITE\_AFTER\_SUBTEST](picotest_8h.md#group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24) Macro
-* [PICOTEST\_SUITE\_AFTER\_SUBTEST\_DEFAULT](picotest_8h.md#group__test__suites_1ga0aa7b03502294fee8f3e5b4951027145) Macro
-* [PICOTEST\_SUITE\_BEFORE\_SUBTEST](picotest_8h.md#group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464) Macro
-* [PICOTEST\_SUITE\_BEFORE\_SUBTEST\_DEFAULT](picotest_8h.md#group__test__suites_1gab5b747836950016e04544e29879f3da3) Macro
-* [PICOTEST\_SUITE\_ENTER](picotest_8h.md#group__test__suites_1gae569b3a4f05ebefc297411072e505fd3) Macro
-* [PICOTEST\_SUITE\_ENTER\_DEFAULT](picotest_8h.md#group__test__suites_1ga50f13419afbe35f17150bacd7a906838) Macro
-* [PICOTEST\_SUITE\_LEAVE](picotest_8h.md#group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c) Macro
-* [PICOTEST\_SUITE\_LEAVE\_DEFAULT](picotest_8h.md#group__test__suites_1gaf24c1f7c243e1990463aea4fbd4d5324) Macro
-* [PicoTestSuiteAfterSubtestProc](picotest_8h.md#group__test__suites_1gabce697eb4326140f89b0546d773da31c) Typedef
-* [PicoTestSuiteBeforeSubtestProc](picotest_8h.md#group__test__suites_1ga7547327d267d2bad9362c7adcc96bb24) Typedef
-* [PicoTestSuiteEnterProc](picotest_8h.md#group__test__suites_1ga4e09d95df5430205a201b5a02b522f25) Typedef
-* [PicoTestSuiteLeaveProc](picotest_8h.md#group__test__suites_1ga5d8415df8755804fe1479ff21d17ed90) Typedef
+* [PICOTEST\_SUITE](group__test__suites.md#group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f) Macro
+* [PICOTEST\_SUITE\_AFTER\_SUBTEST](group__test__suites.md#group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24) Macro
+* [PICOTEST\_SUITE\_AFTER\_SUBTEST\_DEFAULT](group__test__suites.md#group__test__suites_1ga0aa7b03502294fee8f3e5b4951027145) Macro
+* [PICOTEST\_SUITE\_BEFORE\_SUBTEST](group__test__suites.md#group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464) Macro
+* [PICOTEST\_SUITE\_BEFORE\_SUBTEST\_DEFAULT](group__test__suites.md#group__test__suites_1gab5b747836950016e04544e29879f3da3) Macro
+* [PICOTEST\_SUITE\_ENTER](group__test__suites.md#group__test__suites_1gae569b3a4f05ebefc297411072e505fd3) Macro
+* [PICOTEST\_SUITE\_ENTER\_DEFAULT](group__test__suites.md#group__test__suites_1ga50f13419afbe35f17150bacd7a906838) Macro
+* [PICOTEST\_SUITE\_LEAVE](group__test__suites.md#group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c) Macro
+* [PICOTEST\_SUITE\_LEAVE\_DEFAULT](group__test__suites.md#group__test__suites_1gaf24c1f7c243e1990463aea4fbd4d5324) Macro
+* [PicoTestSuiteAfterSubtestProc](group__test__suites.md#group__test__suites_1gabce697eb4326140f89b0546d773da31c) Typedef
+* [PicoTestSuiteBeforeSubtestProc](group__test__suites.md#group__test__suites_1ga7547327d267d2bad9362c7adcc96bb24) Typedef
+* [PicoTestSuiteEnterProc](group__test__suites.md#group__test__suites_1ga4e09d95df5430205a201b5a02b522f25) Typedef
+* [PicoTestSuiteLeaveProc](group__test__suites.md#group__test__suites_1ga5d8415df8755804fe1479ff21d17ed90) Typedef
 * [subtests](struct_pico_test_metadata.md#struct_pico_test_metadata_1a543874ce98d5f3516e4e5bda6f4e61a3) Variable
 
 ## T

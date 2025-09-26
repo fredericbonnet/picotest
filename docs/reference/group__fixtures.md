@@ -20,7 +20,7 @@ PicoTest provides a way for client code to intercept test fixture events. This c
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1170)
+**Definition**: `include/picotest.h` (line 1254)
 
 
 ```cpp
@@ -77,7 +77,7 @@ void beforeSetup(const char *fixtureName, const char *testName) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1219)
+**Definition**: `include/picotest.h` (line 1303)
 
 
 ```cpp
@@ -134,7 +134,7 @@ void afterSetup(const char *fixtureName, const char *testName) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1269)
+**Definition**: `include/picotest.h` (line 1353)
 
 
 ```cpp
@@ -192,7 +192,7 @@ void beforeTeardown(const char *fixtureName, const char *testName, int fail) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1320)
+**Definition**: `include/picotest.h` (line 1404)
 
 
 ```cpp
@@ -866,8 +866,6 @@ PICOTEST_CASE(testCase5, fixtureWithOptionalContext) {
 
 
 
-[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
+[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
-[private]: https://img.shields.io/badge/-private-red (private)
-[static]: https://img.shields.io/badge/-static-lightgrey (static)

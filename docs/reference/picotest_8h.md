@@ -129,6 +129,35 @@ PicoTest follows the Semantic Versioning Specification (SemVer) 2.0.0:
 ```
 
 
+## Namespaces
+
+<a id="group__public__interface_1gae82b43024340d2c047e29052f6b541cf"></a>
+### Macro PICOTEST\_NAMESPACE
+
+
+```cpp
+#define PICOTEST_NAMESPACE
+```
+
+
+<a id="group__public__interface_1ga8f5ca8a0365eab9bb822126b61399dd0"></a>
+### Macro PICOTEST\_NAMESPACE\_DELIMITER
+
+
+```cpp
+#define PICOTEST_NAMESPACE_DELIMITER
+```
+
+
+<a id="group__public__interface_1gacaba613d5189a6fa6dc4be50a2e366d3"></a>
+### Macro PICOTEST\_EXPORT
+
+
+```cpp
+#define PICOTEST_EXPORT
+```
+
+
 ## Test Functions
 
 <a id="group__public__interface_1ga88033e8fb73d885670773cfc8ad1d024"></a>
@@ -671,6 +700,47 @@ PicoTest provides a way for client code to intercept test execution events on te
 
 
 
+#ifdef DOXYGEN
+#define PICOTEST_NAMESPACE
+#endif
+
+#ifndef PICOTEST_NAMESPACE_DELIMITER
+#define PICOTEST_NAMESPACE_DELIMITER "."
+#endif
+
+#ifdef PICOTEST_NAMESPACE
+#define _PICOTEST_NAMESPACED(name)                                             \
+    _PICOTEST_CONCATENATE(PICOTEST_NAMESPACE, _PICOTEST_CONCATENATE(_, name))
+#define _PICOTEST_DISPLAY_NAME(name)                                           \
+    _PICOTEST_STRINGIZE(PICOTEST_NAMESPACE)                                    \
+    PICOTEST_NAMESPACE_DELIMITER _PICOTEST_STRINGIZE(name)
+#else
+#define _PICOTEST_NAMESPACED(name) name
+#define _PICOTEST_DISPLAY_NAME(name) _PICOTEST_STRINGIZE(name)
+#endif
+
+#ifdef PICOTEST_NAMESPACE
+#define PICOTEST_EXPORT(_testName)                                             \
+    int _testName(const char *cond) {                                          \
+        return _PICOTEST_NAMESPACED(_testName)(cond);                          \
+    }                                                                          \
+    extern PicoTestMetadata _PICOTEST_METADATA(                                \
+        _PICOTEST_NAMESPACED(_testName));                                      \
+    static PicoTestMetadata *_testName##_exported_subtests[] = {               \
+        &_PICOTEST_METADATA(_PICOTEST_NAMESPACED(_testName)), NULL};           \
+    PicoTestMetadata _PICOTEST_METADATA(_testName) = {                         \
+        _PICOTEST_STRINGIZE(_testName),                                        \
+        __FILE__,                                                              \
+        __LINE__,                                                              \
+        _testName,                                                             \
+        1,                                                                     \
+        (const struct PicoTestMetadata **)_testName##_exported_subtests};
+#else
+#define PICOTEST_EXPORT(_testName)
+#endif
+
+
+
 typedef int(PicoTestProc)(const char *cond);
 
 typedef struct PicoTestMetadata {
@@ -684,19 +754,21 @@ typedef struct PicoTestMetadata {
 } PicoTestMetadata;
 
 #define PICOTEST_EXTERN(_testName)                                             \
-    extern PicoTestProc _testName;                                             \
-    extern PicoTestMetadata _PICOTEST_METADATA(_testName);
+    extern PicoTestProc _PICOTEST_NAMESPACED(_testName);                       \
+    extern PicoTestMetadata _PICOTEST_METADATA(_PICOTEST_NAMESPACED(_testName));
 
-#define PICOTEST_METADATA(_testName) &_PICOTEST_METADATA(_testName)
+#define PICOTEST_METADATA(_testName)                                           \
+    &_PICOTEST_METADATA(_PICOTEST_NAMESPACED(_testName))
 
-#define _PICOTEST_METADATA(_testName) _testName##_metadata
+#define _PICOTEST_METADATA(_testName)                                          \
+    _PICOTEST_CONCATENATE(_testName, _metadata)
 #define _PICOTEST_TEST_DECLARE(_testName, _nbSubtests, _subtests)              \
-    PicoTestProc _testName;                                                    \
-    PicoTestMetadata _PICOTEST_METADATA(_testName) = {                         \
-        _PICOTEST_STRINGIZE(_testName),                                        \
+    PicoTestProc _PICOTEST_NAMESPACED(_testName);                              \
+    PicoTestMetadata _PICOTEST_METADATA(_PICOTEST_NAMESPACED(_testName)) = {   \
+        _PICOTEST_DISPLAY_NAME(_testName),                                     \
         __FILE__,                                                              \
         __LINE__,                                                              \
-        _testName,                                                             \
+        _PICOTEST_NAMESPACED(_testName),                                       \
         _nbSubtests,                                                           \
         (const struct PicoTestMetadata **)_subtests};
 
@@ -798,18 +870,20 @@ static void _picoTest_logFailure(const char *file, int line, const char *type,
 
 #define _PICOTEST_CASE_DECLARE(_testName)                                      \
     _PICOTEST_TEST_DECLARE(_testName, 0, NULL);                                \
-    static int _testName##_testCaseRunner(void);                               \
-    int _testName(const char *cond) {                                          \
+    static int _PICOTEST_CONCATENATE(_PICOTEST_NAMESPACED(_testName),          \
+                                     _testCaseRunner)(void);                   \
+    int _PICOTEST_NAMESPACED(_testName)(const char *cond) {                    \
         int fail = 0;                                                          \
         PicoTestFilterResult filterResult =                                    \
             (cond == NULL)                                                     \
                 ? PICOTEST_FILTER_PASS                                         \
-                : PICOTEST_FILTER(_testName, _PICOTEST_STRINGIZE(_testName),   \
-                                  cond);                                       \
+                : PICOTEST_FILTER(_PICOTEST_NAMESPACED(_testName),             \
+                                  _PICOTEST_DISPLAY_NAME(_testName), cond);    \
         switch (filterResult) {                                                \
         case PICOTEST_FILTER_PASS:                                             \
         case PICOTEST_FILTER_PASS_PROPAGATE:                                   \
-            fail += _testName##_testCaseRunner();                              \
+            fail += _PICOTEST_CONCATENATE(_PICOTEST_NAMESPACED(_testName),     \
+                                          _testCaseRunner)();                  \
             break;                                                             \
         default:;                                                              \
         }                                                                      \
@@ -817,19 +891,20 @@ static void _picoTest_logFailure(const char *file, int line, const char *type,
     }
 
 #define _PICOTEST_CASE_RUNNER_BEGIN(_testName)                                 \
-    static int _testName##_testCaseRunner() {                                  \
+    static int _PICOTEST_CONCATENATE(_PICOTEST_NAMESPACED(_testName),          \
+                                     _testCaseRunner)() {                      \
         int abort;                                                             \
         jmp_buf failureEnv;                                                    \
         jmp_buf *oldEnv = _picoTest_failureEnv;                                \
         int fail, oldFail = _picoTest_fail;                                    \
         _picoTest_failureEnv = &failureEnv;                                    \
         _picoTest_fail = 0;                                                    \
-        PICOTEST_CASE_ENTER(_PICOTEST_STRINGIZE(_testName));                   \
+        PICOTEST_CASE_ENTER(_PICOTEST_DISPLAY_NAME(_testName));                \
         abort = setjmp(failureEnv);
 
 #define _PICOTEST_CASE_RUNNER_END(_testName)                                   \
     fail = _picoTest_fail;                                                     \
-    PICOTEST_CASE_LEAVE(_PICOTEST_STRINGIZE(_testName), fail);                 \
+    PICOTEST_CASE_LEAVE(_PICOTEST_DISPLAY_NAME(_testName), fail);              \
     _picoTest_failureEnv = oldEnv;                                             \
     _picoTest_fail = oldFail;                                                  \
     return fail;                                                               \
@@ -837,41 +912,53 @@ static void _picoTest_logFailure(const char *file, int line, const char *type,
 
 #define _PICOTEST_CASE_1(_testName)                                            \
     _PICOTEST_CASE_DECLARE(_testName)                                          \
-    static void _testName##_testCase(void);                                    \
+    static void _PICOTEST_CONCATENATE(_PICOTEST_NAMESPACED(_testName),         \
+                                      _testCase)(void);                        \
     _PICOTEST_CASE_RUNNER_BEGIN(_testName)                                     \
     if (!abort) {                                                              \
-        _testName##_testCase();                                                \
+        _PICOTEST_CONCATENATE(_PICOTEST_NAMESPACED(_testName), _testCase)();   \
     }                                                                          \
     _PICOTEST_CASE_RUNNER_END(_testName)                                       \
-    static void _testName##_testCase(void)
+    static void _PICOTEST_CONCATENATE(_PICOTEST_NAMESPACED(_testName),         \
+                                      _testCase)(void)
 
 #define _PICOTEST_CASE_2(_testName, _fixtureName)                              \
     _PICOTEST_CASE_DECLARE(_testName)                                          \
-    static void _testName##_testCase(void);                                    \
+    static void _PICOTEST_CONCATENATE(_PICOTEST_NAMESPACED(_testName),         \
+                                      _testCase)(void);                        \
     _PICOTEST_CASE_RUNNER_BEGIN(_testName)                                     \
     if (!abort) {                                                              \
-        _PICOTEST_FIXTURE_CALL_SETUP(_fixtureName, _testName, NULL);           \
-        _testName##_testCase();                                                \
+        _PICOTEST_FIXTURE_CALL_SETUP(_fixtureName,                             \
+                                     _PICOTEST_NAMESPACED(_testName), NULL);   \
+        _PICOTEST_CONCATENATE(_PICOTEST_NAMESPACED(_testName), _testCase)();   \
     }                                                                          \
-    _PICOTEST_FIXTURE_CALL_TEARDOWN(_fixtureName, _testName, NULL,             \
-                                    _picoTest_fail);                           \
+    _PICOTEST_FIXTURE_CALL_TEARDOWN(                                           \
+        _fixtureName, _PICOTEST_NAMESPACED(_testName), NULL, _picoTest_fail);  \
     _PICOTEST_CASE_RUNNER_END(_testName)                                       \
-    static void _testName##_testCase()
+    static void _PICOTEST_CONCATENATE(_PICOTEST_NAMESPACED(_testName),         \
+                                      _testCase)()
 
 #define _PICOTEST_CASE_3(_testName, _fixtureName, _context)                    \
     _PICOTEST_CASE_DECLARE(_testName)                                          \
-    static void _testName##_testCase(struct _fixtureName##_Context *);         \
+    static void _PICOTEST_CONCATENATE(_PICOTEST_NAMESPACED(_testName),         \
+                                      _testCase)(                              \
+        struct _fixtureName##_Context *);                                      \
     _PICOTEST_CASE_RUNNER_BEGIN(_testName) {                                   \
         struct _fixtureName##_Context context;                                 \
         if (!abort) {                                                          \
-            _PICOTEST_FIXTURE_CALL_SETUP(_fixtureName, _testName, &context);   \
-            _testName##_testCase(&context);                                    \
+            _PICOTEST_FIXTURE_CALL_SETUP(                                      \
+                _fixtureName, _PICOTEST_NAMESPACED(_testName), &context);      \
+            _PICOTEST_CONCATENATE(_PICOTEST_NAMESPACED(_testName),             \
+                                  _testCase)(&context);                        \
         }                                                                      \
-        _PICOTEST_FIXTURE_CALL_TEARDOWN(_fixtureName, _testName, &context,     \
-                                        _picoTest_fail);                       \
+        _PICOTEST_FIXTURE_CALL_TEARDOWN(_fixtureName,                          \
+                                        _PICOTEST_NAMESPACED(_testName),       \
+                                        &context, _picoTest_fail);             \
     }                                                                          \
     _PICOTEST_CASE_RUNNER_END(_testName)                                       \
-    static void _testName##_testCase(struct _fixtureName##_Context *_context)
+    static void _PICOTEST_CONCATENATE(_PICOTEST_NAMESPACED(_testName),         \
+                                      _testCase)(                              \
+        struct _fixtureName##_Context * _context)
 
 
 
@@ -1064,46 +1151,56 @@ typedef void(PicoTestFixtureAfterTeardownProc)(const char *fixtureName,
 
 #define PICOTEST_SUITE(_suiteName, ...)                                        \
     _PICOTEST_FOR_EACH(PICOTEST_EXTERN, __VA_ARGS__)                           \
-    static PicoTestMetadata *_suiteName##_subtests[] = {_PICOTEST_FOR_EACH(    \
-        _PICOTEST_SUITE_ENUMERATE_SUBTEST, __VA_ARGS__) NULL};                 \
-    _PICOTEST_TEST_DECLARE(_suiteName, _PICOTEST_ARGCOUNT(__VA_ARGS__),        \
-                           _suiteName##_subtests);                             \
-    static int _suiteName##_testSuiteRunner(const char *cond) {                \
+    static PicoTestMetadata *_PICOTEST_CONCATENATE(                            \
+        _PICOTEST_NAMESPACED(_suiteName), _subtests)[] = {                     \
+        _PICOTEST_FOR_EACH(_PICOTEST_SUITE_ENUMERATE_SUBTEST, __VA_ARGS__)     \
+            NULL};                                                             \
+    _PICOTEST_TEST_DECLARE(                                                    \
+        _suiteName, _PICOTEST_ARGCOUNT(__VA_ARGS__),                           \
+        _PICOTEST_CONCATENATE(_PICOTEST_NAMESPACED(_suiteName), _subtests));   \
+    static int _PICOTEST_CONCATENATE(_PICOTEST_NAMESPACED(_suiteName),         \
+                                     _testSuiteRunner)(const char *cond) {     \
         const int nb = _PICOTEST_ARGCOUNT(__VA_ARGS__);                        \
-        PicoTestMetadata **subtest = _suiteName##_subtests;                    \
+        PicoTestMetadata **subtest = _PICOTEST_CONCATENATE(                    \
+            _PICOTEST_NAMESPACED(_suiteName), _subtests);                      \
         int fail = 0;                                                          \
-        PICOTEST_SUITE_ENTER(_PICOTEST_STRINGIZE(_suiteName), nb);             \
+        PICOTEST_SUITE_ENTER(_PICOTEST_DISPLAY_NAME(_suiteName), nb);          \
         for (; *subtest; subtest++) {                                          \
-            const int index = (int)(subtest - _suiteName##_subtests);          \
+            const int index =                                                  \
+                (int)(subtest -                                                \
+                      _PICOTEST_CONCATENATE(_PICOTEST_NAMESPACED(_suiteName),  \
+                                            _subtests));                       \
             int sfail = 0;                                                     \
-            PICOTEST_SUITE_BEFORE_SUBTEST(_PICOTEST_STRINGIZE(_suiteName), nb, \
-                                          fail, index, (*subtest)->name);      \
+            PICOTEST_SUITE_BEFORE_SUBTEST(_PICOTEST_DISPLAY_NAME(_suiteName),  \
+                                          nb, fail, index, (*subtest)->name);  \
             sfail = (*subtest)->test(cond);                                    \
             fail += sfail;                                                     \
-            PICOTEST_SUITE_AFTER_SUBTEST(_PICOTEST_STRINGIZE(_suiteName), nb,  \
-                                         fail, index, (*subtest)->name,        \
+            PICOTEST_SUITE_AFTER_SUBTEST(_PICOTEST_DISPLAY_NAME(_suiteName),   \
+                                         nb, fail, index, (*subtest)->name,    \
                                          sfail);                               \
         }                                                                      \
-        PICOTEST_SUITE_LEAVE(_PICOTEST_STRINGIZE(_suiteName), nb, fail);       \
+        PICOTEST_SUITE_LEAVE(_PICOTEST_DISPLAY_NAME(_suiteName), nb, fail);    \
         return fail;                                                           \
     }                                                                          \
-    int _suiteName(const char *cond) {                                         \
+    int _PICOTEST_NAMESPACED(_suiteName)(const char *cond) {                   \
         int fail = 0;                                                          \
         PicoTestFilterResult filterResult =                                    \
             (cond == NULL)                                                     \
                 ? PICOTEST_FILTER_PASS                                         \
-                : PICOTEST_FILTER(_suiteName, _PICOTEST_STRINGIZE(_suiteName), \
-                                  cond);                                       \
+                : PICOTEST_FILTER(_PICOTEST_NAMESPACED(_suiteName),            \
+                                  _PICOTEST_DISPLAY_NAME(_suiteName), cond);   \
         switch (filterResult) {                                                \
         case PICOTEST_FILTER_PASS:                                             \
             cond = NULL;                                                       \
         case PICOTEST_FILTER_PASS_PROPAGATE:                                   \
-            fail += _suiteName##_testSuiteRunner(cond);                        \
+            fail += _PICOTEST_CONCATENATE(_PICOTEST_NAMESPACED(_suiteName),    \
+                                          _testSuiteRunner)(cond);             \
             break;                                                             \
         case PICOTEST_FILTER_SKIP:                                             \
             break;                                                             \
         case PICOTEST_FILTER_SKIP_PROPAGATE: {                                 \
-            PicoTestMetadata **subtest = _suiteName##_subtests;                \
+            PicoTestMetadata **subtest = _PICOTEST_CONCATENATE(                \
+                _PICOTEST_NAMESPACED(_suiteName), _subtests);                  \
             for (; *subtest; subtest++) {                                      \
                 fail += (*subtest)->test(cond);                                \
             }                                                                  \
@@ -1152,7 +1249,9 @@ typedef void(PicoTestSuiteAfterSubtestProc)(const char *suiteName, int nb,
 
 
 
-#define _PICOTEST_STRINGIZE(arg) #arg
+#define _PICOTEST_STRINGIZE(arg) _PICOTEST_STRINGIZE2(arg)
+
+#define _PICOTEST_STRINGIZE2(arg) #arg
 
 #define _PICOTEST_CONCATENATE(arg1, arg2) _PICOTEST_CONCATENATE1(arg1, arg2)
 
@@ -1457,8 +1556,8 @@ typedef void(PicoTestSuiteAfterSubtestProc)(const char *suiteName, int nb,
 ```
 
 
-[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
+[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
 [private]: https://img.shields.io/badge/-private-red (private)
 [static]: https://img.shields.io/badge/-static-lightgrey (static)

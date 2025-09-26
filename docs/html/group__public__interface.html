@@ -158,6 +158,15 @@ Logging</h2></td></tr>
 <tr class="memdesc:gaf08fabb517d01d11ce72614d1df51687"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default test failure log handler.  <br /></td></tr>
 <tr class="memitem:gae4b2f943bef59bd05fb7a328a6c39d48" id="r_gae4b2f943bef59bd05fb7a328a6c39d48"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gae4b2f943bef59bd05fb7a328a6c39d48">PICOTEST_FAILURE_LOGGER</a></td></tr>
 <tr class="memdesc:gae4b2f943bef59bd05fb7a328a6c39d48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the test failure log handler.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-member-group" class="groupheader"><a id="member-group" name="member-group"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:gae82b43024340d2c047e29052f6b541cf" id="r_gae82b43024340d2c047e29052f6b541cf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gae82b43024340d2c047e29052f6b541cf">PICOTEST_NAMESPACE</a></td></tr>
+<tr class="memdesc:gae82b43024340d2c047e29052f6b541cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Activate namespacing for the current file (disabled by default).  <br /></td></tr>
+<tr class="memitem:ga8f5ca8a0365eab9bb822126b61399dd0" id="r_ga8f5ca8a0365eab9bb822126b61399dd0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga8f5ca8a0365eab9bb822126b61399dd0">PICOTEST_NAMESPACE_DELIMITER</a></td></tr>
+<tr class="memdesc:ga8f5ca8a0365eab9bb822126b61399dd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">String delimiter between namespace and test names (defaults to <span class="tt">"."</span>).  <br /></td></tr>
+<tr class="memitem:gacaba613d5189a6fa6dc4be50a2e366d3" id="r_gacaba613d5189a6fa6dc4be50a2e366d3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gacaba613d5189a6fa6dc4be50a2e366d3">PICOTEST_EXPORT</a>(_testName)</td></tr>
+<tr class="memdesc:gacaba613d5189a6fa6dc4be50a2e366d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Export a test to make it globally accessible.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <hr/><h2 id="header-inline_5Fclasses" class="groupheader">Data Structure Documentation</h2>
@@ -222,6 +231,65 @@ subtests</td>
 </div>
 </div>
 <a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="gae82b43024340d2c047e29052f6b541cf" name="gae82b43024340d2c047e29052f6b541cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae82b43024340d2c047e29052f6b541cf">&#9670;&#160;</a></span>PICOTEST_NAMESPACE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PICOTEST_NAMESPACE</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Activate namespacing for the current file (disabled by default). </p>
+<p>Defining <a class="el" href="#gae82b43024340d2c047e29052f6b541cf" title="Activate namespacing for the current file (disabled by default).">PICOTEST_NAMESPACE</a> before including <span class="tt"><a class="el" href="picotest_8h.html" title="This file defines a minimalist unit testing framework for C programs.">picotest.h</a></span> will use the provided value as a prefix for all the symbols in the file to avoid name clashes. This is useful with large test suites to keep local test names short. </p>
+
+</div>
+</div>
+<a id="ga8f5ca8a0365eab9bb822126b61399dd0" name="ga8f5ca8a0365eab9bb822126b61399dd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8f5ca8a0365eab9bb822126b61399dd0">&#9670;&#160;</a></span>PICOTEST_NAMESPACE_DELIMITER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PICOTEST_NAMESPACE_DELIMITER</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>String delimiter between namespace and test names (defaults to <span class="tt">"."</span>). </p>
+
+</div>
+</div>
+<a id="gacaba613d5189a6fa6dc4be50a2e366d3" name="gacaba613d5189a6fa6dc4be50a2e366d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacaba613d5189a6fa6dc4be50a2e366d3">&#9670;&#160;</a></span>PICOTEST_EXPORT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PICOTEST_EXPORT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>_testName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Export a test to make it globally accessible. </p>
+<p>This creates a global wrapper around the namespaced test, allowing it to be referenced externally.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_testName</td><td>Test name. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ga88033e8fb73d885670773cfc8ad1d024" name="ga88033e8fb73d885670773cfc8ad1d024"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga88033e8fb73d885670773cfc8ad1d024">&#9670;&#160;</a></span>PICOTEST_EXTERN</h2>
 

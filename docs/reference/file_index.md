@@ -27,5 +27,5 @@
 
 ## T
 
-* [traverse.c](traverse_8c.md#traverse_8c): Example of PicoTest hierarchy traversal, prints traversed tests to stdout.
 * [tags.c](tags_8c.md#tags_8c): Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering.
+* [traverse.c](traverse_8c.md#traverse_8c): Example of PicoTest hierarchy traversal, prints traversed tests to stdout.

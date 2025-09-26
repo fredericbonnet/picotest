@@ -14,7 +14,7 @@ PicoTest provides a way for client code to intercept test execution events on te
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1474)
+**Definition**: `include/picotest.h` (line 1568)
 
 
 ```cpp
@@ -60,7 +60,7 @@ void enterTestSuite(const char *suiteName, int nb) {
 
 
 
-**See also**: [PICOTEST\_SUITE\_ENTER](picotest_8h.md#group__test__suites_1gae569b3a4f05ebefc297411072e505fd3)
+**See also**: [PICOTEST\_SUITE\_ENTER](group__test__suites.md#group__test__suites_1gae569b3a4f05ebefc297411072e505fd3)
 
 
 
@@ -71,7 +71,7 @@ void enterTestSuite(const char *suiteName, int nb) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1522)
+**Definition**: `include/picotest.h` (line 1616)
 
 
 ```cpp
@@ -111,7 +111,7 @@ void leaveTestSuite(const char *suiteName, int nb, int fail) {
 
 
 
-**See also**: [PICOTEST\_SUITE\_LEAVE](picotest_8h.md#group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c)
+**See also**: [PICOTEST\_SUITE\_LEAVE](group__test__suites.md#group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c)
 
 
 
@@ -122,7 +122,7 @@ void leaveTestSuite(const char *suiteName, int nb, int fail) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1576)
+**Definition**: `include/picotest.h` (line 1670)
 
 
 ```cpp
@@ -172,7 +172,7 @@ void beforeSubtest(const char *suiteName, int nb, int fail, int index,
 
 
 
-**See also**: [PICOTEST\_SUITE\_BEFORE\_SUBTEST](picotest_8h.md#group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464)
+**See also**: [PICOTEST\_SUITE\_BEFORE\_SUBTEST](group__test__suites.md#group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464)
 
 
 
@@ -183,7 +183,7 @@ void beforeSubtest(const char *suiteName, int nb, int fail, int index,
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 1633)
+**Definition**: `include/picotest.h` (line 1727)
 
 
 ```cpp
@@ -234,7 +234,7 @@ void afterSubtest(const char *suiteName, int nb, int fail, int index,
 
 
 
-**See also**: [PICOTEST\_SUITE\_AFTER\_SUBTEST](picotest_8h.md#group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24)
+**See also**: [PICOTEST\_SUITE\_AFTER\_SUBTEST](group__test__suites.md#group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24)
 
 
 
@@ -262,7 +262,7 @@ Does nothing.
 
 
 
-**See also**: [PicoTestSuiteEnterProc](picotest_8h.md#group__test__suites_1ga4e09d95df5430205a201b5a02b522f25), [PICOTEST\_SUITE\_ENTER](picotest_8h.md#group__test__suites_1gae569b3a4f05ebefc297411072e505fd3)
+**See also**: [PicoTestSuiteEnterProc](group__test__suites.md#group__test__suites_1ga4e09d95df5430205a201b5a02b522f25), [PICOTEST\_SUITE\_ENTER](group__test__suites.md#group__test__suites_1gae569b3a4f05ebefc297411072e505fd3)
 
 
 
@@ -279,7 +279,7 @@ Does nothing.
 
 Define the test suite enter hook.
 
-The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestSuiteEnterProc](picotest_8h.md#group__test__suites_1ga4e09d95df5430205a201b5a02b522f25) signature.
+The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestSuiteEnterProc](group__test__suites.md#group__test__suites_1ga4e09d95df5430205a201b5a02b522f25) signature.
 
 
 
@@ -314,7 +314,7 @@ void enterTestSuite(const char *suiteName, int nb) {
 
 
 
-**See also**: [PicoTestSuiteEnterProc](picotest_8h.md#group__test__suites_1ga4e09d95df5430205a201b5a02b522f25), [PICOTEST\_SUITE\_ENTER\_DEFAULT](picotest_8h.md#group__test__suites_1ga50f13419afbe35f17150bacd7a906838), [PICOTEST\_SUITE\_LEAVE](picotest_8h.md#group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c)
+**See also**: [PicoTestSuiteEnterProc](group__test__suites.md#group__test__suites_1ga4e09d95df5430205a201b5a02b522f25), [PICOTEST\_SUITE\_ENTER\_DEFAULT](group__test__suites.md#group__test__suites_1ga50f13419afbe35f17150bacd7a906838), [PICOTEST\_SUITE\_LEAVE](group__test__suites.md#group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c)
 
 
 
@@ -340,7 +340,7 @@ Does nothing.
 
 
 
-**See also**: [PicoTestSuiteLeaveProc](picotest_8h.md#group__test__suites_1ga5d8415df8755804fe1479ff21d17ed90), [PICOTEST\_SUITE\_LEAVE](picotest_8h.md#group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c)
+**See also**: [PicoTestSuiteLeaveProc](group__test__suites.md#group__test__suites_1ga5d8415df8755804fe1479ff21d17ed90), [PICOTEST\_SUITE\_LEAVE](group__test__suites.md#group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c)
 
 
 
@@ -363,7 +363,7 @@ Called after running all subtests.
 
 
 
-The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestSuiteLeaveProc](picotest_8h.md#group__test__suites_1ga5d8415df8755804fe1479ff21d17ed90) signature.
+The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestSuiteLeaveProc](group__test__suites.md#group__test__suites_1ga5d8415df8755804fe1479ff21d17ed90) signature.
 
 
 
@@ -398,7 +398,7 @@ void leaveTestSuite(const char *suiteName, int nb, int fail) {
 
 
 
-**See also**: [PicoTestSuiteLeaveProc](picotest_8h.md#group__test__suites_1ga5d8415df8755804fe1479ff21d17ed90), [PICOTEST\_SUITE\_LEAVE\_DEFAULT](picotest_8h.md#group__test__suites_1gaf24c1f7c243e1990463aea4fbd4d5324), [PICOTEST\_SUITE\_ENTER](picotest_8h.md#group__test__suites_1gae569b3a4f05ebefc297411072e505fd3)
+**See also**: [PicoTestSuiteLeaveProc](group__test__suites.md#group__test__suites_1ga5d8415df8755804fe1479ff21d17ed90), [PICOTEST\_SUITE\_LEAVE\_DEFAULT](group__test__suites.md#group__test__suites_1gaf24c1f7c243e1990463aea4fbd4d5324), [PICOTEST\_SUITE\_ENTER](group__test__suites.md#group__test__suites_1gae569b3a4f05ebefc297411072e505fd3)
 
 
 
@@ -424,7 +424,7 @@ Does nothing.
 
 
 
-**See also**: [PicoTestSuiteBeforeSubtestProc](picotest_8h.md#group__test__suites_1ga7547327d267d2bad9362c7adcc96bb24), [PICOTEST\_SUITE\_BEFORE\_SUBTEST](picotest_8h.md#group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464)
+**See also**: [PicoTestSuiteBeforeSubtestProc](group__test__suites.md#group__test__suites_1ga7547327d267d2bad9362c7adcc96bb24), [PICOTEST\_SUITE\_BEFORE\_SUBTEST](group__test__suites.md#group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464)
 
 
 
@@ -441,7 +441,7 @@ Does nothing.
 
 Define the test suite before subset hook.
 
-The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestSuiteBeforeSubtestProc](picotest_8h.md#group__test__suites_1ga7547327d267d2bad9362c7adcc96bb24) signature.
+The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestSuiteBeforeSubtestProc](group__test__suites.md#group__test__suites_1ga7547327d267d2bad9362c7adcc96bb24) signature.
 
 
 
@@ -477,7 +477,7 @@ void beforeSubtest(const char *suiteName, int nb, int fail, int index,
 
 
 
-**See also**: [PicoTestSuiteBeforeSubtestProc](picotest_8h.md#group__test__suites_1ga7547327d267d2bad9362c7adcc96bb24), [PICOTEST\_SUITE\_BEFORE\_SUBTEST\_DEFAULT](picotest_8h.md#group__test__suites_1gab5b747836950016e04544e29879f3da3), [PICOTEST\_SUITE\_AFTER\_SUBTEST](picotest_8h.md#group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24)
+**See also**: [PicoTestSuiteBeforeSubtestProc](group__test__suites.md#group__test__suites_1ga7547327d267d2bad9362c7adcc96bb24), [PICOTEST\_SUITE\_BEFORE\_SUBTEST\_DEFAULT](group__test__suites.md#group__test__suites_1gab5b747836950016e04544e29879f3da3), [PICOTEST\_SUITE\_AFTER\_SUBTEST](group__test__suites.md#group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24)
 
 
 
@@ -503,7 +503,7 @@ Does nothing.
 
 
 
-**See also**: [PicoTestSuiteAfterSubtestProc](picotest_8h.md#group__test__suites_1gabce697eb4326140f89b0546d773da31c), [PICOTEST\_SUITE\_AFTER\_SUBTEST](picotest_8h.md#group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24)
+**See also**: [PicoTestSuiteAfterSubtestProc](group__test__suites.md#group__test__suites_1gabce697eb4326140f89b0546d773da31c), [PICOTEST\_SUITE\_AFTER\_SUBTEST](group__test__suites.md#group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24)
 
 
 
@@ -520,7 +520,7 @@ Does nothing.
 
 Define the test suite after subset hook.
 
-The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestSuiteAfterSubtestProc](picotest_8h.md#group__test__suites_1gabce697eb4326140f89b0546d773da31c) signature.
+The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestSuiteAfterSubtestProc](group__test__suites.md#group__test__suites_1gabce697eb4326140f89b0546d773da31c) signature.
 
 
 
@@ -556,7 +556,7 @@ void afterSubtest(const char *suiteName, int nb, int fail, int index,
 
 
 
-**See also**: [PicoTestSuiteAfterSubtestProc](picotest_8h.md#group__test__suites_1gabce697eb4326140f89b0546d773da31c), [PICOTEST\_SUITE\_AFTER\_SUBTEST\_DEFAULT](picotest_8h.md#group__test__suites_1ga0aa7b03502294fee8f3e5b4951027145), [PICOTEST\_SUITE\_BEFORE\_SUBTEST](picotest_8h.md#group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464)
+**See also**: [PicoTestSuiteAfterSubtestProc](group__test__suites.md#group__test__suites_1gabce697eb4326140f89b0546d773da31c), [PICOTEST\_SUITE\_AFTER\_SUBTEST\_DEFAULT](group__test__suites.md#group__test__suites_1ga0aa7b03502294fee8f3e5b4951027145), [PICOTEST\_SUITE\_BEFORE\_SUBTEST](group__test__suites.md#group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464)
 
 
 
@@ -626,8 +626,6 @@ PICOTEST_SUITE(subSuite,
 
 
 
-[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
+[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
-[private]: https://img.shields.io/badge/-private-red (private)
-[static]: https://img.shields.io/badge/-static-lightgrey (static)

@@ -18,6 +18,11 @@ target_sources(test_picotest
         testCaseHooks.c
         testFixtures.c
         testFixtureHooks.c
+        testNamespaces.c
+        testNamespace1.c
+        testNamespace2.c
+        testNamespace3.c
+        testNamespace4.c
         testSuites.c
         testSuiteHooks.c
         testFilters.c

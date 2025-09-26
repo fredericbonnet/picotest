@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add `PICOTEST_NAMESPACE` for file-level namespacing.
+
 ## [1.4.4] - 2025-09-23
 
 ## Fixed

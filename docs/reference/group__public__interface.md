@@ -21,7 +21,7 @@ PicoTest provides a way for client code to select tests to be run using custom f
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 176)
+**Definition**: `include/picotest.h` (line 245)
 
 
 ```cpp
@@ -80,7 +80,7 @@ Test matches the condition, run this test but filter its subtests.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 216)
+**Definition**: `include/picotest.h` (line 285)
 
 
 ```cpp
@@ -138,7 +138,7 @@ PicoTestFilterResult matchSubstring(PicoTestProc *test, const char *testName, co
 
 
 
-**See also**: [PICOTEST\_SUITE](picotest_8h.md#group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f), [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5), [PICOTEST\_FILTER](group__public__interface.md#group__public__interface_1gabd82de0bec174d972151cd122a0a03ff), [PicoTestFilterResult](group__public__interface.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc)
+**See also**: [PICOTEST\_SUITE](group__test__suites.md#group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f), [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5), [PICOTEST\_FILTER](group__public__interface.md#group__public__interface_1gabd82de0bec174d972151cd122a0a03ff), [PicoTestFilterResult](group__public__interface.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc)
 
 
 
@@ -275,7 +275,7 @@ Tests can form hierarchies of test suites and test cases. PicoTest provides two 
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 348)
+**Definition**: `include/picotest.h` (line 417)
 
 
 ```cpp
@@ -311,7 +311,7 @@ Leave the test.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 300)
+**Definition**: `include/picotest.h` (line 369)
 
 
 ```cpp
@@ -364,7 +364,7 @@ void printTestName(const char *name, int nb) {
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 367)
+**Definition**: `include/picotest.h` (line 436)
 
 
 ```cpp
@@ -539,7 +539,7 @@ This feature covers more advanced use cases than [PICOTEST\_TRAVERSE](group__pub
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 105)
+**Definition**: `include/picotest.h` (line 172)
 
 
 ```cpp
@@ -569,7 +569,7 @@ Number of failed tests.
 
 
 
-**See also**: [PICOTEST\_SUITE](picotest_8h.md#group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f), [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5), [PICOTEST\_FILTER](group__public__interface.md#group__public__interface_1gabd82de0bec174d972151cd122a0a03ff)
+**See also**: [PICOTEST\_SUITE](group__test__suites.md#group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f), [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5), [PICOTEST\_FILTER](group__public__interface.md#group__public__interface_1gabd82de0bec174d972151cd122a0a03ff)
 
 
 
@@ -634,7 +634,7 @@ PicoTest provides a way for client code to intercept test failure events. This c
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 439)
+**Definition**: `include/picotest.h` (line 508)
 
 
 ```cpp
@@ -914,8 +914,70 @@ PicoTest follows the Semantic Versioning Specification (SemVer) 2.0.0:
 
 
 
-[public]: https://img.shields.io/badge/-public-brightgreen (public)
+## Namespaces
+
+<a id="group__public__interface_1gae82b43024340d2c047e29052f6b541cf"></a>
+### Macro PICOTEST\_NAMESPACE
+
+![][public]
+
+
+```cpp
+#define PICOTEST_NAMESPACE
+```
+
+
+Activate namespacing for the current file (disabled by default).
+
+Defining [PICOTEST\_NAMESPACE](group__public__interface.md#group__public__interface_1gae82b43024340d2c047e29052f6b541cf) before including <code>[picotest.h](picotest_8h.md#picotest_8h)</code> will use the provided value as a prefix for all the symbols in the file to avoid name clashes. This is useful with large test suites to keep local test names short.
+
+
+
+<a id="group__public__interface_1ga8f5ca8a0365eab9bb822126b61399dd0"></a>
+### Macro PICOTEST\_NAMESPACE\_DELIMITER
+
+![][public]
+
+
+```cpp
+#define PICOTEST_NAMESPACE_DELIMITER
+```
+
+
+String delimiter between namespace and test names (defaults to <code>"."</code>).
+
+
+
+
+
+<a id="group__public__interface_1gacaba613d5189a6fa6dc4be50a2e366d3"></a>
+### Macro PICOTEST\_EXPORT
+
+![][public]
+
+
+```cpp
+#define PICOTEST_EXPORT( _testName )
+```
+
+
+Export a test to make it globally accessible.
+
+This creates a global wrapper around the namespaced test, allowing it to be referenced externally.
+
+
+
+
+
+
+**Parameters**:
+
+* **_testName**: Test name.
+
+
+
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
+[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
 [private]: https://img.shields.io/badge/-private-red (private)
 [static]: https://img.shields.io/badge/-static-lightgrey (static)

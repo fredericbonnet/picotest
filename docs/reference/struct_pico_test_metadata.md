@@ -4,7 +4,7 @@
 ![][C++]
 ![][public]
 
-**Definition**: `include/picotest.h` (line 110)
+**Definition**: `include/picotest.h` (line 177)
 
 Test metadata.
 
@@ -26,7 +26,7 @@ Test metadata.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 111)
+**Definition**: `include/picotest.h` (line 178)
 
 
 ```cpp
@@ -51,7 +51,7 @@ Test name.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 112)
+**Definition**: `include/picotest.h` (line 179)
 
 
 ```cpp
@@ -76,7 +76,7 @@ Test file location.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 113)
+**Definition**: `include/picotest.h` (line 180)
 
 
 ```cpp
@@ -101,7 +101,7 @@ Test line location.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 114)
+**Definition**: `include/picotest.h` (line 181)
 
 
 ```cpp
@@ -126,7 +126,7 @@ Test function.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 115)
+**Definition**: `include/picotest.h` (line 182)
 
 
 ```cpp
@@ -151,7 +151,7 @@ Number of subtests.
 
 ![][public]
 
-**Definition**: `include/picotest.h` (line 117)
+**Definition**: `include/picotest.h` (line 184)
 
 
 ```cpp
@@ -171,5 +171,5 @@ Subtests (NULL-terminated array for test suites, NULL pointer for test cases).
 
 * qualifiedname {"type":"element","name":"qualifiedname","attributes":{},"children":[{"type":"text","text":"PicoTestMetadata::subtests"}]}
 
-[public]: https://img.shields.io/badge/-public-brightgreen (public)
 [C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
+[public]: https://img.shields.io/badge/-public-brightgreen (public)

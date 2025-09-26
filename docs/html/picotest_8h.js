@@ -1,5 +1,8 @@
 var picotest_8h =
 [
+    [ "PICOTEST_NAMESPACE", "group__public__interface.html#gae82b43024340d2c047e29052f6b541cf", null ],
+    [ "PICOTEST_NAMESPACE_DELIMITER", "group__public__interface.html#ga8f5ca8a0365eab9bb822126b61399dd0", null ],
+    [ "PICOTEST_EXPORT", "group__public__interface.html#gacaba613d5189a6fa6dc4be50a2e366d3", null ],
     [ "PICOTEST_EXTERN", "group__public__interface.html#ga88033e8fb73d885670773cfc8ad1d024", null ],
     [ "PICOTEST_METADATA", "group__public__interface.html#gaa7f907387dd96cac614ad0dfe4cbb858", null ],
     [ "PICOTEST_FILTER_DEFAULT", "group__public__interface.html#ga7dccbea985fb578ba6b7639fb66fc3ea", null ],

@@ -99,7 +99,7 @@
 </programlisting></para>
 <para>You can then add it to your project requirements (<computeroutput>conanfile.txt</computeroutput>):</para>
 <para><programlisting><codeline><highlight class="normal">[requires]</highlight></codeline>
-<codeline><highlight class="normal">picotest/1.4.3</highlight></codeline>
+<codeline><highlight class="normal">picotest/1.4.4</highlight></codeline>
 </programlisting></para>
 </sect1>
 <sect1 id="index_1autotoc_md9">
