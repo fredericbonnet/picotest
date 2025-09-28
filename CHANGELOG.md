@@ -7,9 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2025-09-28
+
 ### Added
 
-- Add `PICOTEST_NAMESPACE` for file-level namespacing.
+- Add `PICOTEST_NAMESPACE` for file-level namespacing
+- Add `picotestRunner.inc` test runner utility
 
 ## [1.4.4] - 2025-09-23
 
@@ -99,7 +102,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First release.
 
-[unreleased]: https://github.com/fredericbonnet/picotest/compare/v1.4.4...HEAD
+[unreleased]: https://github.com/fredericbonnet/picotest/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/fredericbonnet/picotest/compare/v1.4.4...v1.5.0
 [1.4.4]: https://github.com/fredericbonnet/picotest/compare/v1.4.3...v1.4.4
 [1.4.3]: https://github.com/fredericbonnet/picotest/compare/v1.4.2...v1.4.3
 [1.4.2]: https://github.com/fredericbonnet/picotest/compare/v1.4.1...v1.4.2

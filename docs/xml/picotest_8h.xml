@@ -5,6 +5,7 @@
     <includes local="no">setjmp.h</includes>
     <includes local="no">stdarg.h</includes>
     <includes local="no">string.h</includes>
+    <includedby refid="picotest_runner_8inc" local="no">include/picotestRunner.inc</includedby>
     <incdepgraph>
       <node id="1">
         <label>include/picotest.h</label>
@@ -26,6 +27,18 @@
         <label>string.h</label>
       </node>
     </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>include/picotest.h</label>
+        <link refid="picotest_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>include/picotestRunner.inc</label>
+        <link refid="picotest_runner_8inc"/>
+      </node>
+    </invincdepgraph>
     <innerclass refid="struct_pico_test_metadata" prot="public">PicoTestMetadata</innerclass>
     <sectiondef kind="user-defined">
       <header>Version</header>
@@ -179,7 +192,7 @@
 <para>The assertion mechanism relies on <computeroutput>setjmp()</computeroutput> / <computeroutput>longjmp()</computeroutput>. While these functions are discouraged for production code, their usage is acceptable in the context of unit testing: in our case, <computeroutput>longjmp()</computeroutput> is only called when an assertion fails, a situation where the actual process state is no longer reliable anyway. Moreover, they constitute the only standard exception handling mechanism for plain C code.</para>
 <para><simplesect kind="par"><title>License</title><para></para>
 </simplesect>
-PicoTest is released under the terms of the The 3-Clause BSD License:</para>
+PicoTest is released under the terms of the 3-Clause BSD License:</para>
 <para><ulink url="https://opensource.org/licenses/BSD-3-Clause">https://opensource.org/licenses/BSD-3-Clause</ulink></para>
 <para>Copyright (c) 2018 Frederic Bonnet</para>
 <para>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</para>
@@ -207,10 +220,10 @@ PicoTest is released under the terms of the The 3-Clause BSD License:</para>
 <codeline lineno="65"><highlight class="normal"></highlight></codeline>
 <codeline lineno="70"><highlight class="normal"></highlight></codeline>
 <codeline lineno="78"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_VERSION<sp/>&quot;1.4.4&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_VERSION<sp/>&quot;1.5.0&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="80"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_VERSION_MAJOR<sp/>1</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="81"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_VERSION_MINOR<sp/>4</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="82"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_VERSION_PATCH<sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_VERSION_MINOR<sp/>5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PICOTEST_VERSION_PATCH<sp/>0</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="83"><highlight class="normal"></highlight></codeline>
 <codeline lineno="85"><highlight class="normal"></highlight></codeline>
 <codeline lineno="90"><highlight class="normal"></highlight></codeline>

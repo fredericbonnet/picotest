@@ -153,7 +153,7 @@ You can then add it to your project requirements (`conanfile.txt`):
 
 ```
 [requires]
-picotest/1.4.3
+picotest/1.5.0
 ```
 
 ## Development

@@ -3,6 +3,7 @@
   <compounddef id="dir_d44c64559bbebec7f509842c48db8b23" kind="dir">
     <compoundname>include</compoundname>
     <innerfile refid="picotest_8h">picotest.h</innerfile>
+    <innerfile refid="picotest_runner_8inc">picotestRunner.inc</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

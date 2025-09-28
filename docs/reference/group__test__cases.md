@@ -304,7 +304,7 @@ This macro defines a [PicoTestProc](group__public__interface.md#group__public__i
 
 * **_testName**: Name of the test case.
 * **_fixtureName**: (optional) Name of the test fixture used by the test.
-* **_context**: (optional) Fixture context structure defined using [PICOTEST\_FIXTURE\_CONTEXT(\_fixtureName)](group__fixtures.md#group__fixtures_1ga983cffc937dca4baa55f59afad404f03).
+* **_context**: (optional) Fixture context structure defined using [PICOTEST\_FIXTURE\_CONTEXT(\_fixtureName)](picotest_8h.md#group__fixtures_1ga983cffc937dca4baa55f59afad404f03).
 
 
 **Returns**:
@@ -366,9 +366,12 @@ PICOTEST_CASE(testCase5, fixtureWithOptionalContext) {
 
 
 
-**See also**: [PicoTestProc](group__public__interface.md#group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9), [PICOTEST\_FIXTURE\_CONTEXT](group__fixtures.md#group__fixtures_1ga983cffc937dca4baa55f59afad404f03)
+**See also**: [PicoTestProc](group__public__interface.md#group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9), [PICOTEST\_FIXTURE\_CONTEXT](picotest_8h.md#group__fixtures_1ga983cffc937dca4baa55f59afad404f03)
 
 
 
-[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
+[Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
+[private]: https://img.shields.io/badge/-private-red (private)
+[static]: https://img.shields.io/badge/-static-lightgrey (static)

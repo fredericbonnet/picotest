@@ -66,7 +66,7 @@ void beforeSetup(const char *fixtureName, const char *testName) {
 
 
 
-**See also**: [PICOTEST\_FIXTURE\_BEFORE\_SETUP](group__fixtures.md#group__fixtures_1gab6053367243af2ee7745bf35a3baaa4e)
+**See also**: [PICOTEST\_FIXTURE\_BEFORE\_SETUP](picotest_8h.md#group__fixtures_1gab6053367243af2ee7745bf35a3baaa4e)
 
 
 
@@ -123,7 +123,7 @@ void afterSetup(const char *fixtureName, const char *testName) {
 
 
 
-**See also**: [PICOTEST\_FIXTURE\_AFTER\_SETUP](group__fixtures.md#group__fixtures_1ga679063021accc32a74c1e617ed68423f)
+**See also**: [PICOTEST\_FIXTURE\_AFTER\_SETUP](picotest_8h.md#group__fixtures_1ga679063021accc32a74c1e617ed68423f)
 
 
 
@@ -181,7 +181,7 @@ void beforeTeardown(const char *fixtureName, const char *testName, int fail) {
 
 
 
-**See also**: [PICOTEST\_FIXTURE\_BEFORE\_TEARDOWN](group__fixtures.md#group__fixtures_1gaf68cbda0bf19afd7994c2e0a15278f8d)
+**See also**: [PICOTEST\_FIXTURE\_BEFORE\_TEARDOWN](picotest_8h.md#group__fixtures_1gaf68cbda0bf19afd7994c2e0a15278f8d)
 
 
 
@@ -239,7 +239,7 @@ void afterTeardown(const char *fixtureName, const char *testName, int fail) {
 
 
 
-**See also**: [PICOTEST\_FIXTURE\_AFTER\_TEARDOWN](group__fixtures.md#group__fixtures_1ga1a910236e326a942bc3a5be5c6013520)
+**See also**: [PICOTEST\_FIXTURE\_AFTER\_TEARDOWN](picotest_8h.md#group__fixtures_1ga1a910236e326a942bc3a5be5c6013520)
 
 
 
@@ -267,7 +267,7 @@ Does nothing.
 
 
 
-**See also**: [PicoTestFixtureBeforeSetupProc](group__fixtures.md#group__fixtures_1ga8aa61845d5a3f09e8d6df140a31c36d7), [PICOTEST\_FIXTURE\_BEFORE\_SETUP](group__fixtures.md#group__fixtures_1gab6053367243af2ee7745bf35a3baaa4e)
+**See also**: [PicoTestFixtureBeforeSetupProc](picotest_8h.md#group__fixtures_1ga8aa61845d5a3f09e8d6df140a31c36d7), [PICOTEST\_FIXTURE\_BEFORE\_SETUP](picotest_8h.md#group__fixtures_1gab6053367243af2ee7745bf35a3baaa4e)
 
 
 
@@ -284,7 +284,7 @@ Does nothing.
 
 Define the test fixture before setup hook.
 
-The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestFixtureBeforeSetupProc](group__fixtures.md#group__fixtures_1ga8aa61845d5a3f09e8d6df140a31c36d7) signature.
+The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestFixtureBeforeSetupProc](picotest_8h.md#group__fixtures_1ga8aa61845d5a3f09e8d6df140a31c36d7) signature.
 
 
 
@@ -319,7 +319,7 @@ void beforeSetup(const char *fixtureName, const char *testName) {
 
 
 
-**See also**: [PicoTestFixtureBeforeSetupProc](group__fixtures.md#group__fixtures_1ga8aa61845d5a3f09e8d6df140a31c36d7), [PICOTEST\_FIXTURE\_BEFORE\_SETUP\_DEFAULT](group__fixtures.md#group__fixtures_1ga503733d3013e81575c72a1100437ccf0), [PICOTEST\_FIXTURE\_AFTER\_SETUP](group__fixtures.md#group__fixtures_1ga679063021accc32a74c1e617ed68423f)
+**See also**: [PicoTestFixtureBeforeSetupProc](picotest_8h.md#group__fixtures_1ga8aa61845d5a3f09e8d6df140a31c36d7), [PICOTEST\_FIXTURE\_BEFORE\_SETUP\_DEFAULT](picotest_8h.md#group__fixtures_1ga503733d3013e81575c72a1100437ccf0), [PICOTEST\_FIXTURE\_AFTER\_SETUP](picotest_8h.md#group__fixtures_1ga679063021accc32a74c1e617ed68423f)
 
 
 
@@ -345,7 +345,7 @@ Does nothing.
 
 
 
-**See also**: [PicoTestFixtureAfterSetupProc](group__fixtures.md#group__fixtures_1ga0e4c1719160ac09c22d3b4ce06704962), [PICOTEST\_FIXTURE\_AFTER\_SETUP](group__fixtures.md#group__fixtures_1ga679063021accc32a74c1e617ed68423f)
+**See also**: [PicoTestFixtureAfterSetupProc](picotest_8h.md#group__fixtures_1ga0e4c1719160ac09c22d3b4ce06704962), [PICOTEST\_FIXTURE\_AFTER\_SETUP](picotest_8h.md#group__fixtures_1ga679063021accc32a74c1e617ed68423f)
 
 
 
@@ -362,7 +362,7 @@ Does nothing.
 
 Define the test fixture after setup hook.
 
-The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestFixtureAfterSetupProc](group__fixtures.md#group__fixtures_1ga0e4c1719160ac09c22d3b4ce06704962) signature.
+The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestFixtureAfterSetupProc](picotest_8h.md#group__fixtures_1ga0e4c1719160ac09c22d3b4ce06704962) signature.
 
 
 
@@ -397,7 +397,7 @@ void afterSetup(const char *fixtureName, const char *testName) {
 
 
 
-**See also**: [PicoTestFixtureAfterSetupProc](group__fixtures.md#group__fixtures_1ga0e4c1719160ac09c22d3b4ce06704962), [PICOTEST\_FIXTURE\_AFTER\_SETUP\_DEFAULT](group__fixtures.md#group__fixtures_1ga8bfe212f7c3bed6d83be102510086012), [PICOTEST\_FIXTURE\_BEFORE\_SETUP](group__fixtures.md#group__fixtures_1gab6053367243af2ee7745bf35a3baaa4e)
+**See also**: [PicoTestFixtureAfterSetupProc](picotest_8h.md#group__fixtures_1ga0e4c1719160ac09c22d3b4ce06704962), [PICOTEST\_FIXTURE\_AFTER\_SETUP\_DEFAULT](picotest_8h.md#group__fixtures_1ga8bfe212f7c3bed6d83be102510086012), [PICOTEST\_FIXTURE\_BEFORE\_SETUP](picotest_8h.md#group__fixtures_1gab6053367243af2ee7745bf35a3baaa4e)
 
 
 
@@ -423,7 +423,7 @@ Does nothing.
 
 
 
-**See also**: [PicoTestFixtureBeforeTeardownProc](group__fixtures.md#group__fixtures_1gaf69eeeb219ed143a9a978d49850cb072), [PICOTEST\_FIXTURE\_BEFORE\_TEARDOWN](group__fixtures.md#group__fixtures_1gaf68cbda0bf19afd7994c2e0a15278f8d)
+**See also**: [PicoTestFixtureBeforeTeardownProc](picotest_8h.md#group__fixtures_1gaf69eeeb219ed143a9a978d49850cb072), [PICOTEST\_FIXTURE\_BEFORE\_TEARDOWN](picotest_8h.md#group__fixtures_1gaf68cbda0bf19afd7994c2e0a15278f8d)
 
 
 
@@ -440,7 +440,7 @@ Does nothing.
 
 Define the test fixture before teardown hook.
 
-The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestFixtureBeforeTeardownProc](group__fixtures.md#group__fixtures_1gaf69eeeb219ed143a9a978d49850cb072) signature.
+The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestFixtureBeforeTeardownProc](picotest_8h.md#group__fixtures_1gaf69eeeb219ed143a9a978d49850cb072) signature.
 
 
 
@@ -475,7 +475,7 @@ void beforeTeardown(const char *fixtureName, const char *testName, int fail) {
 
 
 
-**See also**: [PicoTestFixtureBeforeTeardownProc](group__fixtures.md#group__fixtures_1gaf69eeeb219ed143a9a978d49850cb072), [PICOTEST\_FIXTURE\_BEFORE\_TEARDOWN\_DEFAULT](group__fixtures.md#group__fixtures_1ga11bbe6bcd529ac78264411add1275635), [PICOTEST\_FIXTURE\_AFTER\_TEARDOWN](group__fixtures.md#group__fixtures_1ga1a910236e326a942bc3a5be5c6013520)
+**See also**: [PicoTestFixtureBeforeTeardownProc](picotest_8h.md#group__fixtures_1gaf69eeeb219ed143a9a978d49850cb072), [PICOTEST\_FIXTURE\_BEFORE\_TEARDOWN\_DEFAULT](picotest_8h.md#group__fixtures_1ga11bbe6bcd529ac78264411add1275635), [PICOTEST\_FIXTURE\_AFTER\_TEARDOWN](picotest_8h.md#group__fixtures_1ga1a910236e326a942bc3a5be5c6013520)
 
 
 
@@ -501,7 +501,7 @@ Does nothing.
 
 
 
-**See also**: [PicoTestFixtureAfterTeardownProc](group__fixtures.md#group__fixtures_1gaf955a2ec76f0278eac70de7315ecb844), [PICOTEST\_FIXTURE\_AFTER\_TEARDOWN](group__fixtures.md#group__fixtures_1ga1a910236e326a942bc3a5be5c6013520)
+**See also**: [PicoTestFixtureAfterTeardownProc](picotest_8h.md#group__fixtures_1gaf955a2ec76f0278eac70de7315ecb844), [PICOTEST\_FIXTURE\_AFTER\_TEARDOWN](picotest_8h.md#group__fixtures_1ga1a910236e326a942bc3a5be5c6013520)
 
 
 
@@ -518,7 +518,7 @@ Does nothing.
 
 Define the test fixture after teardown hook.
 
-The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestFixtureAfterTeardownProc](group__fixtures.md#group__fixtures_1gaf955a2ec76f0278eac70de7315ecb844) signature.
+The default hook does nothing. Redefine this macro to use a custom hook, which must follow the [PicoTestFixtureAfterTeardownProc](picotest_8h.md#group__fixtures_1gaf955a2ec76f0278eac70de7315ecb844) signature.
 
 
 
@@ -553,7 +553,7 @@ void afterTeardown(const char *fixtureName, const char *testName, int fail) {
 
 
 
-**See also**: [PicoTestFixtureAfterTeardownProc](group__fixtures.md#group__fixtures_1gaf955a2ec76f0278eac70de7315ecb844), [PICOTEST\_FIXTURE\_AFTER\_TEARDOWN\_DEFAULT](group__fixtures.md#group__fixtures_1ga667b954d1448d95e022451b8711e6abf), [PICOTEST\_FIXTURE\_BEFORE\_TEARDOWN](group__fixtures.md#group__fixtures_1gaf68cbda0bf19afd7994c2e0a15278f8d)
+**See also**: [PicoTestFixtureAfterTeardownProc](picotest_8h.md#group__fixtures_1gaf955a2ec76f0278eac70de7315ecb844), [PICOTEST\_FIXTURE\_AFTER\_TEARDOWN\_DEFAULT](picotest_8h.md#group__fixtures_1ga667b954d1448d95e022451b8711e6abf), [PICOTEST\_FIXTURE\_BEFORE\_TEARDOWN](picotest_8h.md#group__fixtures_1gaf68cbda0bf19afd7994c2e0a15278f8d)
 
 
 
@@ -606,7 +606,7 @@ PICOTEST_FIXTURE_CONTEXT(fixtureWithContext) {
 
 
 
-**See also**: [PICOTEST\_FIXTURE\_SETUP](group__fixtures.md#group__fixtures_1ga1e98cba23391e13521100528ee1a2181), [PICOTEST\_FIXTURE\_TEARDOWN](group__fixtures.md#group__fixtures_1ga0d887bdb08e22489fc3cf9fb28a35fd1), [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
+**See also**: [PICOTEST\_FIXTURE\_SETUP](picotest_8h.md#group__fixtures_1ga1e98cba23391e13521100528ee1a2181), [PICOTEST\_FIXTURE\_TEARDOWN](picotest_8h.md#group__fixtures_1ga0d887bdb08e22489fc3cf9fb28a35fd1), [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
 
 
 
@@ -626,7 +626,7 @@ Test fixture initialization.
 **Parameters**:
 
 * **_fixtureName**: Name of the fixture.
-* **_context**: (optional) Fixture context structure defined using [PICOTEST\_FIXTURE\_CONTEXT(\_fixtureName)](group__fixtures.md#group__fixtures_1ga983cffc937dca4baa55f59afad404f03).
+* **_context**: (optional) Fixture context structure defined using [PICOTEST\_FIXTURE\_CONTEXT(\_fixtureName)](picotest_8h.md#group__fixtures_1ga983cffc937dca4baa55f59afad404f03).
 
 
 **Usage**:
@@ -734,7 +734,7 @@ PICOTEST_CASE(testCase5, fixtureWithOptionalContext) {
 
 
 
-**See also**: [PICOTEST\_FIXTURE\_CONTEXT](group__fixtures.md#group__fixtures_1ga983cffc937dca4baa55f59afad404f03), [PICOTEST\_FIXTURE\_TEARDOWN](group__fixtures.md#group__fixtures_1ga0d887bdb08e22489fc3cf9fb28a35fd1), [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
+**See also**: [PICOTEST\_FIXTURE\_CONTEXT](picotest_8h.md#group__fixtures_1ga983cffc937dca4baa55f59afad404f03), [PICOTEST\_FIXTURE\_TEARDOWN](picotest_8h.md#group__fixtures_1ga0d887bdb08e22489fc3cf9fb28a35fd1), [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
 
 
 
@@ -754,7 +754,7 @@ Test fixture cleanup.
 **Parameters**:
 
 * **_fixtureName**: Name of the fixture.
-* **_context**: (optional) Fixture context structure defined using [PICOTEST\_FIXTURE\_CONTEXT(\_fixtureName)](group__fixtures.md#group__fixtures_1ga983cffc937dca4baa55f59afad404f03).
+* **_context**: (optional) Fixture context structure defined using [PICOTEST\_FIXTURE\_CONTEXT(\_fixtureName)](picotest_8h.md#group__fixtures_1ga983cffc937dca4baa55f59afad404f03).
 
 
 **Usage**:
@@ -862,10 +862,12 @@ PICOTEST_CASE(testCase5, fixtureWithOptionalContext) {
 
 
 
-**See also**: [PICOTEST\_FIXTURE\_CONTEXT](group__fixtures.md#group__fixtures_1ga983cffc937dca4baa55f59afad404f03), [PICOTEST\_FIXTURE\_SETUP](group__fixtures.md#group__fixtures_1ga1e98cba23391e13521100528ee1a2181), [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
+**See also**: [PICOTEST\_FIXTURE\_CONTEXT](picotest_8h.md#group__fixtures_1ga983cffc937dca4baa55f59afad404f03), [PICOTEST\_FIXTURE\_SETUP](picotest_8h.md#group__fixtures_1ga1e98cba23391e13521100528ee1a2181), [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5)
 
 
 
-[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
+[private]: https://img.shields.io/badge/-private-red (private)
+[static]: https://img.shields.io/badge/-static-lightgrey (static)

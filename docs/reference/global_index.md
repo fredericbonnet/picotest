@@ -42,24 +42,24 @@
 * [PICOTEST\_FILTER\_PASS\_PROPAGATE](group__public__interface.md#group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fcaf2aa19fa3a0a1bc56585df626aa8e188) Enumerator
 * [PICOTEST\_FILTER\_SKIP](group__public__interface.md#group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca0ee37a1cf8a2347fb3c42636dfb80b1c) Enumerator
 * [PICOTEST\_FILTER\_SKIP\_PROPAGATE](group__public__interface.md#group__public__interface_1ggaf5acf1a68605f6c8b758bae0224e03fca487de7ecca4099ee737bd41a8d75ba75) Enumerator
-* [PICOTEST\_FIXTURE\_AFTER\_SETUP](group__fixtures.md#group__fixtures_1ga679063021accc32a74c1e617ed68423f) Macro
-* [PICOTEST\_FIXTURE\_AFTER\_SETUP\_DEFAULT](group__fixtures.md#group__fixtures_1ga8bfe212f7c3bed6d83be102510086012) Macro
-* [PICOTEST\_FIXTURE\_AFTER\_TEARDOWN](group__fixtures.md#group__fixtures_1ga1a910236e326a942bc3a5be5c6013520) Macro
-* [PICOTEST\_FIXTURE\_AFTER\_TEARDOWN\_DEFAULT](group__fixtures.md#group__fixtures_1ga667b954d1448d95e022451b8711e6abf) Macro
-* [PICOTEST\_FIXTURE\_BEFORE\_SETUP](group__fixtures.md#group__fixtures_1gab6053367243af2ee7745bf35a3baaa4e) Macro
-* [PICOTEST\_FIXTURE\_BEFORE\_SETUP\_DEFAULT](group__fixtures.md#group__fixtures_1ga503733d3013e81575c72a1100437ccf0) Macro
-* [PICOTEST\_FIXTURE\_BEFORE\_TEARDOWN](group__fixtures.md#group__fixtures_1gaf68cbda0bf19afd7994c2e0a15278f8d) Macro
-* [PICOTEST\_FIXTURE\_BEFORE\_TEARDOWN\_DEFAULT](group__fixtures.md#group__fixtures_1ga11bbe6bcd529ac78264411add1275635) Macro
-* [PICOTEST\_FIXTURE\_CONTEXT](group__fixtures.md#group__fixtures_1ga983cffc937dca4baa55f59afad404f03) Macro
-* [PICOTEST\_FIXTURE\_SETUP](group__fixtures.md#group__fixtures_1ga1e98cba23391e13521100528ee1a2181) Macro
-* [PICOTEST\_FIXTURE\_TEARDOWN](group__fixtures.md#group__fixtures_1ga0d887bdb08e22489fc3cf9fb28a35fd1) Macro
+* [PICOTEST\_FIXTURE\_AFTER\_SETUP](picotest_8h.md#group__fixtures_1ga679063021accc32a74c1e617ed68423f) Macro
+* [PICOTEST\_FIXTURE\_AFTER\_SETUP\_DEFAULT](picotest_8h.md#group__fixtures_1ga8bfe212f7c3bed6d83be102510086012) Macro
+* [PICOTEST\_FIXTURE\_AFTER\_TEARDOWN](picotest_8h.md#group__fixtures_1ga1a910236e326a942bc3a5be5c6013520) Macro
+* [PICOTEST\_FIXTURE\_AFTER\_TEARDOWN\_DEFAULT](picotest_8h.md#group__fixtures_1ga667b954d1448d95e022451b8711e6abf) Macro
+* [PICOTEST\_FIXTURE\_BEFORE\_SETUP](picotest_8h.md#group__fixtures_1gab6053367243af2ee7745bf35a3baaa4e) Macro
+* [PICOTEST\_FIXTURE\_BEFORE\_SETUP\_DEFAULT](picotest_8h.md#group__fixtures_1ga503733d3013e81575c72a1100437ccf0) Macro
+* [PICOTEST\_FIXTURE\_BEFORE\_TEARDOWN](picotest_8h.md#group__fixtures_1gaf68cbda0bf19afd7994c2e0a15278f8d) Macro
+* [PICOTEST\_FIXTURE\_BEFORE\_TEARDOWN\_DEFAULT](picotest_8h.md#group__fixtures_1ga11bbe6bcd529ac78264411add1275635) Macro
+* [PICOTEST\_FIXTURE\_CONTEXT](picotest_8h.md#group__fixtures_1ga983cffc937dca4baa55f59afad404f03) Macro
+* [PICOTEST\_FIXTURE\_SETUP](picotest_8h.md#group__fixtures_1ga1e98cba23391e13521100528ee1a2181) Macro
+* [PICOTEST\_FIXTURE\_TEARDOWN](picotest_8h.md#group__fixtures_1ga0d887bdb08e22489fc3cf9fb28a35fd1) Macro
 * [PicoTestFailureLoggerProc](group__public__interface.md#group__public__interface_1gafc6530e30c90b9f92367ef643c8f4e00) Typedef
 * [PicoTestFilterProc](group__public__interface.md#group__public__interface_1ga6d5c4a903f131bbed4913008d9e3b212) Typedef
 * [PicoTestFilterResult](group__public__interface.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc) Enumeration type
-* [PicoTestFixtureAfterSetupProc](group__fixtures.md#group__fixtures_1ga0e4c1719160ac09c22d3b4ce06704962) Typedef
-* [PicoTestFixtureAfterTeardownProc](group__fixtures.md#group__fixtures_1gaf955a2ec76f0278eac70de7315ecb844) Typedef
-* [PicoTestFixtureBeforeSetupProc](group__fixtures.md#group__fixtures_1ga8aa61845d5a3f09e8d6df140a31c36d7) Typedef
-* [PicoTestFixtureBeforeTeardownProc](group__fixtures.md#group__fixtures_1gaf69eeeb219ed143a9a978d49850cb072) Typedef
+* [PicoTestFixtureAfterSetupProc](picotest_8h.md#group__fixtures_1ga0e4c1719160ac09c22d3b4ce06704962) Typedef
+* [PicoTestFixtureAfterTeardownProc](picotest_8h.md#group__fixtures_1gaf955a2ec76f0278eac70de7315ecb844) Typedef
+* [PicoTestFixtureBeforeSetupProc](picotest_8h.md#group__fixtures_1ga8aa61845d5a3f09e8d6df140a31c36d7) Typedef
+* [PicoTestFixtureBeforeTeardownProc](picotest_8h.md#group__fixtures_1gaf69eeeb219ed143a9a978d49850cb072) Typedef
 
 ## H
 
@@ -77,6 +77,7 @@
 ## M
 
 * [mainSuite.inc](main_suite_8inc.md#main_suite_8inc) File
+* [PICOTEST\_MAINSUITE](picotest_runner_8inc.md#picotest_runner_8inc_1a5f1501e3294d9a3c819fbd0863d2878f) Macro
 * [PICOTEST\_METADATA](group__public__interface.md#group__public__interface_1gaa7f907387dd96cac614ad0dfe4cbb858) Macro
 * [PicoTestMetadata](struct_pico_test_metadata.md#struct_pico_test_metadata) Structure
 
@@ -92,6 +93,7 @@
 * [PicoTest: A minimalist unit testing framework for C programs](indexpage.md#indexpage) Page
 * [picotest.h](picotest_8h.md#picotest_8h) File
 * [PicoTestProc](group__public__interface.md#group__public__interface_1ga5c445b2f0ea8f269813f7e479753bff9) Typedef
+* [picotestRunner.inc](picotest_runner_8inc.md#picotest_runner_8inc) File
 * [Public interface](group__public__interface.md#group__public__interface) Module
 
 ## R
@@ -100,19 +102,19 @@
 
 ## S
 
-* [PICOTEST\_SUITE](group__test__suites.md#group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f) Macro
-* [PICOTEST\_SUITE\_AFTER\_SUBTEST](group__test__suites.md#group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24) Macro
-* [PICOTEST\_SUITE\_AFTER\_SUBTEST\_DEFAULT](group__test__suites.md#group__test__suites_1ga0aa7b03502294fee8f3e5b4951027145) Macro
-* [PICOTEST\_SUITE\_BEFORE\_SUBTEST](group__test__suites.md#group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464) Macro
-* [PICOTEST\_SUITE\_BEFORE\_SUBTEST\_DEFAULT](group__test__suites.md#group__test__suites_1gab5b747836950016e04544e29879f3da3) Macro
-* [PICOTEST\_SUITE\_ENTER](group__test__suites.md#group__test__suites_1gae569b3a4f05ebefc297411072e505fd3) Macro
-* [PICOTEST\_SUITE\_ENTER\_DEFAULT](group__test__suites.md#group__test__suites_1ga50f13419afbe35f17150bacd7a906838) Macro
-* [PICOTEST\_SUITE\_LEAVE](group__test__suites.md#group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c) Macro
-* [PICOTEST\_SUITE\_LEAVE\_DEFAULT](group__test__suites.md#group__test__suites_1gaf24c1f7c243e1990463aea4fbd4d5324) Macro
-* [PicoTestSuiteAfterSubtestProc](group__test__suites.md#group__test__suites_1gabce697eb4326140f89b0546d773da31c) Typedef
-* [PicoTestSuiteBeforeSubtestProc](group__test__suites.md#group__test__suites_1ga7547327d267d2bad9362c7adcc96bb24) Typedef
-* [PicoTestSuiteEnterProc](group__test__suites.md#group__test__suites_1ga4e09d95df5430205a201b5a02b522f25) Typedef
-* [PicoTestSuiteLeaveProc](group__test__suites.md#group__test__suites_1ga5d8415df8755804fe1479ff21d17ed90) Typedef
+* [PICOTEST\_SUITE](picotest_8h.md#group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f) Macro
+* [PICOTEST\_SUITE\_AFTER\_SUBTEST](picotest_8h.md#group__test__suites_1gaab4493d86071cc9263827bf9a05a3b24) Macro
+* [PICOTEST\_SUITE\_AFTER\_SUBTEST\_DEFAULT](picotest_8h.md#group__test__suites_1ga0aa7b03502294fee8f3e5b4951027145) Macro
+* [PICOTEST\_SUITE\_BEFORE\_SUBTEST](picotest_8h.md#group__test__suites_1ga5a49439f633f383f0bb3d2a6e700d464) Macro
+* [PICOTEST\_SUITE\_BEFORE\_SUBTEST\_DEFAULT](picotest_8h.md#group__test__suites_1gab5b747836950016e04544e29879f3da3) Macro
+* [PICOTEST\_SUITE\_ENTER](picotest_8h.md#group__test__suites_1gae569b3a4f05ebefc297411072e505fd3) Macro
+* [PICOTEST\_SUITE\_ENTER\_DEFAULT](picotest_8h.md#group__test__suites_1ga50f13419afbe35f17150bacd7a906838) Macro
+* [PICOTEST\_SUITE\_LEAVE](picotest_8h.md#group__test__suites_1ga2ce5e2f78882e9f26067dc4ca9d0570c) Macro
+* [PICOTEST\_SUITE\_LEAVE\_DEFAULT](picotest_8h.md#group__test__suites_1gaf24c1f7c243e1990463aea4fbd4d5324) Macro
+* [PicoTestSuiteAfterSubtestProc](picotest_8h.md#group__test__suites_1gabce697eb4326140f89b0546d773da31c) Typedef
+* [PicoTestSuiteBeforeSubtestProc](picotest_8h.md#group__test__suites_1ga7547327d267d2bad9362c7adcc96bb24) Typedef
+* [PicoTestSuiteEnterProc](picotest_8h.md#group__test__suites_1ga4e09d95df5430205a201b5a02b522f25) Typedef
+* [PicoTestSuiteLeaveProc](picotest_8h.md#group__test__suites_1ga5d8415df8755804fe1479ff21d17ed90) Typedef
 * [subtests](struct_pico_test_metadata.md#struct_pico_test_metadata_1a543874ce98d5f3516e4e5bda6f4e61a3) Variable
 
 ## T

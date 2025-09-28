@@ -99,6 +99,9 @@
     <member refid="group__test__suites_1gabce697eb4326140f89b0546d773da31c" kind="typedef"><name>PicoTestSuiteAfterSubtestProc</name></member>
     <member refid="picotest_8h_1ab3f51c6e814dfdb310878e904dae18cd" kind="define"><name>_PICOTEST_PARENS</name></member>
   </compound>
+  <compound refid="picotest_runner_8inc" kind="file"><name>picotestRunner.inc</name>
+    <member refid="picotest_runner_8inc_1a5f1501e3294d9a3c819fbd0863d2878f" kind="define"><name>PICOTEST_MAINSUITE</name></member>
+  </compound>
   <compound refid="_r_e_a_d_m_e_8md" kind="file"><name>README.md</name>
   </compound>
   <compound refid="group__public__interface" kind="group"><name>public_interface</name>

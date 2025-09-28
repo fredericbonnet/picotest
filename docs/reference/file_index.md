@@ -19,6 +19,7 @@
 
 ## P
 
+* [picotestRunner.inc](picotest_runner_8inc.md#picotest_runner_8inc): This file provides a fully functional test runner and hooks for picotest suites.
 * [picotest.h](picotest_8h.md#picotest_8h): This file defines a minimalist unit testing framework for C programs.
 
 ## R
@@ -27,5 +28,5 @@
 
 ## T
 
-* [tags.c](tags_8c.md#tags_8c): Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering.
 * [traverse.c](traverse_8c.md#traverse_8c): Example of PicoTest hierarchy traversal, prints traversed tests to stdout.
+* [tags.c](tags_8c.md#tags_8c): Advanced example of PicoTest test filter, implements a primitive tagging feature for test filtering.

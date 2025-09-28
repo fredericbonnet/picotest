@@ -16,7 +16,7 @@ The assertion mechanism relies on <code>setjmp()</code> / <code>longjmp()</code>
 
 **License**:
 
-PicoTest is released under the terms of the The 3-Clause BSD License:
+PicoTest is released under the terms of the 3-Clause BSD License:
 
 
 
@@ -79,6 +79,23 @@ click 1 "picotest_8h.md#picotest_8h"
 3["stdarg.h"]
 
 4["string.h"]
+
+```
+
+
+## Included by
+
+* <include/picotestRunner.inc>
+
+
+```mermaid
+graph RL
+1["include/picotest.h"]
+click 1 "picotest_8h.md#picotest_8h"
+2 --> 1
+
+2["include/picotestRunner.inc"]
+click 2 "picotest_runner_8inc.md#picotest_runner_8inc"
 
 ```
 
@@ -693,10 +710,10 @@ PicoTest provides a way for client code to intercept test execution events on te
 
 
 
-#define PICOTEST_VERSION "1.4.4"
+#define PICOTEST_VERSION "1.5.0"
 #define PICOTEST_VERSION_MAJOR 1
-#define PICOTEST_VERSION_MINOR 4
-#define PICOTEST_VERSION_PATCH 4
+#define PICOTEST_VERSION_MINOR 5
+#define PICOTEST_VERSION_PATCH 0
 
 
 
@@ -1556,8 +1573,8 @@ typedef void(PicoTestSuiteAfterSubtestProc)(const char *suiteName, int nb,
 ```
 
 
-[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
 [private]: https://img.shields.io/badge/-private-red (private)
 [static]: https://img.shields.io/badge/-static-lightgrey (static)

@@ -1,6 +1,6 @@
 {
   "name": "picotest",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "PicoTest is a single-file unit testing framework for C programs that follows the xUnit principles",
   "author": "Frédéric Bonnet <fredericbonnet@free.fr>",
   "license": "BSD-3-Clause",

@@ -134,7 +134,7 @@
   <option  id='WARN_LOGFILE' default='yes' type='string'><value><![CDATA[]]></value></option>
   <option  id='INPUT' default='no' type='stringlist'>
     <value><![CDATA[README.md]]></value>
-    <value><![CDATA[./include/picotest.h]]></value>
+    <value><![CDATA[./include]]></value>
     <value><![CDATA[./examples]]></value>
   </option>
   <option  id='INPUT_ENCODING' default='yes' type='string'><value><![CDATA[UTF-8]]></value></option>

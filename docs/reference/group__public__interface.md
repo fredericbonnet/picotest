@@ -138,7 +138,7 @@ PicoTestFilterResult matchSubstring(PicoTestProc *test, const char *testName, co
 
 
 
-**See also**: [PICOTEST\_SUITE](group__test__suites.md#group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f), [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5), [PICOTEST\_FILTER](group__public__interface.md#group__public__interface_1gabd82de0bec174d972151cd122a0a03ff), [PicoTestFilterResult](group__public__interface.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc)
+**See also**: [PICOTEST\_SUITE](picotest_8h.md#group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f), [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5), [PICOTEST\_FILTER](group__public__interface.md#group__public__interface_1gabd82de0bec174d972151cd122a0a03ff), [PicoTestFilterResult](group__public__interface.md#group__public__interface_1gaf5acf1a68605f6c8b758bae0224e03fc)
 
 
 
@@ -569,7 +569,7 @@ Number of failed tests.
 
 
 
-**See also**: [PICOTEST\_SUITE](group__test__suites.md#group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f), [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5), [PICOTEST\_FILTER](group__public__interface.md#group__public__interface_1gabd82de0bec174d972151cd122a0a03ff)
+**See also**: [PICOTEST\_SUITE](picotest_8h.md#group__test__suites_1ga7a9c873e5e377bd88fcc4849689c1e6f), [PICOTEST\_CASE](group__test__cases.md#group__test__cases_1gadca8898d29eb42dde764ed83a5d9faf5), [PICOTEST\_FILTER](group__public__interface.md#group__public__interface_1gabd82de0bec174d972151cd122a0a03ff)
 
 
 
@@ -976,8 +976,8 @@ This creates a global wrapper around the namespaced test, allowing it to be refe
 
 
 
-[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [public]: https://img.shields.io/badge/-public-brightgreen (public)
+[C++]: https://img.shields.io/badge/language-C%2B%2B-blue (C++)
 [Markdown]: https://img.shields.io/badge/language-Markdown-blue (Markdown)
 [private]: https://img.shields.io/badge/-private-red (private)
 [static]: https://img.shields.io/badge/-static-lightgrey (static)

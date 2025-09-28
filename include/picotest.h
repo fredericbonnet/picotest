@@ -12,7 +12,7 @@
  *
  * @par License
  *
- * PicoTest is released under the terms of the The 3-Clause BSD License:
+ * PicoTest is released under the terms of the 3-Clause BSD License:
  *
  * https://opensource.org/licenses/BSD-3-Clause
  *
@@ -76,10 +76,10 @@
  * \{
  */
 
-#define PICOTEST_VERSION "1.4.4"
+#define PICOTEST_VERSION "1.5.0"
 #define PICOTEST_VERSION_MAJOR 1
-#define PICOTEST_VERSION_MINOR 4
-#define PICOTEST_VERSION_PATCH 4
+#define PICOTEST_VERSION_MINOR 5
+#define PICOTEST_VERSION_PATCH 0
 
 /*! \} End of Version */
 
